@@ -4,6 +4,7 @@
 #include "qworker_artikli.h"
 #include <QEventLoop>
 
+//
 
 class QHelperC : public QWidget
 {
