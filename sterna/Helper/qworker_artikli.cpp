@@ -86,6 +86,5 @@ void QWorkerArtikli::onPostList(QNetworkReply *rep)
                        + t_kategorija ;
         }
     }
-    //    emit retValueArtikli(listArt);
     emit finishedSearch();
 }

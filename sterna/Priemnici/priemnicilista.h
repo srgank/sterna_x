@@ -32,11 +32,15 @@ public:
     void seTableSelectedRow(int m_row);
     QString getSearchString();
     void setSearchString(QString& searchText);
+    void ShowData(QStringList& tlist);
+    void ShowDataDetail(QStringList& tlist);
 
 private:
     Ui::PriemniciLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;
+    QStandardItemModel *model_2;
+    QHeaderView *header_2;
     QHelperC *hlp;
     int numOffset;
     int colWidth[9];
@@ -54,7 +58,6 @@ public slots:
     void procReturn(QString);
 
 private slots:
-    void getResultEX(QStringList&);
     void on_pushButton_5_clicked();
     void on_LE_prebaraj_textChanged(const QString &arg1);
     void selectionChanged(QModelIndex,QModelIndex);

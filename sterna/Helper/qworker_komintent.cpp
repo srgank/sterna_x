@@ -17,7 +17,7 @@ QString QWorkerKomintent::base64_decode(QString string)
 void QWorkerKomintent::getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy )
 {
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "get_komintenti_list");
+    QUrl serviceUrl = QUrl(urlhost + "get_komintent_list");
 
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
@@ -71,7 +71,7 @@ void QWorkerKomintent::onPostList(QNetworkReply *rep)
         QString t_mb = base64_decode(obj["mb"].toString());
         QString t_zabeleska1 = base64_decode(obj["zabeleska1"].toString());
         QString t_zabeleska2 = base64_decode(obj["zabeleska2"].toString());
-        QString t_rabat = base64_decode(obj["rabat"].toString());
+        QString t_rabat = QString::number(obj["rabat"].toInt());
         QString t_grad = base64_decode(obj["grad"].toString());
 
 

@@ -7,6 +7,9 @@ PriemniciVnes::PriemniciVnes(BaseForm *parent) :
 {
     ui->setupUi(this);
     ui->comboBox_2->installEventFilter(this);
+    Singleton *s = Singleton::Instance();
+    str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
 
     ui->dateTimeEdit->installEventFilter(this);
     ui->dateTimeEdit_2->installEventFilter(this);
@@ -46,7 +49,6 @@ PriemniciVnes::PriemniciVnes(BaseForm *parent) :
     ui->pushButton_4->installEventFilter(this);
     ui->pushButton_5->installEventFilter(this);
     ui->pushButton_6->installEventFilter(this);
-    Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
@@ -117,154 +119,154 @@ bool PriemniciVnes::eventFilter(QObject *object, QEvent *event)
     {
         if (object == ui->comboBox_2)
         {
-            ui->comboBox_2->setStyleSheet("background-color: yellow");
+            ui->comboBox_2->setStyleSheet(str_yellow);
         }
         if (object == ui->dateTimeEdit)
         {
-            ui->dateTimeEdit->setStyleSheet("background-color: yellow");
+            ui->dateTimeEdit->setStyleSheet(str_yellow);
         }
         if (object == ui->dateTimeEdit_2)
         {
-            ui->dateTimeEdit_2->setStyleSheet("background-color: yellow");
+            ui->dateTimeEdit_2->setStyleSheet(str_yellow);
         }
         if (object == ui->dateTimeEdit_3)
         {
-            ui->dateTimeEdit_3->setStyleSheet("background-color: yellow");
+            ui->dateTimeEdit_3->setStyleSheet(str_yellow);
         }
         if (object == ui->dateTimeEdit_4)
         {
-            ui->dateTimeEdit_4->setStyleSheet("background-color: yellow");
+            ui->dateTimeEdit_4->setStyleSheet(str_yellow);
         }
 
 
 
         if (object == ui->lineEdit)
         {
-            ui->lineEdit->setStyleSheet("background-color: yellow");
+            ui->lineEdit->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_2)
         {
-            ui->lineEdit_2->setStyleSheet("background-color: yellow");
+            ui->lineEdit_2->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_3)
         {
-            ui->lineEdit_3->setStyleSheet("background-color: yellow");
+            ui->lineEdit_3->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_4)
         {
-            ui->lineEdit_4->setStyleSheet("background-color: yellow");
+            ui->lineEdit_4->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_5)
         {
-            ui->lineEdit_5->setStyleSheet("background-color: yellow");
+            ui->lineEdit_5->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_6)
         {
-            ui->lineEdit_6->setStyleSheet("background-color: yellow");
+            ui->lineEdit_6->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_7)
         {
-            ui->lineEdit_7->setStyleSheet("background-color: yellow");
+            ui->lineEdit_7->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_8)
         {
-            ui->lineEdit_8->setStyleSheet("background-color: yellow");
+            ui->lineEdit_8->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_9)
         {
-            ui->lineEdit_9->setStyleSheet("background-color: yellow");
+            ui->lineEdit_9->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_10)
         {
-            ui->lineEdit_10->setStyleSheet("background-color: yellow");
+            ui->lineEdit_10->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_11)
         {
-            ui->lineEdit_11->setStyleSheet("background-color: yellow");
+            ui->lineEdit_11->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_12)
         {
-            ui->lineEdit_12->setStyleSheet("background-color: yellow");
+            ui->lineEdit_12->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_13)
         {
-            ui->lineEdit_13->setStyleSheet("background-color: yellow");
+            ui->lineEdit_13->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_14)
         {
-            ui->lineEdit_14->setStyleSheet("background-color: yellow");
+            ui->lineEdit_14->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_15)
         {
-            ui->lineEdit_15->setStyleSheet("background-color: yellow");
+            ui->lineEdit_15->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_16)
         {
-            ui->lineEdit_16->setStyleSheet("background-color: yellow");
+            ui->lineEdit_16->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_17)
         {
-            ui->lineEdit_17->setStyleSheet("background-color: yellow");
+            ui->lineEdit_17->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_18)
         {
-            ui->lineEdit_18->setStyleSheet("background-color: yellow");
+            ui->lineEdit_18->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_19)
         {
-            ui->lineEdit_19->setStyleSheet("background-color: yellow");
+            ui->lineEdit_19->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_20)
         {
-            ui->lineEdit_20->setStyleSheet("background-color: yellow");
+            ui->lineEdit_20->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_21)
         {
-            ui->lineEdit_21->setStyleSheet("background-color: yellow");
+            ui->lineEdit_21->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_22)
         {
-            ui->lineEdit_22->setStyleSheet("background-color: yellow");
+            ui->lineEdit_22->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_23)
         {
-            ui->lineEdit_23->setStyleSheet("background-color: yellow");
+            ui->lineEdit_23->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_24)
         {
-            ui->lineEdit_24->setStyleSheet("background-color: yellow");
+            ui->lineEdit_24->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_25)
         {
-            ui->lineEdit_25->setStyleSheet("background-color: yellow");
+            ui->lineEdit_25->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_26)
         {
-            ui->lineEdit_26->setStyleSheet("background-color: yellow");
+            ui->lineEdit_26->setStyleSheet(str_yellow);
         }
         if (object == ui->lineEdit_27)
         {
-            ui->lineEdit_27->setStyleSheet("background-color: yellow");
+            ui->lineEdit_27->setStyleSheet(str_yellow);
         }
         if (object == ui->pushButton_3)
         {
-            ui->pushButton_3->setStyleSheet("background-color: yellow");
+            ui->pushButton_3->setStyleSheet(str_yellow);
         }
         if (object == ui->pushButton_4)
         {
-            ui->pushButton_4->setStyleSheet("background-color: yellow");
+            ui->pushButton_4->setStyleSheet(str_yellow);
         }
         if (object == ui->pushButton_5)
         {
-            ui->pushButton_5->setStyleSheet("background-color: yellow");
+            ui->pushButton_5->setStyleSheet(str_yellow);
         }
         if (object == ui->pushButton_6)
         {
-            ui->pushButton_6->setStyleSheet("background-color: yellow");
+            ui->pushButton_6->setStyleSheet(str_yellow);
         }
         if (object == ui->textEdit)
         {
-            ui->textEdit->setStyleSheet("background-color: yellow");
+            ui->textEdit->setStyleSheet(str_yellow);
         }
 
     }
@@ -272,154 +274,154 @@ bool PriemniciVnes::eventFilter(QObject *object, QEvent *event)
     {
         if (object == ui->comboBox_2)
         {
-            ui->comboBox_2->setStyleSheet("background-color: none");
+            ui->comboBox_2->setStyleSheet(str_none);
         }
         if (object == ui->dateTimeEdit)
         {
-            ui->dateTimeEdit->setStyleSheet("background-color: none");
+            ui->dateTimeEdit->setStyleSheet(str_none);
         }
         if (object == ui->dateTimeEdit_2)
         {
-            ui->dateTimeEdit_2->setStyleSheet("background-color: none");
+            ui->dateTimeEdit_2->setStyleSheet(str_none);
         }
         if (object == ui->dateTimeEdit_3)
         {
-            ui->dateTimeEdit_3->setStyleSheet("background-color: none");
+            ui->dateTimeEdit_3->setStyleSheet(str_none);
         }
         if (object == ui->dateTimeEdit_4)
         {
-            ui->dateTimeEdit_4->setStyleSheet("background-color: none");
+            ui->dateTimeEdit_4->setStyleSheet(str_none);
         }
 
 
 
         if (object == ui->lineEdit)
         {
-            ui->lineEdit->setStyleSheet("background-color: none");
+            ui->lineEdit->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_2)
         {
-            ui->lineEdit_2->setStyleSheet("background-color: none");
+            ui->lineEdit_2->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_3)
         {
-            ui->lineEdit_3->setStyleSheet("background-color: none");
+            ui->lineEdit_3->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_4)
         {
-            ui->lineEdit_4->setStyleSheet("background-color: none");
+            ui->lineEdit_4->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_5)
         {
-            ui->lineEdit_5->setStyleSheet("background-color: none");
+            ui->lineEdit_5->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_6)
         {
-            ui->lineEdit_6->setStyleSheet("background-color: none");
+            ui->lineEdit_6->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_7)
         {
-            ui->lineEdit_7->setStyleSheet("background-color: none");
+            ui->lineEdit_7->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_8)
         {
-            ui->lineEdit_8->setStyleSheet("background-color: none");
+            ui->lineEdit_8->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_9)
         {
-            ui->lineEdit_9->setStyleSheet("background-color: none");
+            ui->lineEdit_9->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_10)
         {
-            ui->lineEdit_10->setStyleSheet("background-color: none");
+            ui->lineEdit_10->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_11)
         {
-            ui->lineEdit_11->setStyleSheet("background-color: none");
+            ui->lineEdit_11->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_12)
         {
-            ui->lineEdit_12->setStyleSheet("background-color: none");
+            ui->lineEdit_12->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_13)
         {
-            ui->lineEdit_13->setStyleSheet("background-color: none");
+            ui->lineEdit_13->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_14)
         {
-            ui->lineEdit_14->setStyleSheet("background-color: none");
+            ui->lineEdit_14->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_15)
         {
-            ui->lineEdit_15->setStyleSheet("background-color: none");
+            ui->lineEdit_15->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_16)
         {
-            ui->lineEdit_16->setStyleSheet("background-color: none");
+            ui->lineEdit_16->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_17)
         {
-            ui->lineEdit_17->setStyleSheet("background-color: none");
+            ui->lineEdit_17->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_18)
         {
-            ui->lineEdit_18->setStyleSheet("background-color: none");
+            ui->lineEdit_18->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_19)
         {
-            ui->lineEdit_19->setStyleSheet("background-color: none");
+            ui->lineEdit_19->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_20)
         {
-            ui->lineEdit_20->setStyleSheet("background-color: none");
+            ui->lineEdit_20->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_21)
         {
-            ui->lineEdit_21->setStyleSheet("background-color: none");
+            ui->lineEdit_21->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_22)
         {
-            ui->lineEdit_22->setStyleSheet("background-color: none");
+            ui->lineEdit_22->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_23)
         {
-            ui->lineEdit_23->setStyleSheet("background-color: none");
+            ui->lineEdit_23->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_24)
         {
-            ui->lineEdit_24->setStyleSheet("background-color: none");
+            ui->lineEdit_24->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_25)
         {
-            ui->lineEdit_25->setStyleSheet("background-color: none");
+            ui->lineEdit_25->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_26)
         {
-            ui->lineEdit_26->setStyleSheet("background-color: none");
+            ui->lineEdit_26->setStyleSheet(str_none);
         }
         if (object == ui->lineEdit_27)
         {
-            ui->lineEdit_27->setStyleSheet("background-color: none");
+            ui->lineEdit_27->setStyleSheet(str_none);
         }
         if (object == ui->pushButton_3)
         {
-            ui->pushButton_3->setStyleSheet("background-color: none");
+            ui->pushButton_3->setStyleSheet(str_none);
         }
         if (object == ui->pushButton_4)
         {
-            ui->pushButton_4->setStyleSheet("background-color: none");
+            ui->pushButton_4->setStyleSheet(str_none);
         }
         if (object == ui->pushButton_5)
         {
-            ui->pushButton_5->setStyleSheet("background-color: none");
+            ui->pushButton_5->setStyleSheet(str_none);
         }
         if (object == ui->pushButton_6)
         {
-            ui->pushButton_6->setStyleSheet("background-color: none");
+            ui->pushButton_6->setStyleSheet(str_none);
         }
         if (object == ui->textEdit)
         {
-            ui->textEdit->setStyleSheet("background-color: none");
+            ui->textEdit->setStyleSheet(str_none);
         }
 
     }

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QKeyEvent>
-
+#include "xx.h"
 
 namespace Ui {
 class BaseForm;
@@ -33,10 +33,12 @@ public:
 private:
     Ui::BaseForm *ui;
     void keyPressEvent(QKeyEvent *event);
+
     QWidget *m_sourceWidget;
     QWidget *m_Widget;
 
 protected:
+
     template <class T, class K>
     T* showMyWidget(T *a, K *b)
     {

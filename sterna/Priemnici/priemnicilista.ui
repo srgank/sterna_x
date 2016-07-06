@@ -18,18 +18,13 @@
     <rect>
      <x>40</x>
      <y>40</y>
-     <width>921</width>
+     <width>938</width>
      <height>371</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0" colspan="3">
      <widget class="QLabel" name="label_16">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Приемница - Листа &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -74,11 +69,6 @@
         </disabled>
        </palette>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
@@ -86,11 +76,6 @@
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_11">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -98,13 +83,6 @@
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_13">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -112,13 +90,6 @@
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -126,13 +97,6 @@
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -176,11 +140,6 @@
          </colorrole>
         </disabled>
        </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -290,11 +249,6 @@
     </item>
     <item row="9" column="0">
      <widget class="QPushButton" name="pushButton">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Внеси нова</string>
       </property>
@@ -312,11 +266,6 @@
     </item>
     <item row="9" column="1" colspan="2">
      <widget class="QPushButton" name="pushButton_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>  Корегирај постоечка</string>
       </property>
@@ -337,11 +286,6 @@
       <property name="enabled">
        <bool>false</bool>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Избришија ја постоечката</string>
       </property>
@@ -351,11 +295,6 @@
      <widget class="QPushButton" name="pushButton_4">
       <property name="enabled">
        <bool>true</bool>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="text">
        <string>Copy Table in Clipboard</string>

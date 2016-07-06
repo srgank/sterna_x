@@ -1,11 +1,18 @@
 #include "baseform.h"
 #include "ui_baseform.h"
 
+#define fontsize 11
+
 BaseForm::BaseForm(QWidget *parent) :
     QWidget(parent)
-   ,ui(new Ui::BaseForm)
+  ,ui(new Ui::BaseForm)
 {
     ui->setupUi(this);
+    Singleton *s = Singleton::Instance();
+    int gDFont = s->getGlobalFontSize();
+    QFont f;
+    f.setPointSize(gDFont);
+    this->setFont(f);
 }
 
 BaseForm::~BaseForm()
@@ -13,19 +20,22 @@ BaseForm::~BaseForm()
     delete ui;
 }
 
+
+
 void BaseForm::keyPressEvent(QKeyEvent *event)
 {
-    switch (event->key())
+    int key = event->key();
+    switch (key)
     {
-        case Qt::Key_F2: pressF2(); break;
-        case Qt::Key_F3: pressF3(); break;
-        case Qt::Key_F4: pressF4(); break;
-        case Qt::Key_Escape: pressEscape(); break;
-        case Qt::Key_Return: pressReturn(); break;
-        case Qt::Key_Enter: pressEnter(); break;
+    case Qt::Key_F2: pressF2(); break;
+    case Qt::Key_F3: pressF3(); break;
+    case Qt::Key_F4: pressF4(); break;
+    case Qt::Key_Escape: pressEscape(); break;
+    case Qt::Key_Return: pressReturn(); break;
+    case Qt::Key_Enter: pressEnter(); break;
 
     default:
-         QWidget::keyPressEvent(event);
+        QWidget::keyPressEvent(event);
     }
 }
 

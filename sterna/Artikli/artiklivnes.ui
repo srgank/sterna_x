@@ -10,6 +10,9 @@
     <height>497</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -25,11 +28,6 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QLabel" name="label_6">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Артикли - Внес&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -76,11 +74,6 @@
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Шифра</string>
       </property>
@@ -88,19 +81,15 @@
     </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="sifraArtikalEdit">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
      </widget>
     </item>
     <item row="1" column="2">
      <widget class="QPushButton" name="pushButton">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="text">
        <string>Внеси</string>
@@ -113,11 +102,6 @@
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Назив на Артикал</string>
       </property>
@@ -125,11 +109,6 @@
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Едм</string>
       </property>
@@ -137,20 +116,13 @@
     </item>
     <item row="3" column="1">
      <widget class="QLineEdit" name="edmArtikalEdit">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
      </widget>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Реф</string>
       </property>
@@ -158,20 +130,13 @@
     </item>
     <item row="4" column="1">
      <widget class="QLineEdit" name="refArtikalEdit">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
      </widget>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Каталошки број</string>
       </property>
@@ -179,20 +144,13 @@
     </item>
     <item row="5" column="1">
      <widget class="QLineEdit" name="kataloskiArtikalEdit">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
      </widget>
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_11">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>ДДВ</string>
       </property>
@@ -200,6 +158,9 @@
     </item>
     <item row="6" column="1">
      <widget class="QComboBox" name="ddvCombo">
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
       <property name="editable">
        <bool>true</bool>
       </property>
@@ -238,10 +199,8 @@
     </item>
     <item row="2" column="1" colspan="2">
      <widget class="QLineEdit" name="nazivArtikalEdit">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="toolTip">
        <string/>

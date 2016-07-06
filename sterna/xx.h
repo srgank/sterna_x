@@ -36,7 +36,8 @@ public:
     QStringList getKomintentiColumnWidth(){return m_colWidth_k;}
     void setKomintentiColumnWidth(QStringList a_colWidth_k){ m_colWidth_k = a_colWidth_k;}
 
-
+    int getGlobalFontSize(){return globalFontSize;}
+    void setGlobalFontSize(int eFontSize){globalFontSize = eFontSize;}
 
 protected: 
 	//Singleton();
@@ -47,5 +48,6 @@ private:
 	static Singleton* _instance;
     QStringList m_colWidth;
     QStringList m_colWidth_k;
+    int globalFontSize;
 };
 #endif // Singleton_H

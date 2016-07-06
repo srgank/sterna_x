@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>498</height>
+    <width>1042</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,18 +18,13 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>955</width>
+     <width>975</width>
      <height>473</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0" colspan="3">
      <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Пребарај по назив или шифра на коминтент</string>
       </property>
@@ -43,20 +38,10 @@
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
      </widget>
     </item>
     <item row="0" column="6">
      <widget class="QLabel" name="label_16">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -67,11 +52,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Шифра</string>
       </property>
@@ -446,11 +426,6 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -458,11 +433,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="2" column="3" colspan="2">
      <widget class="QLabel" name="label_9">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Банка Депонент</string>
       </property>
@@ -470,11 +440,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Назив</string>
       </property>
@@ -488,11 +453,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -500,11 +460,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="3" column="3" colspan="2">
      <widget class="QLabel" name="label_10">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Шифра на дејност</string>
       </property>
@@ -512,11 +467,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Адреса</string>
       </property>
@@ -530,11 +480,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -542,11 +487,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Тел.</string>
       </property>
@@ -554,11 +494,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="4" column="3" colspan="2">
      <widget class="QLabel" name="label_11">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Матичен број.</string>
       </property>
@@ -572,11 +507,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -584,11 +514,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="5" column="3" colspan="2">
      <widget class="QLabel" name="label_12">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>ЕМБГ  (физичко лице)</string>
       </property>
@@ -596,11 +521,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_6">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Мобил</string>
       </property>
@@ -614,11 +534,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -626,11 +541,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="6" column="3" colspan="2">
      <widget class="QLabel" name="label_13">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Лична карта (физичко лице)</string>
       </property>
@@ -638,11 +548,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_7">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Жиро сметка</string>
       </property>
@@ -656,11 +561,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -668,11 +568,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="7" column="3">
      <widget class="QLabel" name="label_14">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Рабат</string>
       </property>
@@ -686,11 +581,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -698,11 +588,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="8" column="3">
      <widget class="QLabel" name="label_15">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Град</string>
       </property>
@@ -710,11 +595,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="label_8">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Едб.</string>
       </property>
@@ -724,11 +604,6 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="pushButton_3">
       <property name="enabled">
        <bool>true</bool>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="text">
        <string>Избриши го постоечкиот</string>
@@ -740,11 +615,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="9" column="0" colspan="2">
      <widget class="QPushButton" name="pushButton">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Внеси нов коминтент</string>
       </property>
@@ -756,11 +626,6 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="9" column="2" colspan="2">
      <widget class="QPushButton" name="pushButton_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>Корегирај постоечки</string>
       </property>
@@ -809,11 +674,6 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
@@ -845,11 +705,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -862,11 +717,6 @@ p, li { white-space: pre-wrap; }
         <width>250</width>
         <height>0</height>
        </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -881,11 +731,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -898,11 +743,6 @@ p, li { white-space: pre-wrap; }
         <width>250</width>
         <height>0</height>
        </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -917,11 +757,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -935,11 +770,6 @@ p, li { white-space: pre-wrap; }
         <height>0</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -952,11 +782,6 @@ p, li { white-space: pre-wrap; }
         <width>250</width>
         <height>0</height>
        </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
       </property>
       <property name="readOnly">
        <bool>true</bool>

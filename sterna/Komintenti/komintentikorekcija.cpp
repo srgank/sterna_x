@@ -26,9 +26,7 @@ KomintentiKorekcija::~KomintentiKorekcija()
 }
 void KomintentiKorekcija::pressEscape()
 {
-    if(!statusWait){
-        emit signalpressEscape();
-    }
+    emit signalpressEscape();
 }
 
 void KomintentiKorekcija::initProc(QString m_searchID)

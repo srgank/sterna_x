@@ -2,6 +2,8 @@
 #define QHELPERC_H
 #include <QWidget>
 #include "qworker_artikli.h"
+#include "qworker_komintent.h"
+#include "qworker_dokumenti.h"
 #include <QEventLoop>
 
 //
@@ -14,6 +16,7 @@ public:
     ~QHelperC();
     QStringList getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     QStringList getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
+    QStringList getallDokumenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
 
 
 private:

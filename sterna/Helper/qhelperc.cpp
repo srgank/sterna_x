@@ -1,5 +1,5 @@
 #include "qhelperc.h"
-#include "qworker_komintent.h"
+
 
 QHelperC::QHelperC(QWidget *parent) : QWidget(parent)
 {
@@ -30,3 +30,12 @@ QStringList QHelperC::getallKomintenti(QString& offset, QString& limit, QString&
     return worker.listRes;
 }
 
+QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& searchName, QString& searchBy)
+{
+    QEventLoop pause;
+    QWorkerDokumenti worker;
+    connect(&worker, SIGNAL(finishedSearch()), &pause, SLOT(quit()));
+    worker.getList(offset, limit, searchName, searchBy);
+    pause.exec();
+    return worker.listRes;
+}

@@ -22,15 +22,20 @@ public:
     virtual void pressReturn();
 
 
+
 private:
     Ui::ArtikliVnes *ui;
     QHelperC *hlp;
+    void on_SifraArtikalEdit_EditingFinished();
+    bool eventFilter(QObject *sender, QEvent *event);
+    QString str_yellow;
+    QString str_none;
+
 signals:
     void signalpressEscape();
 
 private slots:
     void on_pushButton_clicked();
-    void getResultEX(QStringList& tlist);
 
 };
 

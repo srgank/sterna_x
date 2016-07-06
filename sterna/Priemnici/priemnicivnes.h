@@ -23,7 +23,8 @@ public:
 
 private:
     Ui::PriemniciVnes *ui;
-
+    QString str_yellow;
+    QString str_none;
 
 protected:
     bool eventFilter(QObject *obj, QEvent *ev);

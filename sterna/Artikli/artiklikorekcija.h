@@ -24,16 +24,19 @@ public:
     void initProc(QString m_searchID);
 
 private:
+    bool eventFilter(QObject *sender, QEvent *event);
+    void on_SifraArtikalEdit_EditingFinished();
     Ui::ArtikliKorekcija *ui;
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
+    QString str_yellow;
+    QString str_none;
+
 signals:
     void signalpressEscape();
     void signalPrePressEscape();
 private slots:
-    void getResultEX(QStringList& );
-    void getResultEXUpdate22(QStringList& tlist);
     void on_pushButton_released();
 };
 

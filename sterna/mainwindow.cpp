@@ -52,8 +52,8 @@ void MainWindow::createDockWindows()
     int  mLeftW = m_left->width();
     rMain = QRect(0, 0, screenRect.width() - mLeftW, screenRect.height() - 100);
     Singleton *s = Singleton::Instance();
+    s->setGlobalFontSize(12);
     s->setMainRect(rMain);
-
 }
 
 void MainWindow::on_actionClose_triggered()

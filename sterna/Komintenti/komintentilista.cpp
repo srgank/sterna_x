@@ -70,13 +70,22 @@ void KomintentiLista::ShowData(QStringList& tlist)
     model->setColumnCount(c);
     model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
     model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
+    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Назив"));
+    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Адреса"));
+    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Тел"));
+    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Мобил"));
+    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Жиро сметка"));
+    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Едб"));
+    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Депонент"));
+    model->setHeaderData( 9, Qt::Horizontal, trUtf8("Шиф.Дејност"));
+    model->setHeaderData( 10, Qt::Horizontal, trUtf8("МБ"));
+    model->setHeaderData( 11, Qt::Horizontal, trUtf8("Забелешка"));
+    model->setHeaderData( 12, Qt::Horizontal, trUtf8("Забелешка"));
+    model->setHeaderData( 13, Qt::Horizontal, trUtf8("Рабат"));
+    model->setHeaderData( 14, Qt::Horizontal, trUtf8("Град"));
+
+
+
 
     ui->tableView->setModel(model);
 
@@ -92,7 +101,7 @@ void KomintentiLista::ShowData(QStringList& tlist)
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
-            ui->tableView->setRowHeight(row, 18);
+            ui->tableView->setRowHeight(row, 20);
             ui->tableView->setColumnWidth(i, colWidth[i]);
             item->setEditable(false);
             model->setItem(row, i, item);
@@ -119,13 +128,19 @@ void KomintentiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
     model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
     model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
+    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Назив"));
+    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Адреса"));
+    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Тел"));
+    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Мобил"));
+    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Жиро сметка"));
+    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Едб"));
+    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Депонент"));
+    model->setHeaderData( 9, Qt::Horizontal, trUtf8("Шиф.Дејност"));
+    model->setHeaderData( 10, Qt::Horizontal, trUtf8("МБ"));
+    model->setHeaderData( 11, Qt::Horizontal, trUtf8("Забелешка"));
+    model->setHeaderData( 12, Qt::Horizontal, trUtf8("Забелешка"));
+    model->setHeaderData( 13, Qt::Horizontal, trUtf8("Рабат"));
+    model->setHeaderData( 14, Qt::Horizontal, trUtf8("Град"));
 
     int i = modelX.row();
     m_row = modelX.row();
@@ -136,12 +151,13 @@ void KomintentiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     ui->lineEdit_6->setText(model->item(i, 4)->text());
     ui->lineEdit_7->setText(model->item(i, 5)->text());
     ui->lineEdit_8->setText(model->item(i, 6)->text());
-    m_selectedID = model->item(i, 1)->text();
+//    m_selectedID = model->item(i, 1)->text();
     int stop = 0;
 }
 
 void KomintentiLista::on_pushButton_4_clicked()
 {
+    ui->pushButton_4->setEnabled(false);
     numOffset -= 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
@@ -149,10 +165,12 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vSearchBy = "artikal";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
+    ui->pushButton_4->setEnabled(true);
 }
 
 void KomintentiLista::on_pushButton_5_clicked()
 {
+    ui->pushButton_5->setEnabled(false);
     numOffset += 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
@@ -160,6 +178,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vSearchBy = "artikal";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
+    ui->pushButton_5->setEnabled(true);
 }
 
 

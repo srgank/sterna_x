@@ -7,7 +7,7 @@
 #include "Helper/qhelperc.h"
 #include "xx.h"
 
-#define COL 9
+#define COL 15
 
 namespace Ui {
 class KomintentiLista;
@@ -40,7 +40,7 @@ private:
     QHeaderView *header;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[9];
+    int colWidth[COL];
     QString m_selectedID;
     int m_row;
 

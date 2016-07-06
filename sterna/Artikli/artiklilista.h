@@ -42,7 +42,7 @@ private:
     QHeaderView *header;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[9];
+    int colWidth[COL];
     QString m_selectedID;
     int m_row;
 

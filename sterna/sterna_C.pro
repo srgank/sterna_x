@@ -55,7 +55,8 @@ SOURCES += main.cpp\
     Naracki/narackilista.cpp \
     Naracki/narackivnes.cpp \
     Helper/qworker_artikli.cpp \
-    Helper/qworker_komintent.cpp
+    Helper/qworker_komintent.cpp \
+    Helper/qworker_dokumenti.cpp
 
 
 
@@ -101,7 +102,8 @@ HEADERS  += mainwindow.h \
     Naracki/narackilista.h \
     Naracki/narackivnes.h \
     Helper/qworker_artikli.h \
-    Helper/qworker_komintent.h
+    Helper/qworker_komintent.h \
+    Helper/qworker_dokumenti.h
 
 
 
