@@ -33,6 +33,11 @@ public:
     void seTableSelectedRow(int m_row);
     QString getSearchString();
     void setSearchString(QString& searchText);
+    void initProc(int searchIDList, QString& searchStrList, int searchOffsetList);
+
+    int geTableSelected_Offset(){return numOffset;}
+    void seTableSelected_Offset(int t_numOffset){numOffset = t_numOffset;}
+
 
 private:
     void ShowData(QStringList&);
@@ -45,6 +50,9 @@ private:
     int colWidth[COL];
     QString m_selectedID;
     int m_row;
+
+    QString searchStrList;
+    int searchIDList;
 
 signals:
     void signalpressF2();

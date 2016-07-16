@@ -194,6 +194,15 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>sifraArtikalEdit</tabstop>
+  <tabstop>nazivArtikalEdit</tabstop>
+  <tabstop>edmArtikalEdit</tabstop>
+  <tabstop>refArtikalEdit</tabstop>
+  <tabstop>kataloskiArtikalEdit</tabstop>
+  <tabstop>ddvCombo</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

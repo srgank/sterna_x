@@ -17,6 +17,8 @@ KomintentiKorekcija::KomintentiKorekcija(BaseForm *parent) :
     connect(this, SIGNAL(finishKorekcija()),this, SLOT(procFinishKorekcija()));
     connect(hlp, SIGNAL(signalResultKomintenti(QStringList &)), this, SLOT(getResultEX(QStringList &)));
     connect(hlp, SIGNAL(signalResultUpdateArticle(QStringList &)), this, SLOT(getResultEXUpdate22(QStringList &)));
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
 }
 
 KomintentiKorekcija::~KomintentiKorekcija()

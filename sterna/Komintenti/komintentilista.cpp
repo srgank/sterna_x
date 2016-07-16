@@ -23,13 +23,45 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     QString vSearchBy = "artikal";
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
-    getTableColumnWidths(COL);
-    on_lineEditPrebaraj_textChanged("%%");
-    pressReturn();
+
+    QStringList tempVals = s->Get_Kom_HeaderState();
+    if (!tempVals.isEmpty()){
+        for (int i = 0; i < COL; i++)        {
+            colWidth[i] = tempVals.at(i).toInt();
+        }
+    }else{
+        for (int i = 0; i < COL; i++)        {
+            colWidth[i] = 100;
+        }
+    }
+
+
+    numOffset = 0;
+
 }
+
+void KomintentiLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
+{
+    seTableSelected_Offset(searchOffsetList);
+    ui->lineEditPrebaraj->setText(searchStrList);
+    on_lineEditPrebaraj_textChanged(searchStrList);
+    seTableSelectedRow(searchIDList);
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
+}
+
 
 KomintentiLista::~KomintentiLista()
 {
+    Singleton *s = Singleton::Instance();
+    QStringList tempVals;
+    for (int i = 0; i < COL; i++)
+    {
+        tempVals << QString::number(colWidth[i]);
+    }
+
+    s->Set_Kom_HeaderState(tempVals);
+
     delete ui;
     delete model;
     delete header;
@@ -187,40 +219,6 @@ void KomintentiLista::on_LE_prebaraj_textChanged(const QString &arg1)
 {
 }
 
-void KomintentiLista::setTableColumnWidths(int ccolumn)
-{
-    Singleton *s = Singleton::Instance();
-    QStringList tempWidth;
-    for (int i = 0; i < ccolumn; i++)
-    {
-        tempWidth << QString::number(ui->tableView->columnWidth(i), 10);
-    }
-    s->setKomintentiColumnWidth(tempWidth);
-}
-
-void KomintentiLista::getTableColumnWidths(int ccolumn)
-{
-    QLocale loc;
-    Singleton *s = Singleton::Instance();
-    QStringList sss = s->getKomintentiColumnWidth();
-    if (sss.count() == ccolumn)
-    {
-        for (int i1 = 0; i1 < ccolumn; i1++)
-        {
-            colWidth[i1] = loc.toInt(sss.at(i1));
-        }
-    }
-    else
-    {
-        for (int i1 = 0; i1 < ccolumn; i1++)
-        {
-            colWidth[i1] = 100;
-        }
-    }
-}
-
-
-
 
 void KomintentiLista::on_lineEdit_textChanged(const QString &arg1)
 {
@@ -257,7 +255,7 @@ void KomintentiLista::pressReturn()
 
 void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
 {
-    numOffset = 0;
+
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";

@@ -6,9 +6,12 @@
 Komintenti::Komintenti(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::Komintenti)
-    ,m_KomintentiLista(0)
-    ,m_KomintentiVnes(0)
-    ,m_KomintentiKorekcija(0)
+  ,m_KomintentiLista(0)
+  ,m_KomintentiVnes(0)
+  ,m_KomintentiKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("%")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -27,6 +30,11 @@ void Komintenti::pressF2()
     if (!m_KomintentiLista) {
         return;
     }
+
+    searchIDList = m_KomintentiLista->geTableSelectedRow();
+    searchStrList = m_KomintentiLista->getSearchString();
+    searchOffsetList = m_KomintentiLista->geTableSelected_Offset();
+
     disconnect(m_KomintentiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_KomintentiLista = deleteMyWidget<KomintentiLista>(m_KomintentiLista);
     m_KomintentiVnes = showMyWidget<KomintentiVnes, Komintenti>(m_KomintentiVnes, this);
@@ -41,6 +49,11 @@ void Komintenti::pressF3()
     }else{
         return;
     }
+
+    searchIDList = m_KomintentiLista->geTableSelectedRow();
+    searchStrList = m_KomintentiLista->getSearchString();
+    searchOffsetList = m_KomintentiLista->geTableSelected_Offset();
+
     disconnect(m_KomintentiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_KomintentiLista = deleteMyWidget<KomintentiLista>(m_KomintentiLista);
     m_KomintentiKorekcija = showMyWidget<KomintentiKorekcija, Komintenti>(m_KomintentiKorekcija, this);
@@ -58,6 +71,8 @@ void Komintenti::pressF4()
     connect(m_KomintentiLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_KomintentiLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
     connect(m_KomintentiLista,SIGNAL(signalReturnResult(QString)),this,SLOT(pressReturnResult(QString )));
+    m_KomintentiLista->initProc(searchIDList, searchStrList, searchOffsetList);
+
 }
 
 void Komintenti::pressEscape()

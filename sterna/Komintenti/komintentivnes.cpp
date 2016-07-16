@@ -11,6 +11,8 @@ KomintentiVnes::KomintentiVnes(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
 }
 
 KomintentiVnes::~KomintentiVnes()

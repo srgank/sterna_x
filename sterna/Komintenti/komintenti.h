@@ -30,6 +30,10 @@ public:
     virtual void pressEscape();
     void closeAllForm();
 
+    QString searchStrList;
+    int searchIDList;
+    int searchOffsetList;
+
 private:
     Ui::Komintenti *ui;
     KomintentiLista        *m_KomintentiLista;

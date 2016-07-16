@@ -8,7 +8,6 @@ ArtikliVnes::ArtikliVnes(BaseForm *parent) :
 
 {
     ui->setupUi(this);
-    ui->sifraArtikalEdit->setFocus();
     Singleton *s = Singleton::Instance();
     str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
@@ -26,8 +25,11 @@ ArtikliVnes::ArtikliVnes(BaseForm *parent) :
     ui->kataloskiArtikalEdit->installEventFilter(this);
     ui->refArtikalEdit->installEventFilter(this);
     ui->kataloskiArtikalEdit->installEventFilter(this);
-
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
 }
+
+
 
 bool ArtikliVnes::eventFilter(QObject *sender, QEvent *event)
 {

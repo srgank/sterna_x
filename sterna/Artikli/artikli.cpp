@@ -7,6 +7,9 @@ Artikli::Artikli(BaseForm *parent) :
     ,m_ArtikliLista(0)
     ,m_ArtikliVnes(0)
     ,m_ArtikliKorekcija(0)
+    ,searchIDList(0)
+    ,searchStrList("%")
+    ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,11 @@ void Artikli::pressF2()
     if (!m_ArtikliLista) {
         return;
     }
+    searchIDList = m_ArtikliLista->geTableSelectedRow();
+    searchStrList = m_ArtikliLista->getSearchString();
+    searchOffsetList = m_ArtikliLista->geTableSelected_Offset();
+
+
     disconnect(m_ArtikliLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_ArtikliLista = deleteMyWidget<ArtikliLista>(m_ArtikliLista);
     m_ArtikliVnes = showMyWidget<ArtikliVnes, Artikli>(m_ArtikliVnes, this);
@@ -39,6 +47,11 @@ void Artikli::pressF3()
     }else{
         return;
     }
+    searchIDList = m_ArtikliLista->geTableSelectedRow();
+    searchStrList = m_ArtikliLista->getSearchString();
+    searchOffsetList = m_ArtikliLista->geTableSelected_Offset();
+
+
     disconnect(m_ArtikliLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_ArtikliLista = deleteMyWidget<ArtikliLista>(m_ArtikliLista);
     m_ArtikliKorekcija = showMyWidget<ArtikliKorekcija, Artikli>(m_ArtikliKorekcija, this);
@@ -56,7 +69,7 @@ void Artikli::pressF4()
     connect(m_ArtikliLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_ArtikliLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
     connect(m_ArtikliLista,SIGNAL(signalReturnResult(QString)),this,SLOT(pressReturnResult(QString )));
-
+    m_ArtikliLista->initProc(searchIDList, searchStrList, searchOffsetList);
 }
 
 void Artikli::pressEscape()
