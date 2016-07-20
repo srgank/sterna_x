@@ -30,10 +30,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dock = new QDockWidget(this);
     m_left = new Left(dock);
+    loadRecordsFromFile();
+
 }
 
 MainWindow::~MainWindow()
 {
+    Singleton *s = Singleton::Instance();
+    QStringList art = s->Get_Art_HeaderState();
+    QStringList kom = s->Get_Kom_HeaderState();
+    saveRecordsFromFile(art, kom);
     delete ui;
 }
 
@@ -54,7 +60,40 @@ void MainWindow::createDockWindows()
     Singleton *s = Singleton::Instance();
     s->setGlobalFontSize(12);
     s->setMainRect(rMain);
+    s->Set_Art_HeaderState(art);
+    s->Set_Kom_HeaderState(kom);
 }
+
+
+void MainWindow::loadRecordsFromFile()
+{
+    QString filename = "config.bin";
+    QFile file( filename);
+    if( !file.open( QIODevice::ReadOnly ) )
+        return;
+    QDataStream stream( &file );
+    stream.setVersion( QDataStream::Qt_4_2 );
+
+    stream >> art;
+    stream >> kom;
+    file.close();
+}
+
+void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom)
+{
+    QString filename = "config.bin";
+    QFile file( filename);
+    if( !file.open( QIODevice::WriteOnly ) )
+        return;
+    QDataStream stream( &file );
+    stream.setVersion( QDataStream::Qt_4_2 );
+    stream << art;
+    stream << kom;
+    file.close();
+}
+
+
+
 
 void MainWindow::on_actionClose_triggered()
 {

@@ -29,6 +29,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void createDockWindows();
+    void loadRecordsFromFile();
+    void saveRecordsFromFile(QStringList art, QStringList kom);
+
 private slots:
     void on_actionArtikal_triggered();
     void closeMyWidget();
@@ -111,6 +114,9 @@ private:
     QString m_profakturaModul_description;
     QString m_povratnicaModul_description;
     QString m_narackaModul_description;
+
+
+    QStringList art, kom;
 
 public slots:
     void updateNavigator(QWidget* a, QWidget* b);

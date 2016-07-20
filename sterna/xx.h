@@ -48,6 +48,7 @@ public:
     void Set_Kom_HeaderState(QStringList temp_kom_HeaderState){kom_HeaderState = temp_kom_HeaderState;}
 
 
+
 protected: 
 	//Singleton();
 private:

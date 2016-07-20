@@ -1,4 +1,9 @@
 #include "xx.h"
+#include <QIODevice>
+#include <QFile>
+
+
+
 
 Singleton* Singleton::_instance = 0;
 
@@ -10,3 +15,5 @@ Singleton* Singleton::Instance()
 	}
 	return _instance;
 }
+
+
