@@ -133,7 +133,7 @@ void KomintentiLista::ShowData(QStringList& tlist)
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
-            ui->tableView->setRowHeight(row, 20);
+//            ui->tableView->setRowHeight(row, 20);
             ui->tableView->setColumnWidth(i, colWidth[i]);
             item->setEditable(false);
             model->setItem(row, i, item);

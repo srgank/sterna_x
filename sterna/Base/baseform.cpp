@@ -6,7 +6,9 @@
 BaseForm::BaseForm(QWidget *parent) :
     QWidget(parent)
   ,ui(new Ui::BaseForm)
+  , scale(0)
 {
+
     ui->setupUi(this);
     Singleton *s = Singleton::Instance();
     int gDFont = s->getGlobalFontSize();
@@ -76,3 +78,27 @@ void BaseForm::setSourceWidget(QWidget *sourceWidget)
     m_sourceWidget = sourceWidget;
 }
 
+void BaseForm::wheelEvent ( QWheelEvent * event )
+{
+    setUpdatesEnabled(false);
+   if( event->modifiers() & Qt::ControlModifier )
+    {
+    Singleton *s = Singleton::Instance();
+
+    scale += (event->delta()/120)*2; //or use any other step for zooming
+    if (scale < 6) {
+        scale = 6;
+    }
+    else if (scale > 22)
+    {
+        scale = 22;
+    }
+    QFont f;
+    f.setPointSize(scale);
+    this->setFont(f);
+    QFontMetrics fm(f);
+    int s_height = fm.height();
+    s->setGlobalFontSize(scale);
+    }
+    setUpdatesEnabled(true);
+}

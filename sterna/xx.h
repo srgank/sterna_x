@@ -40,14 +40,14 @@ public:
     int getGlobalFontSize(){return globalFontSize;}
     void setGlobalFontSize(int eFontSize){globalFontSize = eFontSize;}
 
+    int getGlobalFontSizeHeight(){return globalFontSizeHeight;}
+    void setGlobalFontSizeHeight(int eFontSizeHeight){globalFontSizeHeight = eFontSizeHeight;}
 
     QStringList Get_Art_HeaderState(){return art_HeaderState;}
     void Set_Art_HeaderState(QStringList temp_art_HeaderState){art_HeaderState = temp_art_HeaderState;}
 
     QStringList Get_Kom_HeaderState(){return kom_HeaderState;}
     void Set_Kom_HeaderState(QStringList temp_kom_HeaderState){kom_HeaderState = temp_kom_HeaderState;}
-
-
 
 protected: 
 	//Singleton();
@@ -59,6 +59,7 @@ private:
     QStringList m_colWidth;
     QStringList m_colWidth_k;
     int globalFontSize;
+    int globalFontSizeHeight;
 
     QStringList art_HeaderState;
     QStringList kom_HeaderState;

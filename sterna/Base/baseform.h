@@ -36,7 +36,7 @@ private:
 
     QWidget *m_sourceWidget;
     QWidget *m_Widget;
-
+    int scale;
 protected:
 
     template <class T, class K>
@@ -60,7 +60,7 @@ protected:
         return a;
     }
 
-
+    virtual void wheelEvent ( QWheelEvent * event );
 };
 
 #endif // BASEFORM_H
