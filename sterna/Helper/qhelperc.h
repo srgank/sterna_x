@@ -17,8 +17,26 @@ public:
     QStringList getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     QStringList getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     QStringList getallDokumenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
-
-
+    void InsertArtikal(
+            QString &v_sifra,
+            QString &v_artikal,
+            QString &v_edm,
+            QString &v_ref,
+            QString &v_kataloski_broj,
+            QString &v_ddv,
+            QString &v_proizvoditel,
+            QString &v_kategorija
+            );
+    void UpdateArtikal(
+            QString &v_sifra,
+            QString &v_artikal,
+            QString &v_edm,
+            QString &v_ref,
+            QString &v_kataloski_broj,
+            QString &v_ddv,
+            QString &v_proizvoditel,
+            QString &v_kategorija
+            );
 private:
 
 signals:

@@ -11,6 +11,20 @@ namespace Ui {
 class ArtikliKorekcija;
 }
 
+struct art{
+    QString id;
+    QString sifra;
+    QString artikal;
+    QString edm;
+    QString ref;
+    QString kat_br;
+    QString ddv;
+    QString proizvoditel;
+    QString kategorija;
+};
+
+
+
 class ArtikliKorekcija : public BaseForm
 {
     Q_OBJECT
@@ -32,6 +46,7 @@ private:
     bool statusWait;
     QString str_yellow;
     QString str_none;
+    art art_temp;
 
 signals:
     void signalpressEscape();

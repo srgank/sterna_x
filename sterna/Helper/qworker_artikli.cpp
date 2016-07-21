@@ -88,3 +88,103 @@ void QWorkerArtikli::onPostList(QNetworkReply *rep)
     }
     emit finishedSearch();
 }
+
+
+void QWorkerArtikli::insert(
+        QString &v_sifra,
+        QString &v_artikal,
+        QString &v_edm,
+        QString &v_ref,
+        QString &v_kataloski_broj,
+        QString &v_ddv,
+        QString &v_proizvoditel,
+        QString &v_kategorija
+    )
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "insert_article");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json;
+    tt_json["sifra"] = v_sifra;
+    tt_json["artikal"] = v_artikal;
+    tt_json["edm"] = v_edm;
+    tt_json["ref"] = v_ref;
+    tt_json["kataloski_broj"] = v_kataloski_broj;
+    tt_json["ddv"] = v_ddv;
+    tt_json["proizvoditel"] = v_proizvoditel;
+    tt_json["kategorija"] = v_kategorija;
+
+
+    QJsonDocument doc(tt_json);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerArtikli::onPostInsert(QNetworkReply *rep)
+{
+    emit finishedInsert();
+}
+
+void QWorkerArtikli::update(
+        QString &v_sifra,
+        QString &v_artikal,
+        QString &v_edm,
+        QString &v_ref,
+        QString &v_kataloski_broj,
+        QString &v_ddv,
+        QString &v_proizvoditel,
+        QString &v_kategorija
+    )
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "update_article");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json;
+    tt_json["sifra"] = v_sifra;
+    tt_json["artikal"] = v_artikal;
+    tt_json["edm"] = v_edm;
+    tt_json["ref"] = v_ref;
+    tt_json["kataloski_broj"] = v_kataloski_broj;
+    tt_json["ddv"] = v_ddv;
+    tt_json["proizvoditel"] = v_proizvoditel;
+    tt_json["kategorija"] = v_kategorija;
+
+
+    QJsonDocument doc(tt_json);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerArtikli::onPostUpdate(QNetworkReply *rep)
+{
+    emit finishedUpdate();
+}
+
+
+

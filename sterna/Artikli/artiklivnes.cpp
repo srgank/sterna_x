@@ -120,10 +120,13 @@ void ArtikliVnes::on_pushButton_clicked()
     QString a1 = ui->sifraArtikalEdit->text();
     QString a2 = ui->nazivArtikalEdit->text();
     QString a3 = ui->edmArtikalEdit->text();
-    QString a4 = ui->kataloskiArtikalEdit->text();
-    QString a5 = ui->refArtikalEdit->text();
-
-//
+    QString a4 = ui->refArtikalEdit->text();
+    QString a5 = ui->kataloskiArtikalEdit->text();
+    QString a6 = ui->ddvCombo->lineEdit()->text();
+    QString a7 = "";
+    QString a8 = "";
+    hlp->InsertArtikal(a1, a2, a3, a4, a5, a6, a7, a8);
+    pressEscape();
 }
 
 void ArtikliVnes::pressEnter()
