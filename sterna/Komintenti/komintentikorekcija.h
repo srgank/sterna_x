@@ -11,6 +11,24 @@ namespace Ui {
 class KomintentiKorekcija;
 }
 
+struct kom{
+    QString id;
+    QString sifra;
+    QString naziv;
+    QString adresa;
+    QString tel;
+    QString mobil;
+    QString ziro;
+    QString edb;
+    QString deponent;
+    QString sifradejnost;
+    QString mb;
+    QString zabeleska1;
+    QString zabeleska2;
+    QString rabat;
+    QString grad;
+};
+
 class KomintentiKorekcija : public BaseForm
 {
     Q_OBJECT
@@ -22,16 +40,19 @@ public:
     void initProc(QString m_searchID);
 
 private:
+    bool eventFilter(QObject *sender, QEvent *event);
     Ui::KomintentiKorekcija *ui;
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
+    QString str_yellow;
+    QString str_none;
+    kom kom_temp;
 signals:
     void signalpressEscape();
     void signalPrePressEscape();
 private slots:
-    void getResultEX(QStringList& );
-    void getResultEXUpdate22(QStringList& tlist);
+
     void on_pushButton_released();
 };
 

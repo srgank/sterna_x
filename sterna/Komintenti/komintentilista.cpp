@@ -20,7 +20,7 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     QString vOffset = QString::number(numOffset);
     QString vLimit = "50";
     QString vSName = "%";
-    QString vSearchBy = "artikal";
+    QString vSearchBy = "naziv";
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
 
@@ -183,7 +183,7 @@ void KomintentiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     ui->lineEdit_6->setText(model->item(i, 4)->text());
     ui->lineEdit_7->setText(model->item(i, 5)->text());
     ui->lineEdit_8->setText(model->item(i, 6)->text());
-//    m_selectedID = model->item(i, 1)->text();
+    m_selectedID = model->item(i, 1)->text();
     int stop = 0;
 }
 
@@ -194,7 +194,7 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
-    QString vSearchBy = "artikal";
+    QString vSearchBy = "naziv";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
     ui->pushButton_4->setEnabled(true);
@@ -207,7 +207,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
-    QString vSearchBy = "artikal";
+    QString vSearchBy = "naziv";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
     ui->pushButton_5->setEnabled(true);
@@ -259,7 +259,7 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
-    QString vSearchBy = "artikal";
+    QString vSearchBy = "naziv";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
 }
