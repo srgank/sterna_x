@@ -36,10 +36,10 @@
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_7"/>
+     <widget class="QLineEdit" name="banka_Edit"/>
     </item>
     <item row="9" column="1">
-     <widget class="QLineEdit" name="lineEdit_8"/>
+     <widget class="QLineEdit" name="dejnost_Edit"/>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="label_8">
@@ -49,7 +49,7 @@
      </widget>
     </item>
     <item row="10" column="1">
-     <widget class="QLineEdit" name="lineEdit_9"/>
+     <widget class="QLineEdit" name="maticen_Edit"/>
     </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_11">
@@ -76,7 +76,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="naziv_Edit"/>
     </item>
     <item row="2" column="2">
      <widget class="QPushButton" name="pushButton">
@@ -97,7 +97,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="adresa_Edit"/>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_3">
@@ -107,7 +107,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="tefefon_Edit"/>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_4">
@@ -120,7 +120,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="mobilen_Edit"/>
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_6">
@@ -144,7 +144,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="11" column="1">
-     <widget class="QLineEdit" name="lineEdit_10">
+     <widget class="QLineEdit" name="embg_Edit">
       <property name="maxLength">
        <number>13</number>
       </property>
@@ -158,7 +158,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="12" column="1">
-     <widget class="QLineEdit" name="lineEdit_11"/>
+     <widget class="QLineEdit" name="licna_Edit"/>
     </item>
     <item row="13" column="0">
      <widget class="QLabel" name="label_12">
@@ -168,7 +168,11 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="13" column="1">
-     <widget class="QLineEdit" name="lineEdit_12"/>
+     <widget class="QLineEdit" name="rabat_Edit">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
     <item row="14" column="0">
      <widget class="QLabel" name="label_13">
@@ -178,20 +182,20 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="14" column="1">
-     <widget class="QLineEdit" name="lineEdit_13"/>
+     <widget class="QLineEdit" name="grad_Edit"/>
     </item>
     <item row="7" column="1">
-     <widget class="QLineEdit" name="lineEdit_6"/>
+     <widget class="QLineEdit" name="edb_Edit"/>
     </item>
     <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="ziro_Edit">
       <property name="maxLength">
        <number>15</number>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_14"/>
+     <widget class="QLineEdit" name="sifra_Edit"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_14">
@@ -217,20 +221,20 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_14</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>lineEdit_9</tabstop>
-  <tabstop>lineEdit_10</tabstop>
-  <tabstop>lineEdit_11</tabstop>
-  <tabstop>lineEdit_12</tabstop>
-  <tabstop>lineEdit_13</tabstop>
+  <tabstop>sifra_Edit</tabstop>
+  <tabstop>naziv_Edit</tabstop>
+  <tabstop>adresa_Edit</tabstop>
+  <tabstop>tefefon_Edit</tabstop>
+  <tabstop>mobilen_Edit</tabstop>
+  <tabstop>ziro_Edit</tabstop>
+  <tabstop>edb_Edit</tabstop>
+  <tabstop>banka_Edit</tabstop>
+  <tabstop>dejnost_Edit</tabstop>
+  <tabstop>maticen_Edit</tabstop>
+  <tabstop>embg_Edit</tabstop>
+  <tabstop>licna_Edit</tabstop>
+  <tabstop>rabat_Edit</tabstop>
+  <tabstop>grad_Edit</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>
  <resources/>

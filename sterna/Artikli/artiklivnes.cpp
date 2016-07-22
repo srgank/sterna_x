@@ -111,7 +111,6 @@ void ArtikliVnes::pressEscape()
 }
 
 
-
 void ArtikliVnes::on_pushButton_clicked()
 {
 

@@ -24,13 +24,15 @@ public:
 private:
     Ui::KomintentiVnes *ui;
     QHelperC *hlp;
-
+    bool eventFilter(QObject *sender, QEvent *event);
+    QString str_yellow;
+    QString str_none;
+    void on_SifraKomintentEdit_EditingFinished();
 signals:
     void signalpressEscape();
 
 private slots:
     void on_pushButton_clicked();
-    void getResultEX(QStringList& tlist);
 };
 
 #endif // KomintentiVNES_H

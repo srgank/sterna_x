@@ -68,6 +68,56 @@ QStringList QHelperC::getallKomintenti(QString& offset, QString& limit, QString&
     return worker.listRes;
 }
 
+void QHelperC::InsertKomintent(
+        QString &v_sifra,
+        QString &v_naziv,
+        QString &v_adresa,
+        QString &v_tel,
+        QString &v_mobil,
+        QString &v_zirismetka,
+        QString &v_edb,
+        QString &v_deponent,
+        QString &v_sifradejnost,
+        QString &v_mb,
+        QString &v_zabeleska1,
+        QString &v_zabeleska2,
+        QString &v_rabat,
+        QString &v_grad
+    )
+{
+    QEventLoop pause;
+    QWorkerKomintent worker;
+    connect(&worker, SIGNAL(finishedInsert()), &pause, SLOT(quit()));
+    worker.insert(v_sifra, v_naziv, v_adresa, v_tel,  v_mobil,  v_zirismetka, v_edb, v_deponent, v_sifradejnost, v_mb, v_zabeleska1, v_zabeleska2, v_rabat, v_grad);
+    pause.exec();
+}
+
+void QHelperC::UpdateKomintent(
+        QString &v_sifra,
+        QString &v_naziv,
+        QString &v_adresa,
+        QString &v_tel,
+        QString &v_mobil,
+        QString &v_zirismetka,
+        QString &v_edb,
+        QString &v_deponent,
+        QString &v_sifradejnost,
+        QString &v_mb,
+        QString &v_zabeleska1,
+        QString &v_zabeleska2,
+        QString &v_rabat,
+        QString &v_grad
+    )
+{
+    QEventLoop pause;
+    QWorkerKomintent worker;
+    connect(&worker, SIGNAL(finishedUpdate()), &pause, SLOT(quit()));
+    worker.update(v_sifra, v_naziv, v_adresa, v_tel,  v_mobil,  v_zirismetka, v_edb, v_deponent, v_sifradejnost, v_mb, v_zabeleska1, v_zabeleska2, v_rabat, v_grad);
+    pause.exec();
+}
+
+
+
 QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& searchName, QString& searchBy)
 {
     QEventLoop pause;

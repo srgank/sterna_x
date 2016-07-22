@@ -6,7 +6,7 @@
 BaseForm::BaseForm(QWidget *parent) :
     QWidget(parent)
   ,ui(new Ui::BaseForm)
-  , scale(0)
+
 {
 
     ui->setupUi(this);
@@ -15,6 +15,7 @@ BaseForm::BaseForm(QWidget *parent) :
     QFont f;
     f.setPointSize(gDFont);
     this->setFont(f);
+    scale = gDFont;
 }
 
 BaseForm::~BaseForm()

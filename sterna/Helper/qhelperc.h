@@ -37,6 +37,40 @@ public:
             QString &v_proizvoditel,
             QString &v_kategorija
             );
+
+    void InsertKomintent(
+            QString &v_sifra,
+            QString &v_naziv,
+            QString &v_adresa,
+            QString &v_tel,
+            QString &v_mobil,
+            QString &v_zirismetka,
+            QString &v_edb,
+            QString &v_deponent,
+            QString &v_sifradejnost,
+            QString &v_mb,
+            QString &v_zabeleska1,
+            QString &v_zabeleska2,
+            QString &v_rabat,
+            QString &v_grad
+        );
+    void UpdateKomintent(
+            QString &v_sifra,
+            QString &v_naziv,
+            QString &v_adresa,
+            QString &v_tel,
+            QString &v_mobil,
+            QString &v_zirismetka,
+            QString &v_edb,
+            QString &v_deponent,
+            QString &v_sifradejnost,
+            QString &v_mb,
+            QString &v_zabeleska1,
+            QString &v_zabeleska2,
+            QString &v_rabat,
+            QString &v_grad
+        );
+
 private:
 
 signals:
