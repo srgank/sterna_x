@@ -674,6 +674,12 @@ p, li { white-space: pre-wrap; }
         </disabled>
        </palette>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>

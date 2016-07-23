@@ -67,6 +67,10 @@ void BaseForm::pressReturn()
 
 }
 
+void BaseForm::updateFont()
+{
+
+}
 
 
 
@@ -102,4 +106,5 @@ void BaseForm::wheelEvent ( QWheelEvent * event )
     s->setGlobalFontSize(scale);
     }
     setUpdatesEnabled(true);
+    updateFont();
 }

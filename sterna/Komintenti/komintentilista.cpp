@@ -15,6 +15,8 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
 
+    ui->tableView->setFont(this->font());
+
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
     numOffset = 0;
     QString vOffset = QString::number(numOffset);
@@ -34,7 +36,6 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
             colWidth[i] = 100;
         }
     }
-
 
     numOffset = 0;
 
@@ -262,4 +263,10 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vSearchBy = "naziv";
     QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
+}
+
+void KomintentiLista::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
 }

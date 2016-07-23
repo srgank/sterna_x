@@ -24,6 +24,8 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
 
+    ui->tableView->setFont(this->font());
+
     QStringList tempVals = s->Get_Art_HeaderState();
     if (!tempVals.isEmpty()){
         for (int i = 0; i < COL; i++)        {
@@ -230,3 +232,8 @@ void ArtikliLista::pressReturn()
     }
 }
 
+void ArtikliLista::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
+}

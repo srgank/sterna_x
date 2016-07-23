@@ -22,6 +22,7 @@ public:
     virtual void pressEscape();
     virtual void pressReturn();
     virtual void pressEnter();
+    virtual void updateFont();
 
 
 

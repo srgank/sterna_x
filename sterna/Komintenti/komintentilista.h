@@ -24,7 +24,7 @@ public:
     virtual void pressF3();
     void pressReturn();
     virtual void pressEscape();
-
+    virtual void updateFont();
     void setTableColumnWidths(int ccolumn);
     void getTableColumnWidths(int ccolumn);
     QString getSelectedID(){return m_selectedID;}
