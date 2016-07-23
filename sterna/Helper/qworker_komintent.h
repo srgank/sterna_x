@@ -37,6 +37,7 @@ public:
             QString &v_grad
         );
     void update(
+            QString &v_id,
             QString &v_sifra,
             QString &v_naziv,
             QString &v_adresa,

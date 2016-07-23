@@ -114,7 +114,7 @@ void QWorkerArtikli::insert(
     tt_json["edm"] = v_edm;
     tt_json["ref"] = v_ref;
     tt_json["kataloski_broj"] = v_kataloski_broj;
-    tt_json["ddv"] = v_ddv;
+    tt_json["ddv"] = v_ddv.toInt();
     tt_json["proizvoditel"] = v_proizvoditel;
     tt_json["kategorija"] = v_kategorija;
 
@@ -139,6 +139,7 @@ void QWorkerArtikli::onPostInsert(QNetworkReply *rep)
 }
 
 void QWorkerArtikli::update(
+        QString &v_id,
         QString &v_sifra,
         QString &v_artikal,
         QString &v_edm,
@@ -157,12 +158,13 @@ void QWorkerArtikli::update(
     QByteArray postData;
 
     QJsonObject tt_json;
+    tt_json["id"] = v_id.toInt();
     tt_json["sifra"] = v_sifra;
     tt_json["artikal"] = v_artikal;
     tt_json["edm"] = v_edm;
     tt_json["ref"] = v_ref;
     tt_json["kataloski_broj"] = v_kataloski_broj;
-    tt_json["ddv"] = v_ddv;
+    tt_json["ddv"] = v_ddv.toInt();
     tt_json["proizvoditel"] = v_proizvoditel;
     tt_json["kategorija"] = v_kategorija;
 

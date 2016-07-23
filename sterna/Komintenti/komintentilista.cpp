@@ -183,7 +183,7 @@ void KomintentiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     ui->lineEdit_6->setText(model->item(i, 4)->text());
     ui->lineEdit_7->setText(model->item(i, 5)->text());
     ui->lineEdit_8->setText(model->item(i, 6)->text());
-    m_selectedID = model->item(i, 1)->text();
+    m_selectedID = model->item(i, 0)->text();
     int stop = 0;
 }
 

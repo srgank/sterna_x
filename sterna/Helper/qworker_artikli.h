@@ -28,6 +28,7 @@ public:
             QString &v_kategorija
         );
     void update(
+            QString &v_id,
             QString &v_sifra,
             QString &v_artikal,
             QString &v_edm,

@@ -116,7 +116,7 @@ void ArtikliKorekcija::initProc(QString m_searchID)
     QString vLimit = "1";
     QString vOffset = "0";
     QString vSName = m_searchID;
-    QString vSearchBy = "sifra";
+    QString vSearchBy = "id";
     QStringList res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     QStringList itemRecord = res.at(0).split("#;#");
 
@@ -148,15 +148,17 @@ void ArtikliKorekcija::on_pushButton_released()
     art_temp.ref = ui->refArtikalEdit->text();
     art_temp.kat_br = ui->kataloskiArtikalEdit->text();
     art_temp.ddv = ui->ddvCombo->lineEdit()->text();
-    hlp->UpdateArtikal(art_temp.sifra,
-                       art_temp.artikal,
-                       art_temp.edm,
-                       art_temp.ref,
-                       art_temp.kat_br,
-                       art_temp.ddv,
-                       art_temp.proizvoditel,
-                       art_temp.kategorija
-                       );
+    hlp->UpdateArtikal(
+        art_temp.id,
+        art_temp.sifra,
+        art_temp.artikal,
+        art_temp.edm,
+        art_temp.ref,
+        art_temp.kat_br,
+        art_temp.ddv,
+        art_temp.proizvoditel,
+        art_temp.kategorija
+               );
     pressEscape();
 }
 

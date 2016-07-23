@@ -141,7 +141,7 @@ void QWorkerKomintent::insert(
     tt_json["mb"] = v_mb;
     tt_json["zabeleska1"] = v_zabeleska1;
     tt_json["zabeleska2"] = v_zabeleska2;
-    tt_json["rabat"] = v_rabat;
+    tt_json["rabat"] = v_rabat.toInt();
     tt_json["grad"] = v_grad;
 
 
@@ -165,6 +165,7 @@ void QWorkerKomintent::onPostInsert(QNetworkReply *rep)
 }
 
 void QWorkerKomintent::update(
+        QString &v_id,
         QString &v_sifra,
         QString &v_naziv,
         QString &v_adresa,
@@ -189,6 +190,7 @@ void QWorkerKomintent::update(
     QByteArray postData;
 
     QJsonObject tt_json;
+    tt_json["id"] = v_id.toInt();
     tt_json["sifra"] = v_sifra;
     tt_json["naziv"] = v_naziv;
     tt_json["adresa"] = v_adresa;
@@ -201,7 +203,7 @@ void QWorkerKomintent::update(
     tt_json["mb"] = v_mb;
     tt_json["zabeleska1"] = v_zabeleska1;
     tt_json["zabeleska2"] = v_zabeleska2;
-    tt_json["rabat"] = v_rabat;
+    tt_json["rabat"] = v_rabat.toInt();
     tt_json["grad"] = v_grad;
 
 

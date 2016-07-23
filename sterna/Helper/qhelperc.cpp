@@ -40,6 +40,7 @@ void QHelperC::InsertArtikal(
 
 
 void QHelperC::UpdateArtikal(
+        QString &v_id,
         QString &v_sifra,
         QString &v_artikal,
         QString &v_edm,
@@ -53,7 +54,7 @@ void QHelperC::UpdateArtikal(
     QEventLoop pause;
     QWorkerArtikli worker;
     connect(&worker, SIGNAL(finishedUpdate()), &pause, SLOT(quit()));
-    worker.update(v_sifra, v_artikal, v_edm, v_ref, v_kataloski_broj, v_ddv, v_proizvoditel, v_kategorija);
+    worker.update(v_id, v_sifra, v_artikal, v_edm, v_ref, v_kataloski_broj, v_ddv, v_proizvoditel, v_kategorija);
     pause.exec();
 }
 
@@ -93,6 +94,7 @@ void QHelperC::InsertKomintent(
 }
 
 void QHelperC::UpdateKomintent(
+        QString &v_id,
         QString &v_sifra,
         QString &v_naziv,
         QString &v_adresa,
@@ -112,7 +114,7 @@ void QHelperC::UpdateKomintent(
     QEventLoop pause;
     QWorkerKomintent worker;
     connect(&worker, SIGNAL(finishedUpdate()), &pause, SLOT(quit()));
-    worker.update(v_sifra, v_naziv, v_adresa, v_tel,  v_mobil,  v_zirismetka, v_edb, v_deponent, v_sifradejnost, v_mb, v_zabeleska1, v_zabeleska2, v_rabat, v_grad);
+    worker.update(v_id, v_sifra, v_naziv, v_adresa, v_tel,  v_mobil,  v_zirismetka, v_edb, v_deponent, v_sifradejnost, v_mb, v_zabeleska1, v_zabeleska2, v_rabat, v_grad);
     pause.exec();
 }
 

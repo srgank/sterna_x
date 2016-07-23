@@ -107,27 +107,27 @@ void KomintentiKorekcija::pressEscape()
 void KomintentiKorekcija::initProc(QString m_searchID)
 {
     statusWait = true;
-    ui->pushButton->setEnabled(false);
     QString vLimit = "1";
     QString vOffset = "0";
     QString vSName = m_searchID;
-    QString vSearchBy = "sifra";
+    QString vSearchBy = "id";
     QStringList res = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     QStringList itemRecord = res.at(0).split("#;#");
-    kom_temp.sifra = itemRecord.at(0);
-    kom_temp.naziv = itemRecord.at(1);
-    kom_temp.adresa = itemRecord.at(2);
-    kom_temp.tel = itemRecord.at(3);
-    kom_temp.mobil = itemRecord.at(4);
-    kom_temp.ziro = itemRecord.at(5);
-    kom_temp.edb = itemRecord.at(6);
-    kom_temp.deponent = itemRecord.at(7);
-    kom_temp.sifradejnost = itemRecord.at(8);
-    kom_temp.mb = itemRecord.at(9);
-    kom_temp.zabeleska1 = itemRecord.at(10);
-    kom_temp.zabeleska2 = itemRecord.at(11);
-    kom_temp.rabat = itemRecord.at(12);
-    kom_temp.grad = itemRecord.at(13);
+    kom_temp.id = itemRecord.at(0);
+    kom_temp.sifra = itemRecord.at(1);
+    kom_temp.naziv = itemRecord.at(2);
+    kom_temp.adresa = itemRecord.at(3);
+    kom_temp.tel = itemRecord.at(4);
+    kom_temp.mobil = itemRecord.at(5);
+    kom_temp.ziro = itemRecord.at(6);
+    kom_temp.edb = itemRecord.at(7);
+    kom_temp.deponent = itemRecord.at(8);
+    kom_temp.sifradejnost = itemRecord.at(9);
+    kom_temp.mb = itemRecord.at(10);
+    kom_temp.zabeleska1 = itemRecord.at(11);
+    kom_temp.zabeleska2 = itemRecord.at(12);
+    kom_temp.rabat = itemRecord.at(13);
+    kom_temp.grad = itemRecord.at(14);
     ui->sifra_Edit->setText(kom_temp.sifra);
     ui->naziv_Edit->setText(kom_temp.naziv);
     ui->adresa_Edit->setText(kom_temp.adresa);
@@ -163,20 +163,22 @@ void KomintentiKorekcija::on_pushButton_released()
     kom_temp.rabat = ui->rabat_Edit->text();
     kom_temp.grad = ui->grad_Edit->text();
 
-    hlp->UpdateKomintent(kom_temp.sifra,
-                       kom_temp.naziv,
-                         kom_temp.adresa,
-                         kom_temp.tel,
-                         kom_temp.mobil,
-                         kom_temp.ziro,
-                         kom_temp.edb,
-                         kom_temp.deponent,
-                         kom_temp.sifradejnost,
-                         kom_temp.mb,
-                         kom_temp.zabeleska1,
-                         kom_temp.zabeleska2,
-                         kom_temp.rabat,
-                         kom_temp.grad
+    hlp->UpdateKomintent(
+            kom_temp.id,
+            kom_temp.sifra,
+            kom_temp.naziv,
+            kom_temp.adresa,
+            kom_temp.tel,
+            kom_temp.mobil,
+            kom_temp.ziro,
+            kom_temp.edb,
+            kom_temp.deponent,
+            kom_temp.sifradejnost,
+            kom_temp.mb,
+            kom_temp.zabeleska1,
+            kom_temp.zabeleska2,
+            kom_temp.rabat,
+            kom_temp.grad
                          );
     pressEscape();
 }

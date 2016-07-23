@@ -28,6 +28,7 @@ public:
             QString &v_kategorija
             );
     void UpdateArtikal(
+            QString &v_id,
             QString &v_sifra,
             QString &v_artikal,
             QString &v_edm,
@@ -55,6 +56,7 @@ public:
             QString &v_grad
         );
     void UpdateKomintent(
+            QString &v_id,
             QString &v_sifra,
             QString &v_naziv,
             QString &v_adresa,

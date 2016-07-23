@@ -168,7 +168,7 @@ void ArtikliLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     ui->le_referenca->setText(model->item(i, 4)->text());
     ui->le_kataloski_broj->setText(model->item(i, 5)->text());
     ui->le_ddv->setText(model->item(i, 6)->text());
-    m_selectedID = model->item(i, 1)->text();
+    m_selectedID = model->item(i, 0)->text();
     int stop = 0;
 }
 
