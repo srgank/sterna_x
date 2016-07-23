@@ -2,7 +2,7 @@
 
 QWorkerDokumenti::QWorkerDokumenti(QWidget *parent) : QWidget(parent)
 {
-   urlhost = "http://127.0.0.1:5002/";
+    urlhost = "http://92.53.51.86:5002/";
 }
 QString QWorkerDokumenti::base64_decode(QString string)
 {

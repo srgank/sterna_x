@@ -3,7 +3,7 @@
 QWorkerKomintent::QWorkerKomintent(QWidget *parent) : QWidget(parent)
   ,stat_finished(0)
 {
-   urlhost = "http://127.0.0.1:5002/";
+   urlhost = "http://92.53.51.86:5002/";
    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
 }
 
