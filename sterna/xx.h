@@ -11,31 +11,26 @@
 class Singleton 
 {
 public: 
-	typedef struct 
-	{
-		QDateTime fakturaData;
-		QDateTime fakturaValuta;
-		float iznos;
-		float plateno;
-		QString komintent_naziv;
-		QString komintent_id;
-	} tinfoFakturi;
+//	typedef struct
+//	{
+//		QDateTime fakturaData;
+//		QDateTime fakturaValuta;
+//		float iznos;
+//		float plateno;
+//		QString komintent_naziv;
+//		QString komintent_id;
+//	} tinfoFakturi;
 
-    typedef std::vector<tinfoFakturi> tListInfoFakturi;
+//    typedef std::vector<tinfoFakturi> tListInfoFakturi;
     static Singleton* Instance();
 	int getUserID(){return m_user_id;}
 	void setUserID(int userID){ m_user_id = userID;}
 	QStringList getUserInfo(){return m_infoVraboten;}
 	void setUserInfo(QStringList infoVraboten){ m_infoVraboten = infoVraboten;}
-	tListInfoFakturi m_listFakturiS; 
+//	tListInfoFakturi m_listFakturiS;
     QRect getMainRect(){return m_rect;}
     void setMainRect(QRect t_rect){ m_rect = t_rect;}
 
-//    QStringList getArtikliColumnWidth(){return m_colWidth;}
-//    void setArtikliColumnWidth(QStringList a_colWidth){ m_colWidth = a_colWidth;}
-
-//    QStringList getKomintentiColumnWidth(){return m_colWidth_k;}
-//    void setKomintentiColumnWidth(QStringList a_colWidth_k){ m_colWidth_k = a_colWidth_k;}
 
     int getGlobalFontSize(){return globalFontSize;}
     void setGlobalFontSize(int eFontSize){globalFontSize = eFontSize;}
@@ -48,6 +43,11 @@ public:
 
     QStringList Get_Kom_HeaderState(){return kom_HeaderState;}
     void Set_Kom_HeaderState(QStringList temp_kom_HeaderState){kom_HeaderState = temp_kom_HeaderState;}
+
+    QString Get_UrlHost(){urlhost = "http://92.53.51.86:5002/";return urlhost;}
+
+
+
 
 protected: 
 	//Singleton();

@@ -1,5 +1,5 @@
-#ifndef QWORKERDOKUMENTI_H
-#define QWORKERDOKUMENTI_H
+#ifndef QWORKERMAGACIN_H
+#define QWORKERMAGACIN_H
 
 #include <QUrlQuery>
 #include <QWidget>
@@ -13,11 +13,11 @@
 #include <QNetworkAccessManager>
 #include "xx.h"
 
-class QWorkerDokumenti : public QWidget
+class QWorkerMagacin : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QWorkerDokumenti(QWidget *parent = 0);
+    explicit QWorkerMagacin(QWidget *parent = 0);
     void getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy );
     QStringList listRes;
     int stat_finished;
@@ -33,4 +33,4 @@ public slots:
     void onPostList(QNetworkReply *rep);
 };
 
-#endif // QWORKERDOKUMENTI_H
+#endif // QWORKERMAGACIN_H

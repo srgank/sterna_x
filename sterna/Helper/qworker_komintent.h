@@ -10,6 +10,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QNetworkAccessManager>
+#include "xx.h"
 
 class QWorkerKomintent : public QWidget
 {

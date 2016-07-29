@@ -56,44 +56,64 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
     {
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        QString t_id = QString::number(obj["id"].toInt());
-        QString t_dok_id = QString::number(obj["dok_id"].toInt());
-        QString t_dok_tip = QString::number(obj["dok_tip"].toInt());
-        QString t_dok_tip_link = QString::number(obj["dok_tip_link"].toInt());
-//        QString t_datum = QString::number(obj["datum"].toDate());
-        QString t_faktura_id = QString::number(obj["faktura_id"].toInt());
-        QString t_mag_id = QString::number(obj["mag_id"].toInt());
+        QString t_tid = QString::number(obj["TID"].toInt());
+        QString t_document_id = QString::number(obj["DOCUMENT_ID"].toInt());
+        QString t_document_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
+        QString t_td = (obj["TD"].toString());
+        QString t_tds = (obj["TDS"].toString());
+        QString t_komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
+        QString t_prevoznik_id = QString::number(obj["PREVOZNIK_ID"].toInt());
+        QString t_valuta = (obj["VALUTA"].toString());
+        QString t_kurs = QString::number(obj["KURS"].toDouble(), 'f', 2);
+        QString t_iznos_val = QString::number(obj["IZNOS_VAL"].toDouble(), 'f', 2);
+        QString t_ddv_val = QString::number(obj["DDV_VAL"].toDouble(), 'f', 2);
+        QString t_rabat_val = QString::number(obj["RABAT_VAL"].toDouble(), 'f', 2);
+        QString t_iznos_plakanje_val = QString::number(obj["IZNOS_PLAKANJE_VAL"].toDouble(), 'f', 2);
+        QString t_iznos_ddv_den = QString::number(obj["IZNOS_DDV_DEN"].toDouble(), 'f', 2);
+        QString t_rabat_den = QString::number(obj["RABAT_DEN"].toDouble(), 'f', 2);
+        QString t_iznos_plakanje_den = QString::number(obj["IZNOS_PLAKANJE_DEN"].toDouble(), 'f', 2);
 
-        QString t_komintent_id = QString::number(obj["komintent_id"].toInt());
-        QString t_carina = QString::number(obj["carina"].toDouble(), 'f', 2);
-        QString t_transport = QString::number(obj["transport"].toDouble(), 'f', 2);
-        QString t_drugi_trosoci = QString::number(obj["drugi_trosoci"].toDouble(), 'f', 2);
-        QString t_doc_creator = obj["doc_creator"].toString();
-        QString t_dok_status = QString::number(obj["dok_status"].toInt());
-        QString t_dok_opis = obj["dok_opis"].toString();
+        QString t_transport_den = QString::number(obj["TRANSPORT_DEN"].toDouble(), 'f', 2);
+        QString t_carina_den = QString::number(obj["CARINA_DEN"].toDouble(), 'f', 2);
+        QString t_ddv_den = QString::number(obj["DDV_DEN"].toDouble(), 'f', 2);
+        QString t_drugi_trosoci_den = QString::number(obj["DRUGI_TROSOCI_DEN"].toDouble(), 'f', 2);
+        QString t_dok_status = base64_decode(obj["DOK_STATUS"].toString());
+        QString t_user_id = QString::number(obj["USER_ID"].toInt());
+        QString t_komentar = base64_decode(obj["KOMENTAR"].toString());
+        QString t_mag_id = QString::number(obj["MAG_ID"].toInt());
+        QString t_object_id = QString::number(obj["OBJECT_ID"].toInt());
 
-
-
-        if(t_id == "end")
+        if(t_tid == "end")
         {
             continue;
         }
         else
         {
-            listRes << t_id + "#;#"
-                       + t_dok_id + "#;#"
-                       + t_dok_tip + "#;#"
-                       + t_dok_tip_link + "#;#"
-//                       + t_datum + "#;#"
-                       + t_faktura_id + "#;#"
-                       + t_mag_id + "#;#"
+            listRes << t_tid + "#;#"
+                       + t_document_id + "#;#"
+                       + t_document_tip + "#;#"
+                       + t_td + "#;#"
+                       + t_tds + "#;#"
                        + t_komintent_id + "#;#"
-                       + t_carina + "#;#"
-                       + t_transport + "#;#"
-                       + t_drugi_trosoci + "#;#"
-                       + t_doc_creator + "#;#"
+                       + t_prevoznik_id + "#;#"
+                       + t_valuta + "#;#"
+                       + t_kurs + "#;#"
+                       + t_iznos_val + "#;#"
+                       + t_ddv_val + "#;#"
+                       + t_rabat_val + "#;#"
+                       + t_iznos_plakanje_val + "#;#"
+                       + t_iznos_ddv_den + "#;#"
+                       + t_rabat_den + "#;#"
+                       + t_iznos_plakanje_den + "#;#"
+                       + t_transport_den + "#;#"
+                       + t_carina_den + "#;#"
+                       + t_ddv_den + "#;#"
+                       + t_drugi_trosoci_den + "#;#"
                        + t_dok_status + "#;#"
-                       + t_dok_opis ;
+                       + t_user_id + "#;#"
+                       + t_mag_id + "#;#"
+                       + t_user_id + "#;#"
+                       + t_object_id ;
         }
     }
     emit finishedSearch();
