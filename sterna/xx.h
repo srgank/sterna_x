@@ -44,7 +44,9 @@ public:
     QStringList Get_Kom_HeaderState(){return kom_HeaderState;}
     void Set_Kom_HeaderState(QStringList temp_kom_HeaderState){kom_HeaderState = temp_kom_HeaderState;}
 
-    QString Get_UrlHost(){urlhost = "http://92.53.51.86:5002/";return urlhost;}
+//    QString Get_UrlHost(){QString urlhost = "http://92.53.51.86:5002/";return urlhost;}
+    void Set_UrlHost(QString temp_urlhost){urlhost = temp_urlhost;}
+    QString Get_UrlHost(){return urlhost;}
 
 
 
@@ -63,5 +65,6 @@ private:
 
     QStringList art_HeaderState;
     QStringList kom_HeaderState;
+    QString urlhost;
 };
 #endif // Singleton_H

@@ -2,7 +2,8 @@
 
 QWorkerMagacin::QWorkerMagacin(QWidget *parent) : QWidget(parent)
 {
-    urlhost = "http://92.53.51.86:5002/";
+    Singleton *s = Singleton::Instance();
+    urlhost = s->Get_UrlHost();
 }
 QString QWorkerMagacin::base64_decode(QString string)
 {

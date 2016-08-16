@@ -4,7 +4,7 @@ QWorkerArtikli::QWorkerArtikli(QWidget *parent) : QWidget(parent)
   ,stat_finished(0)
 {
     Singleton *s = Singleton::Instance();
-
+    urlhost = s->Get_UrlHost();
 }
 
 QString QWorkerArtikli::base64_decode(QString string)

@@ -2,7 +2,8 @@
 
 QWorkerDokumenti::QWorkerDokumenti(QWidget *parent) : QWidget(parent)
 {
-    urlhost = "http://92.53.51.86:5002/";
+    Singleton *s = Singleton::Instance();
+    urlhost = s->Get_UrlHost();
 }
 QString QWorkerDokumenti::base64_decode(QString string)
 {
@@ -62,7 +63,9 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
         QString t_td = (obj["TD"].toString());
         QString t_tds = (obj["TDS"].toString());
         QString t_komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
+        QString t_komintent_naziv = obj["KOMINTENT_NAZIV"].toString();
         QString t_prevoznik_id = QString::number(obj["PREVOZNIK_ID"].toInt());
+        QString t_prevoznik_naziv = obj["PREVOZNIK_NAZIV"].toString();
         QString t_valuta = (obj["VALUTA"].toString());
         QString t_kurs = QString::number(obj["KURS"].toDouble(), 'f', 2);
         QString t_iznos_val = QString::number(obj["IZNOS_VAL"].toDouble(), 'f', 2);
@@ -95,7 +98,9 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
                        + t_td + "#;#"
                        + t_tds + "#;#"
                        + t_komintent_id + "#;#"
+                       + t_komintent_naziv + "#;#"
                        + t_prevoznik_id + "#;#"
+                       + t_prevoznik_naziv + "#;#"
                        + t_valuta + "#;#"
                        + t_kurs + "#;#"
                        + t_iznos_val + "#;#"
@@ -111,10 +116,175 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
                        + t_drugi_trosoci_den + "#;#"
                        + t_dok_status + "#;#"
                        + t_user_id + "#;#"
+                       + t_komentar + "#;#"
                        + t_mag_id + "#;#"
-                       + t_user_id + "#;#"
                        + t_object_id ;
         }
     }
     emit finishedSearch();
 }
+
+void QWorkerDokumenti::insert(
+    QString &v_document_id,
+    QString &v_document_tip,
+    QString &v_td,
+    QString &v_tds,
+    QString &v_komintent_id,
+    QString &v_prevoznik_id,
+    QString &v_valuta,
+    QString &v_kurs,
+    QString &v_iznos_val,
+    QString &v_ddv_val,
+    QString &v_rabat_val,
+    QString &v_iznos_plakanje_val,
+    QString &v_iznos_ddv_den,
+    QString &v_rabat_den,
+    QString &v_iznos_plakanje_den,
+    QString &v_transport_den,
+    QString &v_carina_den,
+    QString &v_ddv_den,
+    QString &v_drugi_trosoci_den,
+    QString &v_dok_status,
+    QString &v_user_id,
+    QString &v_komentar,
+    QString &v_mag_id,
+    QString &v_object_id
+    )
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "insert_article");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json;
+    tt_json["document_id"] = v_document_id.toInt();
+    tt_json["document_tip"] = v_document_tip.toInt();
+    tt_json["td"] = v_td;
+    tt_json["tds"] = v_tds;
+    tt_json["komintent_id"] = v_komintent_id.toInt();
+    tt_json["prevoznik_id"] = v_prevoznik_id.toInt();
+    tt_json["valuta"] = v_valuta;
+    tt_json["kurs"] = v_kurs.toDouble();
+    tt_json["iznos_val"] = v_iznos_val.toDouble();
+    tt_json["ddv_val"] = v_ddv_val.toDouble();
+    tt_json["rabat_val"] = v_rabat_val.toDouble();
+    tt_json["iznos_plakanje_val"] = v_iznos_plakanje_val.toDouble();
+    tt_json["iznos_ddv_den"] = v_iznos_ddv_den.toDouble();
+    tt_json["rabat_den"] = v_rabat_den.toDouble();
+    tt_json["iznos_plakanje_den"] = v_iznos_plakanje_den.toDouble();
+    tt_json["transport_den"] = v_transport_den.toDouble();
+    tt_json["carina_den"] = v_carina_den.toDouble();
+    tt_json["ddv_den"] = v_ddv_den.toDouble();
+    tt_json["drugi_trosoci_den"] = v_drugi_trosoci_den.toDouble();
+    tt_json["dok_status"] = v_dok_status.toInt();
+    tt_json["user_id"] = v_user_id.toInt();
+    tt_json["komentar"] = v_komentar.toInt();
+    tt_json["mag_id"] = v_mag_id.toInt();
+    tt_json["object_id"] = v_object_id.toInt();
+
+
+    QJsonDocument doc(tt_json);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerDokumenti::onPostInsert(QNetworkReply *rep)
+{
+    emit finishedInsert();
+}
+
+void QWorkerDokumenti::update(
+        QString &v_tid,
+        QString &v_document_id,
+        QString &v_document_tip,
+        QString &v_td,
+        QString &v_tds,
+        QString &v_komintent_id,
+        QString &v_prevoznik_id,
+        QString &v_valuta,
+        QString &v_kurs,
+        QString &v_iznos_val,
+        QString &v_ddv_val,
+        QString &v_rabat_val,
+        QString &v_iznos_plakanje_val,
+        QString &v_iznos_ddv_den,
+        QString &v_rabat_den,
+        QString &v_iznos_plakanje_den,
+        QString &v_transport_den,
+        QString &v_carina_den,
+        QString &v_ddv_den,
+        QString &v_drugi_trosoci_den,
+        QString &v_dok_status,
+        QString &v_user_id,
+        QString &v_komentar,
+        QString &v_mag_id,
+        QString &v_object_id
+
+    )
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "update_article");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json;
+    tt_json["document_id"] = v_document_id.toInt();
+    tt_json["document_tip"] = v_document_tip.toInt();
+    tt_json["td"] = v_td;
+    tt_json["tds"] = v_tds;
+    tt_json["komintent_id"] = v_komintent_id.toInt();
+    tt_json["prevoznik_id"] = v_prevoznik_id.toInt();
+    tt_json["valuta"] = v_valuta;
+    tt_json["kurs"] = v_kurs.toDouble();
+    tt_json["iznos_val"] = v_iznos_val.toDouble();
+    tt_json["ddv_val"] = v_ddv_val.toDouble();
+    tt_json["rabat_val"] = v_rabat_val.toDouble();
+    tt_json["iznos_plakanje_val"] = v_iznos_plakanje_val.toDouble();
+    tt_json["iznos_ddv_den"] = v_iznos_ddv_den.toDouble();
+    tt_json["rabat_den"] = v_rabat_den.toDouble();
+    tt_json["iznos_plakanje_den"] = v_iznos_plakanje_den.toDouble();
+    tt_json["transport_den"] = v_transport_den.toDouble();
+    tt_json["carina_den"] = v_carina_den.toDouble();
+    tt_json["ddv_den"] = v_ddv_den.toDouble();
+    tt_json["drugi_trosoci_den"] = v_drugi_trosoci_den.toDouble();
+    tt_json["dok_status"] = v_dok_status.toInt();
+    tt_json["user_id"] = v_user_id.toInt();
+    tt_json["komentar"] = v_komentar.toInt();
+    tt_json["mag_id"] = v_mag_id.toInt();
+    tt_json["object_id"] = v_object_id.toInt();
+
+
+    QJsonDocument doc(tt_json);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerDokumenti::onPostUpdate(QNetworkReply *rep)
+{
+    emit finishedUpdate();
+}
+
+
+

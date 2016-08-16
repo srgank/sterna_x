@@ -62,6 +62,7 @@ void MainWindow::createDockWindows()
     s->setMainRect(rMain);
     s->Set_Art_HeaderState(art);
     s->Set_Kom_HeaderState(kom);
+    s->Set_UrlHost("http://92.53.51.86:5002/");
 }
 
 

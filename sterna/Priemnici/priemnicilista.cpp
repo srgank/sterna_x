@@ -173,7 +173,8 @@ void PriemniciLista::ShowData(QStringList& tlist)
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
             ui->tableView->setRowHeight(row, 20);
-            ui->tableView->setColumnWidth(i, colWidth[i]);
+//            ui->tableView->setColumnWidth(i, colWidth[i]);
+            ui->tableView->setColumnWidth(i, 100);
             item->setEditable(false);
             model->setItem(row, i, item);
         }
