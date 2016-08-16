@@ -7,8 +7,8 @@
 #include "Helper/qhelperc.h"
 #include "xx.h"
 
-#define COL 9
-
+#define COL 27
+#define COL_DETAIL 28
 namespace Ui {
 class PriemniciLista;
 }

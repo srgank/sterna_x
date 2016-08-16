@@ -12,11 +12,18 @@ QString QWorkerMagacin::base64_decode(QString string)
     return QByteArray::fromBase64(ba);
 }
 
-void QWorkerMagacin::getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy )
+
+
+
+
+
+
+
+void QWorkerMagacin::getList( QString &vOffset, QString &vLimit,QString &vDokID, QString &vDokTip )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "get_dokumenti_list");
+    QUrl serviceUrl = QUrl(urlhost + "get_dokumenti_detail_list");
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
     QByteArray postData;
@@ -24,8 +31,8 @@ void QWorkerMagacin::getList( QString &vOffset, QString &vLimit,QString &vSearch
     QJsonObject tt_json;
     tt_json["offset"] = vOffset;
     tt_json["limit"] = vLimit;
-    tt_json["search_name"] = vSearchName;
-    tt_json["search_by"] = vSearchBy;
+    tt_json["dok_id"] = vDokID;
+    tt_json["dok_tip"] = vDokTip;
 
     QJsonDocument doc(tt_json);
     QByteArray tt = doc.toJson();
@@ -62,6 +69,7 @@ void QWorkerMagacin::onPostList(QNetworkReply *rep)
         QString t_document_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
         QString t_komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
         QString t_artikal_id = QString::number(obj["ARTIKAL_ID"].toInt());
+        QString t_artikal_naziv = obj["ARTIKAL"].toString();
         QString t_tip_artikal = QString::number(obj["TIP_ARTIKAL"].toInt());
         QString t_link_artikal = QString::number(obj["LINK_ARTIKAL"].toInt());
         QString t_edm = base64_decode(obj["EDM"].toString());
@@ -97,6 +105,7 @@ void QWorkerMagacin::onPostList(QNetworkReply *rep)
                        + t_document_tip + "#;#"
                        + t_komintent_id + "#;#"
                        + t_artikal_id + "#;#"
+                       + t_artikal_naziv + "#;#"
                        + t_tip_artikal + "#;#"
                        + t_link_artikal + "#;#"
                        + t_edm + "#;#"

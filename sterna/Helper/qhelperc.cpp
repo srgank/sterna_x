@@ -66,22 +66,22 @@ void QHelperC::UpdateKomintent(QString &v_id, QString &v_sifra, QString &v_naziv
     pause.exec();
 }
 
-QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& searchName, QString& searchBy)
+QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
 {
     QEventLoop pause;
     QWorkerDokumenti worker;
     connect(&worker, SIGNAL(finishedSearch()), &pause, SLOT(quit()));
-    worker.getList(offset, limit, searchName, searchBy);
+    worker.getList(offset, limit, vDokID, vDokTip );
     pause.exec();
     return worker.listRes;
 }
 
-QStringList QHelperC::getallMagacin(QString& offset, QString& limit, QString& searchName, QString& searchBy)
+QStringList QHelperC::getallMagacin(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
 {
     QEventLoop pause;
     QWorkerMagacin worker;
     connect(&worker, SIGNAL(finishedSearch()), &pause, SLOT(quit()));
-    worker.getList(offset, limit, searchName, searchBy);
+    worker.getList(offset, limit, vDokID, vDokTip);
     pause.exec();
     return worker.listRes;
 }

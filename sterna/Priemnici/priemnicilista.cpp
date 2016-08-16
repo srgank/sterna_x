@@ -73,12 +73,12 @@ void PriemniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     m_selectedID = model->item(i, 1)->text();
 
     numOffset = 0;
-    QString vLimit = "50";
+    QString vLimit = "10000";
     QString vOffset = QString::number(numOffset);
-    QString vSName =  "%";
-    QString vSearchBy = "artikal";
+    QString vDok_Id =  model->item(i, 1)->text();
+    QString vDok_Tip = model->item(i, 2)->text();
 
-    QStringList res = hlp->getallDokumenti(vOffset, vLimit, vSName, vSearchBy);
+    QStringList res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
     ShowDataDetail(res);
 }
 
@@ -132,12 +132,12 @@ void PriemniciLista::getTableColumnWidths(int ccolumn)
 void PriemniciLista::on_lineEdit_textChanged(const QString &arg1)
 {
     numOffset = 0;
-    QString vLimit = "50";
+    QString vLimit = "500";
     QString vOffset = QString::number(numOffset);
-    QString vSName =  "%";
-    QString vSearchBy = "artikal";
+    QString vDokID =  "%";
+    QString vDokTip = "20";
 
-    QStringList res = hlp->getallDokumenti(vOffset, vLimit, vSName, vSearchBy);
+    QStringList res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
     ShowData(res);
 }
 
@@ -148,15 +148,34 @@ void PriemniciLista::ShowData(QStringList& tlist)
     model->clear();
     model->setRowCount(r);
     model->setColumnCount(c);
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
+    model->setHeaderData( 0, Qt::Horizontal, trUtf8("tid."));
+    model->setHeaderData( 1, Qt::Horizontal, trUtf8("dokument_id"));
+    model->setHeaderData( 2, Qt::Horizontal, trUtf8("document_tip"));
+    model->setHeaderData( 3, Qt::Horizontal, trUtf8("td"));
+    model->setHeaderData( 4, Qt::Horizontal, trUtf8("tds"));
+    model->setHeaderData( 5, Qt::Horizontal, trUtf8("komintent_id"));
+    model->setHeaderData( 6, Qt::Horizontal, trUtf8("komintent_naziv"));
+    model->setHeaderData( 7, Qt::Horizontal, trUtf8("prevoznik_id"));
+    model->setHeaderData( 8, Qt::Horizontal, trUtf8("prevoznik_naziv"));
+    model->setHeaderData( 9, Qt::Horizontal, trUtf8("valuta"));
+    model->setHeaderData( 10, Qt::Horizontal, trUtf8("kurs"));
+    model->setHeaderData( 11, Qt::Horizontal, trUtf8("t_iznos_val"));
+    model->setHeaderData( 12, Qt::Horizontal, trUtf8("t_ddv_val"));
+    model->setHeaderData( 13, Qt::Horizontal, trUtf8("t_rabat_val"));
+    model->setHeaderData( 14, Qt::Horizontal, trUtf8("t_iznos_plakanje_val"));
+    model->setHeaderData( 15, Qt::Horizontal, trUtf8("t_iznos_ddv_den"));
+    model->setHeaderData( 16, Qt::Horizontal, trUtf8("t_rabat_den"));
+    model->setHeaderData( 17, Qt::Horizontal, trUtf8("t_iznos_plakanje_den"));
+    model->setHeaderData( 18, Qt::Horizontal, trUtf8("t_transport_den"));
+    model->setHeaderData( 19, Qt::Horizontal, trUtf8("t_carina_den"));
+    model->setHeaderData( 20, Qt::Horizontal, trUtf8("t_ddv_den"));
+    model->setHeaderData( 21, Qt::Horizontal, trUtf8("t_drugi_trosoci_den"));
+    model->setHeaderData( 22, Qt::Horizontal, trUtf8("t_dok_status"));
+    model->setHeaderData( 23, Qt::Horizontal, trUtf8("t_user_id"));
+    model->setHeaderData( 24, Qt::Horizontal, trUtf8("t_komentar"));
+    model->setHeaderData( 25, Qt::Horizontal, trUtf8("t_mag_id"));
+    model->setHeaderData( 26, Qt::Horizontal, trUtf8("t_object_id"));
+
 
     ui->tableView->setModel(model);
 
@@ -172,7 +191,7 @@ void PriemniciLista::ShowData(QStringList& tlist)
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
-            ui->tableView->setRowHeight(row, 20);
+//            ui->tableView->setRowHeight(row, 20);
 //            ui->tableView->setColumnWidth(i, colWidth[i]);
             ui->tableView->setColumnWidth(i, 100);
             item->setEditable(false);
@@ -190,19 +209,38 @@ void PriemniciLista::ShowData(QStringList& tlist)
 void PriemniciLista::ShowDataDetail(QStringList& tlist)
 {
     int r = tlist.count();
-    int c = COL;
+    int c = COL_DETAIL;
     model_2->clear();
     model_2->setRowCount(r);
     model_2->setColumnCount(c);
-    model_2->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model_2->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model_2->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model_2->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model_2->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model_2->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model_2->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model_2->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model_2->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
+    model_2->setHeaderData( 0, Qt::Horizontal, trUtf8("t_tid"));
+    model_2->setHeaderData( 1, Qt::Horizontal, trUtf8("t_document_id"));
+    model_2->setHeaderData( 2, Qt::Horizontal, trUtf8("t_document_tip"));
+    model_2->setHeaderData( 3, Qt::Horizontal, trUtf8("t_komintent_id"));
+    model_2->setHeaderData( 4, Qt::Horizontal, trUtf8("t_artikal_id"));
+    model_2->setHeaderData( 5, Qt::Horizontal, trUtf8("t_artikal_naziv"));
+    model_2->setHeaderData( 6, Qt::Horizontal, trUtf8("t_tip_artikal"));
+    model_2->setHeaderData( 7, Qt::Horizontal, trUtf8("t_link_artikal"));
+    model_2->setHeaderData( 8, Qt::Horizontal, trUtf8("t_edm"));
+    model_2->setHeaderData( 9, Qt::Horizontal, trUtf8("t_vlez_nab_cena_bez_ddv"));
+    model_2->setHeaderData( 10, Qt::Horizontal, trUtf8("t_vlez_nab_cena_so_ddv"));
+    model_2->setHeaderData( 11, Qt::Horizontal, trUtf8("t_vlez_prenesen_ddv"));
+    model_2->setHeaderData( 12, Qt::Horizontal, trUtf8("t_vlez_prenesen_ddv_denari"));
+    model_2->setHeaderData( 13, Qt::Horizontal, trUtf8("t_vlez_rabat"));
+    model_2->setHeaderData( 14, Qt::Horizontal, trUtf8("t_vlez_nabaven_iznos_so_ddv"));
+    model_2->setHeaderData( 15, Qt::Horizontal, trUtf8("t_vlez_marza"));
+    model_2->setHeaderData( 16, Qt::Horizontal, trUtf8("t_vlez_marza_den"));
+    model_2->setHeaderData( 17, Qt::Horizontal, trUtf8("t_vlez_prod_cena_bez_ddv"));
+    model_2->setHeaderData( 18, Qt::Horizontal, trUtf8("t_vlez_presmetan_ddv"));
+    model_2->setHeaderData( 19, Qt::Horizontal, trUtf8("t_vlez_prod_cena_so_ddv"));
+    model_2->setHeaderData( 20, Qt::Horizontal, trUtf8("t_vlez_prod_iznos_so_ddv"));
+    model_2->setHeaderData( 21, Qt::Horizontal, trUtf8("t_izl_cena_bez_ddv_calc"));
+    model_2->setHeaderData( 22, Qt::Horizontal, trUtf8("t_izl_cena_so_ddv_calc"));
+    model_2->setHeaderData( 23, Qt::Horizontal, trUtf8("t_izl_cena_so_ddv_prod"));
+    model_2->setHeaderData( 24, Qt::Horizontal, trUtf8("t_izl_ddv_prod"));
+    model_2->setHeaderData( 25, Qt::Horizontal, trUtf8("t_kol"));
+    model_2->setHeaderData( 26, Qt::Horizontal, trUtf8("t_mag_id"));
+    model_2->setHeaderData( 27, Qt::Horizontal, trUtf8("t_status"));
 
     ui->tableView_2->setModel(model_2);
 
@@ -218,8 +256,9 @@ void PriemniciLista::ShowDataDetail(QStringList& tlist)
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
-            ui->tableView_2->setRowHeight(row, 20);
-            ui->tableView_2->setColumnWidth(i, colWidth[i]);
+//            ui->tableView_2->setRowHeight(row, 20);
+//            ui->tableView_2->setColumnWidth(i, colWidth[i]);
+            ui->tableView_2->setColumnWidth(i, 100);
             item->setEditable(false);
             model_2->setItem(row, i, item);
         }

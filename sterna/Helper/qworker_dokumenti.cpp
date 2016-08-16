@@ -12,7 +12,7 @@ QString QWorkerDokumenti::base64_decode(QString string)
     return QByteArray::fromBase64(ba);
 }
 
-void QWorkerDokumenti::getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy )
+void QWorkerDokumenti::getList( QString &vOffset, QString &vLimit,QString &vDokID, QString &vDokTip )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
     networkManager.clearAccessCache();
@@ -24,8 +24,8 @@ void QWorkerDokumenti::getList( QString &vOffset, QString &vLimit,QString &vSear
     QJsonObject tt_json;
     tt_json["offset"] = vOffset;
     tt_json["limit"] = vLimit;
-    tt_json["search_name"] = vSearchName;
-    tt_json["search_by"] = vSearchBy;
+    tt_json["dok_id"] = vDokID;
+    tt_json["dok_tip"] = vDokTip;
 
     QJsonDocument doc(tt_json);
     QByteArray tt = doc.toJson();
