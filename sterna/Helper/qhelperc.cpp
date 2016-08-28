@@ -10,7 +10,7 @@ QHelperC::~QHelperC()
 
 }
 
-QStringList QHelperC::getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy)
+QList<artikalT> QHelperC::getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy)
 {
     QEventLoop pause;
     QWorkerArtikli worker;
@@ -38,7 +38,7 @@ void QHelperC::UpdateArtikal(QString &v_id, QString &v_sifra, QString &v_artikal
     pause.exec();
 }
 
-QStringList QHelperC::getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy)
+QList<komintentT> QHelperC::getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy)
 {
     QEventLoop pause;
     QWorkerKomintent worker;

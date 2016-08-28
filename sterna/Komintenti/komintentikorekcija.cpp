@@ -111,52 +111,39 @@ void KomintentiKorekcija::initProc(QString m_searchID)
     QString vOffset = "0";
     QString vSName = m_searchID;
     QString vSearchBy = "id";
-    QStringList res = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-    QStringList itemRecord = res.at(0).split("#;#");
-    kom_temp.id = itemRecord.at(0);
-    kom_temp.sifra = itemRecord.at(1);
-    kom_temp.naziv = itemRecord.at(2);
-    kom_temp.adresa = itemRecord.at(3);
-    kom_temp.tel = itemRecord.at(4);
-    kom_temp.mobil = itemRecord.at(5);
-    kom_temp.ziro = itemRecord.at(6);
-    kom_temp.edb = itemRecord.at(7);
-    kom_temp.deponent = itemRecord.at(8);
-    kom_temp.sifradejnost = itemRecord.at(9);
-    kom_temp.mb = itemRecord.at(10);
-    kom_temp.zabeleska1 = itemRecord.at(11);
-    kom_temp.zabeleska2 = itemRecord.at(12);
-    kom_temp.rabat = itemRecord.at(13);
-    kom_temp.grad = itemRecord.at(14);
-    ui->sifra_Edit->setText(kom_temp.sifra);
-    ui->naziv_Edit->setText(kom_temp.naziv);
-    ui->adresa_Edit->setText(kom_temp.adresa);
-    ui->telefon_Edit->setText(kom_temp.tel);
-    ui->mobilen_Edit->setText(kom_temp.mobil);
-    ui->ziro_Edit->setText(kom_temp.ziro);
-    ui->danocen_Edit->setText(kom_temp.edb);
-    ui->banka_Edit->setText(kom_temp.deponent);
-    ui->dejnost_Edit->setText(kom_temp.sifradejnost);
-    ui->mb_Edit->setText(kom_temp.mb);
-    ui->zab1_Edit->setText(kom_temp.zabeleska1);
-    ui->zab2_Edit->setText(kom_temp.zabeleska2);
-    ui->rabat_Edit->setText(kom_temp.rabat);
-    ui->grad_Edit->setText(kom_temp.grad);
+    komintent_id = m_searchID;
+    QList<komintentT> res = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    komintentT itemRecord = res.at(0);
+
+    ui->sifra_Edit->setText(itemRecord.sifra);
+    ui->naziv_Edit->setText(itemRecord.naziv);
+    ui->adresa_Edit->setText(itemRecord.adresa);
+    ui->telefon_Edit->setText(itemRecord.tel);
+    ui->mobilen_Edit->setText(itemRecord.mobil);
+    ui->ziro_Edit->setText(itemRecord.zirosmetka);
+    ui->danocen_Edit->setText(itemRecord.edb);
+    ui->banka_Edit->setText(itemRecord.deponent);
+    ui->dejnost_Edit->setText(itemRecord.sifra_dejnost);
+    ui->mb_Edit->setText(itemRecord.mb);
+    ui->zab1_Edit->setText(itemRecord.zabeleska1);
+    ui->zab2_Edit->setText(itemRecord.zabeleska2);
+    ui->rabat_Edit->setText(itemRecord.rabat);
+    ui->grad_Edit->setText(itemRecord.grad);
 }
 void KomintentiKorekcija::on_pushButton_released()
 {
     QString blankText = "";
     QString blankDdv = "18";
-
+    kom_temp.id = komintent_id;
     kom_temp.sifra = ui->sifra_Edit->text();
     kom_temp.naziv = ui->naziv_Edit->text();
     kom_temp.adresa = ui->adresa_Edit->text();
     kom_temp.tel = ui->telefon_Edit->text();
     kom_temp.mobil = ui->mobilen_Edit->text();
-    kom_temp.ziro = ui->ziro_Edit->text();
+    kom_temp.zirosmetka = ui->ziro_Edit->text();
     kom_temp.edb = ui->danocen_Edit->text();
     kom_temp.deponent = ui->banka_Edit->text();
-    kom_temp.sifradejnost = ui->dejnost_Edit->text();
+    kom_temp.sifra_dejnost = ui->dejnost_Edit->text();
     kom_temp.mb = ui->mb_Edit->text();
     kom_temp.zabeleska1 = ui->zab1_Edit->text();
     kom_temp.zabeleska2 = ui->zab2_Edit->text();
@@ -170,10 +157,10 @@ void KomintentiKorekcija::on_pushButton_released()
             kom_temp.adresa,
             kom_temp.tel,
             kom_temp.mobil,
-            kom_temp.ziro,
+            kom_temp.zirosmetka,
             kom_temp.edb,
             kom_temp.deponent,
-            kom_temp.sifradejnost,
+            kom_temp.sifra_dejnost,
             kom_temp.mb,
             kom_temp.zabeleska1,
             kom_temp.zabeleska2,

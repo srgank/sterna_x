@@ -40,7 +40,7 @@ public:
 
 
 private:
-    void ShowData(QStringList&);
+    void ShowData(QList<komintentT>&);
     Ui::KomintentiLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;

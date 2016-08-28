@@ -11,6 +11,7 @@
 #include <QJsonArray>
 #include <QNetworkAccessManager>
 #include "xx.h"
+#include "Struct/struct.h"
 
 class QWorkerArtikli : public QWidget
 {
@@ -40,7 +41,7 @@ public:
             QString &v_kategorija
         );
 
-    QStringList listRes;
+    QList<artikalT> listRes;
     int stat_finished;
 private:
     QNetworkAccessManager networkManager;

@@ -57,46 +57,33 @@ void QWorkerKomintent::onPostList(QNetworkReply *rep)
 
     for (int a = 0; a < jsonArray.count(); a++)
     {
+        komintentT kom_temp;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        QString t_id = QString::number(obj["id"].toInt());
-        QString t_sif = base64_decode(obj["sifra"].toString());
-        QString t_naz = base64_decode(obj["naziv"].toString());
-        QString t_adr = base64_decode(obj["adresa"].toString());
-        QString t_tel = base64_decode(obj["tel"].toString());
-        QString t_mobil = base64_decode(obj["mobil"].toString());
-        QString t_zirosmetka = base64_decode(obj["zirosmetka"].toString());
-        QString t_edb = base64_decode(obj["edb"].toString());
-        QString t_deponent = base64_decode(obj["deponent"].toString());
-        QString t_sifradejnost = base64_decode(obj["sifdejnost"].toString());
-        QString t_mb = base64_decode(obj["mb"].toString());
-        QString t_zabeleska1 = base64_decode(obj["zabeleska1"].toString());
-        QString t_zabeleska2 = base64_decode(obj["zabeleska2"].toString());
-        QString t_rabat = QString::number(obj["rabat"].toInt());
-        QString t_grad = base64_decode(obj["grad"].toString());
+         kom_temp.id = QString::number(obj["id"].toInt());
+         kom_temp.sifra = base64_decode(obj["sifra"].toString());
+         kom_temp.naziv = base64_decode(obj["naziv"].toString());
+         kom_temp.adresa = base64_decode(obj["adresa"].toString());
+         kom_temp.tel = base64_decode(obj["tel"].toString());
+         kom_temp.mobil = base64_decode(obj["mobil"].toString());
+         kom_temp.zirosmetka = base64_decode(obj["zirosmetka"].toString());
+         kom_temp.edb = base64_decode(obj["edb"].toString());
+         kom_temp.deponent = base64_decode(obj["deponent"].toString());
+         kom_temp.sifra_dejnost = base64_decode(obj["sifdejnost"].toString());
+         kom_temp.mb = base64_decode(obj["mb"].toString());
+         kom_temp.zabeleska1 = base64_decode(obj["zabeleska1"].toString());
+         kom_temp.zabeleska2 = base64_decode(obj["zabeleska2"].toString());
+         kom_temp.rabat = QString::number(obj["rabat"].toInt());
+         kom_temp.grad = base64_decode(obj["grad"].toString());
 
 
-        if(t_id == "end")
+        if(kom_temp.id == "end")
         {
             continue;
         }
         else
         {
-            listRes << t_id  + "#;#" +
-                       t_sif + "#;#" +
-                       t_naz + "#;#" +
-                       t_adr + "#;#" +
-                       t_tel + "#;#" +
-                       t_mobil + "#;#" +
-                       t_zirosmetka + "#;#" +
-                       t_edb + "#;#" +
-                       t_deponent + "#;#" +
-                       t_sifradejnost + "#;#" +
-                       t_mb + "#;#" +
-                       t_zabeleska1 + "#;#" +
-                       t_zabeleska2 + "#;#" +
-                       t_rabat + "#;#" +
-                       t_grad;
+            listRes << kom_temp;
         }
 
     }

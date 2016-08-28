@@ -27,12 +27,54 @@ PriemniciLista::PriemniciLista(BaseForm *parent) :
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
+    QStringList tempVals = s->Get_Priemnica_HeaderState();
+    if (!tempVals.isEmpty()){
+        for (int i = 0; i < COL; i++)        {
+            colWidth[i] = tempVals.at(i).toInt();
+        }
+    }else{
+        for (int i = 0; i < COL; i++)        {
+            colWidth[i] = 100;
+        }
+    }
+
+
+    QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
+    if (!tempValsDetail.isEmpty()){
+        for (int i = 0; i < COL_DETAIL; i++)        {
+            colDetailWidth[i] = tempValsDetail.at(i).toInt();
+        }
+    }else{
+        for (int i = 0; i < COL_DETAIL; i++)        {
+            colDetailWidth[i] = 100;
+        }
+    }
+
+
     getTableColumnWidths(COL);
     on_lineEdit_textChanged("%%");
 }
 
 PriemniciLista::~PriemniciLista()
 {
+    Singleton *s = Singleton::Instance();
+    QStringList tempVals;
+    for (int i = 0; i < COL; i++)
+    {
+        tempVals << QString::number(colWidth[i]);
+    }
+
+    s->Set_Priemnica_HeaderState(tempVals);
+
+    QStringList tempdetailVals;
+    for (int i = 0; i < COL_DETAIL; i++)
+    {
+        tempdetailVals << QString::number(colDetailWidth[i]);
+    }
+
+    s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
+
+
     delete ui;
     delete model;
     delete header;
@@ -59,6 +101,12 @@ void PriemniciLista::setSearchString(QString& searchText)
 void PriemniciLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
+}
+
+
+void PriemniciLista::procSectionResizedDetail(int a, int b, int c)
+{
+    colDetailWidth[a] = c;
 }
 
 void PriemniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
@@ -192,8 +240,7 @@ void PriemniciLista::ShowData(QStringList& tlist)
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
 //            ui->tableView->setRowHeight(row, 20);
-//            ui->tableView->setColumnWidth(i, colWidth[i]);
-            ui->tableView->setColumnWidth(i, 100);
+            ui->tableView->setColumnWidth(i, colWidth[i]);
             item->setEditable(false);
             model->setItem(row, i, item);
         }
@@ -257,8 +304,7 @@ void PriemniciLista::ShowDataDetail(QStringList& tlist)
             item->setTextAlignment(Qt::AlignLeft);
             item->setEditable(false);
 //            ui->tableView_2->setRowHeight(row, 20);
-//            ui->tableView_2->setColumnWidth(i, colWidth[i]);
-            ui->tableView_2->setColumnWidth(i, 100);
+            ui->tableView_2->setColumnWidth(i, colDetailWidth[i]);
             item->setEditable(false);
             model_2->setItem(row, i, item);
         }
@@ -266,6 +312,8 @@ void PriemniciLista::ShowDataDetail(QStringList& tlist)
         row++;
     }
     tlist.clear();
+    connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
+
     ui->tableView_2->show();
 }
 

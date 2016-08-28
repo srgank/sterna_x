@@ -39,7 +39,9 @@ MainWindow::~MainWindow()
     Singleton *s = Singleton::Instance();
     QStringList art = s->Get_Art_HeaderState();
     QStringList kom = s->Get_Kom_HeaderState();
-    saveRecordsFromFile(art, kom);
+    QStringList priemnica = s->Get_Priemnica_HeaderState();
+    QStringList priemnicaDetail = s->Get_PriemnicaDetail_HeaderState();
+    saveRecordsFromFile(art, kom,priemnica, priemnicaDetail);
     delete ui;
 }
 
@@ -62,9 +64,8 @@ void MainWindow::createDockWindows()
     s->setMainRect(rMain);
     s->Set_Art_HeaderState(art);
     s->Set_Kom_HeaderState(kom);
-//    s->Set_UrlHost("http://92.53.51.86:5002/");
-    s->Set_UrlHost("http://127.0.0.1:5002/");
-
+    s->Set_UrlHost("http://92.53.51.86:5002/");
+//    s->Set_UrlHost("http://127.0.0.1:5002/");
 }
 
 
@@ -82,7 +83,7 @@ void MainWindow::loadRecordsFromFile()
     file.close();
 }
 
-void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom)
+void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom, QStringList priemnica, QStringList priemnicaDetail)
 {
     QString filename = "config.bin";
     QFile file( filename);
@@ -92,6 +93,8 @@ void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom)
     stream.setVersion( QDataStream::Qt_4_2 );
     stream << art;
     stream << kom;
+    stream << priemnica;
+    stream << priemnicaDetail;
     file.close();
 }
 

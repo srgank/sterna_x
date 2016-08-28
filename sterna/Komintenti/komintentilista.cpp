@@ -94,7 +94,7 @@ void KomintentiLista::setSearchString(QString& searchText)
 }
 
 
-void KomintentiLista::ShowData(QStringList& tlist)
+void KomintentiLista::ShowData(QList<komintentT>& tlist)
 {
     int r = tlist.count();
     int c = COL;
@@ -128,7 +128,24 @@ void KomintentiLista::ShowData(QStringList& tlist)
 
     for(int ii = 0; ii < tlist.count();ii++)
     {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
+        komintentT temp_item = tlist.at(ii);
+        QStringList itemRecord;
+        itemRecord << temp_item.id
+                   << temp_item.sifra
+                   << temp_item.naziv
+                   << temp_item.adresa
+                   << temp_item.tel
+                   << temp_item.mobil
+                   << temp_item.zirosmetka
+                   << temp_item.edb
+                   << temp_item.deponent
+                   << temp_item.sifra_dejnost
+                   << temp_item.mb
+                   << temp_item.zabeleska1
+                   << temp_item.zabeleska2
+                   << temp_item.rabat
+                   << temp_item.grad;
+
         for (int i = 0; i < c; i++)
         {
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
@@ -196,7 +213,7 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
-    QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
     ui->pushButton_4->setEnabled(true);
 }
@@ -209,7 +226,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
-    QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
     ui->pushButton_5->setEnabled(true);
 }
@@ -261,7 +278,7 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
-    QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     ShowData(listRes);
 }
 

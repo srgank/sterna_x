@@ -48,8 +48,11 @@ public:
     void Set_UrlHost(QString temp_urlhost){urlhost = temp_urlhost;}
     QString Get_UrlHost(){return urlhost;}
 
+    QStringList Get_Priemnica_HeaderState(){return priemnica_HeaderState;}
+    void Set_Priemnica_HeaderState(QStringList temp_priemnica_HeaderState){priemnica_HeaderState = temp_priemnica_HeaderState;}
 
-
+    QStringList Get_PriemnicaDetail_HeaderState(){return priemnicaDetail__HeaderState;}
+    void Set_PriemnicaDetail_HeaderState(QStringList temp_priemnicaDetail_HeaderState){priemnicaDetail__HeaderState = temp_priemnicaDetail_HeaderState;}
 
 protected: 
 	//Singleton();
@@ -65,6 +68,9 @@ private:
 
     QStringList art_HeaderState;
     QStringList kom_HeaderState;
+    QStringList priemnica_HeaderState;
+    QStringList priemnicaDetail__HeaderState;
+
     QString urlhost;
 };
 #endif // Singleton_H

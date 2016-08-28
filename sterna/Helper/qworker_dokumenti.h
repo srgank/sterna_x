@@ -12,6 +12,7 @@
 #include <QJsonArray>
 #include <QNetworkAccessManager>
 #include "xx.h"
+#include "Struct/struct.h"
 
 class QWorkerDokumenti : public QWidget
 {

@@ -57,34 +57,27 @@ void QWorkerArtikli::onPostList(QNetworkReply *rep)
 
     for (int a = 0; a < jsonArray.count(); a++)
     {
+        artikalT art_temp;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        QString t_id = QString::number(obj["id"].toInt());
-        QString t_sifra = base64_decode(obj["sifra"].toString());
-        QString t_ar = base64_decode(obj["artikal"].toString());
-        QString t_edm = base64_decode(obj["edm"].toString());
-        QString t_ref = base64_decode(obj["ref"].toString());
-        QString t_kataloski_broj = base64_decode(obj["kataloski_broj"].toString());
-        QString t_ddv = QString::number(obj["ddv"].toInt());
-        QString t_proizvoditel = base64_decode(obj["proizvoditel"].toString());
-        QString t_kategorija = base64_decode(obj["kategorija"].toString());
+        art_temp.id = QString::number(obj["id"].toInt());
+        art_temp.sifra = base64_decode(obj["sifra"].toString());
+        art_temp.artikal = base64_decode(obj["artikal"].toString());
+        art_temp.edm = base64_decode(obj["edm"].toString());
+        art_temp.ref = base64_decode(obj["ref"].toString());
+        art_temp.kataloski_broj = base64_decode(obj["kataloski_broj"].toString());
+        art_temp.ddv = QString::number(obj["ddv"].toInt());
+        art_temp.proizvoditel = base64_decode(obj["proizvoditel"].toString());
+        art_temp.kategorija = base64_decode(obj["kategorija"].toString());
 
 
-        if(t_id == "end")
+        if(art_temp.id == "end")
         {
             continue;
         }
         else
         {
-            listRes << t_id + "#;#"
-                       + t_sifra + "#;#"
-                       + t_ar + "#;#"
-                       + t_edm + "#;#"
-                       + t_ref + "#;#"
-                       + t_kataloski_broj + "#;#"
-                       + t_ddv + "#;#"
-                       + t_proizvoditel + "#;#"
-                       + t_kategorija ;
+            listRes << art_temp ;
         }
     }
     emit finishedSearch();

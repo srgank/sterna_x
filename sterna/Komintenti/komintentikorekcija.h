@@ -11,24 +11,6 @@ namespace Ui {
 class KomintentiKorekcija;
 }
 
-struct kom{
-    QString id;
-    QString sifra;
-    QString naziv;
-    QString adresa;
-    QString tel;
-    QString mobil;
-    QString ziro;
-    QString edb;
-    QString deponent;
-    QString sifradejnost;
-    QString mb;
-    QString zabeleska1;
-    QString zabeleska2;
-    QString rabat;
-    QString grad;
-};
-
 class KomintentiKorekcija : public BaseForm
 {
     Q_OBJECT
@@ -47,7 +29,8 @@ private:
     bool statusWait;
     QString str_yellow;
     QString str_none;
-    kom kom_temp;
+    komintentT kom_temp;
+    QString komintent_id;
 signals:
     void signalpressEscape();
     void signalPrePressEscape();

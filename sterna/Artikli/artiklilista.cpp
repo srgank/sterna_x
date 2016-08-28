@@ -95,7 +95,7 @@ void ArtikliLista::setSearchString(QString& searchText)
 }
 
 
-void ArtikliLista::ShowData(QStringList& tlist)
+void ArtikliLista::ShowData(QList<artikalT>& tlist)
 {
     int r = tlist.count();
     int c = COL;
@@ -120,7 +120,18 @@ void ArtikliLista::ShowData(QStringList& tlist)
 
     for(int ii = 0; ii < tlist.count();ii++)
     {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
+        artikalT tempItem = tlist.at(ii);
+        QStringList itemRecord;
+        itemRecord << tempItem.id
+                               << tempItem.sifra
+                               << tempItem.artikal
+                               << tempItem.edm
+                               << tempItem.ref
+                               << tempItem.kataloski_broj
+                               << tempItem.ddv
+                               << tempItem.proizvoditel
+                               << tempItem.kategorija;
+
         for (int i = 0; i < c; i++)
         {
             QStandardItem *item = new QStandardItem(itemRecord.at(i));
@@ -133,6 +144,9 @@ void ArtikliLista::ShowData(QStringList& tlist)
         }
         itemRecord.clear();
         row++;
+
+
+
     }
     QItemSelectionModel *sm = ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
@@ -181,7 +195,7 @@ void ArtikliLista::on_pushButton_5_clicked()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
-    QStringList res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     ShowData(res);
 }
 
@@ -192,7 +206,7 @@ void ArtikliLista::on_pushButton_6_clicked()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
-    QStringList res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     ShowData(res);
 }
 
@@ -202,7 +216,7 @@ void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
-    QStringList res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     ShowData(res);
 }
 

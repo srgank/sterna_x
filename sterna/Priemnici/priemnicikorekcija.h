@@ -35,8 +35,6 @@ signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent(QString, QWidget*);
 private slots:
-    void getResultEX(QStringList& );
-    void getResultEXUpdate22(QStringList& tlist);
     void on_pushButton_released();
     void on_pushButton_5_clicked();
 protected:

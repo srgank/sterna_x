@@ -43,10 +43,10 @@ private:
     QHeaderView *header_2;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[9];
     QString m_selectedID;
     int m_row;
-
+    int colWidth[COL];
+    int colDetailWidth[COL_DETAIL];
 signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent();
@@ -63,6 +63,7 @@ private slots:
     void selectionChanged(QModelIndex,QModelIndex);
 
     void procSectionResized(int a, int b, int c);
+    void procSectionResizedDetail(int a, int b, int c);
 
     void on_pushButton_4_clicked();
     void on_lineEdit_textChanged(const QString &arg1);

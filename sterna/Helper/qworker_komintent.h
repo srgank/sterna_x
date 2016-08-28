@@ -11,6 +11,7 @@
 #include <QJsonArray>
 #include <QNetworkAccessManager>
 #include "xx.h"
+#include "Struct/struct.h"
 
 class QWorkerKomintent : public QWidget
 {
@@ -18,7 +19,7 @@ class QWorkerKomintent : public QWidget
 public:
     explicit QWorkerKomintent(QWidget *parent = 0);
     void getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy );
-    QStringList listRes;
+    QList<komintentT> listRes;
     int stat_finished;
 
     void insert(

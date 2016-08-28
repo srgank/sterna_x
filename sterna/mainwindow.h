@@ -30,7 +30,8 @@ public:
     ~MainWindow();
     void createDockWindows();
     void loadRecordsFromFile();
-    void saveRecordsFromFile(QStringList art, QStringList kom);
+    void saveRecordsFromFile(QStringList art, QStringList kom, QStringList priemnica, QStringList priemnicaDetail);
+
 
 private slots:
     void on_actionArtikal_triggered();

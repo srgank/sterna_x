@@ -164,7 +164,7 @@ void KomintentiVnes::on_SifraKomintentEdit_EditingFinished()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->sifra_Edit->text();
     QString vSearchBy = "sifra";
-    QStringList res = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    QList<komintentT> res = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     if (res.count() != 0) {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle(trUtf8("Information"));

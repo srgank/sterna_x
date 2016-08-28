@@ -57,8 +57,6 @@ PriemniciKorekcija::PriemniciKorekcija(BaseForm *parent) :
     ui->pushButton_6->installEventFilter(this);
 
     connect(this, SIGNAL(finishKorekcija()),this, SLOT(procFinishKorekcija()));
-    connect(hlp, SIGNAL(signalResultPriemnici(QStringList &)), this, SLOT(getResultEX(QStringList &)));
-    connect(hlp, SIGNAL(signalResultUpdateArticle(QStringList &)), this, SLOT(getResultEXUpdate22(QStringList &)));
     pressEnter();
 }
 
@@ -80,24 +78,8 @@ void PriemniciKorekcija::initProc(QString m_searchID)
     QString vOffset = "0";
     QString vSName = m_searchID;
     QString vSearchBy = "sifra";
-    QStringList listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
 }
-void PriemniciKorekcija::getResultEX(QStringList& tlist)
-{
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
-        m_id_artikal = itemRecord.at(0);
-        ui->lineEdit_2->setText(itemRecord.at(1));
-        ui->lineEdit_3->setText(itemRecord.at(2));
-        ui->lineEdit_4->setText(itemRecord.at(3));
-        ui->lineEdit_5->setText(itemRecord.at(4));
-        ui->lineEdit_6->setText(itemRecord.at(5));
-    }
-    //    ui->pushButton->setEnabled(true);
-    statusWait = false;
-}
-//getResultEXUpdate
 void PriemniciKorekcija::on_pushButton_released()
 {
     statusWait = true;
@@ -112,21 +94,6 @@ void PriemniciKorekcija::on_pushButton_released()
 //
 }
 
-void PriemniciKorekcija::getResultEXUpdate22(QStringList& tlist)
-{
-    statusWait = false;
-    QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle(trUtf8("Information"));
-    msgBox->setText(trUtf8("Податокот е успешно корегиран"));
-    msgBox->setStandardButtons(QMessageBox::Yes);
-    msgBox->setDefaultButton(QMessageBox::Yes);
-    msgBox->exec();
-    delete msgBox;
-    setFocus();
-    //    ui->pushButton->setEnabled(true);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-}
 
 void PriemniciKorekcija::pressEnter()
 {

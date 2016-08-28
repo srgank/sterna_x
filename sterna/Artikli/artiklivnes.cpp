@@ -158,7 +158,7 @@ void ArtikliVnes::on_SifraArtikalEdit_EditingFinished()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->sifraArtikalEdit->text();
     QString vSearchBy = "sifra";
-    QStringList res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     if (res.count() != 0) {
         QMessageBox *msgBox = new QMessageBox(this);
         msgBox->setWindowTitle(trUtf8("Information"));

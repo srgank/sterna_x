@@ -6,6 +6,8 @@
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
 #include "xx.h"
+#include "Struct/struct.h"
+
 
 #define COL 9
 
@@ -38,10 +40,10 @@ public:
 
     int geTableSelected_Offset(){return numOffset;}
     void seTableSelected_Offset(int t_numOffset){numOffset = t_numOffset;}
-
+    artikalT artS;
 
 private:
-    void ShowData(QStringList&);
+    void ShowData(QList<artikalT>&);
 
     Ui::ArtikliLista *ui;
     QStandardItemModel *model;
@@ -68,7 +70,6 @@ private slots:
     void selectionChanged(QModelIndex,QModelIndex);
 
     void procSectionResized(int a, int b, int c);
-
     void on_pb_vnesi_nov_clicked();
     void on_pb_koregiraj_postoecki_clicked();
 };
