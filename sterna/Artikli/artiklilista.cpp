@@ -95,72 +95,10 @@ void ArtikliLista::setSearchString(QString& searchText)
 }
 
 
-void ArtikliLista::ShowData(QList<artikalT>& tlist)
-{
-    int r = tlist.count();
-    int c = COL;
-    model->clear();
-    model->setRowCount(r);
-    model->setColumnCount(c);
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
-
-    ui->tableView->setModel(model);
-
-    ui->tableView->setHorizontalHeader(header);
-    header->show();
-    int row = 0;
-
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        artikalT tempItem = tlist.at(ii);
-        QStringList itemRecord;
-        itemRecord << tempItem.id
-                               << tempItem.sifra
-                               << tempItem.artikal
-                               << tempItem.edm
-                               << tempItem.ref
-                               << tempItem.kataloski_broj
-                               << tempItem.ddv
-                               << tempItem.proizvoditel
-                               << tempItem.kategorija;
-
-        for (int i = 0; i < c; i++)
-        {
-            QStandardItem *item = new QStandardItem(itemRecord.at(i));
-            item->setTextAlignment(Qt::AlignLeft);
-            item->setEditable(false);
-            //ui->tableView->setRowHeight(row, 20);
-            ui->tableView->setColumnWidth(i, colWidth[i]);
-            item->setEditable(false);
-            model->setItem(row, i, item);
-        }
-        itemRecord.clear();
-        row++;
-
-
-
-    }
-    QItemSelectionModel *sm = ui->tableView->selectionModel();
-    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    tlist.clear();
-    ui->tableView->show();
-}
-
-
 void ArtikliLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
 }
-
 
 
 void ArtikliLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
@@ -196,7 +134,7 @@ void ArtikliLista::on_pushButton_5_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(res);
+    b.ShowData(res, model, header, ui->tableView);
 }
 
 void ArtikliLista::on_pushButton_6_clicked()
@@ -207,7 +145,7 @@ void ArtikliLista::on_pushButton_6_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(res);
+    b.ShowData(res, model, header, ui->tableView);
 }
 
 void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
@@ -217,7 +155,7 @@ void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(res);
+    b.ShowData(res, model, header, ui->tableView);
 }
 
 

@@ -6,6 +6,7 @@
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
 #include "xx.h"
+#include "qbtemplate.h"
 
 #define COL 15
 
@@ -40,7 +41,6 @@ public:
 
 
 private:
-    void ShowData(QList<komintentT>&);
     Ui::KomintentiLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;
@@ -49,6 +49,7 @@ private:
     int colWidth[COL];
     QString m_selectedID;
     int m_row;
+    QBTemplate<komintentT> b;
 
 signals:
     void signalpressF2();

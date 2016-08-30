@@ -7,7 +7,7 @@
 #include "Helper/qhelperc.h"
 #include "xx.h"
 #include "Struct/struct.h"
-
+#include "qbtemplate.h"
 
 #define COL 9
 
@@ -43,7 +43,7 @@ public:
     artikalT artS;
 
 private:
-    void ShowData(QList<artikalT>&);
+//    void ShowData(QList<artikalT>&);
 
     Ui::ArtikliLista *ui;
     QStandardItemModel *model;
@@ -56,7 +56,7 @@ private:
 
     QString searchStrList;
     int searchIDList;
-
+    QBTemplate<artikalT> b;
 signals:
     void signalpressF2();
     void signalpressF3();

@@ -106,7 +106,8 @@ HEADERS  += mainwindow.h \
     Helper/qworker_komintent.h \
     Helper/qworker_dokumenti.h \
     Helper/qworker_magacin.h \
-    Struct/struct.h
+    Struct/struct.h \
+    qbtemplate.h
 
 
 

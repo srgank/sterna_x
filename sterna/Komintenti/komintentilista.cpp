@@ -94,77 +94,6 @@ void KomintentiLista::setSearchString(QString& searchText)
 }
 
 
-void KomintentiLista::ShowData(QList<komintentT>& tlist)
-{
-    int r = tlist.count();
-    int c = COL;
-    model->clear();
-    model->setRowCount(r);
-    model->setColumnCount(c);
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Назив"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Адреса"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Тел"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Мобил"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Жиро сметка"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Едб"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Депонент"));
-    model->setHeaderData( 9, Qt::Horizontal, trUtf8("Шиф.Дејност"));
-    model->setHeaderData( 10, Qt::Horizontal, trUtf8("МБ"));
-    model->setHeaderData( 11, Qt::Horizontal, trUtf8("Забелешка"));
-    model->setHeaderData( 12, Qt::Horizontal, trUtf8("Забелешка"));
-    model->setHeaderData( 13, Qt::Horizontal, trUtf8("Рабат"));
-    model->setHeaderData( 14, Qt::Horizontal, trUtf8("Град"));
-
-
-
-
-    ui->tableView->setModel(model);
-
-    ui->tableView->setHorizontalHeader(header);
-    header->show();
-    int row = 0;
-
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        komintentT temp_item = tlist.at(ii);
-        QStringList itemRecord;
-        itemRecord << temp_item.id
-                   << temp_item.sifra
-                   << temp_item.naziv
-                   << temp_item.adresa
-                   << temp_item.tel
-                   << temp_item.mobil
-                   << temp_item.zirosmetka
-                   << temp_item.edb
-                   << temp_item.deponent
-                   << temp_item.sifra_dejnost
-                   << temp_item.mb
-                   << temp_item.zabeleska1
-                   << temp_item.zabeleska2
-                   << temp_item.rabat
-                   << temp_item.grad;
-
-        for (int i = 0; i < c; i++)
-        {
-            QStandardItem *item = new QStandardItem(itemRecord.at(i));
-            item->setTextAlignment(Qt::AlignLeft);
-            item->setEditable(false);
-//            ui->tableView->setRowHeight(row, 20);
-            ui->tableView->setColumnWidth(i, colWidth[i]);
-            item->setEditable(false);
-            model->setItem(row, i, item);
-        }
-        itemRecord.clear();
-        row++;
-    }
-    QItemSelectionModel *sm = ui->tableView->selectionModel();
-    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    tlist.clear();
-    ui->tableView->show();
-}
 
 
 void KomintentiLista::procSectionResized(int a, int b, int c)
@@ -214,7 +143,8 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(listRes);
+//    ShowData(listRes);
+    b.ShowData(listRes, model, header, ui->tableView);
     ui->pushButton_4->setEnabled(true);
 }
 
@@ -227,7 +157,8 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(listRes);
+//    ShowData(listRes);
+    b.ShowData(listRes, model, header, ui->tableView);
     ui->pushButton_5->setEnabled(true);
 }
 
@@ -279,7 +210,8 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-    ShowData(listRes);
+    b.ShowData(listRes, model, header, ui->tableView);
+    //    ShowData(listRes);
 }
 
 void KomintentiLista::updateFont()
