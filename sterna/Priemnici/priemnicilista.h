@@ -6,6 +6,7 @@
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
 #include "xx.h"
+#include "qbtemplate.h"
 
 #define COL 27
 #define COL_DETAIL 28
@@ -45,8 +46,9 @@ private:
     int numOffset;
     QString m_selectedID;
     int m_row;
-    int colWidth[COL];
-    int colDetailWidth[COL_DETAIL];
+     QList<int> colWidth;
+    QList<int> colDetailWidth;
+    QBTemplate<dokumentT> b;
 signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent();

@@ -62,72 +62,46 @@ void QWorkerMagacin::onPostList(QNetworkReply *rep)
 
     for (int a = 0; a < jsonArray.count(); a++)
     {
+        dokumentDetailT docdetail_temp ;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        QString t_tid = QString::number(obj["TID"].toInt());
-        QString t_document_id = QString::number(obj["DOCUMENT_ID"].toInt());
-        QString t_document_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
-        QString t_komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
-        QString t_artikal_id = QString::number(obj["ARTIKAL_ID"].toInt());
-        QString t_artikal_naziv = obj["ARTIKAL"].toString();
-        QString t_tip_artikal = QString::number(obj["TIP_ARTIKAL"].toInt());
-        QString t_link_artikal = QString::number(obj["LINK_ARTIKAL"].toInt());
-        QString t_edm = base64_decode(obj["EDM"].toString());
-        QString t_vlez_nab_cena_bez_ddv = QString::number(obj["V_NAB_CENA_BEZ_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_nab_cena_so_ddv = QString::number(obj["V_NAB_CENA_SO_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_prenesen_ddv = QString::number(obj["V_PREN_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_prenesen_ddv_denari = QString::number(obj["V_PREN_DDV_DEN"].toDouble(), 'f', 2);
-        QString t_vlez_rabat = QString::number(obj["V_RABAT"].toDouble(), 'f', 2);
-        QString t_vlez_nabaven_iznos_so_ddv = QString::number(obj["V_NAB_IZNOS_SO_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_marza = QString::number(obj["V_MARZA"].toDouble(), 'f', 2);
-        QString t_vlez_marza_den = QString::number(obj["V_MARZA_DEN"].toDouble(), 'f', 2);
-        QString t_vlez_prod_cena_bez_ddv = QString::number(obj["V_PROD_CENA_BEZ_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_presmetan_ddv = QString::number(obj["V_PRESMETAN_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_prod_cena_so_ddv = QString::number(obj["V_PROD_CENA_SO_DDV"].toDouble(), 'f', 2);
-        QString t_vlez_prod_iznos_so_ddv = QString::number(obj["V_PROD_IZNOS_SO_DDV"].toDouble(), 'f', 2);
-        QString t_izl_cena_bez_ddv_calc = QString::number(obj["I_CENA_BEZ_DDV_KALK"].toDouble(), 'f', 2);
-        QString t_izl_cena_so_ddv_calc = QString::number(obj["I_CENA_SO_DDV_KALK"].toDouble(), 'f', 2);
-        QString t_izl_cena_so_ddv_prod = QString::number(obj["I_CENA_SO_DDV_PROD"].toDouble(), 'f', 2);
-        QString t_izl_ddv_prod = QString::number(obj["I_DDV_PROD"].toDouble(), 'f', 2);
-        QString t_kol = QString::number(obj["KOL"].toDouble(), 'f', 2);
-        QString t_mag_id = QString::number(obj["MAG_ID"].toInt());
-        QString t_status = QString::number(obj["STATUS"].toInt());
+        docdetail_temp.tid = QString::number(obj["TID"].toInt());
+        docdetail_temp.dokument_id = QString::number(obj["DOCUMENT_ID"].toInt());
+        docdetail_temp.dokument_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
+        docdetail_temp.komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
+        docdetail_temp.artikal_id = QString::number(obj["ARTIKAL_ID"].toInt());
+        docdetail_temp.artikal_naziv = obj["ARTIKAL"].toString();
+        docdetail_temp.tip_artikal = QString::number(obj["TIP_ARTIKAL"].toInt());
+        docdetail_temp.link_artikal = QString::number(obj["LINK_ARTIKAL"].toInt());
+        docdetail_temp.edm = base64_decode(obj["EDM"].toString());
+        docdetail_temp.vlez_nab_cena_bez_ddv = QString::number(obj["V_NAB_CENA_BEZ_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_nab_cena_so_ddv = QString::number(obj["V_NAB_CENA_SO_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_prenesen_ddv = QString::number(obj["V_PREN_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_prenesen_ddv_denari = QString::number(obj["V_PREN_DDV_DEN"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_rabat = QString::number(obj["V_RABAT"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_nabaven_iznos_so_ddv = QString::number(obj["V_NAB_IZNOS_SO_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_marza = QString::number(obj["V_MARZA"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_marza_den = QString::number(obj["V_MARZA_DEN"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_prod_cena_bez_ddv = QString::number(obj["V_PROD_CENA_BEZ_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_presmetan_ddv = QString::number(obj["V_PRESMETAN_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_prod_cena_so_ddv = QString::number(obj["V_PROD_CENA_SO_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.vlez_prod_iznos_so_ddv = QString::number(obj["V_PROD_IZNOS_SO_DDV"].toDouble(), 'f', 2);
+        docdetail_temp.izl_cena_bez_ddv_calc = QString::number(obj["I_CENA_BEZ_DDV_KALK"].toDouble(), 'f', 2);
+        docdetail_temp.izl_cena_so_ddv_calc = QString::number(obj["I_CENA_SO_DDV_KALK"].toDouble(), 'f', 2);
+        docdetail_temp.izl_cena_so_ddv_prod = QString::number(obj["I_CENA_SO_DDV_PROD"].toDouble(), 'f', 2);
+        docdetail_temp.izl_ddv_prod = QString::number(obj["I_DDV_PROD"].toDouble(), 'f', 2);
+        docdetail_temp.kol = QString::number(obj["KOL"].toDouble(), 'f', 2);
+        docdetail_temp.mag_id = QString::number(obj["MAG_ID"].toInt());
+        docdetail_temp.status = QString::number(obj["STATUS"].toInt());
 
 
-        if(t_tid == "end")
+        if(docdetail_temp.tid == "end")
         {
             continue;
         }
         else
         {
-            listRes << t_tid + "#;#"
-                       + t_document_id + "#;#"
-                       + t_document_tip + "#;#"
-                       + t_komintent_id + "#;#"
-                       + t_artikal_id + "#;#"
-                       + t_artikal_naziv + "#;#"
-                       + t_tip_artikal + "#;#"
-                       + t_link_artikal + "#;#"
-                       + t_edm + "#;#"
-                       + t_vlez_nab_cena_bez_ddv + "#;#"
-                       + t_vlez_nab_cena_so_ddv + "#;#"
-                       + t_vlez_prenesen_ddv + "#;#"
-                       + t_vlez_prenesen_ddv_denari + "#;#"
-                       + t_vlez_rabat + "#;#"
-                       + t_vlez_nabaven_iznos_so_ddv + "#;#"
-                       + t_vlez_marza + "#;#"
-                       + t_vlez_marza_den + "#;#"
-                       + t_vlez_prod_cena_bez_ddv + "#;#"
-                       + t_vlez_presmetan_ddv + "#;#"
-                       + t_vlez_prod_cena_so_ddv + "#;#"
-                       + t_vlez_prod_iznos_so_ddv + "#;#"
-                       + t_izl_cena_bez_ddv_calc + "#;#"
-                       + t_izl_cena_so_ddv_calc + "#;#"
-                       + t_izl_cena_so_ddv_prod + "#;#"
-                       + t_izl_ddv_prod + "#;#"
-                       + t_kol + "#;#"
-                       + t_mag_id + "#;#"
-                       + t_status ;
+            listRes << docdetail_temp;
         }
     }
     emit finishedSearch();

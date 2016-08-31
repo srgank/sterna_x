@@ -28,16 +28,21 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
 
     QStringList tempVals = s->Get_Kom_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
-            colWidth[i] = tempVals.at(i).toInt();
+        for (int i = 0; i < tempVals.count(); i++)        {
+            colWidth << tempVals.at(i).toInt();
         }
     }else{
-        for (int i = 0; i < COL; i++)        {
-            colWidth[i] = 100;
+        for (int i = 0; i < tempVals.count(); i++)        {
+            colWidth << 100;
         }
     }
 
     numOffset = 0;
+    numOffset = 0;
+    ui->tableView->setModel(model);
+    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
 
 }
 
@@ -56,9 +61,9 @@ KomintentiLista::~KomintentiLista()
 {
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
-    for (int i = 0; i < COL; i++)
+    for (int i = 0; i < colWidth.count(); i++)
     {
-        tempVals << QString::number(colWidth[i]);
+        tempVals << QString::number(colWidth.at(i));
     }
 
     s->Set_Kom_HeaderState(tempVals);
@@ -105,21 +110,6 @@ void KomintentiLista::procSectionResized(int a, int b, int c)
 
 void KomintentiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Назив"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Адреса"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Тел"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Мобил"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Жиро сметка"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Едб"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Депонент"));
-    model->setHeaderData( 9, Qt::Horizontal, trUtf8("Шиф.Дејност"));
-    model->setHeaderData( 10, Qt::Horizontal, trUtf8("МБ"));
-    model->setHeaderData( 11, Qt::Horizontal, trUtf8("Забелешка"));
-    model->setHeaderData( 12, Qt::Horizontal, trUtf8("Забелешка"));
-    model->setHeaderData( 13, Qt::Horizontal, trUtf8("Рабат"));
-    model->setHeaderData( 14, Qt::Horizontal, trUtf8("Град"));
 
     int i = modelX.row();
     m_row = modelX.row();
@@ -144,7 +134,7 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
 //    ShowData(listRes);
-    b.ShowData(listRes, model, header, ui->tableView);
+    b.ShowData(listRes, model, header, ui->tableView, colWidth);
     ui->pushButton_4->setEnabled(true);
 }
 
@@ -158,7 +148,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
 //    ShowData(listRes);
-    b.ShowData(listRes, model, header, ui->tableView);
+    b.ShowData(listRes, model, header, ui->tableView, colWidth);
     ui->pushButton_5->setEnabled(true);
 }
 
@@ -210,7 +200,7 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vSName = ui->lineEditPrebaraj->text() + "%";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-    b.ShowData(listRes, model, header, ui->tableView);
+    b.ShowData(listRes, model, header, ui->tableView, colWidth);
     //    ShowData(listRes);
 }
 

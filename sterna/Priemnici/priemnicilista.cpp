@@ -30,23 +30,23 @@ PriemniciLista::PriemniciLista(BaseForm *parent) :
     QStringList tempVals = s->Get_Priemnica_HeaderState();
     if (!tempVals.isEmpty()){
         for (int i = 0; i < COL; i++)        {
-            colWidth[i] = tempVals.at(i).toInt();
+            colWidth << tempVals.at(i).toInt();
         }
     }else{
         for (int i = 0; i < COL; i++)        {
-            colWidth[i] = 100;
+            colWidth << 100;
         }
     }
 
 
     QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
-            colDetailWidth[i] = tempValsDetail.at(i).toInt();
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
+            colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
-        for (int i = 0; i < COL_DETAIL; i++)        {
-            colDetailWidth[i] = 100;
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
+            colDetailWidth << 100;
         }
     }
 
@@ -59,17 +59,17 @@ PriemniciLista::~PriemniciLista()
 {
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
-    for (int i = 0; i < COL; i++)
+    for (int i = 0; i < colWidth.count(); i++)
     {
-        tempVals << QString::number(colWidth[i]);
+        tempVals << QString::number(colWidth.at(i));
     }
 
     s->Set_Priemnica_HeaderState(tempVals);
 
     QStringList tempdetailVals;
-    for (int i = 0; i < COL_DETAIL; i++)
+    for (int i = 0; i < colDetailWidth.count(); i++)
     {
-        tempdetailVals << QString::number(colDetailWidth[i]);
+        tempdetailVals << QString::number(colDetailWidth.at(i));
     }
 
     s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
@@ -126,8 +126,8 @@ void PriemniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     QString vDok_Id =  model->item(i, 1)->text();
     QString vDok_Tip = model->item(i, 2)->text();
 
-    QStringList res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
-    ShowDataDetail(res);
+    QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
+    b.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
 }
 
 void PriemniciLista::on_pushButton_4_clicked()
@@ -185,8 +185,9 @@ void PriemniciLista::on_lineEdit_textChanged(const QString &arg1)
     QString vDokID =  "%";
     QString vDokTip = "20";
 
-    QStringList res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
-    ShowData(res);
+    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+    b.ShowData(res, model, header, ui->tableView, colWidth);
+
 }
 
 void PriemniciLista::ShowData(QStringList& tlist)

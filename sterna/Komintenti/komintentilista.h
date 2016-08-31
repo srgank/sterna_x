@@ -8,7 +8,6 @@
 #include "xx.h"
 #include "qbtemplate.h"
 
-#define COL 15
 
 namespace Ui {
 class KomintentiLista;
@@ -46,7 +45,7 @@ private:
     QHeaderView *header;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[COL];
+    QList<int> colWidth;
     QString m_selectedID;
     int m_row;
     QBTemplate<komintentT> b;

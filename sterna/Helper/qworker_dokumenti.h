@@ -77,7 +77,7 @@ public:
 
 
 
-    QStringList listRes;
+    QList<dokumentT> listRes;
     int stat_finished;
 
 private:

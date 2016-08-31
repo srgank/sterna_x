@@ -28,17 +28,20 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
 
     QStringList tempVals = s->Get_Art_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
-            colWidth[i] = tempVals.at(i).toInt();
+        for (int i = 0; i < tempVals.count(); i++)        {
+            colWidth << tempVals.at(i).toInt();
         }
     }else{
-        for (int i = 0; i < COL; i++)        {
-            colWidth[i] = 100;
+        for (int i = 0; i < tempVals.count(); i++)        {
+            colWidth << 100;
         }
     }
 
     numOffset = 0;
-
+    ui->tableView->setModel(model);
+    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
 }
 
 
@@ -56,9 +59,9 @@ ArtikliLista::~ArtikliLista()
 {
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
-    for (int i = 0; i < COL; i++)
+    for (int i = 0; i < colWidth.count(); i++)
     {
-        tempVals << QString::number(colWidth[i]);
+        tempVals << QString::number(colWidth.at(i));
     }
 
     s->Set_Art_HeaderState(tempVals);
@@ -103,16 +106,6 @@ void ArtikliLista::procSectionResized(int a, int b, int c)
 
 void ArtikliLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
-
     int i = modelX.row();
     m_row = modelX.row();
     ui->le_id->setText(model->item(i, 0)->text());
@@ -134,7 +127,7 @@ void ArtikliLista::on_pushButton_5_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    b.ShowData(res, model, header, ui->tableView);
+    b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
 void ArtikliLista::on_pushButton_6_clicked()
@@ -145,7 +138,7 @@ void ArtikliLista::on_pushButton_6_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    b.ShowData(res, model, header, ui->tableView);
+    b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
 void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
@@ -155,7 +148,7 @@ void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-    b.ShowData(res, model, header, ui->tableView);
+    b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
 

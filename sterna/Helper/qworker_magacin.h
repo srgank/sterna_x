@@ -20,7 +20,7 @@ class QWorkerMagacin : public QWidget
 public:
     explicit QWorkerMagacin(QWidget *parent = 0);
     void getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy );
-    QStringList listRes;
+    QList<dokumentDetailT> listRes;
     int stat_finished;
 
 private:

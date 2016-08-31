@@ -66,7 +66,7 @@ void QHelperC::UpdateKomintent(QString &v_id, QString &v_sifra, QString &v_naziv
     pause.exec();
 }
 
-QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
+QList<dokumentT> QHelperC::getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
 {
     QEventLoop pause;
     QWorkerDokumenti worker;
@@ -76,7 +76,7 @@ QStringList QHelperC::getallDokumenti(QString& offset, QString& limit, QString& 
     return worker.listRes;
 }
 
-QStringList QHelperC::getallMagacin(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
+QList<dokumentDetailT> QHelperC::getallMagacin(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
 {
     QEventLoop pause;
     QWorkerMagacin worker;

@@ -9,7 +9,7 @@
 #include "Struct/struct.h"
 #include "qbtemplate.h"
 
-#define COL 9
+
 
 namespace Ui {
 class ArtikliLista;
@@ -50,7 +50,8 @@ private:
     QHeaderView *header;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[COL];
+    QList<int> colWidth;
+//    int colWidth[COL];
     QString m_selectedID;
     int m_row;
 
