@@ -150,23 +150,7 @@ void KomintentiKorekcija::on_pushButton_released()
     kom_temp.rabat = ui->rabat_Edit->text();
     kom_temp.grad = ui->grad_Edit->text();
 
-    hlp->UpdateKomintent(
-            kom_temp.id,
-            kom_temp.sifra,
-            kom_temp.naziv,
-            kom_temp.adresa,
-            kom_temp.tel,
-            kom_temp.mobil,
-            kom_temp.zirosmetka,
-            kom_temp.edb,
-            kom_temp.deponent,
-            kom_temp.sifra_dejnost,
-            kom_temp.mb,
-            kom_temp.zabeleska1,
-            kom_temp.zabeleska2,
-            kom_temp.rabat,
-            kom_temp.grad
-                         );
+    hlp->UpdateKomintent(kom_temp);
     pressEscape();
 }
 

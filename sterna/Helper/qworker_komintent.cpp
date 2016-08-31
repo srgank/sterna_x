@@ -92,7 +92,7 @@ void QWorkerKomintent::onPostList(QNetworkReply *rep)
 }
 
 
-void QWorkerKomintent::insert(kominte )
+void QWorkerKomintent::insert(komintentT& komItem )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
@@ -102,20 +102,20 @@ void QWorkerKomintent::insert(kominte )
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["sifra"] = v_sifra;
-    tt_json["naziv"] = v_naziv;
-    tt_json["adresa"] = v_adresa;
-    tt_json["tel"] = v_tel;
-    tt_json["mobil"] = v_mobil;
-    tt_json["zirismetka"] = v_zirismetka;
-    tt_json["edb"] = v_edb;
-    tt_json["deponent"] = v_deponent;
-    tt_json["sifradejnost"] = v_sifradejnost;
-    tt_json["mb"] = v_mb;
-    tt_json["zabeleska1"] = v_zabeleska1;
-    tt_json["zabeleska2"] = v_zabeleska2;
-    tt_json["rabat"] = v_rabat.toInt();
-    tt_json["grad"] = v_grad;
+    tt_json["sifra"] = komItem.sifra;
+    tt_json["naziv"] = komItem.naziv;
+    tt_json["adresa"] = komItem.adresa;
+    tt_json["tel"] = komItem.tel;
+    tt_json["mobil"] = komItem.mobil;
+    tt_json["zirismetka"] = komItem.zirosmetka;
+    tt_json["edb"] = komItem.edb;
+    tt_json["deponent"] = komItem.deponent;
+    tt_json["sifradejnost"] = komItem.sifra_dejnost;
+    tt_json["mb"] = komItem.mb;
+    tt_json["zabeleska1"] = komItem.zabeleska1;
+    tt_json["zabeleska2"] = komItem.zabeleska2;
+    tt_json["rabat"] = komItem.rabat.toInt();
+    tt_json["grad"] = komItem.grad;
 
 
     QJsonDocument doc(tt_json);
@@ -137,23 +137,7 @@ void QWorkerKomintent::onPostInsert(QNetworkReply *rep)
     emit finishedInsert();
 }
 
-void QWorkerKomintent::update(
-        QString &v_id,
-        QString &v_sifra,
-        QString &v_naziv,
-        QString &v_adresa,
-        QString &v_tel,
-        QString &v_mobil,
-        QString &v_zirismetka,
-        QString &v_edb,
-        QString &v_deponent,
-        QString &v_sifradejnost,
-        QString &v_mb,
-        QString &v_zabeleska1,
-        QString &v_zabeleska2,
-        QString &v_rabat,
-        QString &v_grad
-    )
+void QWorkerKomintent::update(komintentT &komItem)
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
@@ -163,21 +147,21 @@ void QWorkerKomintent::update(
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["id"] = v_id.toInt();
-    tt_json["sifra"] = v_sifra;
-    tt_json["naziv"] = v_naziv;
-    tt_json["adresa"] = v_adresa;
-    tt_json["tel"] = v_tel;
-    tt_json["mobil"] = v_mobil;
-    tt_json["zirismetka"] = v_zirismetka;
-    tt_json["edb"] = v_edb;
-    tt_json["deponent"] = v_deponent;
-    tt_json["sifradejnost"] = v_sifradejnost;
-    tt_json["mb"] = v_mb;
-    tt_json["zabeleska1"] = v_zabeleska1;
-    tt_json["zabeleska2"] = v_zabeleska2;
-    tt_json["rabat"] = v_rabat.toInt();
-    tt_json["grad"] = v_grad;
+    tt_json["id"] = komItem.id.toInt();
+    tt_json["sifra"] = komItem.sifra;
+    tt_json["naziv"] = komItem.naziv;
+    tt_json["adresa"] = komItem.adresa;
+    tt_json["tel"] = komItem.tel;
+    tt_json["mobil"] = komItem.mobil;
+    tt_json["zirismetka"] = komItem.zirosmetka;
+    tt_json["edb"] = komItem.edb;
+    tt_json["deponent"] = komItem.deponent;
+    tt_json["sifradejnost"] = komItem.sifra_dejnost;
+    tt_json["mb"] = komItem.mb;
+    tt_json["zabeleska1"] = komItem.zabeleska1;
+    tt_json["zabeleska2"] = komItem.zabeleska2;
+    tt_json["rabat"] = komItem.rabat.toInt();
+    tt_json["grad"] = komItem.grad;
 
 
     QJsonDocument doc(tt_json);
