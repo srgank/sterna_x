@@ -19,27 +19,8 @@ class QWorkerArtikli : public QWidget
 public:
     explicit QWorkerArtikli(QWidget *parent = 0);
     void getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy );
-    void insert(
-            QString &v_sifra,
-            QString &v_artikal,
-            QString &v_edm,
-            QString &v_ref,
-            QString &v_kataloski_broj,
-            QString &v_ddv,
-            QString &v_proizvoditel,
-            QString &v_kategorija
-        );
-    void update(
-            QString &v_id,
-            QString &v_sifra,
-            QString &v_artikal,
-            QString &v_edm,
-            QString &v_ref,
-            QString &v_kataloski_broj,
-            QString &v_ddv,
-            QString &v_proizvoditel,
-            QString &v_kategorija
-        );
+    void insert(artikalT& itemArt);
+    void update(artikalT& itemArt);
 
     QList<artikalT> listRes;
     int stat_finished;

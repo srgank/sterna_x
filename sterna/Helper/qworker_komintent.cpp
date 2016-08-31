@@ -92,22 +92,7 @@ void QWorkerKomintent::onPostList(QNetworkReply *rep)
 }
 
 
-void QWorkerKomintent::insert(
-        QString &v_sifra,
-        QString &v_naziv,
-        QString &v_adresa,
-        QString &v_tel,
-        QString &v_mobil,
-        QString &v_zirismetka,
-        QString &v_edb,
-        QString &v_deponent,
-        QString &v_sifradejnost,
-        QString &v_mb,
-        QString &v_zabeleska1,
-        QString &v_zabeleska2,
-        QString &v_rabat,
-        QString &v_grad
-    )
+void QWorkerKomintent::insert(kominte )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();

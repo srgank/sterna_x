@@ -17,15 +17,6 @@ KomintentiVnes::KomintentiVnes(BaseForm *parent) :
 
     hlp = new QHelperC(this);
 
-//    ui->sifraArtikalEdit->installEventFilter(this);
-//    ui->nazivArtikalEdit->installEventFilter(this);
-//    ui->edmArtikalEdit->installEventFilter(this);
-//    ui->ddvCombo->installEventFilter(this);
-//    ui->kataloskiArtikalEdit->installEventFilter(this);
-//    ui->refArtikalEdit->installEventFilter(this);
-//    ui->kataloskiArtikalEdit->installEventFilter(this);
-
-
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
 }
@@ -113,24 +104,24 @@ void KomintentiVnes::pressEscape()
 
 void KomintentiVnes::on_pushButton_clicked()
 {
-
+    komintentT komItem;
     QString blankText = "";
     QString blankDdv = "18";
-    QString a1 = ui->sifra_Edit->text();
-    QString a2 = ui->naziv_Edit->text();
-    QString a3 = ui->adresa_Edit->text();
-    QString a4 = ui->tefefon_Edit->text();
-    QString a5 = ui->mobilen_Edit->text();
-    QString a6 = ui->ziro_Edit->text();
-    QString a7 = ui->edb_Edit->text();
-    QString a8 = ui->banka_Edit->text();
-    QString a9 = ui->dejnost_Edit->text();
-    QString a10 = ui->maticen_Edit->text();
-    QString a11 = "";
-    QString a12 = "";
-    QString a13 = ui->rabat_Edit->text();
-    QString a14 = ui->grad_Edit->text();
-    hlp->InsertKomintent(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
+    komItem.sifra = ui->sifra_Edit->text();
+    komItem.naziv = ui->naziv_Edit->text();
+    komItem.adresa = ui->adresa_Edit->text();
+    komItem.tel = ui->tefefon_Edit->text();
+    komItem.mobil = ui->mobilen_Edit->text();
+    komItem.zirosmetka = ui->ziro_Edit->text();
+    komItem.edb = ui->edb_Edit->text();
+    komItem.deponent = ui->banka_Edit->text();
+    komItem.sifra_dejnost = ui->dejnost_Edit->text();
+    komItem.mb = ui->maticen_Edit->text();
+    komItem.zabeleska1 = "";
+    komItem.zabeleska2 = "";
+    komItem.rabat = ui->rabat_Edit->text();
+    komItem.grad = ui->grad_Edit->text();
+    hlp->InsertKomintent(komItem);
     pressEscape();
 }
 

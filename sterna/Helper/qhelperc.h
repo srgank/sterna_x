@@ -19,11 +19,11 @@ public:
     QList<artikalT> getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     QList<komintentT> getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip );
-    void InsertArtikal(QString &v_sifra, QString &v_artikal, QString &v_edm, QString &v_ref, QString &v_kataloski_broj, QString &v_ddv, QString &v_proizvoditel, QString &v_kategorija );
-    void UpdateArtikal(QString &v_id, QString &v_sifra, QString &v_artikal, QString &v_edm, QString &v_ref, QString &v_kataloski_broj, QString &v_ddv, QString &v_proizvoditel, QString &v_kategorija);
+    void InsertArtikal(artikalT &art);
+    void UpdateArtikal(artikalT &art);
 
-    void InsertKomintent(QString &v_sifra, QString &v_naziv, QString &v_adresa, QString &v_tel, QString &v_mobil, QString &v_zirismetka, QString &v_edb, QString &v_deponent, QString &v_sifradejnost, QString &v_mb, QString &v_zabeleska1, QString &v_zabeleska2, QString &v_rabat, QString &v_grad);
-    void UpdateKomintent(QString &v_id, QString &v_sifra, QString &v_naziv, QString &v_adresa, QString &v_tel, QString &v_mobil, QString &v_zirismetka, QString &v_edb, QString &v_deponent, QString &v_sifradejnost, QString &v_mb, QString &v_zabeleska1, QString &v_zabeleska2, QString &v_rabat, QString &v_grad );
+    void InsertKomintent(komintentT &komItem);
+    void UpdateKomintent(komintentT &komItem);
     QList<dokumentDetailT> getallMagacin(QString& offset, QString& limit, QString &vDokID, QString &vDokTip );
 private:
 

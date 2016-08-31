@@ -41,17 +41,21 @@ PriemniciLista::PriemniciLista(BaseForm *parent) :
 
     QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < tempValsDetail.count(); i++)        {
+        for (int i = 0; i < COL_DETAIL; i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
-        for (int i = 0; i < tempValsDetail.count(); i++)        {
+        for (int i = 0; i < COL_DETAIL; i++)        {
             colDetailWidth << 100;
         }
     }
 
+    ui->tableView->setModel(model);
+    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
 
-    getTableColumnWidths(COL);
     on_lineEdit_textChanged("%%");
 }
 
@@ -97,7 +101,6 @@ void PriemniciLista::setSearchString(QString& searchText)
     //    ui->lineEdit->setText(searchText);
 }
 
-
 void PriemniciLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
@@ -127,7 +130,7 @@ void PriemniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     QString vDok_Tip = model->item(i, 2)->text();
 
     QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
-    b.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
+    bd.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
 }
 
 void PriemniciLista::on_pushButton_4_clicked()
@@ -153,29 +156,8 @@ void PriemniciLista::setTableColumnWidths(int ccolumn)
     {
         tempWidth << QString::number(ui->tableView->columnWidth(i), 10);
     }
-    //s->setColumnWidth(tempWidth);
 }
 
-void PriemniciLista::getTableColumnWidths(int ccolumn)
-{
-    //    QLocale loc;
-    //    Singleton *s = Singleton::Instance();
-    //    QStringList sss = s->getPriemniciColumnWidth();
-    //    if (sss.count() == ccolumn)
-    //    {
-    //        for (int i1 = 0; i1 < ccolumn; i1++)
-    //        {
-    //            colWidth[i1] = loc.toInt(sss.at(i1));
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i1 = 0; i1 < ccolumn; i1++)
-    //        {
-    //            colWidth[i1] = 100;
-    //        }
-    //    }
-}
 
 void PriemniciLista::on_lineEdit_textChanged(const QString &arg1)
 {

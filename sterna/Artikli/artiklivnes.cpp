@@ -116,15 +116,16 @@ void ArtikliVnes::on_pushButton_clicked()
 
     QString blankText = "";
     QString blankDdv = "18";
-    QString a1 = ui->sifraArtikalEdit->text();
-    QString a2 = ui->nazivArtikalEdit->text();
-    QString a3 = ui->edmArtikalEdit->text();
-    QString a4 = ui->refArtikalEdit->text();
-    QString a5 = ui->kataloskiArtikalEdit->text();
-    QString a6 = ui->ddvCombo->lineEdit()->text();
-    QString a7 = "";
-    QString a8 = "";
-    hlp->InsertArtikal(a1, a2, a3, a4, a5, a6, a7, a8);
+    artikalT art;
+    art.sifra = ui->sifraArtikalEdit->text();
+    art.artikal = ui->nazivArtikalEdit->text();
+    art.edm = ui->edmArtikalEdit->text();
+    art.ref = ui->refArtikalEdit->text();
+    art.kataloski_broj = ui->kataloskiArtikalEdit->text();
+    art.ddv = ui->ddvCombo->lineEdit()->text();
+    art.proizvoditel = "";
+    art.kategorija = "";
+    hlp->InsertArtikal(art);
     pressEscape();
 }
 

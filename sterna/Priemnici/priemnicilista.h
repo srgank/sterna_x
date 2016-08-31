@@ -27,7 +27,6 @@ public:
     virtual void pressEscape();
 
     void setTableColumnWidths(int ccolumn);
-    void getTableColumnWidths(int ccolumn);
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);
@@ -46,9 +45,10 @@ private:
     int numOffset;
     QString m_selectedID;
     int m_row;
-     QList<int> colWidth;
+    QList<int> colWidth;
     QList<int> colDetailWidth;
     QBTemplate<dokumentT> b;
+    QBTemplate<dokumentDetailT> bd;
 signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent();

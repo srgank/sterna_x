@@ -130,6 +130,7 @@ void ArtikliKorekcija::initProc(QString m_searchID)
 //getResultEXUpdate
 void ArtikliKorekcija::on_pushButton_released()
 {
+
     QString blankText = "";
     QString blankDdv = "18";
     art_temp.id = artikal_id;
@@ -139,17 +140,7 @@ void ArtikliKorekcija::on_pushButton_released()
     art_temp.ref = ui->refArtikalEdit->text();
     art_temp.kataloski_broj = ui->kataloskiArtikalEdit->text();
     art_temp.ddv = ui->ddvCombo->lineEdit()->text();
-    hlp->UpdateArtikal(
-        art_temp.id,
-        art_temp.sifra,
-        art_temp.artikal,
-        art_temp.edm,
-        art_temp.ref,
-        art_temp.kataloski_broj,
-        art_temp.ddv,
-        art_temp.proizvoditel,
-        art_temp.kategorija
-               );
+    hlp->UpdateArtikal(art_temp);
     pressEscape();
 }
 
