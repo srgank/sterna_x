@@ -14,8 +14,6 @@ SmetkiLista::SmetkiLista(BaseForm *parent) :
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
-    connect(hlp, SIGNAL(signalResultFakturi(QStringList &)), this, SLOT(getResultEX(QStringList &)));
-
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
     numOffset = 0;
     QString vOffset = QString::number(numOffset);
@@ -51,7 +49,7 @@ SmetkiLista::SmetkiLista(BaseForm *parent) :
     }
 
     ui->tableView->setModel(model);
-    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
@@ -62,6 +60,10 @@ SmetkiLista::SmetkiLista(BaseForm *parent) :
 
 SmetkiLista::~SmetkiLista()
 {
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
+
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
     for (int i = 0; i < colWidth.count(); i++)
@@ -128,53 +130,6 @@ void SmetkiLista::setSearchString(QString& searchText)
 }
 
 
-void SmetkiLista::getResultEX(QStringList& tlist)
-{
-    int r = tlist.count();
-    int c = COL;
-    model->clear();
-    model->setRowCount(r);
-    model->setColumnCount(c);
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
-
-    ui->tableView->setModel(model);
-
-    ui->tableView->setHorizontalHeader(header);
-    header->show();
-    int row = 0;
-
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
-        for (int i = 0; i < c; i++)
-        {
-            QStandardItem *item = new QStandardItem(itemRecord.at(i));
-            item->setTextAlignment(Qt::AlignLeft);
-            item->setEditable(false);
-            ui->tableView->setRowHeight(row, 18);
-            ui->tableView->setColumnWidth(i, colWidth[i]);
-            item->setEditable(false);
-            model->setItem(row, i, item);
-        }
-        itemRecord.clear();
-        row++;
-    }
-    QItemSelectionModel *sm = ui->tableView->selectionModel();
-    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    tlist.clear();
-//    ui->tableView->setFocus();
-    ui->tableView->show();
-}
-
 
 void SmetkiLista::procSectionResized(int a, int b, int c)
 {
@@ -230,37 +185,6 @@ void SmetkiLista::on_LE_prebaraj_textChanged(const QString &arg1)
 //    hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
 }
 
-void SmetkiLista::setTableColumnWidths(int ccolumn)
-{
-//    Singleton *s = Singleton::Instance();
-//    QStringList tempWidth;
-//    for (int i = 0; i < ccolumn; i++)
-//    {
-//        tempWidth << QString::number(ui->tableView->columnWidth(i), 10);
-//    }
-//    s->setSmetkiColumnWidth(tempWidth);
-}
-
-void SmetkiLista::getTableColumnWidths(int ccolumn)
-{
-//    QLocale loc;
-//    Singleton *s = Singleton::Instance();
-//    QStringList sss = s->getSmetkiColumnWidth();
-//    if (sss.count() == ccolumn)
-//    {
-//        for (int i1 = 0; i1 < ccolumn; i1++)
-//        {
-//            colWidth[i1] = loc.toInt(sss.at(i1));
-//        }
-//    }
-//    else
-//    {
-//        for (int i1 = 0; i1 < ccolumn; i1++)
-//        {
-//            colWidth[i1] = 100;
-//        }
-//    }
-}
 
 
 void SmetkiLista::on_pb_vnesi_nov_clicked()

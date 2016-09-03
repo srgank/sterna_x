@@ -44,6 +44,7 @@ private:
     QHelperC *hlp;
     int numOffset;
     QString m_selectedID;
+    QItemSelectionModel *sm;
     int m_row;
     QList<int> colWidth;
     QList<int> colDetailWidth;

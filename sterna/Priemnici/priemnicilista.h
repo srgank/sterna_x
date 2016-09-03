@@ -36,6 +36,7 @@ public:
     void ShowDataDetail(QStringList& tlist);
 
 private:
+    QItemSelectionModel *sm;
     Ui::PriemniciLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;

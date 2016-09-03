@@ -6,8 +6,10 @@
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
 #include "xx.h"
+#include "qbtemplate.h"
 
-#define COL 9
+#define COL 27
+#define COL_DETAIL 28
 
 namespace Ui {
 class IspratniciLista;
@@ -34,14 +36,20 @@ public:
     void setSearchString(QString& searchText);
 
 private:
+    QItemSelectionModel *sm;
     Ui::IspratniciLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;
+    QStandardItemModel *model_2;
+    QHeaderView *header_2;
     QHelperC *hlp;
     int numOffset;
-    int colWidth[9];
     QString m_selectedID;
     int m_row;
+    QList<int> colWidth;
+    QList<int> colDetailWidth;
+    QBTemplate<dokumentT> b;
+    QBTemplate<dokumentDetailT> bd;
 
 signals:
     void signalpressF2();
@@ -59,6 +67,8 @@ private slots:
 
     void on_pb_vnesi_nov_clicked();
     void on_pb_koregiraj_postoecki_clicked();
+    void on_lineEdit_textChanged(const QString &arg1);
+
 };
 
 #endif // IspratniciLISTA_H

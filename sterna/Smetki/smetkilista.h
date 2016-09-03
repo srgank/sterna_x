@@ -45,6 +45,7 @@ private:
     QHelperC *hlp;
     int numOffset;
     QString m_selectedID;
+    QItemSelectionModel *sm;
     int m_row;
     QList<int> colWidth;
     QList<int> colDetailWidth;
@@ -57,7 +58,7 @@ signals:
     void signalpressEscape();
 
 private slots:
-    void getResultEX(QStringList&);
+
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
     void on_LE_prebaraj_textChanged(const QString &arg1);

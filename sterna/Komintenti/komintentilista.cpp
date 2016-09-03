@@ -40,7 +40,7 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     numOffset = 0;
     numOffset = 0;
     ui->tableView->setModel(model);
-    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
 
@@ -59,6 +59,9 @@ void KomintentiLista::initProc(int searchIDList, QString& searchStrList, int sea
 
 KomintentiLista::~KomintentiLista()
 {
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
     for (int i = 0; i < colWidth.count(); i++)

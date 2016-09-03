@@ -49,6 +49,7 @@ private:
     QString m_selectedID;
     int m_row;
     QBTemplate<komintentT> b;
+    QItemSelectionModel *sm;
 
 signals:
     void signalpressF2();

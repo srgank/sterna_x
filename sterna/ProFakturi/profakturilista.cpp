@@ -51,7 +51,7 @@ ProFakturiLista::ProFakturiLista(BaseForm *parent) :
     }
 
     ui->tableView->setModel(model);
-    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
@@ -61,6 +61,10 @@ ProFakturiLista::ProFakturiLista(BaseForm *parent) :
 
 ProFakturiLista::~ProFakturiLista()
 {
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
+
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
     for (int i = 0; i < colWidth.count(); i++)

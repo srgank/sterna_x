@@ -47,8 +47,10 @@ private:
     int m_row;
     QList<int> colWidth;
     QList<int> colDetailWidth;
-    QBTemplate<dokumentT> b;
+    QBTemplate<fakturiT> c;
+    QBTemplate<fakturiT> b;
     QBTemplate<dokumentDetailT> bd;
+    QItemSelectionModel *sm;
 
 signals:
     void signalpressF2();
@@ -56,7 +58,6 @@ signals:
     void signalpressEscape();
 
 private slots:
-    void getResultEX(QStringList&);
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
     void on_LE_prebaraj_textChanged(const QString &arg1);

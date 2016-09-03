@@ -51,7 +51,7 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     }
 
     ui->tableView->setModel(model);
-    QItemSelectionModel *sm =ui->tableView->selectionModel();
+    sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
@@ -61,6 +61,10 @@ FakturiLista::FakturiLista(BaseForm *parent) :
 
 FakturiLista::~FakturiLista()
 {
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
+
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
     for (int i = 0; i < colWidth.count(); i++)
@@ -121,56 +125,12 @@ void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
     QString vDokTip = "40";
 
     QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
-    b.ShowData(res, model, header, ui->tableView, colWidth);
+    QList<fakturiT> resFaktura;
+    c.ConvertDokument(res, resFaktura);
+    b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
 
 }
 
-void FakturiLista::getResultEX(QStringList& tlist)
-{
-    int r = tlist.count();
-    int c = COL;
-    model->clear();
-    model->setRowCount(r);
-    model->setColumnCount(c);
-    model->setHeaderData( 0, Qt::Horizontal, trUtf8("Id."));
-    model->setHeaderData( 1, Qt::Horizontal, trUtf8("Шифра"));
-    model->setHeaderData( 2, Qt::Horizontal, trUtf8("Артикал"));
-    model->setHeaderData( 3, Qt::Horizontal, trUtf8("Едм"));
-    model->setHeaderData( 4, Qt::Horizontal, trUtf8("Реф"));
-    model->setHeaderData( 5, Qt::Horizontal, trUtf8("Кат.број"));
-    model->setHeaderData( 6, Qt::Horizontal, trUtf8("Ддв"));
-    model->setHeaderData( 7, Qt::Horizontal, trUtf8("Производител"));
-    model->setHeaderData( 8, Qt::Horizontal, trUtf8("Категорија"));
-
-    ui->tableView->setModel(model);
-
-    ui->tableView->setHorizontalHeader(header);
-    header->show();
-    int row = 0;
-
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
-        for (int i = 0; i < c; i++)
-        {
-            QStandardItem *item = new QStandardItem(itemRecord.at(i));
-            item->setTextAlignment(Qt::AlignLeft);
-            item->setEditable(false);
-            ui->tableView->setRowHeight(row, 18);
-            ui->tableView->setColumnWidth(i, colWidth[i]);
-            item->setEditable(false);
-            model->setItem(row, i, item);
-        }
-        itemRecord.clear();
-        row++;
-    }
-    QItemSelectionModel *sm = ui->tableView->selectionModel();
-    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    tlist.clear();
-//    ui->tableView->setFocus();
-    ui->tableView->show();
-}
 
 
 void FakturiLista::procSectionResized(int a, int b, int c)

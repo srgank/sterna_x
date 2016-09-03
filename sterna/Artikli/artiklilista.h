@@ -44,7 +44,7 @@ public:
 
 private:
 //    void ShowData(QList<artikalT>&);
-
+    QItemSelectionModel *sm;
     Ui::ArtikliLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;
