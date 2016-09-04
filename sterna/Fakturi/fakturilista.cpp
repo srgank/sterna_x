@@ -27,9 +27,9 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempVals = s->Get_Priemnica_HeaderState();
+    QStringList tempVals = s->Get_Faktura_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
+        for (int i = 0; i < tempVals.count(); i++)        {
             colWidth << tempVals.at(i).toInt();
         }
     }else{
@@ -39,9 +39,9 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     }
 
 
-    QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
@@ -72,7 +72,7 @@ FakturiLista::~FakturiLista()
         tempVals << QString::number(colWidth.at(i));
     }
 
-    s->Set_Priemnica_HeaderState(tempVals);
+    s->Set_Faktura_HeaderState(tempVals);
 
     QStringList tempdetailVals;
     for (int i = 0; i < colDetailWidth.count(); i++)
@@ -80,7 +80,7 @@ FakturiLista::~FakturiLista()
         tempdetailVals << QString::number(colDetailWidth.at(i));
     }
 
-    s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
+    s->Set_FakturaDetail_HeaderState(tempdetailVals);
 
 
     delete ui;
@@ -136,6 +136,11 @@ void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
 void FakturiLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
+}
+
+void FakturiLista::procSectionResizedDetail(int a, int b, int c)
+{
+    colDetailWidth[a] = c;
 }
 
 

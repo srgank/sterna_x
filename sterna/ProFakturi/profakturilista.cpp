@@ -29,7 +29,7 @@ ProFakturiLista::ProFakturiLista(BaseForm *parent) :
 
     QStringList tempVals = s->Get_Priemnica_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
+        for (int i = 0; i < tempVals.count(); i++)        {
             colWidth << tempVals.at(i).toInt();
         }
     }else{
@@ -41,7 +41,7 @@ ProFakturiLista::ProFakturiLista(BaseForm *parent) :
 
     QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
@@ -181,7 +181,10 @@ void ProFakturiLista::procSectionResized(int a, int b, int c)
     colWidth[a] = c;
 }
 
-
+void ProFakturiLista::procSectionResizedDetail(int a, int b, int c)
+{
+    colDetailWidth[a] = c;
+}
 
 void ProFakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {

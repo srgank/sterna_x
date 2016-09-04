@@ -9,7 +9,7 @@
 #include "Struct/struct.h"
 #include "qbtemplate.h"
 
-
+#define COL 9
 
 namespace Ui {
 class ArtikliLista;

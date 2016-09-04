@@ -27,9 +27,9 @@ PriemniciLista::PriemniciLista(BaseForm *parent) :
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempVals = s->Get_Priemnica_HeaderState();
+    QStringList tempVals = s->Get_ProFaktura_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
+        for (int i = 0; i < tempVals.count(); i++)        {
             colWidth << tempVals.at(i).toInt();
         }
     }else{
@@ -39,9 +39,9 @@ PriemniciLista::PriemniciLista(BaseForm *parent) :
     }
 
 
-    QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
+    QStringList tempValsDetail = s->Get_ProFakturaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
@@ -72,7 +72,7 @@ PriemniciLista::~PriemniciLista()
         tempVals << QString::number(colWidth.at(i));
     }
 
-    s->Set_Priemnica_HeaderState(tempVals);
+    s->Set_ProFaktura_HeaderState(tempVals);
 
     QStringList tempdetailVals;
     for (int i = 0; i < colDetailWidth.count(); i++)
@@ -80,7 +80,7 @@ PriemniciLista::~PriemniciLista()
         tempdetailVals << QString::number(colDetailWidth.at(i));
     }
 
-    s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
+    s->Set_ProFakturaDetail_HeaderState(tempdetailVals);
 
 
     delete ui;
@@ -109,7 +109,6 @@ void PriemniciLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
 }
-
 
 void PriemniciLista::procSectionResizedDetail(int a, int b, int c)
 {

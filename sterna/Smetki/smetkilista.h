@@ -65,6 +65,7 @@ private slots:
     void selectionChanged(QModelIndex,QModelIndex);
 
     void procSectionResized(int a, int b, int c);
+    void procSectionResizedDetail(int a, int b, int c);
 
     void on_pb_vnesi_nov_clicked();
     void on_pb_koregiraj_postoecki_clicked();

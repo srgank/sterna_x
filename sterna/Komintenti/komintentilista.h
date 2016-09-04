@@ -8,6 +8,7 @@
 #include "xx.h"
 #include "qbtemplate.h"
 
+#define COL 15
 
 namespace Ui {
 class KomintentiLista;

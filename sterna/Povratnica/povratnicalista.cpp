@@ -27,9 +27,9 @@ PovratniciLista::PovratniciLista(BaseForm *parent) :
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempVals = s->Get_Priemnica_HeaderState();
+    QStringList tempVals = s->Get_Povratnica_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
+        for (int i = 0; i < tempVals.count(); i++)        {
             colWidth << tempVals.at(i).toInt();
         }
     }else{
@@ -39,9 +39,9 @@ PovratniciLista::PovratniciLista(BaseForm *parent) :
     }
 
 
-    QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
+    QStringList tempValsDetail = s->Get_PovratnicaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
@@ -72,7 +72,7 @@ PovratniciLista::~PovratniciLista()
         tempVals << QString::number(colWidth.at(i));
     }
 
-    s->Set_Priemnica_HeaderState(tempVals);
+    s->Set_Povratnica_HeaderState(tempVals);
 
     QStringList tempdetailVals;
     for (int i = 0; i < colDetailWidth.count(); i++)
@@ -80,7 +80,7 @@ PovratniciLista::~PovratniciLista()
         tempdetailVals << QString::number(colDetailWidth.at(i));
     }
 
-    s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
+    s->Set_PovratnicaDetail_HeaderState(tempdetailVals);
 
 
     delete ui;
@@ -181,7 +181,10 @@ void PovratniciLista::procSectionResized(int a, int b, int c)
     colWidth[a] = c;
 }
 
-
+void PovratniciLista::procSectionResizedDetail(int a, int b, int c)
+{
+    colDetailWidth[a] = c;
+}
 
 void PovratniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {

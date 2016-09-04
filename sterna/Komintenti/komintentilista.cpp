@@ -32,7 +32,7 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
             colWidth << tempVals.at(i).toInt();
         }
     }else{
-        for (int i = 0; i < tempVals.count(); i++)        {
+        for (int i = 0; i < COL; i++)        {
             colWidth << 100;
         }
     }

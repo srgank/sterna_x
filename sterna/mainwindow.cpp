@@ -37,11 +37,53 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     Singleton *s = Singleton::Instance();
-    QStringList art = s->Get_Art_HeaderState();
-    QStringList kom = s->Get_Kom_HeaderState();
-    QStringList priemnica = s->Get_Priemnica_HeaderState();
-    QStringList priemnicaDetail = s->Get_PriemnicaDetail_HeaderState();
-    saveRecordsFromFile(art, kom,priemnica, priemnicaDetail);
+    QStringList art_HeaderState = s->Get_Art_HeaderState();
+    QStringList kom_HeaderState = s->Get_Kom_HeaderState();
+
+    QStringList priemnica_HeaderState = s->Get_Priemnica_HeaderState();
+    QStringList priemnicaDetail__HeaderState = s->Get_PriemnicaDetail_HeaderState();
+
+    QStringList ispratnica_HeaderState = s->Get_Ispratnica_HeaderState();
+    QStringList ispratnicaDetail__HeaderState = s->Get_IspratnicaDetail_HeaderState();
+
+    QStringList povratnica_HeaderState = s->Get_Povratnica_HeaderState();
+    QStringList povratnicaDetail__HeaderState = s->Get_PovratnicaDetail_HeaderState();
+
+    QStringList faktura_HeaderState = s->Get_Faktura_HeaderState();
+    QStringList fakturaDetail__HeaderState = s->Get_FakturaDetail_HeaderState();
+
+    QStringList profaktura_HeaderState = s->Get_ProFaktura_HeaderState();
+    QStringList profakturaDetail__HeaderState = s->Get_ProFakturaDetail_HeaderState();
+
+    QStringList nalog_HeaderState = s->Get_Nalog_HeaderState();
+    QStringList nalogDetail__HeaderState = s->Get_NalogDetail_HeaderState();
+
+    QStringList naracka_HeaderState = s->Get_Naracka_HeaderState();
+    QStringList narackaDetail__HeaderState = s->Get_NarackaDetail_HeaderState();
+
+    QStringList smetka_HeaderState = s->Get_Smetka_HeaderState();
+    QStringList smetkaDetail__HeaderState = s->Get_SmetkaDetail_HeaderState();
+
+    saveRecordsFromFile(
+         art_HeaderState,
+         kom_HeaderState,
+         priemnica_HeaderState,
+         priemnicaDetail__HeaderState,
+         ispratnica_HeaderState,
+         ispratnicaDetail__HeaderState,
+         povratnica_HeaderState,
+         povratnicaDetail__HeaderState,
+         faktura_HeaderState,
+         fakturaDetail__HeaderState,
+         profaktura_HeaderState,
+         profakturaDetail__HeaderState,
+         nalog_HeaderState,
+         nalogDetail__HeaderState,
+         naracka_HeaderState,
+         narackaDetail__HeaderState,
+         smetka_HeaderState,
+         smetkaDetail__HeaderState
+       );
     delete ui;
 }
 
@@ -60,10 +102,26 @@ void MainWindow::createDockWindows()
     int  mLeftW = m_left->width();
     rMain = QRect(0, 0, screenRect.width() - mLeftW, screenRect.height() - 100);
     Singleton *s = Singleton::Instance();
-    s->setGlobalFontSize(10);
+    s->setGlobalFontSize(11);
     s->setMainRect(rMain);
     s->Set_Art_HeaderState(art);
     s->Set_Kom_HeaderState(kom);
+    s->Set_Priemnica_HeaderState(priemnica);
+    s->Set_PriemnicaDetail_HeaderState(priemnicaDetail);
+    s->Set_Ispratnica_HeaderState(ispratnica);
+    s->Set_IspratnicaDetail_HeaderState(ispratnicaDetail);
+    s->Set_Povratnica_HeaderState(povratnica);
+    s->Set_PovratnicaDetail_HeaderState(povratnicaDetail);
+    s->Set_Faktura_HeaderState(faktura);
+    s->Set_FakturaDetail_HeaderState(fakturaDetail);
+    s->Set_ProFaktura_HeaderState(profaktura);
+    s->Set_ProFakturaDetail_HeaderState(profakturaDetail);
+    s->Set_Nalog_HeaderState(nalog);
+    s->Set_NalogDetail_HeaderState(nalogDetail);
+    s->Set_Naracka_HeaderState(naracka);
+    s->Set_NarackaDetail_HeaderState(narackaDetail);
+    s->Set_Smetka_HeaderState(smetka);
+    s->Set_SmetkaDetail_HeaderState(smetkaDetail);
     s->Set_UrlHost("http://92.53.51.86:5002/");
 //    s->Set_UrlHost("http://127.0.0.1:5002/");
 }
@@ -80,10 +138,54 @@ void MainWindow::loadRecordsFromFile()
 
     stream >> art;
     stream >> kom;
+    stream >>  priemnica;
+    stream >>  priemnicaDetail;
+    stream >>  ispratnica;
+    stream >>  ispratnicaDetail;
+    stream >>  povratnica;
+    stream >>  povratnicaDetail;
+    stream >>  faktura;
+    stream >>  fakturaDetail;
+    stream >>  profaktura;
+    stream >>  profakturaDetail;
+    stream >>  nalog;
+    stream >>  nalogDetail;
+    stream >>  naracka;
+    stream >>  narackaDetail;
+    stream >>  smetka;
+    stream >>  smetkaDetail;
+
     file.close();
 }
 
-void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom, QStringList priemnica, QStringList priemnicaDetail)
+void MainWindow::saveRecordsFromFile(
+    QStringList &art_HeaderState,
+    QStringList & kom_HeaderState,
+
+    QStringList & priemnica_HeaderState,
+    QStringList & priemnicaDetail__HeaderState,
+
+    QStringList & ispratnica_HeaderState,
+    QStringList & ispratnicaDetail__HeaderState,
+
+    QStringList & povratnica_HeaderState,
+    QStringList & povratnicaDetail__HeaderState,
+
+    QStringList & faktura_HeaderState,
+    QStringList & fakturaDetail__HeaderState,
+
+    QStringList & profaktura_HeaderState,
+    QStringList & profakturaDetail__HeaderState,
+
+    QStringList & nalog_HeaderState,
+    QStringList & nalogDetail__HeaderState,
+
+    QStringList & naracka_HeaderState,
+    QStringList & narackaDetail__HeaderState,
+
+    QStringList & smetka_HeaderState,
+    QStringList & smetkaDetail__HeaderState
+   )
 {
     QString filename = "config.bin";
     QFile file( filename);
@@ -91,10 +193,33 @@ void MainWindow::saveRecordsFromFile(QStringList art, QStringList kom, QStringLi
         return;
     QDataStream stream( &file );
     stream.setVersion( QDataStream::Qt_4_2 );
-    stream << art;
-    stream << kom;
-    stream << priemnica;
-    stream << priemnicaDetail;
+    stream <<  art_HeaderState;
+    stream <<  kom_HeaderState;
+
+    stream <<  priemnica_HeaderState;
+    stream <<  priemnicaDetail__HeaderState;
+
+    stream <<  ispratnica_HeaderState;
+    stream <<  ispratnicaDetail__HeaderState;
+
+    stream <<  povratnica_HeaderState;
+    stream <<  povratnicaDetail__HeaderState;
+
+    stream <<  faktura_HeaderState;
+    stream <<  fakturaDetail__HeaderState;
+
+    stream <<  profaktura_HeaderState;
+    stream <<  profakturaDetail__HeaderState;
+
+    stream <<  nalog_HeaderState;
+    stream <<  nalogDetail__HeaderState;
+
+    stream <<  naracka_HeaderState;
+    stream <<  narackaDetail__HeaderState;
+
+    stream <<  smetka_HeaderState;
+    stream <<  smetkaDetail__HeaderState;
+
     file.close();
 }
 

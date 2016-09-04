@@ -30,7 +30,35 @@ public:
     ~MainWindow();
     void createDockWindows();
     void loadRecordsFromFile();
-    void saveRecordsFromFile(QStringList art, QStringList kom, QStringList priemnica, QStringList priemnicaDetail);
+    void saveRecordsFromFile(
+            QStringList &art_HeaderState,
+            QStringList & kom_HeaderState,
+
+            QStringList & priemnica_HeaderState,
+            QStringList & priemnicaDetail__HeaderState,
+
+            QStringList & ispratnica_HeaderState,
+            QStringList & ispratnicaDetail__HeaderState,
+
+            QStringList & povratnica_HeaderState,
+            QStringList & povratnicaDetail__HeaderState,
+
+            QStringList & faktura_HeaderState,
+            QStringList & fakturaDetail__HeaderState,
+
+            QStringList & profaktura_HeaderState,
+            QStringList & profakturaDetail__HeaderState,
+
+            QStringList & nalog_HeaderState,
+            QStringList & nalogDetail__HeaderState,
+
+            QStringList & naracka_HeaderState,
+            QStringList & narackaDetail__HeaderState,
+
+            QStringList & smetka_HeaderState,
+            QStringList & smetkaDetail__HeaderState
+
+            );
 
 
 private slots:
@@ -117,7 +145,33 @@ private:
     QString m_narackaModul_description;
 
 
-    QStringList art, kom;
+    QStringList art;
+    QStringList kom;
+
+    QStringList priemnica;
+    QStringList priemnicaDetail;
+
+    QStringList ispratnica;
+    QStringList ispratnicaDetail;
+
+    QStringList povratnica;
+    QStringList povratnicaDetail;
+
+    QStringList faktura;
+    QStringList fakturaDetail;
+
+    QStringList profaktura;
+    QStringList profakturaDetail;
+
+    QStringList nalog;
+    QStringList nalogDetail;
+
+    QStringList naracka;
+    QStringList narackaDetail;
+
+    QStringList smetka;
+    QStringList smetkaDetail;
+
 
 public slots:
     void updateNavigator(QWidget* a, QWidget* b);

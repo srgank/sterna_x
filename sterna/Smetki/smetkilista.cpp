@@ -25,9 +25,9 @@ SmetkiLista::SmetkiLista(BaseForm *parent) :
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempVals = s->Get_Priemnica_HeaderState();
+    QStringList tempVals = s->Get_Smetka_HeaderState();
     if (!tempVals.isEmpty()){
-        for (int i = 0; i < COL; i++)        {
+        for (int i = 0; i < tempVals.count(); i++)        {
             colWidth << tempVals.at(i).toInt();
         }
     }else{
@@ -37,9 +37,9 @@ SmetkiLista::SmetkiLista(BaseForm *parent) :
     }
 
 
-    QStringList tempValsDetail = s->Get_PriemnicaDetail_HeaderState();
+    QStringList tempValsDetail = s->Get_SmetkaDetail_HeaderState();
     if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < COL_DETAIL; i++)        {
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
             colDetailWidth << tempValsDetail.at(i).toInt();
         }
     }else{
@@ -71,7 +71,7 @@ SmetkiLista::~SmetkiLista()
         tempVals << QString::number(colWidth.at(i));
     }
 
-    s->Set_Priemnica_HeaderState(tempVals);
+    s->Set_Smetka_HeaderState(tempVals);
 
     QStringList tempdetailVals;
     for (int i = 0; i < colDetailWidth.count(); i++)
@@ -79,7 +79,7 @@ SmetkiLista::~SmetkiLista()
         tempdetailVals << QString::number(colDetailWidth.at(i));
     }
 
-    s->Set_PriemnicaDetail_HeaderState(tempdetailVals);
+    s->Set_SmetkaDetail_HeaderState(tempdetailVals);
 
 
     delete ui;
@@ -136,7 +136,10 @@ void SmetkiLista::procSectionResized(int a, int b, int c)
     colWidth[a] = c;
 }
 
-
+void SmetkiLista::procSectionResizedDetail(int a, int b, int c)
+{
+    colDetailWidth[a] = c;
+}
 
 void SmetkiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
