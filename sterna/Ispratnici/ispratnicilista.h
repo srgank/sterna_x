@@ -5,6 +5,7 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
+#include <QMutex>
 #include "xx.h"
 #include "qbtemplate.h"
 
@@ -50,7 +51,7 @@ private:
     QList<int> colDetailWidth;
     QBTemplate<dokumentT> b;
     QBTemplate<dokumentDetailT> bd;
-
+    QMutex mio_;
 signals:
     void signalpressF2();
     void signalpressF3();

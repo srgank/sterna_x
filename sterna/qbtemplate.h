@@ -325,7 +325,7 @@ public:
         if (!model){
             return;
         }
-        model->clear();
+//        model->clear();
         model->setRowCount(r);
         model->setColumnCount(c);
 

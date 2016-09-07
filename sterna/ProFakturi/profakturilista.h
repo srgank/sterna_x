@@ -7,6 +7,7 @@
 #include "Helper/qhelperc.h"
 #include "xx.h"
 #include "qbtemplate.h"
+#include <QMutex>
 
 #define COL 27
 #define COL_DETAIL 28
@@ -50,6 +51,7 @@ private:
     QList<int> colDetailWidth;
     QBTemplate<dokumentT> b;
     QBTemplate<dokumentDetailT> bd;
+    QMutex mio_;
 
 signals:
     void signalpressF2();

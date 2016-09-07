@@ -55,16 +55,11 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
-
     on_lineEdit_textChanged("%%");
 }
 
 FakturiLista::~FakturiLista()
 {
-    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
-
     Singleton *s = Singleton::Instance();
     QStringList tempVals;
     for (int i = 0; i < colWidth.count(); i++)
@@ -88,19 +83,24 @@ FakturiLista::~FakturiLista()
     delete header;
     delete model_2;
     delete header_2;
-
 }
 void FakturiLista::pressF2()
 {
-    emit signalpressF2();
+        emit signalpressF2();
 }
 void FakturiLista::pressF3()
 {
-    emit signalpressF3();
+        emit signalpressF3();
 }
 void FakturiLista::pressEscape()
 {
+    if (mio_.tryLock()){
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
     emit signalpressEscape();
+    mio_.unlock();
+    }
 }
 
 void FakturiLista::seTableSelectedRow(int m_row)
@@ -128,7 +128,6 @@ void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
     QList<fakturiT> resFaktura;
     c.ConvertDokument(res, resFaktura);
     b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
-
 }
 
 
@@ -156,10 +155,11 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     QString vOffset = QString::number(numOffset);
     QString vDok_Id =  model->item(i, 1)->text();
     QString vDok_Tip = model->item(i, 2)->text();
-
-    QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
-    bd.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
-
+    if (mio_.tryLock()){
+        QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
+        bd.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
+        mio_.unlock();
+    }
 }
 
 void FakturiLista::on_pushButton_5_clicked()

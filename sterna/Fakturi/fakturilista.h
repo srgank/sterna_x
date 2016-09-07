@@ -5,6 +5,7 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
+#include <QMutex>
 #include "xx.h"
 #include "qbtemplate.h"
 
@@ -51,7 +52,7 @@ private:
     QBTemplate<fakturiT> b;
     QBTemplate<dokumentDetailT> bd;
     QItemSelectionModel *sm;
-
+    QMutex mio_;
 signals:
     void signalpressF2();
     void signalpressF3();

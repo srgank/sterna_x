@@ -131,9 +131,11 @@ void PriemniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     QString vOffset = QString::number(numOffset);
     QString vDok_Id =  model->item(i, 1)->text();
     QString vDok_Tip = model->item(i, 2)->text();
-
-    QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
-    bd.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
+    if (mio_.tryLock()){
+        QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
+        bd.ShowData(res, model_2, header_2, ui->tableView_2, colDetailWidth);
+        mio_.unlock();
+    }
 }
 
 void PriemniciLista::on_pushButton_4_clicked()
@@ -326,7 +328,13 @@ void PriemniciLista::pressF3()
 }
 void PriemniciLista::pressEscape()
 {
+    if (mio_.tryLock()){
+    disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    disconnect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
     emit signalpressEscape();
+    mio_.unlock();
+    }
 }
 void PriemniciLista::procReturn(QString)
 {

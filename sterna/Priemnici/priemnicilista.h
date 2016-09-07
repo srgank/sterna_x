@@ -4,6 +4,7 @@
 #include "Base/baseform.h"
 #include <QStandardItemModel>
 #include <QHeaderView>
+#include <QMutex>
 #include "Helper/qhelperc.h"
 #include "xx.h"
 #include "qbtemplate.h"
@@ -50,6 +51,7 @@ private:
     QList<int> colDetailWidth;
     QBTemplate<dokumentT> b;
     QBTemplate<dokumentDetailT> bd;
+    QMutex mio_;
 signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent();
