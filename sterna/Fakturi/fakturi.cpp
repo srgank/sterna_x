@@ -4,9 +4,12 @@
 Fakturi::Fakturi(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::Fakturi)
-    ,m_FakturiLista(0)
-    ,m_FakturiVnes(0)
-    ,m_FakturiKorekcija(0)
+  ,m_FakturiLista(0)
+  ,m_FakturiVnes(0)
+  ,m_FakturiKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("%")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,11 @@ void Fakturi::pressF2()
     if (!m_FakturiLista) {
         return;
     }
+    searchIDList = m_FakturiLista->geTableSelectedRow();
+    searchStrList = m_FakturiLista->getSearchString();
+    searchOffsetList = m_FakturiLista->geTableSelected_Offset();
+
+
     disconnect(m_FakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_FakturiLista = deleteMyWidget<FakturiLista>(m_FakturiLista);
     m_FakturiVnes = showMyWidget<FakturiVnes, Fakturi>(m_FakturiVnes, this);
@@ -37,10 +45,13 @@ void Fakturi::pressF2()
 void Fakturi::pressF3()
 {
     if (m_FakturiLista){
-        m_strID = m_FakturiLista->getSelectedID();
+        m_data = m_FakturiLista->getFakturaData();
     }else{
         return;
     }
+    searchIDList = m_FakturiLista->geTableSelectedRow();
+    searchStrList = m_FakturiLista->getSearchString();
+    searchOffsetList = m_FakturiLista->geTableSelected_Offset();
     disconnect(m_FakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_FakturiLista = deleteMyWidget<FakturiLista>(m_FakturiLista);
     m_FakturiKorekcija = showMyWidget<FakturiKorekcija, Fakturi>(m_FakturiKorekcija, this);
@@ -48,7 +59,7 @@ void Fakturi::pressF3()
     connect(m_FakturiKorekcija,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromKorekcija()));
     connect(m_FakturiKorekcija,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
     connect(m_FakturiKorekcija,SIGNAL(signalGetKomintent(QString, QWidget*)),this,SLOT(procSentGetKomintent(QString, QWidget*)));
-    m_FakturiKorekcija->initProc(m_strID);
+    m_FakturiKorekcija->initProc(m_data);
 }
 
 void Fakturi::pressF4()
@@ -58,6 +69,7 @@ void Fakturi::pressF4()
     connect(m_FakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_FakturiLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_FakturiLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
+    m_FakturiLista->initProc(searchIDList, searchStrList, searchOffsetList);
 }
 
 void Fakturi::pressEscape()

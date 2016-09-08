@@ -14,9 +14,25 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-    connect(this, SIGNAL(finishKorekcija()),this, SLOT(procFinishKorekcija()));
-    connect(hlp, SIGNAL(signalResultFakturi(QStringList &)), this, SLOT(getResultEX(QStringList &)));
-    connect(hlp, SIGNAL(signalResultUpdateArticle(QStringList &)), this, SLOT(getResultEXUpdate22(QStringList &)));
+    model = new QStandardItemModel(0,0);
+    header = new QHeaderView(Qt::Horizontal, 0);
+
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
+    if (!tempValsDetail.isEmpty()){
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
+            colDetailWidth << tempValsDetail.at(i).toInt();
+        }
+    }else{
+        for (int i = 0; i < COL_DETAIL; i++)        {
+            colDetailWidth << 100;
+        }
+    }
+
+    ui->tableView->setModel(model);
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+
 }
 
 FakturiKorekcija::~FakturiKorekcija()
@@ -29,36 +45,11 @@ void FakturiKorekcija::pressEscape()
     emit signalpressEscape();
 }
 
-void FakturiKorekcija::initProc(QString m_searchID)
-{
-    statusWait = true;
-//    ui->pushButton->setEnabled(false);
-    QString vLimit = "1";
-    QString vOffset = "0";
-    QString vSName = m_searchID;
-    QString vSearchBy = "sifra";
-    hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
-}
-void FakturiKorekcija::getResultEX(QStringList& tlist)
-{
-    for(int ii = 0; ii < tlist.count();ii++)
-    {
-        QStringList itemRecord = tlist.at(ii).split("#;#");
-        m_id_artikal = itemRecord.at(0);
-        ui->lineEdit_2->setText(itemRecord.at(1));
-        ui->lineEdit_3->setText(itemRecord.at(2));
-        ui->lineEdit_4->setText(itemRecord.at(3));
-        ui->lineEdit_5->setText(itemRecord.at(4));
-        ui->lineEdit_6->setText(itemRecord.at(5));
-    }
-//    ui->pushButton->setEnabled(true);
-    statusWait = false;
-}
-//getResultEXUpdate
+
 void FakturiKorekcija::on_pushButton_released()
 {
     statusWait = true;
-//    ui->pushButton->setEnabled(false);
+    //    ui->pushButton->setEnabled(false);
     QString blankText = "";
     QString blankDdv = "18";
     QString a1 = ui->lineEdit_2->text();
@@ -66,24 +57,9 @@ void FakturiKorekcija::on_pushButton_released()
     QString a3 = ui->lineEdit_4->text();
     QString a4 = ui->lineEdit_5->text();
     QString a5 = ui->lineEdit_6->text();
-//
+    //
 }
 
-void FakturiKorekcija::getResultEXUpdate22(QStringList& tlist)
-{
-    statusWait = false;
-    QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle(trUtf8("Information"));
-    msgBox->setText(trUtf8("Податокот е успешно корегиран"));
-    msgBox->setStandardButtons(QMessageBox::Yes);
-    msgBox->setDefaultButton(QMessageBox::Yes);
-    msgBox->exec();
-    delete msgBox;
-    setFocus();
-//    ui->pushButton->setEnabled(true);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-}
 
 void FakturiKorekcija::setFocusArtikal(QString t)
 {
@@ -105,9 +81,15 @@ void FakturiKorekcija::setFocusKomintent(QString t)
 
 void FakturiKorekcija::pressReturn()
 {
-    if(ui->pushButton_4->hasFocus())
+    if(ui->pushButton_3->hasFocus())
     {
-        //on_pushButton_released();
+        procAddItem();
+        showData();
+    }
+    if(ui->pushButton_6->hasFocus())
+    {
+        procDeleteItem();
+        showData();
     }
     else if(ui->lineEdit->hasFocus())
     {
@@ -122,4 +104,48 @@ void FakturiKorekcija::pressReturn()
         QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
         QCoreApplication::postEvent(this, event);
     }
+}
+
+void FakturiKorekcija::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+{
+    m_row = modelX.row();
+}
+
+void FakturiKorekcija::initProc(faktura_trans m_data)
+{
+    resFakturaItems = m_data.data2;
+    showData();
+}
+
+void FakturiKorekcija::procDeleteItem(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    bd.RemoveItem(data, m_row);
+    resFakturaItems = data;
+}
+
+void FakturiKorekcija::procAddItem(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    fakturiDetailT item;
+    item.artikal_naziv = ui->lineEdit_2->text();
+    bd.AddItem(data, item);
+    resFakturaItems = data;
+}
+
+
+void FakturiKorekcija::showData(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+}
+
+void FakturiKorekcija::on_pushButton_6_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
+}
+
+
+void FakturiKorekcija::on_pushButton_3_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
 }

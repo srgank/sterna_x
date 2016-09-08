@@ -1,6 +1,6 @@
 #ifndef STRUCT_H
 #define STRUCT_H
-
+#include <QList>
 
 typedef struct {
     QString id;
@@ -533,8 +533,10 @@ typedef struct {
     QString status;
 }  narackaDetailT ;
 
-
-
+typedef struct {
+    fakturiT data1;
+    QList<fakturiDetailT> data2;
+} faktura_trans;
 
 
 
