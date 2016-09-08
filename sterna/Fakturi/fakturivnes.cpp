@@ -8,14 +8,30 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
 
 {
     ui->setupUi(this);
-    ui->lineEdit_2->setFocus();
+    hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-    hlp = new QHelperC(this);
-    connect(hlp, SIGNAL(signalResultInsertArticle(QStringList &)), this, SLOT(getResultEX(QStringList &)));
+    model = new QStandardItemModel(0,0);
+    header = new QHeaderView(Qt::Horizontal, 0);
+
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
+    if (!tempValsDetail.isEmpty()){
+        for (int i = 0; i < tempValsDetail.count(); i++)        {
+            colDetailWidth << tempValsDetail.at(i).toInt();
+        }
+    }else{
+        for (int i = 0; i < COL_DETAIL; i++)        {
+            colDetailWidth << 100;
+        }
+    }
+
+    ui->tableView->setModel(model);
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
 }
 
 FakturiVnes::~FakturiVnes()
@@ -30,24 +46,7 @@ void FakturiVnes::pressEscape()
 
 
 
-void FakturiVnes::getResultEX(QStringList& tlist)
-{
-    QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle(trUtf8("Information"));
-    msgBox->setText(trUtf8("Податокот е успешно внесен"));
-    msgBox->setStandardButtons(QMessageBox::Yes);
-    msgBox->setDefaultButton(QMessageBox::Yes);
-    msgBox->exec();
-    delete msgBox;
-    setFocus();
-//    ui->pushButton->setEnabled(true);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-
-}
-
-
-void FakturiVnes::on_pushButton_clicked()
+void FakturiVnes::on_pushButton_released()
 {
 
     QString blankText = "";
@@ -80,9 +79,15 @@ void FakturiVnes::setFocusKomintent(QString t)
 }
 void FakturiVnes::pressReturn()
 {
-    if(ui->pushButton_4->hasFocus())
+    if(ui->pushButton_3->hasFocus())
     {
-        //on_pushButton_released();
+        procAddItem();
+        showData();
+    }
+    if(ui->pushButton_6->hasFocus())
+    {
+        procDeleteItem();
+        showData();
     }
     else if(ui->lineEdit->hasFocus())
     {
@@ -97,5 +102,49 @@ void FakturiVnes::pressReturn()
         QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
         QCoreApplication::postEvent(this, event);
     }
+
 }
 
+void FakturiVnes::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+{
+    m_row = modelX.row();
+}
+
+void FakturiVnes::initProc(faktura_trans m_data)
+{
+    resFakturaItems = m_data.data2;
+    showData();
+}
+
+void FakturiVnes::procDeleteItem(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    bd.RemoveItem(data, m_row);
+    resFakturaItems = data;
+}
+
+void FakturiVnes::procAddItem(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    fakturiDetailT item;
+    item.artikal_naziv = ui->lineEdit_2->text();
+    bd.AddItem(data, item);
+    resFakturaItems = data;
+}
+
+
+void FakturiVnes::showData(){
+    QList<fakturiDetailT> data = resFakturaItems;
+    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+}
+
+void FakturiVnes::on_pushButton_6_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
+}
+
+
+void FakturiVnes::on_pushButton_3_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
+}
