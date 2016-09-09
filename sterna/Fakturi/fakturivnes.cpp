@@ -17,16 +17,8 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
-    if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < tempValsDetail.count(); i++)        {
-            colDetailWidth << tempValsDetail.at(i).toInt();
-        }
-    }else{
-        for (int i = 0; i < COL_DETAIL; i++)        {
-            colDetailWidth << 100;
-        }
-    }
+    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
+    s->Set_FakturaDetail_HeaderState(tempdetailVals);
 
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));

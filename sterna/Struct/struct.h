@@ -538,6 +538,10 @@ typedef struct {
     QList<fakturiDetailT> data2;
 } faktura_trans;
 
+typedef struct {
+    profakturiT data1;
+    QList<profakturiDetailT> data2;
+} profaktura_trans;
 
 
 #endif // STRUCT_H

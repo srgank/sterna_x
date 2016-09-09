@@ -28,27 +28,11 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
     QStringList tempVals = s->Get_Faktura_HeaderState();
-    if (!tempVals.isEmpty()){
-        for (int i = 0; i < tempVals.count(); i++)        {
-            colWidth << tempVals.at(i).toInt();
-        }
-    }else{
-        for (int i = 0; i < COL; i++)        {
-            colWidth << 100;
-        }
-    }
+    colWidth = s->loadWidthList(tempVals, COL);
 
 
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
-    if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < tempValsDetail.count(); i++)        {
-            colDetailWidth << tempValsDetail.at(i).toInt();
-        }
-    }else{
-        for (int i = 0; i < COL_DETAIL; i++)        {
-            colDetailWidth << 100;
-        }
-    }
+    colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
     ui->tableView->setModel(model);
     sm =ui->tableView->selectionModel();
@@ -65,20 +49,9 @@ FakturiLista::~FakturiLista()
 
 
     Singleton *s = Singleton::Instance();
-    QStringList tempVals;
-    for (int i = 0; i < colWidth.count(); i++)
-    {
-        tempVals << QString::number(colWidth.at(i));
-    }
-
+    QStringList tempVals = s->saveWidthList(colWidth);
     s->Set_Faktura_HeaderState(tempVals);
-
-    QStringList tempdetailVals;
-    for (int i = 0; i < colDetailWidth.count(); i++)
-    {
-        tempdetailVals << QString::number(colDetailWidth.at(i));
-    }
-
+    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
     s->Set_FakturaDetail_HeaderState(tempdetailVals);
 
 
@@ -123,9 +96,7 @@ void FakturiLista::setSearchString(QString& searchText)
 
 void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
 {
-
     mio_.lock();
-//    numOffset = 0;
     QString vLimit = "500";
     QString vOffset = QString::number(numOffset);
     QString vDokID = arg1 + "%";
@@ -134,7 +105,7 @@ void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
     QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
 
     QList<fakturiT> resFaktura;
-    c.ConvertDokument(res, resFaktura);
+    b.ConvertDokument(res, resFaktura);
     resFakturaTemp = resFaktura;
     b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
     mio_.unlock();
@@ -156,9 +127,6 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     int i = modelX.row();
     m_row = modelX.row();
-//    m_selectedID = model->item(i, 1)->text();
-
-//    numOffset = 0;
     QString vLimit = "10000";
     QString vOffset = QString::number(numOffset);
     QString vDok_Id =  model->item(i, 1)->text();
@@ -170,23 +138,12 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     bc.ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
-    currentData = getCurrentData(resFakturaTemp, vDok_Id);
+    currentData = b.getCurrentData(resFakturaTemp, vDok_Id);
     bc.ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     mio_.unlock();
 }
 
-fakturiT FakturiLista::getCurrentData(QList<fakturiT> &list, QString dok_id)
-{
-    fakturiT resItem;
-    for (int i = 0; i < list.count(); i++){
-        if (list.at(i).dokument_id == dok_id){
-            resItem = list.at(i);
-            break;
-        }
-    }
-    return resItem;
-}
 
 void FakturiLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
 {
@@ -216,3 +173,4 @@ faktura_trans FakturiLista::getFakturaData(){
     temp.data2 = resFakturaDetailTemp;
     return temp;
 }
+

@@ -45,8 +45,6 @@ public:
 
 private:
     Ui::FakturiLista *ui;
-    fakturiT getCurrentData(QList<fakturiT> &list, QString dok_id);
-
     QStandardItemModel *model;
     QHeaderView *header;
     QStandardItemModel *model_2;
@@ -57,7 +55,6 @@ private:
     int m_row;
     QList<int> colWidth;
     QList<int> colDetailWidth;
-    QBTemplate<fakturiT> c;
     QBTemplate<fakturiT> b;
     QBTemplate<dokumentDetailT> bd;
     QBTemplate<fakturiDetailT> bc;
@@ -66,6 +63,7 @@ private:
     QList<fakturiT> resFakturaTemp;
     fakturiT currentData;
     QList<fakturiDetailT> resFakturaDetailTemp;
+
 signals:
     void signalpressF2();
     void signalpressF3();

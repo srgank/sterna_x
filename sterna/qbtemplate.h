@@ -533,6 +533,19 @@ public:
          list.removeAt(i);
      }
 
+     T getCurrentData(QList<T> &list, QString dok_id)
+     {
+         T resItem;
+         for (int i = 0; i < list.count(); i++){
+             if (list.at(i).dokument_id == dok_id){
+                 resItem = list.at(i);
+                 break;
+             }
+         }
+         return resItem;
+     }
+
+
 
     void ShowData(QList<T>& tlist, QStandardItemModel* model, QHeaderView* header, QTableView *table, QList<int> colWidth)
     {

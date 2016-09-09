@@ -97,6 +97,28 @@ public:
     QStringList Get_SmetkaDetail_HeaderState(){return smetkaDetail__HeaderState;}
     void Set_SmetkaDetail_HeaderState(QStringList temp_SmetkaDetail_HeaderState){smetkaDetail__HeaderState = temp_SmetkaDetail_HeaderState;}
 
+    QList<int> loadWidthList(QStringList& list, int count){
+        QList<int> temp_colDetailWidth;
+        if (!list.isEmpty()){
+            for (int i = 0; i < list.count(); i++){
+                temp_colDetailWidth << list.at(i).toInt();
+            }
+        }else{
+            for (int i = 0; i < count; i++){
+                temp_colDetailWidth << 100;
+            }
+        }
+        return temp_colDetailWidth;
+    }
+
+    QStringList saveWidthList(QList<int> &colWidth){
+        QStringList tempVals;
+        for (int i = 0; i < colWidth.count(); i++)
+        {
+            tempVals << QString::number(colWidth.at(i));
+        }
+        return tempVals;
+    }
 
 
 protected: 

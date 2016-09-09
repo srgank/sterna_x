@@ -18,15 +18,7 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     header = new QHeaderView(Qt::Horizontal, 0);
 
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
-    if (!tempValsDetail.isEmpty()){
-        for (int i = 0; i < tempValsDetail.count(); i++)        {
-            colDetailWidth << tempValsDetail.at(i).toInt();
-        }
-    }else{
-        for (int i = 0; i < COL_DETAIL; i++)        {
-            colDetailWidth << 100;
-        }
-    }
+    colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));

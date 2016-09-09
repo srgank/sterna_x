@@ -28,13 +28,18 @@ public:
 
     virtual void pressEscape();
 
-    void setTableColumnWidths(int ccolumn);
-    void getTableColumnWidths(int ccolumn);
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);
+
     QString getSearchString();
     void setSearchString(QString& searchText);
+
+    profaktura_trans getProFakturaData();
+
+    int geTableSelected_Offset(){return numOffset;}
+    void seTableSelected_Offset(int t_numOffset){numOffset = t_numOffset;}
+    void initProc(int searchIDList, QString& searchStrList, int searchOffsetList);
 
 private:
     Ui::ProFakturiLista *ui;
@@ -45,13 +50,18 @@ private:
     QHelperC *hlp;
     int numOffset;
     QString m_selectedID;
-    QItemSelectionModel *sm;
     int m_row;
     QList<int> colWidth;
     QList<int> colDetailWidth;
-    QBTemplate<dokumentT> b;
+    QBTemplate<profakturiT> b;
     QBTemplate<dokumentDetailT> bd;
+    QBTemplate<profakturiDetailT> bc;
+    QItemSelectionModel *sm;
     QMutex mio_;
+    QList<profakturiT> resFakturaTemp;
+    profakturiT currentData;
+    QList<profakturiDetailT> resFakturaDetailTemp;
+
 
 signals:
     void signalpressF2();
@@ -59,18 +69,13 @@ signals:
     void signalpressEscape();
 
 private slots:
-    void getResultEX(QStringList&);
-    void on_pushButton_5_clicked();
-    void on_pushButton_6_clicked();
-    void on_LE_prebaraj_textChanged(const QString &arg1);
     void selectionChanged(QModelIndex,QModelIndex);
 
     void procSectionResized(int a, int b, int c);
     void procSectionResizedDetail(int a, int b, int c);
-
+    void on_lineEdit_textChanged(const QString &arg1);
     void on_pb_vnesi_nov_clicked();
     void on_pb_koregiraj_postoecki_clicked();
-    void on_lineEdit_textChanged(const QString &arg1);
 };
 
 #endif // ProFakturiLISTA_H

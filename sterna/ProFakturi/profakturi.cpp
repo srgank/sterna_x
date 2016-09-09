@@ -4,9 +4,12 @@
 ProFakturi::ProFakturi(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::ProFakturi)
-    ,m_ProFakturiLista(0)
-    ,m_ProFakturiVnes(0)
-    ,m_ProFakturiKorekcija(0)
+  ,m_ProFakturiLista(0)
+  ,m_ProFakturiVnes(0)
+  ,m_ProFakturiKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("%")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,10 @@ void ProFakturi::pressF2()
     if (!m_ProFakturiLista) {
         return;
     }
+    searchIDList = m_ProFakturiLista->geTableSelectedRow();
+    searchStrList = m_ProFakturiLista->getSearchString();
+    searchOffsetList = m_ProFakturiLista->geTableSelected_Offset();
+
     disconnect(m_ProFakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_ProFakturiLista = deleteMyWidget<ProFakturiLista>(m_ProFakturiLista);
     m_ProFakturiVnes = showMyWidget<ProFakturiVnes, ProFakturi>(m_ProFakturiVnes, this);
@@ -41,6 +48,9 @@ void ProFakturi::pressF3()
     }else{
         return;
     }
+    searchIDList = m_ProFakturiLista->geTableSelectedRow();
+    searchStrList = m_ProFakturiLista->getSearchString();
+    searchOffsetList = m_ProFakturiLista->geTableSelected_Offset();
     disconnect(m_ProFakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_ProFakturiLista = deleteMyWidget<ProFakturiLista>(m_ProFakturiLista);
     m_ProFakturiKorekcija = showMyWidget<ProFakturiKorekcija, ProFakturi>(m_ProFakturiKorekcija, this);
@@ -58,6 +68,8 @@ void ProFakturi::pressF4()
     connect(m_ProFakturiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_ProFakturiLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_ProFakturiLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
+    m_ProFakturiLista->initProc(searchIDList, searchStrList, searchOffsetList);
+
 }
 
 void ProFakturi::pressEscape()

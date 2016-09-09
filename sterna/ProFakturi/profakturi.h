@@ -31,8 +31,10 @@ private:
     QString m_SearchString;
     int m_SelectedID;
     QString m_strID;
-
-
+    QString searchStrList;
+    int searchIDList;
+    int searchOffsetList;
+    profaktura_trans m_data;
 
 private slots:
     void pressF2FromLista();
