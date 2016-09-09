@@ -58,7 +58,7 @@ void ProFakturi::pressF3()
     connect(m_ProFakturiKorekcija,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromKorekcija()));
     connect(m_ProFakturiKorekcija,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
     connect(m_ProFakturiKorekcija,SIGNAL(signalGetKomintent(QString, QWidget*)),this,SLOT(procSentGetKomintent(QString, QWidget*)));
-    m_ProFakturiKorekcija->initProc(m_strID);
+    m_ProFakturiKorekcija->initProc(m_data);
 }
 
 void ProFakturi::pressF4()
