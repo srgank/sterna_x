@@ -6,6 +6,7 @@
 IspratniciLista::IspratniciLista(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::IspratniciLista)
+  , enableClose(true)
 {
     ui->setupUi(this);
     hlp = new QHelperC(this);
@@ -14,14 +15,14 @@ IspratniciLista::IspratniciLista(BaseForm *parent) :
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
-    connect(hlp, SIGNAL(signalResultFakturi(QStringList &)), this, SLOT(getResultEX(QStringList &)));
 
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-//    numOffset = 0;
+
     QString vOffset = QString::number(numOffset);
     QString vLimit = "50";
     QString vSName = "%";
     QString vSearchBy = "artikal";
+
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
     model_2 = new QStandardItemModel(0,0);
@@ -29,6 +30,12 @@ IspratniciLista::IspratniciLista(BaseForm *parent) :
 
     QStringList tempVals = s->Get_Ispratnica_HeaderState();
     colWidth = s->loadWidthList(tempVals, COL);
+
+
+    b = new QBTemplate<ispratnicaT>();
+
+    bd = new QBTemplate<dokumentDetailT>();
+    bc = new QBTemplate<ispratnicaDetailT>();
 
 
     QStringList tempValsDetail = s->Get_IspratnicaDetail_HeaderState();
@@ -60,21 +67,30 @@ IspratniciLista::~IspratniciLista()
     delete header;
     delete model_2;
     delete header_2;
+    delete b;
+    b = 0;
+    delete bc;
+    bc = 0;
+    delete bd;
+    bd = 0;
 
 }
 void IspratniciLista::pressF2()
-{
-    emit signalpressF2();
+{    if (enableClose){
+        emit signalpressF2();
+    }
 }
 void IspratniciLista::pressF3()
 {
-    emit signalpressF3();
+    if (enableClose){
+        emit signalpressF3();
+    }
 }
 void IspratniciLista::pressEscape()
 {
-    mio_.lock();
-    emit signalpressEscape();
-    mio_.unlock();
+    if (enableClose){
+        emit signalpressEscape();
+    }
 }
 
 void IspratniciLista::seTableSelectedRow(int m_row)
@@ -92,7 +108,8 @@ void IspratniciLista::setSearchString(QString& searchText)
 
 void IspratniciLista::on_lineEdit_textChanged(const QString &arg1)
 {
-    mio_.lock();
+    enableClose = false;
+    numOffset = 0;
     QString vLimit = "500";
     QString vOffset = QString::number(numOffset);
     QString vDokID = arg1 + "%";
@@ -101,10 +118,10 @@ void IspratniciLista::on_lineEdit_textChanged(const QString &arg1)
     QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
 
     QList<ispratnicaT> resFaktura;
-    b.ConvertDokument(res, resFaktura);
+    b->ConvertDokument(res, resFaktura);
     resFakturaTemp = resFaktura;
-    b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
-    mio_.unlock();
+    b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
+    enableClose = true;
 }
 
 
@@ -122,7 +139,7 @@ void IspratniciLista::procSectionResizedDetail(int a, int b, int c)
 
 void IspratniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
-    mio_.lock();
+    enableClose = false;
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     int i = modelX.row();
     m_row = modelX.row();
@@ -134,13 +151,13 @@ void IspratniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
 
     QList<ispratnicaDetailT> resFakturaDetail;
-    bc.ConvertDokumentDetail(res, resFakturaDetail);
+    bc->ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
-    currentData = b.getCurrentData(resFakturaTemp, vDok_Id);
-    bc.ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
+    currentData = b->getCurrentData(resFakturaTemp, vDok_Id);
+    bc->ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
-    mio_.unlock();
+    enableClose = true;
 }
 
 
@@ -150,21 +167,9 @@ void IspratniciLista::initProc(int searchIDList, QString& searchStrList, int sea
     ui->lineEdit_7->setText(searchStrList);
     on_lineEdit_textChanged(searchStrList);
     seTableSelectedRow(searchIDList);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
-void IspratniciLista::on_pb_vnesi_nov_clicked()
-{
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_F2, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-}
-
-void IspratniciLista::on_pb_koregiraj_postoecki_clicked()
-{
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_F3, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-}
 
 ispratnica_trans IspratniciLista::getFakturaData(){
     ispratnica_trans temp;
@@ -172,4 +177,12 @@ ispratnica_trans IspratniciLista::getFakturaData(){
     temp.data2 = resFakturaDetailTemp;
     return temp;
 }
+
+void IspratniciLista::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    ui->tableView_2->setFont(this->font());
+    repaint();
+}
+
 

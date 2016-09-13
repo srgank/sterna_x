@@ -20,16 +20,20 @@ IspratniciKorekcija::IspratniciKorekcija(BaseForm *parent) :
     QStringList tempValsDetail = s->Get_IspratnicaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
+    bd = new QBTemplate<ispratnicaDetailT>();
+
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
- }
+}
 
 IspratniciKorekcija::~IspratniciKorekcija()
 {
     delete ui;
     delete hlp;
+    delete bd;
+    bd = 0;
 }
 void IspratniciKorekcija::pressEscape()
 {
@@ -56,8 +60,7 @@ void IspratniciKorekcija::setFocusArtikal(artikalT t)
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
     ui->lineEdit_2->setText(t.artikal);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
 void IspratniciKorekcija::setFocusKomintent(QString t)
@@ -65,8 +68,7 @@ void IspratniciKorekcija::setFocusKomintent(QString t)
     ui->lineEdit->setFocus();
     ui->lineEdit->selectAll();
     ui->lineEdit->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
 void IspratniciKorekcija::pressReturn()
@@ -91,8 +93,7 @@ void IspratniciKorekcija::pressReturn()
     }
     else
     {
-        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-        QCoreApplication::postEvent(this, event);
+        PressKeyTAB(this);
     }
 }
 
@@ -105,11 +106,12 @@ void IspratniciKorekcija::initProc(ispratnica_trans m_data)
 {
     resFakturaItems = m_data.data2;
     showData();
+    PressKeyTAB(this);
 }
 
 void IspratniciKorekcija::procDeleteItem(){
     QList<ispratnicaDetailT> data = resFakturaItems;
-    bd.RemoveItem(data, m_row);
+    bd->RemoveItem(data, m_row);
     resFakturaItems = data;
 }
 
@@ -117,25 +119,28 @@ void IspratniciKorekcija::procAddItem(){
     QList<ispratnicaDetailT> data = resFakturaItems;
     ispratnicaDetailT item;
     item.artikal_naziv = ui->lineEdit_2->text();
-    bd.AddItem(data, item);
+    bd->AddItem(data, item);
     resFakturaItems = data;
 }
 
 
 void IspratniciKorekcija::showData(){
     QList<ispratnicaDetailT> data = resFakturaItems;
-    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+    bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
 }
 
 void IspratniciKorekcija::on_pushButton_6_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
 }
 
 
 void IspratniciKorekcija::on_pushButton_3_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
+}
+void IspratniciKorekcija::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
 }

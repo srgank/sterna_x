@@ -35,7 +35,7 @@ private:
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
-    QBTemplate<fakturiDetailT> bd;
+    QBTemplate<fakturiDetailT> *bd;
     QList<fakturiDetailT> resFakturaItems;\
     QList<int> colDetailWidth;
     void procDeleteItem();

@@ -156,8 +156,6 @@ void FakturiLista::initProc(int searchIDList, QString& searchStrList, int search
     on_lineEdit_textChanged(searchStrList);
     seTableSelectedRow(searchIDList);
     PressKeyTAB(this);
-    //    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    //    QCoreApplication::postEvent(this, event);
 }
 faktura_trans FakturiLista::getFakturaData(){
     faktura_trans temp;

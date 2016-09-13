@@ -20,6 +20,8 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
+    bd = new QBTemplate<fakturiDetailT>();
+
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
@@ -31,6 +33,8 @@ FakturiKorekcija::~FakturiKorekcija()
 {
     delete ui;
     delete hlp;
+    delete bd;
+    bd = 0;
 }
 void FakturiKorekcija::pressEscape()
 {
@@ -109,7 +113,7 @@ void FakturiKorekcija::initProc(faktura_trans m_data)
 
 void FakturiKorekcija::procDeleteItem(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.RemoveItem(data, m_row);
+    bd->RemoveItem(data, m_row);
     resFakturaItems = data;
 }
 
@@ -117,14 +121,14 @@ void FakturiKorekcija::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
     item.artikal_naziv = ui->lineEdit_2->text();
-    bd.AddItem(data, item);
+    bd->AddItem(data, item);
     resFakturaItems = data;
 }
 
 
 void FakturiKorekcija::showData(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+    bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
 }
 
 void FakturiKorekcija::on_pushButton_6_clicked()

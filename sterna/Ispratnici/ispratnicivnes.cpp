@@ -4,7 +4,7 @@
 IspratniciVnes::IspratniciVnes(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::IspratniciVnes)
-    ,hlp(0)
+  ,hlp(0)
 
 {
     ui->setupUi(this);
@@ -19,17 +19,20 @@ IspratniciVnes::IspratniciVnes(BaseForm *parent) :
 
     QStringList tempValsDetail = s->Get_IspratnicaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
-
+    bd = new QBTemplate<fakturiDetailT>();
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    PressKeyTAB(this);
 }
 
 IspratniciVnes::~IspratniciVnes()
 {
     delete hlp;
     delete ui;
+    delete bd;
+    bd = 0;
 }
 void IspratniciVnes::pressEscape()
 {
@@ -62,8 +65,7 @@ void IspratniciVnes::setFocusArtikal(artikalT t)
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
     ui->lineEdit_2->setText(t.artikal);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
 void IspratniciVnes::setFocusKomintent(QString t)
@@ -71,8 +73,7 @@ void IspratniciVnes::setFocusKomintent(QString t)
     ui->lineEdit->setFocus();
     ui->lineEdit->selectAll();
     ui->lineEdit->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
 void IspratniciVnes::pressReturn()
@@ -97,8 +98,7 @@ void IspratniciVnes::pressReturn()
     }
     else
     {
-        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-        QCoreApplication::postEvent(this, event);
+        PressKeyTAB(this);
     }
 
 }
@@ -116,7 +116,7 @@ void IspratniciVnes::initProc(faktura_trans m_data)
 
 void IspratniciVnes::procDeleteItem(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.RemoveItem(data, m_row);
+    bd->RemoveItem(data, m_row);
     resFakturaItems = data;
 }
 
@@ -124,25 +124,28 @@ void IspratniciVnes::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
     item.artikal_naziv = ui->lineEdit_2->text();
-    bd.AddItem(data, item);
+    bd->AddItem(data, item);
     resFakturaItems = data;
 }
 
 
 void IspratniciVnes::showData(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+    bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
 }
 
 void IspratniciVnes::on_pushButton_6_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
 }
 
 
 void IspratniciVnes::on_pushButton_3_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
+}
+void IspratniciVnes::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
 }

@@ -20,6 +20,8 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
+    bd = new QBTemplate<fakturiDetailT>();
+
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
@@ -31,6 +33,8 @@ FakturiVnes::~FakturiVnes()
 {
     delete hlp;
     delete ui;
+    delete bd;
+    bd = 0;
 }
 void FakturiVnes::pressEscape()
 {
@@ -108,7 +112,7 @@ void FakturiVnes::initProc(faktura_trans m_data)
 
 void FakturiVnes::procDeleteItem(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.RemoveItem(data, m_row);
+    bd->RemoveItem(data, m_row);
     resFakturaItems = data;
 }
 
@@ -116,14 +120,14 @@ void FakturiVnes::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
     item.artikal_naziv = ui->lineEdit_2->text();
-    bd.AddItem(data, item);
+    bd->AddItem(data, item);
     resFakturaItems = data;
 }
 
 
 void FakturiVnes::showData(){
     QList<fakturiDetailT> data = resFakturaItems;
-    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+    bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
 }
 
 void FakturiVnes::on_pushButton_6_clicked()

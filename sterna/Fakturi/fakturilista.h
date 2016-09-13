@@ -5,7 +5,7 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
-#include <QMutexLocker>
+
 
 #include "xx.h"
 #include "qbtemplate.h"

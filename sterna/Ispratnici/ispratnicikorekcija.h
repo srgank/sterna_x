@@ -23,6 +23,7 @@ public:
     ~IspratniciKorekcija();
     virtual void pressEscape();
     virtual void pressReturn();
+    virtual void updateFont();
     void initProc(ispratnica_trans m_data);
     void setFocusArtikal(artikalT t);
     void setFocusKomintent(QString t);
@@ -34,7 +35,7 @@ private:
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
-    QBTemplate<ispratnicaDetailT> bd;
+    QBTemplate<ispratnicaDetailT> *bd;
     QList<ispratnicaDetailT> resFakturaItems;\
     QList<int> colDetailWidth;
     void procDeleteItem();
