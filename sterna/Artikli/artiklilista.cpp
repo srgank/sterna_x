@@ -27,15 +27,7 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
     ui->tableView->setFont(this->font());
 
     QStringList tempVals = s->Get_Art_HeaderState();
-    if (!tempVals.isEmpty()){
-        for (int i = 0; i < tempVals.count(); i++)        {
-            colWidth << tempVals.at(i).toInt();
-        }
-    }else{
-        for (int i = 0; i < COL; i++)        {
-            colWidth << 100;
-        }
-    }
+    colWidth = s->loadWidthList(tempVals, COL);
 
     numOffset = 0;
     ui->tableView->setModel(model);
@@ -61,12 +53,7 @@ ArtikliLista::~ArtikliLista()
     disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
 
     Singleton *s = Singleton::Instance();
-    QStringList tempVals;
-    for (int i = 0; i < colWidth.count(); i++)
-    {
-        tempVals << QString::number(colWidth.at(i));
-    }
-
+    QStringList tempVals = s->saveWidthList(colWidth);
     s->Set_Art_HeaderState(tempVals);
     delete ui;
     delete model;
@@ -130,6 +117,7 @@ void ArtikliLista::on_pushButton_5_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    resArtikliTemp = res;
     b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
@@ -141,16 +129,19 @@ void ArtikliLista::on_pushButton_6_clicked()
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    resArtikliTemp = res;
     b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
 void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
 {
+    numOffset = 0;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->LE_prebaraj->text() + "%";
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    resArtikliTemp = res;
     b.ShowData(res, model, header, ui->tableView, colWidth);
 }
 
@@ -171,7 +162,8 @@ void ArtikliLista::pressReturn()
 {
     if(ui->tableView->hasFocus())
     {
-        emit signalReturnResult( ui->le_artikal_naziv->text());
+        artikalT currentArtikal = b.getCurrentArtikalKomintentData(resArtikliTemp, ui->le_id->text());
+        emit signalReturnResult( currentArtikal);
     }
     else
     {

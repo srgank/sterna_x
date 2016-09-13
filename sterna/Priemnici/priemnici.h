@@ -1,6 +1,6 @@
 #ifndef Priemnici_H
 #define Priemnici_H
-
+#include "Struct/struct.h"
 #include "Base/baseform.h"
 #include "priemnicivnes.h"
 #include "priemnicikorekcija.h"

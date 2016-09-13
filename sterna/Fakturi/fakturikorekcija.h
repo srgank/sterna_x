@@ -23,8 +23,9 @@ public:
     ~FakturiKorekcija();
     virtual void pressEscape();
     virtual void pressReturn();
+    virtual void updateFont();
     void initProc(faktura_trans m_data);
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
     void setFocusKomintent(QString t);
 
 private:

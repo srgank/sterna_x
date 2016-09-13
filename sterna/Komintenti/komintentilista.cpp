@@ -197,7 +197,7 @@ void KomintentiLista::pressReturn()
 
 void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
 {
-
+    numOffset = 0;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->lineEditPrebaraj->text() + "%";

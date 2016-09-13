@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QKeyEvent>
 
+
 namespace Ui {
 class PriemniciKorekcija;
 }
@@ -22,7 +23,7 @@ public:
     virtual void pressEnter();
     virtual void pressReturn();
     void initProc(QString m_searchID);
-    void setFocusArtikal(QString);
+    void setFocusArtikal(artikalT);
     void setFocusKomintent(QString);
 
 private:

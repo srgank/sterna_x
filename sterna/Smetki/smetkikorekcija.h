@@ -21,7 +21,7 @@ public:
     virtual void pressEscape();
     virtual void pressReturn();
     void initProc(QString m_searchID);
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
 
 private:
     Ui::SmetkiKorekcija *ui;

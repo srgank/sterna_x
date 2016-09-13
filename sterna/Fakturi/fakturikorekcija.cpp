@@ -53,13 +53,12 @@ void FakturiKorekcija::on_pushButton_released()
 }
 
 
-void FakturiKorekcija::setFocusArtikal(QString t)
+void FakturiKorekcija::setFocusArtikal(artikalT t)
 {
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    ui->lineEdit_2->setText(t.artikal);
+    PressKeyTAB(this);
 }
 
 void FakturiKorekcija::setFocusKomintent(QString t)
@@ -67,8 +66,7 @@ void FakturiKorekcija::setFocusKomintent(QString t)
     ui->lineEdit->setFocus();
     ui->lineEdit->selectAll();
     ui->lineEdit->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 
 void FakturiKorekcija::pressReturn()
@@ -93,8 +91,7 @@ void FakturiKorekcija::pressReturn()
     }
     else
     {
-        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-        QCoreApplication::postEvent(this, event);
+        PressKeyTAB(this);
     }
 }
 
@@ -107,6 +104,7 @@ void FakturiKorekcija::initProc(faktura_trans m_data)
 {
     resFakturaItems = m_data.data2;
     showData();
+    PressKeyTAB(this);
 }
 
 void FakturiKorekcija::procDeleteItem(){
@@ -131,13 +129,18 @@ void FakturiKorekcija::showData(){
 
 void FakturiKorekcija::on_pushButton_6_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
 }
 
 
 void FakturiKorekcija::on_pushButton_3_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
 }
+
+void FakturiKorekcija::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
+}
+

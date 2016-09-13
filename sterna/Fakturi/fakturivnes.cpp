@@ -4,7 +4,7 @@
 FakturiVnes::FakturiVnes(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::FakturiVnes)
-    ,hlp(0)
+  ,hlp(0)
 
 {
     ui->setupUi(this);
@@ -17,13 +17,14 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
-    s->Set_FakturaDetail_HeaderState(tempdetailVals);
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
+    colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    PressKeyTAB(this);
 }
 
 FakturiVnes::~FakturiVnes()
@@ -52,13 +53,12 @@ void FakturiVnes::on_pushButton_released()
 
 }
 
-void FakturiVnes::setFocusArtikal(QString t)
+void FakturiVnes::setFocusArtikal(artikalT t)
 {
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    ui->lineEdit_2->setText(t.artikal);
+    PressKeyTAB(this);
 }
 
 void FakturiVnes::setFocusKomintent(QString t)
@@ -66,8 +66,7 @@ void FakturiVnes::setFocusKomintent(QString t)
     ui->lineEdit->setFocus();
     ui->lineEdit->selectAll();
     ui->lineEdit->setText(t);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyTAB(this);
 }
 void FakturiVnes::pressReturn()
 {
@@ -91,8 +90,7 @@ void FakturiVnes::pressReturn()
     }
     else
     {
-        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-        QCoreApplication::postEvent(this, event);
+        PressKeyTAB(this);
     }
 
 }
@@ -130,13 +128,17 @@ void FakturiVnes::showData(){
 
 void FakturiVnes::on_pushButton_6_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
 }
 
 
 void FakturiVnes::on_pushButton_3_clicked()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    PressKeyReturn(this);
+}
+
+void FakturiVnes::updateFont()
+{
+    ui->tableView->setFont(this->font());
+    repaint();
 }

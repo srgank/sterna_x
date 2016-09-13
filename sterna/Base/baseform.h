@@ -23,9 +23,8 @@ public:
     virtual void pressReturn();
     virtual void pressEnter();
     virtual void updateFont();
-
-
-
+    void PressKeyTAB(QObject *receiver);
+    void PressKeyReturn(QObject *receiver);
 
     QWidget* getSourceWidget();
     void setSourceWidget(QWidget *sourceWidget);

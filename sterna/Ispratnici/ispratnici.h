@@ -31,6 +31,10 @@ private:
     QString m_SearchString;
     int m_SelectedID;
     QString m_strID;
+    QString searchStrList;
+    int searchIDList;
+    int searchOffsetList;
+    ispratnica_trans m_data;
 
 
 
@@ -40,7 +44,6 @@ private slots:
     void pressEscapeFromLista();
     void pressEscapeFromVnes();
     void pressEscapeFromKorekcija();
-
     void procSentGetArtikal(QString text, QWidget* p);
     void procSentGetKomintent(QString text, QWidget* p);
 

@@ -8,14 +8,22 @@ ProFakturiVnes::ProFakturiVnes(BaseForm *parent) :
 
 {
     ui->setupUi(this);
-    ui->lineEdit_2->setFocus();
+    hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-    hlp = new QHelperC(this);
-    connect(hlp, SIGNAL(signalResultInsertArticle(QStringList &)), this, SLOT(getResultEX(QStringList &)));
+    model = new QStandardItemModel(0,0);
+    header = new QHeaderView(Qt::Horizontal, 0);
+
+    QStringList tempValsDetail = s->Get_ProFakturaDetail_HeaderState();
+    colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
+
+    ui->tableView->setModel(model);
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
 }
 
 ProFakturiVnes::~ProFakturiVnes()
@@ -27,27 +35,7 @@ void ProFakturiVnes::pressEscape()
 {
     emit signalpressEscape();
 }
-
-
-
-void ProFakturiVnes::getResultEX(QStringList& tlist)
-{
-    QMessageBox *msgBox = new QMessageBox(this);
-    msgBox->setWindowTitle(trUtf8("Information"));
-    msgBox->setText(trUtf8("Податокот е успешно внесен"));
-    msgBox->setStandardButtons(QMessageBox::Yes);
-    msgBox->setDefaultButton(QMessageBox::Yes);
-    msgBox->exec();
-    delete msgBox;
-    setFocus();
-//    ui->pushButton->setEnabled(true);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
-
-}
-
-
-void ProFakturiVnes::on_pushButton_clicked()
+void ProFakturiVnes::on_pushButton_released()
 {
 
     QString blankText = "";
@@ -60,16 +48,14 @@ void ProFakturiVnes::on_pushButton_clicked()
 
     
 }
-
-void ProFakturiVnes::setFocusArtikal(QString t)
+void ProFakturiVnes::setFocusArtikal(artikalT t)
 {
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t);
+    ui->lineEdit_2->setText(t.artikal);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
 }
-
 void ProFakturiVnes::setFocusKomintent(QString t)
 {
     ui->lineEdit->setFocus();
@@ -80,9 +66,15 @@ void ProFakturiVnes::setFocusKomintent(QString t)
 }
 void ProFakturiVnes::pressReturn()
 {
-    if(ui->pushButton_4->hasFocus())
+    if(ui->pushButton_3->hasFocus())
     {
-        //on_pushButton_released();
+        procAddItem();
+        showData();
+    }
+    if(ui->pushButton_6->hasFocus())
+    {
+        procDeleteItem();
+        showData();
     }
     else if(ui->lineEdit->hasFocus())
     {
@@ -97,5 +89,41 @@ void ProFakturiVnes::pressReturn()
         QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
         QCoreApplication::postEvent(this, event);
     }
+
+}
+void ProFakturiVnes::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+{
+    m_row = modelX.row();
+}
+void ProFakturiVnes::initProc(profaktura_trans m_data)
+{
+    resFakturaItems = m_data.data2;
+    showData();
+}
+void ProFakturiVnes::procDeleteItem(){
+    QList<profakturiDetailT> data = resFakturaItems;
+    bd.RemoveItem(data, m_row);
+    resFakturaItems = data;
+}
+void ProFakturiVnes::procAddItem(){
+    QList<profakturiDetailT> data = resFakturaItems;
+    profakturiDetailT item;
+    item.artikal_naziv = ui->lineEdit_2->text();
+    bd.AddItem(data, item);
+    resFakturaItems = data;
+}
+void ProFakturiVnes::showData(){
+    QList<profakturiDetailT> data = resFakturaItems;
+    bd.ShowData(data, model, header, ui->tableView, colDetailWidth);
+}
+void ProFakturiVnes::on_pushButton_6_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
+}
+void ProFakturiVnes::on_pushButton_3_clicked()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::postEvent(this, event);
 }
 

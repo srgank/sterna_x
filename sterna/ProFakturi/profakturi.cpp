@@ -44,7 +44,7 @@ void ProFakturi::pressF2()
 void ProFakturi::pressF3()
 {
     if (m_ProFakturiLista){
-        m_strID = m_ProFakturiLista->getSelectedID();
+        m_data = m_ProFakturiLista->getProFakturaData();
     }else{
         return;
     }

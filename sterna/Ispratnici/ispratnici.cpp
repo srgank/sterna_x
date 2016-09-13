@@ -4,9 +4,12 @@
 Ispratnici::Ispratnici(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::Ispratnici)
-    ,m_IspratniciLista(0)
-    ,m_IspratniciVnes(0)
-    ,m_IspratniciKorekcija(0)
+  ,m_IspratniciLista(0)
+  ,m_IspratniciVnes(0)
+  ,m_IspratniciKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("%")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,10 @@ void Ispratnici::pressF2()
     if (!m_IspratniciLista) {
         return;
     }
+    searchIDList = m_IspratniciLista->geTableSelectedRow();
+    searchStrList = m_IspratniciLista->getSearchString();
+    searchOffsetList = m_IspratniciLista->geTableSelected_Offset();
+
     disconnect(m_IspratniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_IspratniciLista = deleteMyWidget<IspratniciLista>(m_IspratniciLista);
     m_IspratniciVnes = showMyWidget<IspratniciVnes, Ispratnici>(m_IspratniciVnes, this);
@@ -37,10 +44,13 @@ void Ispratnici::pressF2()
 void Ispratnici::pressF3()
 {
     if (m_IspratniciLista){
-        m_strID = m_IspratniciLista->getSelectedID();
+        m_data = m_IspratniciLista->getFakturaData();
     }else{
         return;
     }
+    searchIDList = m_IspratniciLista->geTableSelectedRow();
+    searchStrList = m_IspratniciLista->getSearchString();
+    searchOffsetList = m_IspratniciLista->geTableSelected_Offset();
     disconnect(m_IspratniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_IspratniciLista = deleteMyWidget<IspratniciLista>(m_IspratniciLista);
     m_IspratniciKorekcija = showMyWidget<IspratniciKorekcija, Ispratnici>(m_IspratniciKorekcija, this);
@@ -48,8 +58,7 @@ void Ispratnici::pressF3()
     connect(m_IspratniciKorekcija,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromKorekcija()));
     connect(m_IspratniciKorekcija,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
     connect(m_IspratniciKorekcija,SIGNAL(signalGetKomintent(QString, QWidget*)),this,SLOT(procSentGetKomintent(QString, QWidget*)));
-
-    m_IspratniciKorekcija->initProc(m_strID);
+    m_IspratniciKorekcija->initProc(m_data);
 }
 
 void Ispratnici::pressF4()
@@ -59,6 +68,7 @@ void Ispratnici::pressF4()
     connect(m_IspratniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_IspratniciLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_IspratniciLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
+    m_IspratniciLista->initProc(searchIDList, searchStrList, searchOffsetList);
 
 }
 

@@ -543,5 +543,9 @@ typedef struct {
     QList<profakturiDetailT> data2;
 } profaktura_trans;
 
+typedef struct {
+    ispratnicaT data1;
+    QList<ispratnicaDetailT> data2;
+} ispratnica_trans;
 
 #endif // STRUCT_H

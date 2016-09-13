@@ -102,11 +102,11 @@ void SmetkiKorekcija::getResultEXUpdate22(QStringList& tlist)
     QCoreApplication::postEvent(this, event);
 }
 
-void SmetkiKorekcija::setFocusArtikal(QString t)
+void SmetkiKorekcija::setFocusArtikal(artikalT t)
 {
     ui->lineEdit_2->setFocus();
     ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t);
+    ui->lineEdit_2->setText(t.artikal);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
 }

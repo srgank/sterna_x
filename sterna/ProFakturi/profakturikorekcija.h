@@ -24,7 +24,7 @@ public:
     virtual void pressEscape();
     virtual void pressReturn();
     void initProc(profaktura_trans m_data);
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
     void setFocusKomintent(QString t);
 
 private:

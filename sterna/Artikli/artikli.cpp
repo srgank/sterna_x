@@ -68,7 +68,7 @@ void Artikli::pressF4()
     connect(m_ArtikliLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_ArtikliLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_ArtikliLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
-    connect(m_ArtikliLista,SIGNAL(signalReturnResult(QString)),this,SLOT(pressReturnResult(QString )));
+    connect(m_ArtikliLista,SIGNAL(signalReturnResult(artikalT)),this,SLOT(pressReturnResult(artikalT )));
     m_ArtikliLista->initProc(searchIDList, searchStrList, searchOffsetList);
 }
 
@@ -108,8 +108,7 @@ void Artikli::pressEscapeFromKorekcija()
     pressF4();
 }
 
-
-void Artikli::pressReturnResult(QString text)
+void Artikli::pressReturnResult(artikalT text)
 {
     QWidget *sour = getSourceWidget();
     if (qobject_cast<PriemniciVnes*>(sour))

@@ -85,3 +85,5 @@ QList<dokumentDetailT> QHelperC::getallMagacin(QString& offset, QString& limit, 
     pause.exec();
     return worker.listRes;
 }
+
+

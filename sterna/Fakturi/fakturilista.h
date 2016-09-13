@@ -5,7 +5,6 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
-#include <QMutex>
 #include <QMutexLocker>
 
 #include "xx.h"
@@ -29,7 +28,7 @@ public:
     virtual void pressF3();
 
     virtual void pressEscape();
-
+    virtual void updateFont();
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);
@@ -49,21 +48,27 @@ private:
     QHeaderView *header;
     QStandardItemModel *model_2;
     QHeaderView *header_2;
+
     QHelperC *hlp;
+
     int numOffset;
     QString m_selectedID;
     int m_row;
+
     QList<int> colWidth;
     QList<int> colDetailWidth;
-    QBTemplate<fakturiT> b;
-    QBTemplate<dokumentDetailT> bd;
-    QBTemplate<fakturiDetailT> bc;
+
+    QBTemplate<fakturiT> *b;
+    QBTemplate<dokumentDetailT> *bd;
+    QBTemplate<fakturiDetailT> *bc;
+
     QItemSelectionModel *sm;
-    QMutex mio_;
+
     QList<fakturiT> resFakturaTemp;
     fakturiT currentData;
     QList<fakturiDetailT> resFakturaDetailTemp;
 
+    bool enableClose;
 signals:
     void signalpressF2();
     void signalpressF3();
@@ -71,12 +76,9 @@ signals:
 
 private slots:
     void selectionChanged(QModelIndex,QModelIndex);
-
     void procSectionResized(int a, int b, int c);
     void procSectionResizedDetail(int a, int b, int c);
     void on_lineEdit_textChanged(const QString &arg1);
-    void on_pb_vnesi_nov_clicked();
-    void on_pb_koregiraj_postoecki_clicked();
 };
 
 #endif // FakturiLISTA_H

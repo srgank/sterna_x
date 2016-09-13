@@ -4,6 +4,7 @@
 #include "Base/baseform.h"
 #include "xx.h"
 #include <QObjectList>
+#include "Struct/struct.h"
 namespace Ui {
 class PriemniciVnes;
 }
@@ -18,7 +19,7 @@ public:
     virtual void pressEscape();
     virtual void pressEnter();
     virtual void pressReturn();
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
     void setFocusKomintent(QString t);
 
 private:

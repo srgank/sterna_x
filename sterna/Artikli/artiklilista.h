@@ -58,11 +58,12 @@ private:
     QString searchStrList;
     int searchIDList;
     QBTemplate<artikalT> b;
+    QList<artikalT> resArtikliTemp;
 signals:
     void signalpressF2();
     void signalpressF3();
     void signalpressEscape();
-    void signalReturnResult(QString);
+    void signalReturnResult(artikalT);
 
 private slots:
     void on_pushButton_5_clicked();

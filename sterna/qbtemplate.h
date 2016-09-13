@@ -15,6 +15,7 @@ class QBTemplate
 public:
     QBTemplate(){
     }
+
      void ConvertDokument(QList<dokumentT>& inputlist, QList<T>& outputList){
         if (typeid(T) == typeid(fakturiT)) {
 
@@ -545,6 +546,17 @@ public:
          return resItem;
      }
 
+     T getCurrentArtikalKomintentData(QList<T> &list, QString id)
+     {
+         T resItem;
+         for (int i = 0; i < list.count(); i++){
+             if (list.at(i).id == id){
+                 resItem = list.at(i);
+                 break;
+             }
+         }
+         return resItem;
+     }
 
 
     void ShowData(QList<T>& tlist, QStandardItemModel* model, QHeaderView* header, QTableView *table, QList<int> colWidth)

@@ -20,7 +20,7 @@ public:
     virtual void pressEscape();
     virtual void pressReturn();
     void setFocusKomintent(QString t);
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
 
 private:
     Ui::NarackiVnes *ui;

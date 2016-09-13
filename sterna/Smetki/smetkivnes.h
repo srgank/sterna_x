@@ -19,7 +19,7 @@ public:
     ~SmetkiVnes();
     virtual void pressEscape();
     virtual void pressReturn();
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
 
 
 private:

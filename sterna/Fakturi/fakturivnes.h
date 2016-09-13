@@ -23,9 +23,10 @@ public:
     ~FakturiVnes();
     virtual void pressEscape();
     virtual void pressReturn();
+    virtual void updateFont();
     void initProc(faktura_trans m_data);
     void setFocusKomintent(QString t);
-    void setFocusArtikal(QString t);
+    void setFocusArtikal(artikalT t);
 
 private:
     Ui::FakturiVnes *ui;
