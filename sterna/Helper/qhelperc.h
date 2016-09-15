@@ -17,14 +17,21 @@ public:
     explicit QHelperC(QWidget *parent = 0);
     ~QHelperC();
     QList<artikalT> getallArtikli(QString& offset, QString& limit, QString& searchName, QString& searchBy);
-    QList<komintentT> getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
-    QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip );
     void InsertArtikal(artikalT &art);
     void UpdateArtikal(artikalT &art);
 
+    QList<komintentT> getallKomintenti(QString& offset, QString& limit, QString& searchName, QString& searchBy);
     void InsertKomintent(komintentT &komItem);
     void UpdateKomintent(komintentT &komItem);
+
+    QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip );
+    void InsertDokumenti(dokumentT &Item);
+    void UpdateDokumenti(dokumentT &Item);
+
     QList<dokumentDetailT> getallMagacin(QString& offset, QString& limit, QString &vDokID, QString &vDokTip );
+    void InsertMagacin(QList<dokumentDetailT> &ItemList);
+    void UpdateMagacin(QList<dokumentDetailT> &ItemList);
+
 private:
 
 signals:

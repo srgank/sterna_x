@@ -99,65 +99,44 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
     emit finishedSearch();
 }
 
-void QWorkerDokumenti::insert(
-    QString &v_document_id,
-    QString &v_document_tip,
-    QString &v_td,
-    QString &v_tds,
-    QString &v_komintent_id,
-    QString &v_prevoznik_id,
-    QString &v_valuta,
-    QString &v_kurs,
-    QString &v_iznos_val,
-    QString &v_ddv_val,
-    QString &v_rabat_val,
-    QString &v_iznos_plakanje_val,
-    QString &v_iznos_ddv_den,
-    QString &v_rabat_den,
-    QString &v_iznos_plakanje_den,
-    QString &v_transport_den,
-    QString &v_carina_den,
-    QString &v_ddv_den,
-    QString &v_drugi_trosoci_den,
-    QString &v_dok_status,
-    QString &v_user_id,
-    QString &v_komentar,
-    QString &v_mag_id,
-    QString &v_object_id
-    )
+void QWorkerDokumenti::insert(dokumentT &item )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "insert_article");
+    QUrl serviceUrl = QUrl(urlhost + "insert_dokument");
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["document_id"] = v_document_id.toInt();
-    tt_json["document_tip"] = v_document_tip.toInt();
-    tt_json["td"] = v_td;
-    tt_json["tds"] = v_tds;
-    tt_json["komintent_id"] = v_komintent_id.toInt();
-    tt_json["prevoznik_id"] = v_prevoznik_id.toInt();
-    tt_json["valuta"] = v_valuta;
-    tt_json["kurs"] = v_kurs.toDouble();
-    tt_json["iznos_val"] = v_iznos_val.toDouble();
-    tt_json["ddv_val"] = v_ddv_val.toDouble();
-    tt_json["rabat_val"] = v_rabat_val.toDouble();
-    tt_json["iznos_plakanje_val"] = v_iznos_plakanje_val.toDouble();
-    tt_json["iznos_ddv_den"] = v_iznos_ddv_den.toDouble();
-    tt_json["rabat_den"] = v_rabat_den.toDouble();
-    tt_json["iznos_plakanje_den"] = v_iznos_plakanje_den.toDouble();
-    tt_json["transport_den"] = v_transport_den.toDouble();
-    tt_json["carina_den"] = v_carina_den.toDouble();
-    tt_json["ddv_den"] = v_ddv_den.toDouble();
-    tt_json["drugi_trosoci_den"] = v_drugi_trosoci_den.toDouble();
-    tt_json["dok_status"] = v_dok_status.toInt();
-    tt_json["user_id"] = v_user_id.toInt();
-    tt_json["komentar"] = v_komentar.toInt();
-    tt_json["mag_id"] = v_mag_id.toInt();
-    tt_json["object_id"] = v_object_id.toInt();
+
+    tt_json["TID"] = item.tid;
+    tt_json["DOCUMENT_ID"] = item.dokument_id;
+    tt_json["DOCUMENT_TIP"] = item.dokument_tip;
+    tt_json["TD"] = item.td;
+    tt_json["TDS"] = item.tds;
+    tt_json["KOMINTENT_ID"] = item.komintent_id;
+    tt_json["KOMINTENT_NAZIV"] = item.komintent_naziv;
+    tt_json["PREVOZNIK_ID"] = item.prevoznik_id;
+    tt_json["PREVOZNIK_NAZIV"] = item.prevoznik_naziv;
+    tt_json["VALUTA"] = item.valuta;
+    tt_json["KURS"] = item.kurs;
+    tt_json["IZNOS_VAL"] = item.iznos_val;
+    tt_json["DDV_VAL"] = item.ddv_val;
+    tt_json["RABAT_VAL"] = item.rabat_val;
+    tt_json["IZNOS_PLAKANJE_VAL"] = item.iznos_plakanje_val;
+    tt_json["IZNOS_DDV_DEN"] = item.iznos_ddv_den;
+    tt_json["RABAT_DEN"] = item.rabat_den;
+    tt_json["IZNOS_PLAKANJE_DEN"] = item.iznos_plakanje_den;
+    tt_json["TRANSPORT_DEN"] = item.transport_den;
+    tt_json["CARINA_DEN"] = item.carina_den;
+    tt_json["DDV_DEN"] = item.ddv_den;
+    tt_json["DRUGI_TROSOCI_DEN"] = item.drugi_trosoci_den;
+    tt_json["DOK_STATUS"] = item.dok_status;
+    tt_json["USER_ID"] = item.user_id;
+    tt_json["KOMENTAR"] = item.komentar;
+    tt_json["MAG_ID"] = item.mag_id;
+    tt_json["OBJECT_ID"] = item.object_id;
 
 
     QJsonDocument doc(tt_json);
@@ -179,67 +158,43 @@ void QWorkerDokumenti::onPostInsert(QNetworkReply *rep)
     emit finishedInsert();
 }
 
-void QWorkerDokumenti::update(
-        QString &v_tid,
-        QString &v_document_id,
-        QString &v_document_tip,
-        QString &v_td,
-        QString &v_tds,
-        QString &v_komintent_id,
-        QString &v_prevoznik_id,
-        QString &v_valuta,
-        QString &v_kurs,
-        QString &v_iznos_val,
-        QString &v_ddv_val,
-        QString &v_rabat_val,
-        QString &v_iznos_plakanje_val,
-        QString &v_iznos_ddv_den,
-        QString &v_rabat_den,
-        QString &v_iznos_plakanje_den,
-        QString &v_transport_den,
-        QString &v_carina_den,
-        QString &v_ddv_den,
-        QString &v_drugi_trosoci_den,
-        QString &v_dok_status,
-        QString &v_user_id,
-        QString &v_komentar,
-        QString &v_mag_id,
-        QString &v_object_id
-
-    )
+void QWorkerDokumenti::update(dokumentT & item)
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "update_article");
+    QUrl serviceUrl = QUrl(urlhost + "update_dokument");
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["document_id"] = v_document_id.toInt();
-    tt_json["document_tip"] = v_document_tip.toInt();
-    tt_json["td"] = v_td;
-    tt_json["tds"] = v_tds;
-    tt_json["komintent_id"] = v_komintent_id.toInt();
-    tt_json["prevoznik_id"] = v_prevoznik_id.toInt();
-    tt_json["valuta"] = v_valuta;
-    tt_json["kurs"] = v_kurs.toDouble();
-    tt_json["iznos_val"] = v_iznos_val.toDouble();
-    tt_json["ddv_val"] = v_ddv_val.toDouble();
-    tt_json["rabat_val"] = v_rabat_val.toDouble();
-    tt_json["iznos_plakanje_val"] = v_iznos_plakanje_val.toDouble();
-    tt_json["iznos_ddv_den"] = v_iznos_ddv_den.toDouble();
-    tt_json["rabat_den"] = v_rabat_den.toDouble();
-    tt_json["iznos_plakanje_den"] = v_iznos_plakanje_den.toDouble();
-    tt_json["transport_den"] = v_transport_den.toDouble();
-    tt_json["carina_den"] = v_carina_den.toDouble();
-    tt_json["ddv_den"] = v_ddv_den.toDouble();
-    tt_json["drugi_trosoci_den"] = v_drugi_trosoci_den.toDouble();
-    tt_json["dok_status"] = v_dok_status.toInt();
-    tt_json["user_id"] = v_user_id.toInt();
-    tt_json["komentar"] = v_komentar.toInt();
-    tt_json["mag_id"] = v_mag_id.toInt();
-    tt_json["object_id"] = v_object_id.toInt();
+    tt_json["TID"] = item.tid;
+    tt_json["DOCUMENT_ID"] = item.dokument_id;
+    tt_json["DOCUMENT_TIP"] = item.dokument_tip;
+    tt_json["TD"] = item.td;
+    tt_json["TDS"] = item.tds;
+    tt_json["KOMINTENT_ID"] = item.komintent_id;
+    tt_json["KOMINTENT_NAZIV"] = item.komintent_naziv;
+    tt_json["PREVOZNIK_ID"] = item.prevoznik_id;
+    tt_json["PREVOZNIK_NAZIV"] = item.prevoznik_naziv;
+    tt_json["VALUTA"] = item.valuta;
+    tt_json["KURS"] = item.kurs;
+    tt_json["IZNOS_VAL"] = item.iznos_val;
+    tt_json["DDV_VAL"] = item.ddv_val;
+    tt_json["RABAT_VAL"] = item.rabat_val;
+    tt_json["IZNOS_PLAKANJE_VAL"] = item.iznos_plakanje_val;
+    tt_json["IZNOS_DDV_DEN"] = item.iznos_ddv_den;
+    tt_json["RABAT_DEN"] = item.rabat_den;
+    tt_json["IZNOS_PLAKANJE_DEN"] = item.iznos_plakanje_den;
+    tt_json["TRANSPORT_DEN"] = item.transport_den;
+    tt_json["CARINA_DEN"] = item.carina_den;
+    tt_json["DDV_DEN"] = item.ddv_den;
+    tt_json["DRUGI_TROSOCI_DEN"] = item.drugi_trosoci_den;
+    tt_json["DOK_STATUS"] = item.dok_status;
+    tt_json["USER_ID"] = item.user_id;
+    tt_json["KOMENTAR"] = item.komentar;
+    tt_json["MAG_ID"] = item.mag_id;
+    tt_json["OBJECT_ID"] = item.object_id;
 
 
     QJsonDocument doc(tt_json);

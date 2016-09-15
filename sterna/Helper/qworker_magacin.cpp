@@ -13,12 +13,6 @@ QString QWorkerMagacin::base64_decode(QString string)
 }
 
 
-
-
-
-
-
-
 void QWorkerMagacin::getList( QString &vOffset, QString &vLimit,QString &vDokID, QString &vDokTip )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
@@ -105,4 +99,138 @@ void QWorkerMagacin::onPostList(QNetworkReply *rep)
         }
     }
     emit finishedSearch();
+}
+
+void QWorkerMagacin::insert(QList<dokumentDetailT>& itemDokList)
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "insert_dokumenti_detail");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json_all;
+    QJsonArray tt_jsonArray;
+    for (int i = 0; i < itemDokList.count(); i++)
+    {
+        QJsonObject tt_json;
+        tt_json["TID"] = itemDokList.at(i).tid;
+        tt_json["DOCUMENT_ID"]= itemDokList.at(i).dokument_id;
+        tt_json["DOCUMENT_TIP"]= itemDokList.at(i).dokument_tip;
+        tt_json["KOMINTENT_ID"]= itemDokList.at(i).komintent_id;
+        tt_json["ARTIKAL_ID"]= itemDokList.at(i).artikal_id;
+        tt_json["ARTIKAL"]= itemDokList.at(i).artikal_naziv;
+        tt_json["TIP_ARTIKAL"]= itemDokList.at(i).tip_artikal;
+        tt_json["LINK_ARTIKAL"]= itemDokList.at(i).link_artikal;
+        tt_json["EDM"]= itemDokList.at(i).edm;
+        tt_json["V_NAB_CENA_BEZ_DDV"]= itemDokList.at(i).vlez_nab_cena_bez_ddv;
+        tt_json["V_NAB_CENA_SO_DDV"]= itemDokList.at(i).vlez_nab_cena_so_ddv;
+        tt_json["V_PREN_DDV"]= itemDokList.at(i).vlez_prenesen_ddv;
+        tt_json["V_PREN_DDV_DEN"]= itemDokList.at(i).vlez_prenesen_ddv_denari;
+        tt_json["V_RABAT"]= itemDokList.at(i).vlez_rabat;
+        tt_json["V_NAB_IZNOS_SO_DDV"]= itemDokList.at(i).vlez_nabaven_iznos_so_ddv;
+        tt_json["V_MARZA"]= itemDokList.at(i).vlez_marza;
+        tt_json["V_MARZA_DEN"]= itemDokList.at(i).vlez_marza_den;
+        tt_json["V_PROD_CENA_BEZ_DDV"]= itemDokList.at(i).vlez_prod_cena_bez_ddv;
+        tt_json["V_PRESMETAN_DDV"]= itemDokList.at(i).vlez_presmetan_ddv;
+        tt_json["V_PROD_CENA_SO_DDV"]= itemDokList.at(i).vlez_prod_cena_so_ddv;
+        tt_json["V_PROD_IZNOS_SO_DDV"]= itemDokList.at(i).vlez_prod_iznos_so_ddv;
+        tt_json["I_CENA_BEZ_DDV_KALK"]= itemDokList.at(i).izl_cena_bez_ddv_calc;
+        tt_json["I_CENA_SO_DDV_KALK"]= itemDokList.at(i).izl_cena_so_ddv_calc;
+        tt_json["I_CENA_SO_DDV_PROD"]= itemDokList.at(i).izl_cena_so_ddv_prod;
+        tt_json["I_DDV_PROD"]= itemDokList.at(i).izl_ddv_prod;
+        tt_json["KOL"]= itemDokList.at(i).kol;
+        tt_json["MAG_ID"]= itemDokList.at(i).mag_id;
+        tt_json["STATUS"]= itemDokList.at(i).status;
+
+        tt_jsonArray.append(tt_json);
+    }
+
+    tt_json_all["properties"] = tt_jsonArray;
+
+    QJsonDocument doc(tt_json_all);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerMagacin::onPostInsert(QNetworkReply *rep)
+{
+    emit finishedInsert();
+}
+
+void QWorkerMagacin::update(QList<dokumentDetailT>& itemDokList)
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
+    networkManager.clearAccessCache();
+    QUrl serviceUrl = QUrl(urlhost + "update_article");
+    QByteArray HeaderVar = "X-Api-Key";
+    QByteArray HeaderValue = "aaa";
+    QByteArray postData;
+
+    QJsonObject tt_json_all;
+    QJsonArray tt_jsonArray;
+    for (int i = 0; i < itemDokList.count(); i++)
+    {
+        QJsonObject tt_json;
+        tt_json["TID"] = itemDokList.at(i).tid;
+        tt_json["DOCUMENT_ID"]= itemDokList.at(i).dokument_id;
+        tt_json["DOCUMENT_TIP"]= itemDokList.at(i).dokument_tip;
+        tt_json["KOMINTENT_ID"]= itemDokList.at(i).komintent_id;
+        tt_json["ARTIKAL_ID"]= itemDokList.at(i).artikal_id;
+        tt_json["ARTIKAL"]= itemDokList.at(i).artikal_naziv;
+        tt_json["TIP_ARTIKAL"]= itemDokList.at(i).tip_artikal;
+        tt_json["LINK_ARTIKAL"]= itemDokList.at(i).link_artikal;
+        tt_json["EDM"]= itemDokList.at(i).edm;
+        tt_json["V_NAB_CENA_BEZ_DDV"]= itemDokList.at(i).vlez_nab_cena_bez_ddv;
+        tt_json["V_NAB_CENA_SO_DDV"]= itemDokList.at(i).vlez_nab_cena_so_ddv;
+        tt_json["V_PREN_DDV"]= itemDokList.at(i).vlez_prenesen_ddv;
+        tt_json["V_PREN_DDV_DEN"]= itemDokList.at(i).vlez_prenesen_ddv_denari;
+        tt_json["V_RABAT"]= itemDokList.at(i).vlez_rabat;
+        tt_json["V_NAB_IZNOS_SO_DDV"]= itemDokList.at(i).vlez_nabaven_iznos_so_ddv;
+        tt_json["V_MARZA"]= itemDokList.at(i).vlez_marza;
+        tt_json["V_MARZA_DEN"]= itemDokList.at(i).vlez_marza_den;
+        tt_json["V_PROD_CENA_BEZ_DDV"]= itemDokList.at(i).vlez_prod_cena_bez_ddv;
+        tt_json["V_PRESMETAN_DDV"]= itemDokList.at(i).vlez_presmetan_ddv;
+        tt_json["V_PROD_CENA_SO_DDV"]= itemDokList.at(i).vlez_prod_cena_so_ddv;
+        tt_json["V_PROD_IZNOS_SO_DDV"]= itemDokList.at(i).vlez_prod_iznos_so_ddv;
+        tt_json["I_CENA_BEZ_DDV_KALK"]= itemDokList.at(i).izl_cena_bez_ddv_calc;
+        tt_json["I_CENA_SO_DDV_KALK"]= itemDokList.at(i).izl_cena_so_ddv_calc;
+        tt_json["I_CENA_SO_DDV_PROD"]= itemDokList.at(i).izl_cena_so_ddv_prod;
+        tt_json["I_DDV_PROD"]= itemDokList.at(i).izl_ddv_prod;
+        tt_json["KOL"]= itemDokList.at(i).kol;
+        tt_json["MAG_ID"]= itemDokList.at(i).mag_id;
+        tt_json["STATUS"]= itemDokList.at(i).status;
+
+        tt_jsonArray.append(tt_json);
+    }
+
+    tt_json_all["properties"] = tt_jsonArray;
+
+    QJsonDocument doc(tt_json_all);
+    QByteArray tt = doc.toJson();
+
+
+    postData.append(tt);
+    QNetworkRequest networkRequest(serviceUrl);
+    networkRequest.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
+    networkRequest.setRawHeader(HeaderVar, HeaderValue );
+    networkManager.post(networkRequest,postData);
+    HeaderVar.clear();
+    HeaderValue.clear();
+    postData.clear();
+
+}
+void QWorkerMagacin::onPostUpdate(QNetworkReply *rep)
+{
+    emit finishedUpdate();
 }

@@ -946,31 +946,31 @@ public:
         headerNames << QObject::trUtf8("tid.")
                     << QObject::trUtf8("dokument_id")
                     << QObject::trUtf8("document_tip")
-                    << QObject::trUtf8("t_komintent_id")
-                    << QObject::trUtf8("t_artikal_id")
-                    << QObject::trUtf8("t_artikal_naziv")
-                    << QObject::trUtf8("t_tip_artikal")
-                    << QObject::trUtf8("t_link_artikal")
-                    << QObject::trUtf8("t_edm")
-                    << QObject::trUtf8("t_vlez_nab_cena_bez_ddv")
-                    << QObject::trUtf8("t_vlez_nab_cena_so_ddv")
-                    << QObject::trUtf8("t_vlez_prenesen_ddv")
-                    << QObject::trUtf8("t_vlez_prenesen_ddv_denari")
-                    << QObject::trUtf8("t_vlez_rabat")
-                    << QObject::trUtf8("t_vlez_nabaven_iznos_so_ddv")
-                    << QObject::trUtf8("t_vlez_marza")
-                    << QObject::trUtf8("t_vlez_marza_den")
-                    << QObject::trUtf8("t_vlez_prod_cena_bez_ddv")
-                    << QObject::trUtf8("t_vlez_presmetan_ddv")
-                    << QObject::trUtf8("t_vlez_prod_cena_so_ddv")
-                    << QObject::trUtf8("t_vlez_prod_iznos_so_ddv")
-                    << QObject::trUtf8("t_izl_cena_bez_ddv_calc")
-                    << QObject::trUtf8("t_izl_cena_so_ddv_calc")
-                    << QObject::trUtf8("t_izl_cena_so_ddv_prod")
-                    << QObject::trUtf8("t_izl_ddv_prod")
-                    << QObject::trUtf8("t_kol")
-                    << QObject::trUtf8("t_mag_id")
-                    << QObject::trUtf8("t_status")
+                    << QObject::trUtf8("Шифра Коминтент")
+                    << QObject::trUtf8("Артикал Ид")
+                    << QObject::trUtf8("Артикал Назив")
+                    << QObject::trUtf8("Тип Артикал")
+                    << QObject::trUtf8("Линк Артикал")
+//                    << QObject::trUtf8("t_edm")
+//                    << QObject::trUtf8("t_vlez_nab_cena_bez_ddv")
+//                    << QObject::trUtf8("t_vlez_nab_cena_so_ddv")
+//                    << QObject::trUtf8("t_vlez_prenesen_ddv")
+//                    << QObject::trUtf8("t_vlez_prenesen_ddv_denari")
+//                    << QObject::trUtf8("t_vlez_rabat")
+//                    << QObject::trUtf8("t_vlez_nabaven_iznos_so_ddv")
+//                    << QObject::trUtf8("t_vlez_marza")
+//                    << QObject::trUtf8("t_vlez_marza_den")
+//                    << QObject::trUtf8("t_vlez_prod_cena_bez_ddv")
+//                    << QObject::trUtf8("t_vlez_presmetan_ddv")
+//                    << QObject::trUtf8("t_vlez_prod_cena_so_ddv")
+//                    << QObject::trUtf8("t_vlez_prod_iznos_so_ddv")
+//                    << QObject::trUtf8("t_izl_cena_bez_ddv_calc")
+//                    << QObject::trUtf8("t_izl_cena_so_ddv_calc")
+//                    << QObject::trUtf8("t_izl_cena_so_ddv_prod")
+//                    << QObject::trUtf8("t_izl_ddv_prod")
+//                    << QObject::trUtf8("t_kol")
+//                    << QObject::trUtf8("t_mag_id")
+//                    << QObject::trUtf8("t_status")
                    ;
     }
 
@@ -984,26 +984,27 @@ public:
                 << tItem.artikal_naziv
                 << tItem.tip_artikal
                 << tItem.link_artikal
-                << tItem.edm
-                << tItem.vlez_nab_cena_bez_ddv
-                << tItem.vlez_nab_cena_so_ddv
-                << tItem.vlez_prenesen_ddv
-                << tItem.vlez_prenesen_ddv_denari
-                << tItem.vlez_rabat
-                << tItem.vlez_nabaven_iznos_so_ddv
-                << tItem.vlez_marza
-                << tItem.vlez_marza_den
-                << tItem.vlez_prod_cena_bez_ddv
-                << tItem.vlez_presmetan_ddv
-                << tItem.vlez_prod_cena_so_ddv
-                << tItem.vlez_prod_iznos_so_ddv
-                << tItem.izl_cena_bez_ddv_calc
-                << tItem.izl_cena_so_ddv_calc
-                << tItem.izl_cena_so_ddv_prod
-                << tItem.izl_ddv_prod
-                << tItem.kol
-                << tItem.mag_id
-                << tItem.status;
+//                << tItem.edm
+//                << tItem.vlez_nab_cena_bez_ddv
+//                << tItem.vlez_nab_cena_so_ddv
+//                << tItem.vlez_prenesen_ddv
+//                << tItem.vlez_prenesen_ddv_denari
+//                << tItem.vlez_rabat
+//                << tItem.vlez_nabaven_iznos_so_ddv
+//                << tItem.vlez_marza
+//                << tItem.vlez_marza_den
+//                << tItem.vlez_prod_cena_bez_ddv
+//                << tItem.vlez_presmetan_ddv
+//                << tItem.vlez_prod_cena_so_ddv
+//                << tItem.vlez_prod_iznos_so_ddv
+//                << tItem.izl_cena_bez_ddv_calc
+//                << tItem.izl_cena_so_ddv_calc
+//                << tItem.izl_cena_so_ddv_prod
+//                << tItem.izl_ddv_prod
+//                << tItem.kol
+//                << tItem.mag_id
+//                << tItem.status
+                   ;
     }
 
     //------------- profakturi -------------------------------------------
