@@ -60,21 +60,21 @@ void QWorkerKomintent::onPostList(QNetworkReply *rep)
         komintentT kom_temp;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-         kom_temp.id = QString::number(obj["id"].toInt());
-         kom_temp.sifra = base64_decode(obj["sifra"].toString());
-         kom_temp.naziv = base64_decode(obj["naziv"].toString());
-         kom_temp.adresa = base64_decode(obj["adresa"].toString());
-         kom_temp.tel = base64_decode(obj["tel"].toString());
-         kom_temp.mobil = base64_decode(obj["mobil"].toString());
-         kom_temp.zirosmetka = base64_decode(obj["zirosmetka"].toString());
-         kom_temp.edb = base64_decode(obj["edb"].toString());
-         kom_temp.deponent = base64_decode(obj["deponent"].toString());
-         kom_temp.sifra_dejnost = base64_decode(obj["sifdejnost"].toString());
-         kom_temp.mb = base64_decode(obj["mb"].toString());
-         kom_temp.zabeleska1 = base64_decode(obj["zabeleska1"].toString());
-         kom_temp.zabeleska2 = base64_decode(obj["zabeleska2"].toString());
-         kom_temp.rabat = QString::number(obj["rabat"].toInt());
-         kom_temp.grad = base64_decode(obj["grad"].toString());
+         kom_temp.id = (obj["id"].toString());
+         kom_temp.sifra = (obj["sifra"].toString());
+         kom_temp.naziv = (obj["naziv"].toString());
+         kom_temp.adresa = (obj["adresa"].toString());
+         kom_temp.tel = (obj["tel"].toString());
+         kom_temp.mobil = (obj["mobil"].toString());
+         kom_temp.zirosmetka = (obj["zirosmetka"].toString());
+         kom_temp.edb = (obj["edb"].toString());
+         kom_temp.deponent = (obj["deponent"].toString());
+         kom_temp.sifra_dejnost = (obj["sifdejnost"].toString());
+         kom_temp.mb = (obj["mb"].toString());
+         kom_temp.zabeleska1 = (obj["zabeleska1"].toString());
+         kom_temp.zabeleska2 = (obj["zabeleska2"].toString());
+         kom_temp.rabat = (obj["rabat"].toString());
+         kom_temp.grad = (obj["grad"].toString());
 
 
         if(kom_temp.id == "end")
@@ -114,7 +114,7 @@ void QWorkerKomintent::insert(komintentT& komItem )
     tt_json["mb"] = komItem.mb;
     tt_json["zabeleska1"] = komItem.zabeleska1;
     tt_json["zabeleska2"] = komItem.zabeleska2;
-    tt_json["rabat"] = komItem.rabat.toInt();
+    tt_json["rabat"] = komItem.rabat;
     tt_json["grad"] = komItem.grad;
 
 
@@ -147,7 +147,7 @@ void QWorkerKomintent::update(komintentT &komItem)
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["id"] = komItem.id.toInt();
+    tt_json["id"] = komItem.id;
     tt_json["sifra"] = komItem.sifra;
     tt_json["naziv"] = komItem.naziv;
     tt_json["adresa"] = komItem.adresa;
@@ -160,9 +160,8 @@ void QWorkerKomintent::update(komintentT &komItem)
     tt_json["mb"] = komItem.mb;
     tt_json["zabeleska1"] = komItem.zabeleska1;
     tt_json["zabeleska2"] = komItem.zabeleska2;
-    tt_json["rabat"] = komItem.rabat.toInt();
+    tt_json["rabat"] = komItem.rabat;
     tt_json["grad"] = komItem.grad;
-
 
     QJsonDocument doc(tt_json);
     QByteArray tt = doc.toJson();

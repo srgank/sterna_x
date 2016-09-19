@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QKeyEvent>
 #include "qbtemplate.h"
+#include "Delegate/qcbitemdelegate.h"
+#include "Delegate/qleitemdelegate.h"
 
 #define COL_DETAIL 28
 
@@ -43,6 +45,15 @@ private:
     void showData();
     int m_row;
     QItemSelectionModel *sm;
+    QItemSelectionModel *smDetail;
+    QCBItemDelegate *comboboxD;
+    QLEItemDelegate *lineeditD;
+
+    QModelIndex m_index;
+    bool statusOpenEditor;
+    void OpenTablePersistentEditor(QTableView * table, QModelIndex &index);
+    void CloseTablePersistentEditor(QTableView * table, QModelIndex &index);
+
 signals:
     void signalpressEscape();
     void signalGetArtikal(QString, QWidget*);
@@ -50,8 +61,10 @@ signals:
 private slots:
     void on_pushButton_released();
     void selectionChanged(QModelIndex modelX,QModelIndex modelY);
+    void selectionChangedDetail(QModelIndex modelX,QModelIndex modelY);
     void on_pushButton_6_clicked();
     void on_pushButton_3_clicked();
+    void updateStructCellLineEdit(const QModelIndex & index, QString & value) ;
 };
 
 #endif // FakturiKOREKCIJA_H

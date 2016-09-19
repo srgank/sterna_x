@@ -125,6 +125,8 @@ void ArtikliKorekcija::initProc(QString m_searchID)
     ui->edmArtikalEdit->setText(itemRecord.edm);
     ui->refArtikalEdit->setText(itemRecord.ref);
     ui->kataloskiArtikalEdit->setText(itemRecord.kataloski_broj);
+    ui->kataloskiArtikalEdit_2->setText(itemRecord.proizvoditel);
+    ui->kataloskiArtikalEdit_3->setText(itemRecord.kategorija);
     int stop = 0;
 }
 //getResultEXUpdate
@@ -140,6 +142,9 @@ void ArtikliKorekcija::on_pushButton_released()
     art_temp.ref = ui->refArtikalEdit->text();
     art_temp.kataloski_broj = ui->kataloskiArtikalEdit->text();
     art_temp.ddv = ui->ddvCombo->lineEdit()->text();
+    art_temp.proizvoditel = ui->kataloskiArtikalEdit_2->text();
+    art_temp.kategorija = ui->kataloskiArtikalEdit_3->text();
+
     hlp->UpdateArtikal(art_temp);
     pressEscape();
 }

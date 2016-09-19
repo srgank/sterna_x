@@ -123,8 +123,8 @@ void ArtikliVnes::on_pushButton_clicked()
     art.ref = ui->refArtikalEdit->text();
     art.kataloski_broj = ui->kataloskiArtikalEdit->text();
     art.ddv = ui->ddvCombo->lineEdit()->text();
-    art.proizvoditel = "";
-    art.kategorija = "";
+    art.proizvoditel = ui->kataloskiArtikalEdit_2->text();
+    art.kategorija = ui->kataloskiArtikalEdit_3->text();
     hlp->InsertArtikal(art);
     pressEscape();
 }

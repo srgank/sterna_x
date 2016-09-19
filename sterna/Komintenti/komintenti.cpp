@@ -10,7 +10,7 @@ Komintenti::Komintenti(BaseForm *parent) :
   ,m_KomintentiVnes(0)
   ,m_KomintentiKorekcija(0)
   ,searchIDList(0)
-  ,searchStrList("%")
+  ,searchStrList("")
   ,searchOffsetList(0)
 
 {

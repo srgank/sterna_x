@@ -60,15 +60,15 @@ void QWorkerArtikli::onPostList(QNetworkReply *rep)
         artikalT art_temp;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        art_temp.id = QString::number(obj["id"].toInt());
-        art_temp.sifra = base64_decode(obj["sifra"].toString());
-        art_temp.artikal = base64_decode(obj["artikal"].toString());
-        art_temp.edm = base64_decode(obj["edm"].toString());
-        art_temp.ref = base64_decode(obj["ref"].toString());
-        art_temp.kataloski_broj = base64_decode(obj["kataloski_broj"].toString());
-        art_temp.ddv = QString::number(obj["ddv"].toInt());
-        art_temp.proizvoditel = base64_decode(obj["proizvoditel"].toString());
-        art_temp.kategorija = base64_decode(obj["kategorija"].toString());
+        art_temp.id = (obj["id"].toString());
+        art_temp.sifra = (obj["sifra"].toString());
+        art_temp.artikal = (obj["artikal"].toString());
+        art_temp.edm = (obj["edm"].toString());
+        art_temp.ref = (obj["ref"].toString());
+        art_temp.kataloski_broj = (obj["kataloski_broj"].toString());
+        art_temp.ddv = (obj["ddv"].toString());
+        art_temp.proizvoditel = (obj["proizvoditel"].toString());
+        art_temp.kategorija = (obj["kategorija"].toString());
 
 
         if(art_temp.id == "end")
@@ -99,7 +99,7 @@ void QWorkerArtikli::insert(artikalT& itemArt)
     tt_json["edm"] = itemArt.edm;
     tt_json["ref"] = itemArt.ref;
     tt_json["kataloski_broj"] = itemArt.kataloski_broj;
-    tt_json["ddv"] = itemArt.ddv.toInt();
+    tt_json["ddv"] = itemArt.ddv;
     tt_json["proizvoditel"] = itemArt.proizvoditel;
     tt_json["kategorija"] = itemArt.kategorija;
 
@@ -133,13 +133,13 @@ void QWorkerArtikli::update(artikalT& itemArt)
     QByteArray postData;
 
     QJsonObject tt_json;
-    tt_json["id"] = itemArt.id.toInt();
+    tt_json["id"] = itemArt.id;
     tt_json["sifra"] = itemArt.sifra;
     tt_json["artikal"] = itemArt.artikal;
     tt_json["edm"] = itemArt.edm;
     tt_json["ref"] = itemArt.ref;
     tt_json["kataloski_broj"] = itemArt.kataloski_broj;
-    tt_json["ddv"] = itemArt.ddv.toInt();
+    tt_json["ddv"] = itemArt.ddv;
     tt_json["proizvoditel"] = itemArt.proizvoditel;
     tt_json["kategorija"] = itemArt.kategorija;
 

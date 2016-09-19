@@ -57,7 +57,9 @@ SOURCES += main.cpp\
     Helper/qworker_artikli.cpp \
     Helper/qworker_komintent.cpp \
     Helper/qworker_dokumenti.cpp \
-    Helper/qworker_magacin.cpp
+    Helper/qworker_magacin.cpp \
+    Delegate/qcbitemdelegate.cpp \
+    Delegate/qleitemdelegate.cpp
 
 
 
@@ -107,7 +109,9 @@ HEADERS  += mainwindow.h \
     Helper/qworker_dokumenti.h \
     Helper/qworker_magacin.h \
     Struct/struct.h \
-    qbtemplate.h
+    qbtemplate.h \
+    Delegate/qcbitemdelegate.h \
+    Delegate/qleitemdelegate.h
 
 
 

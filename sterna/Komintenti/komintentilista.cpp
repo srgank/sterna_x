@@ -21,7 +21,7 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     numOffset = 0;
     QString vOffset = QString::number(numOffset);
     QString vLimit = "50";
-    QString vSName = "%";
+    QString vSName = "";
     QString vSearchBy = "naziv";
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
@@ -50,6 +50,7 @@ void KomintentiLista::initProc(int searchIDList, QString& searchStrList, int sea
 {
     seTableSelected_Offset(searchOffsetList);
     ui->lineEditPrebaraj->setText(searchStrList);
+
     on_lineEditPrebaraj_textChanged(searchStrList);
     seTableSelectedRow(searchIDList);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
@@ -133,7 +134,7 @@ void KomintentiLista::on_pushButton_4_clicked()
     numOffset -= 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->lineEditPrebaraj->text() + "%";
+    QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
 //    ShowData(listRes);
@@ -147,7 +148,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     numOffset += 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->lineEditPrebaraj->text() + "%";
+    QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
 //    ShowData(listRes);
@@ -200,7 +201,7 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     numOffset = 0;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->lineEditPrebaraj->text() + "%";
+    QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
     b.ShowData(listRes, model, header, ui->tableView, colWidth);

@@ -114,7 +114,7 @@ void ArtikliLista::on_pushButton_5_clicked()
     numOffset -= 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->LE_prebaraj->text() + "%";
+    QString vSName = ui->LE_prebaraj->text();
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     resArtikliTemp = res;
@@ -126,7 +126,7 @@ void ArtikliLista::on_pushButton_6_clicked()
     numOffset += 50;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->LE_prebaraj->text() + "%";
+    QString vSName = ui->LE_prebaraj->text();
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     resArtikliTemp = res;
@@ -138,7 +138,7 @@ void ArtikliLista::on_LE_prebaraj_textChanged(const QString &arg1)
     numOffset = 0;
     QString vLimit = "50";
     QString vOffset = QString::number(numOffset);
-    QString vSName = ui->LE_prebaraj->text() + "%";
+    QString vSName = ui->LE_prebaraj->text();
     QString vSearchBy = "artikal";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     resArtikliTemp = res;

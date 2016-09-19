@@ -8,7 +8,7 @@ Artikli::Artikli(BaseForm *parent) :
     ,m_ArtikliVnes(0)
     ,m_ArtikliKorekcija(0)
     ,searchIDList(0)
-    ,searchStrList("%")
+    ,searchStrList("")
     ,searchOffsetList(0)
 
 {
