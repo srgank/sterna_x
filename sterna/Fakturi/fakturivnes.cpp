@@ -10,10 +10,33 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     ui->setupUi(this);
     hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
+
+    str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    ui->artikal->installEventFilter(this);
+    ui->cena_so_ddv->installEventFilter(this);
+    ui->dateTimeDatum->installEventFilter(this);
+    ui->dateTimeValuta->installEventFilter(this);
+    ui->kolicina->installEventFilter(this);
+    ui->komintent->installEventFilter(this);
+    ui->rabat->installEventFilter(this);
+    ui->rok_za_plakanje_denovi->installEventFilter(this);
+    ui->vk_ddv_iznos->installEventFilter(this);
+    ui->vk_iznos_bez_ddv->installEventFilter(this);
+    ui->vk_iznos_so_ddv->installEventFilter(this);
+    ui->zaliha->installEventFilter(this);
+
+
+
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+
+    strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    ui->sifra_artikal->setStyleSheet(strDisabled);
+    ui->sifra_komintent->setStyleSheet(strDisabled);
+
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
 
@@ -46,32 +69,32 @@ void FakturiVnes::pressEscape()
 void FakturiVnes::on_pushButton_released()
 {
 
-    QString blankText = "";
-    QString blankDdv = "18";
-    QString a1 = ui->lineEdit_2->text();
-    QString a2 = ui->lineEdit_3->text();
-    QString a3 = ui->lineEdit_4->text();
-    QString a4 = ui->lineEdit_5->text();
-    QString a5 = ui->lineEdit_6->text();
+
 
 
 }
+
+
 
 void FakturiVnes::setFocusArtikal(artikalT t)
 {
-    ui->lineEdit_2->setFocus();
-    ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t.artikal);
+    ui->artikal->setFocus();
+    ui->artikal->selectAll();
+    ui->artikal->setText(t.artikal);
+    ui->sifra_artikal->setText(t.sifra);
     PressKeyTAB(this);
 }
 
-void FakturiVnes::setFocusKomintent(QString t)
+void FakturiVnes::setFocusKomintent(komintentT t)
 {
-    ui->lineEdit->setFocus();
-    ui->lineEdit->selectAll();
-    ui->lineEdit->setText(t);
+    ui->komintent->setFocus();
+    ui->komintent->selectAll();
+    ui->komintent->setText(t.naziv);
+    ui->sifra_komintent->setText(t.sifra);
     PressKeyTAB(this);
 }
+
+
 void FakturiVnes::pressReturn()
 {
     if(ui->pushButton_3->hasFocus())
@@ -84,11 +107,11 @@ void FakturiVnes::pressReturn()
         procDeleteItem();
         showData();
     }
-    else if(ui->lineEdit->hasFocus())
+    else if(ui->komintent->hasFocus())
     {
         emit signalGetKomintent("", (QWidget*)this);
     }
-    else if(ui->lineEdit_2->hasFocus())
+    else if(ui->artikal->hasFocus())
     {
         emit signalGetArtikal("", (QWidget*)this);
     }
@@ -119,7 +142,7 @@ void FakturiVnes::procDeleteItem(){
 void FakturiVnes::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
-    item.artikal_naziv = ui->lineEdit_2->text();
+    item.artikal_naziv = ui->artikal->text();
     bd->AddItem(data, item);
     resFakturaItems = data;
 }
@@ -167,4 +190,17 @@ void FakturiVnes::on_pushButton_4_clicked()
     hlp->InsertMagacin(listDokDetail);
     pressEscape();
 
+}
+bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::FocusIn)
+    {
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+
+    return false;
 }

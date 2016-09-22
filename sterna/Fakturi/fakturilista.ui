@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
-    <height>498</height>
+    <width>1152</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>738</width>
-     <height>401</height>
+     <width>1061</width>
+     <height>611</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -87,7 +87,7 @@ p, li { white-space: pre-wrap; }
      </spacer>
     </item>
     <item row="0" column="5">
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="radioButtonPecatiLista">
       <property name="text">
        <string>Печати листа на фактури</string>
       </property>
@@ -101,10 +101,10 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="1" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_7"/>
+     <widget class="QLineEdit" name="prebaruvanje_po_komintent"/>
     </item>
     <item row="1" column="5">
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="radioButtonPecatiSelektirana">
       <property name="text">
        <string>Печати селектирана фактура</string>
       </property>
@@ -237,7 +237,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="vk_iznos_so_ddv">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -254,7 +254,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="3">
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="vk_platen_iznos">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -271,7 +271,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="5">
-     <widget class="QLineEdit" name="lineEdit_9">
+     <widget class="QLineEdit" name="ostanato_za_plakanje">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -306,16 +306,16 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_7</tabstop>
+  <tabstop>prebaruvanje_po_komintent</tabstop>
   <tabstop>tableView</tabstop>
   <tabstop>tableView_2</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>lineEdit_9</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
+  <tabstop>vk_platen_iznos</tabstop>
+  <tabstop>ostanato_za_plakanje</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>pushButton_2</tabstop>
-  <tabstop>radioButton</tabstop>
-  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButtonPecatiLista</tabstop>
+  <tabstop>radioButtonPecatiSelektirana</tabstop>
  </tabstops>
  <resources/>
  <connections/>

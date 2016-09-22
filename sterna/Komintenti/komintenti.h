@@ -51,7 +51,7 @@ private slots:
     void pressEscapeFromLista();
     void pressEscapeFromVnes();
     void pressEscapeFromKorekcija();
-    void pressReturnResult(QString text);
+    void pressReturnResult(komintentT text);
 
 
 signals:

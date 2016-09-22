@@ -28,7 +28,7 @@ public:
     virtual void updateFont();
     void initProc(faktura_trans m_data);
     void setFocusArtikal(artikalT t);
-    void setFocusKomintent(QString t);
+    void setFocusKomintent(komintentT t);
 
 private:
     Ui::FakturiKorekcija *ui;
@@ -49,11 +49,14 @@ private:
     QItemSelectionModel *smDetail;
     QCBItemDelegate *comboboxD;
     QLEItemDelegate *lineeditD;
-
+    QString str_yellow;
+    QString str_none;
     QModelIndex m_index;
     bool statusOpenEditor;
     void OpenTablePersistentEditor(QTableView * table, QModelIndex &index);
     void CloseTablePersistentEditor(QTableView * table, QModelIndex &index);
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev);
 
 signals:
     void signalpressEscape();

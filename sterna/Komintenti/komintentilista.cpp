@@ -137,7 +137,7 @@ void KomintentiLista::on_pushButton_4_clicked()
     QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-//    ShowData(listRes);
+    resKomintentTemp = listRes;
     b.ShowData(listRes, model, header, ui->tableView, colWidth);
     ui->pushButton_4->setEnabled(true);
 }
@@ -151,7 +151,7 @@ void KomintentiLista::on_pushButton_5_clicked()
     QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
-//    ShowData(listRes);
+    resKomintentTemp = listRes;
     b.ShowData(listRes, model, header, ui->tableView, colWidth);
     ui->pushButton_5->setEnabled(true);
 }
@@ -187,7 +187,9 @@ void KomintentiLista::pressReturn()
 {
     if(ui->tableView->hasFocus())
     {
-        emit signalReturnResult( ui->lineEdit_4->text());
+        komintentT currentKomintent = b.getCurrentArtikalKomintentData(resKomintentTemp, m_selectedID);
+
+        emit signalReturnResult( currentKomintent);
     }
     else
     {
@@ -204,8 +206,8 @@ void KomintentiLista::on_lineEditPrebaraj_textChanged(const QString &arg1)
     QString vSName = ui->lineEditPrebaraj->text() + "";
     QString vSearchBy = "naziv";
     QList<komintentT> listRes = hlp->getallKomintenti(vOffset, vLimit, vSName, vSearchBy);
+    resKomintentTemp = listRes;
     b.ShowData(listRes, model, header, ui->tableView, colWidth);
-    //    ShowData(listRes);
 }
 
 void KomintentiLista::updateFont()

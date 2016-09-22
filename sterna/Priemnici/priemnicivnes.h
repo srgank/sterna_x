@@ -20,7 +20,7 @@ public:
     virtual void pressEnter();
     virtual void pressReturn();
     void setFocusArtikal(artikalT t);
-    void setFocusKomintent(QString t);
+    void setFocusKomintent(komintentT t);
 
 private:
     Ui::PriemniciVnes *ui;

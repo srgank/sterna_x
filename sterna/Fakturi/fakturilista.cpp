@@ -96,12 +96,12 @@ void FakturiLista::seTableSelectedRow(int m_row)
 }
 QString FakturiLista::getSearchString()
 {
-    return ui->lineEdit_7->text();
+    return ui->prebaruvanje_po_komintent->text();
 }
 
 void FakturiLista::setSearchString(QString& searchText)
 {
-    ui->lineEdit_7->setText(searchText);
+    ui->prebaruvanje_po_komintent->setText(searchText);
 }
 
 void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
@@ -154,7 +154,7 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 void FakturiLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
 {
     seTableSelected_Offset(searchOffsetList);
-    ui->lineEdit_7->setText(searchStrList);
+    ui->prebaruvanje_po_komintent->setText(searchStrList);
     on_lineEdit_textChanged(searchStrList);
     seTableSelectedRow(searchIDList);
     PressKeyTAB(this);

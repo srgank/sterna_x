@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>751</width>
-    <height>497</height>
+    <width>1087</width>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>691</width>
-     <height>451</height>
+     <width>1051</width>
+     <height>631</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -55,7 +55,7 @@
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QLineEdit" name="lineEdit_6"/>
+     <widget class="QLineEdit" name="rabat"/>
     </item>
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="label_4">
@@ -118,7 +118,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QTableView" name="tableView"/>
     </item>
     <item row="4" column="1">
-     <widget class="QDateTimeEdit" name="dateTimeEdit">
+     <widget class="QDateTimeEdit" name="dateTimeDatum">
       <property name="date">
        <date>
         <year>2000</year>
@@ -135,14 +135,14 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="10" column="1">
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="rok_za_plakanje_denovi">
       <property name="text">
        <string>8</string>
       </property>
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="artikal">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -155,7 +155,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="4" column="3">
-     <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+     <widget class="QDateTimeEdit" name="dateTimeValuta">
       <property name="date">
        <date>
         <year>2000</year>
@@ -172,7 +172,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="3" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="komintent">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -199,20 +199,20 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="6" column="3">
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="zaliha">
       <property name="readOnly">
        <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="7" column="3" rowspan="4">
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="zabeleska"/>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="cena_so_ddv"/>
     </item>
     <item row="7" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="kolicina"/>
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="label_5">
@@ -238,7 +238,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_9">
+       <widget class="QLineEdit" name="vk_iznos_bez_ddv">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -252,7 +252,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEdit_10">
+       <widget class="QLineEdit" name="vk_ddv_iznos">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -266,7 +266,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLineEdit" name="lineEdit_11">
+       <widget class="QLineEdit" name="vk_iznos_so_ddv">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -282,9 +282,15 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="sifra_komintent">
       <property name="enabled">
        <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -303,7 +309,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_12">
+     <widget class="QLineEdit" name="sifra_artikal">
       <property name="enabled">
        <bool>false</bool>
       </property>
@@ -313,22 +319,22 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>dateTimeEdit</tabstop>
-  <tabstop>dateTimeEdit_2</tabstop>
-  <tabstop>lineEdit_12</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>textEdit</tabstop>
+  <tabstop>sifra_komintent</tabstop>
+  <tabstop>komintent</tabstop>
+  <tabstop>dateTimeDatum</tabstop>
+  <tabstop>dateTimeValuta</tabstop>
+  <tabstop>sifra_artikal</tabstop>
+  <tabstop>artikal</tabstop>
+  <tabstop>zaliha</tabstop>
+  <tabstop>kolicina</tabstop>
+  <tabstop>cena_so_ddv</tabstop>
+  <tabstop>rabat</tabstop>
+  <tabstop>rok_za_plakanje_denovi</tabstop>
+  <tabstop>zabeleska</tabstop>
   <tabstop>tableView</tabstop>
-  <tabstop>lineEdit_9</tabstop>
-  <tabstop>lineEdit_10</tabstop>
-  <tabstop>lineEdit_11</tabstop>
+  <tabstop>vk_iznos_bez_ddv</tabstop>
+  <tabstop>vk_ddv_iznos</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_6</tabstop>
   <tabstop>pushButtonA</tabstop>

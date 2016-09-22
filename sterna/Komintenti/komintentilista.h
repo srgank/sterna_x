@@ -51,12 +51,12 @@ private:
     int m_row;
     QBTemplate<komintentT> b;
     QItemSelectionModel *sm;
-
+    QList<komintentT> resKomintentTemp;
 signals:
     void signalpressF2();
     void signalpressF3();
     void signalpressEscape();
-    void signalReturnResult(QString);
+    void signalReturnResult(komintentT);
 
 private slots:
 

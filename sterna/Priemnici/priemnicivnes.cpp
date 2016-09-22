@@ -103,11 +103,11 @@ void PriemniciVnes::setFocusArtikal(artikalT t)
     QCoreApplication::postEvent(this, event);
 }
 
-void PriemniciVnes::setFocusKomintent(QString t)
+void PriemniciVnes::setFocusKomintent(komintentT t)
 {
     ui->lineEdit->setFocus();
     ui->lineEdit->selectAll();
-    ui->lineEdit->setText(t);
+    ui->lineEdit->setText(t.naziv);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
 }

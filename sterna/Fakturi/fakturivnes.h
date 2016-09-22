@@ -25,7 +25,7 @@ public:
     virtual void pressReturn();
     virtual void updateFont();
     void initProc(faktura_trans m_data);
-    void setFocusKomintent(QString t);
+    void setFocusKomintent(komintentT t);
     void setFocusArtikal(artikalT t);
 
 private:
@@ -43,6 +43,13 @@ private:
     void showData();
     int m_row;
     QItemSelectionModel *sm;
+    QString strDisabled;
+    QString str_yellow;
+    QString str_none;
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev);
+
 signals:
     void signalpressEscape();
     void signalGetArtikal(QString, QWidget*);
