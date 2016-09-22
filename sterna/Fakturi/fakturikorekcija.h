@@ -38,6 +38,7 @@ private:
     QString m_id_artikal;
     bool statusWait;
     QBTemplate<fakturiDetailT> *bd;
+    fakturiT resFaktura;
     QList<fakturiDetailT> resFakturaItems;\
     QList<int> colDetailWidth;
     void procDeleteItem();
@@ -65,6 +66,7 @@ private slots:
     void on_pushButton_6_clicked();
     void on_pushButton_3_clicked();
     void updateStructCellLineEdit(const QModelIndex & index, QString & value) ;
+    void on_pushButton_4_clicked();
 };
 
 #endif // FakturiKOREKCIJA_H

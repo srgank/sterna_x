@@ -58,34 +58,34 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
         dokumentT doc_temp;
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
-        doc_temp.tid = QString::number(obj["TID"].toInt());
-        doc_temp.dokument_id = QString::number(obj["DOCUMENT_ID"].toInt());
-        doc_temp.dokument_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
-        doc_temp.td = (obj["TD"].toString());
-        doc_temp.tds = (obj["TDS"].toString());
-        doc_temp.komintent_id = QString::number(obj["KOMINTENT_ID"].toInt());
+        doc_temp.tid = obj["TID"].toString();
+        doc_temp.dokument_id = obj["DOCUMENT_ID"].toString();
+        doc_temp.dokument_tip = obj["DOCUMENT_TIP"].toString();
+        doc_temp.td = obj["TD"].toString();
+        doc_temp.tds = obj["TDS"].toString();
+        doc_temp.komintent_id = obj["KOMINTENT_ID"].toString();
         doc_temp.komintent_naziv = obj["KOMINTENT_NAZIV"].toString();
-        doc_temp.prevoznik_id = QString::number(obj["PREVOZNIK_ID"].toInt());
+        doc_temp.prevoznik_id = obj["PREVOZNIK_ID"].toString();
         doc_temp.prevoznik_naziv = obj["PREVOZNIK_NAZIV"].toString();
-        doc_temp.valuta = (obj["VALUTA"].toString());
-        doc_temp.kurs = QString::number(obj["KURS"].toDouble(), 'f', 2);
-        doc_temp.iznos_val = QString::number(obj["IZNOS_VAL"].toDouble(), 'f', 2);
-        doc_temp.ddv_val = QString::number(obj["DDV_VAL"].toDouble(), 'f', 2);
-        doc_temp.rabat_val = QString::number(obj["RABAT_VAL"].toDouble(), 'f', 2);
-        doc_temp.iznos_plakanje_val = QString::number(obj["IZNOS_PLAKANJE_VAL"].toDouble(), 'f', 2);
-        doc_temp.iznos_ddv_den = QString::number(obj["IZNOS_DDV_DEN"].toDouble(), 'f', 2);
-        doc_temp.rabat_den = QString::number(obj["RABAT_DEN"].toDouble(), 'f', 2);
-        doc_temp.iznos_plakanje_den = QString::number(obj["IZNOS_PLAKANJE_DEN"].toDouble(), 'f', 2);
+        doc_temp.valuta = obj["VALUTA"].toString();
+        doc_temp.kurs = obj["KURS"].toString();
+        doc_temp.iznos_val = obj["IZNOS_VAL"].toString();
+        doc_temp.ddv_val = obj["DDV_VAL"].toString();
+        doc_temp.rabat_val = obj["RABAT_VAL"].toString();
+        doc_temp.iznos_plakanje_val = obj["IZNOS_PLAKANJE_VAL"].toString();
+        doc_temp.iznos_ddv_den = obj["IZNOS_DDV_DEN"].toString();
+        doc_temp.rabat_den = obj["RABAT_DEN"].toString();
+        doc_temp.iznos_plakanje_den = obj["IZNOS_PLAKANJE_DEN"].toString();
 
-        doc_temp.transport_den = QString::number(obj["TRANSPORT_DEN"].toDouble(), 'f', 2);
-        doc_temp.carina_den = QString::number(obj["CARINA_DEN"].toDouble(), 'f', 2);
-        doc_temp.ddv_den = QString::number(obj["DDV_DEN"].toDouble(), 'f', 2);
-        doc_temp.drugi_trosoci_den = QString::number(obj["DRUGI_TROSOCI_DEN"].toDouble(), 'f', 2);
-        doc_temp.dok_status = base64_decode(obj["DOK_STATUS"].toString());
-        doc_temp.user_id = QString::number(obj["USER_ID"].toInt());
-        doc_temp.komentar = base64_decode(obj["KOMENTAR"].toString());
-        doc_temp.mag_id = QString::number(obj["MAG_ID"].toInt());
-        doc_temp.object_id = QString::number(obj["OBJECT_ID"].toInt());
+        doc_temp.transport_den = obj["TRANSPORT_DEN"].toString();
+        doc_temp.carina_den = obj["CARINA_DEN"].toString();
+        doc_temp.ddv_den = obj["DDV_DEN"].toString();
+        doc_temp.drugi_trosoci_den = obj["DRUGI_TROSOCI_DEN"].toString();
+        doc_temp.dok_status = obj["DOK_STATUS"].toString();
+        doc_temp.user_id = obj["USER_ID"].toString();
+        doc_temp.komentar = obj["KOMENTAR"].toString();
+        doc_temp.mag_id = obj["MAG_ID"].toString();
+        doc_temp.object_id = obj["OBJECT_ID"].toString();
 
         if(doc_temp.tid == "end")
         {
@@ -103,7 +103,7 @@ void QWorkerDokumenti::insert(dokumentT &item )
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "insert_dokument");
+    QUrl serviceUrl = QUrl(urlhost + "insert_dokumenti");
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
     QByteArray postData;
@@ -162,7 +162,7 @@ void QWorkerDokumenti::update(dokumentT & item)
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
-    QUrl serviceUrl = QUrl(urlhost + "update_dokument");
+    QUrl serviceUrl = QUrl(urlhost + "update_dokumenti");
     QByteArray HeaderVar = "X-Api-Key";
     QByteArray HeaderValue = "aaa";
     QByteArray postData;

@@ -146,3 +146,25 @@ void FakturiVnes::updateFont()
     ui->tableView->setFont(this->font());
     repaint();
 }
+
+void FakturiVnes::on_pushButton_4_clicked()
+{
+    // vnesi faktura
+    QString blankText = "";
+    QString blankDdv = "18";
+    dokumentT dok;
+    dok.komintent_naziv = "Test";
+    dok.dokument_id = "1";
+    dok.dokument_tip = "20";
+    hlp->InsertDokumenti(dok);
+
+    QList<dokumentDetailT> listDokDetail;
+    dokumentDetailT dokDetail;
+    dokDetail.dokument_id = "1";
+    dokDetail.dokument_tip = "20";
+    dokDetail.artikal_naziv = "TEST ART";
+    listDokDetail.append(dokDetail);
+    hlp->InsertMagacin(listDokDetail);
+    pressEscape();
+
+}

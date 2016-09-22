@@ -165,6 +165,7 @@ void FakturiKorekcija::selectionChangedDetail(QModelIndex modelX,QModelIndex mod
 
 void FakturiKorekcija::initProc(faktura_trans m_data)
 {
+    resFaktura = m_data.data1;
     resFakturaItems = m_data.data2;
     showData();
     PressKeyTAB(this);
@@ -224,4 +225,44 @@ void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QStri
         model->item(index.row(), 5)->setText(value);break;
 
     }
+}
+
+void FakturiKorekcija::on_pushButton_4_clicked()
+{
+    // update faktura
+    resFaktura.komintent_naziv = ui->lineEdit->text();
+
+    dokumentT dok;
+    dok.tid = resFaktura.tid;
+    dok.dokument_id = resFaktura.dokument_id;
+    dok.dokument_tip = resFaktura.dokument_tip;
+    dok.td = resFaktura.td;
+    dok.tds = resFaktura.tds;
+    dok.komintent_id = resFaktura.komintent_id;
+    dok.komintent_naziv = resFaktura.komintent_naziv;
+    dok.prevoznik_id = resFaktura.prevoznik_id;
+    dok.prevoznik_naziv = resFaktura.prevoznik_naziv;
+    dok.valuta = resFaktura.valuta;
+    dok.kurs = resFaktura.kurs;
+    dok.iznos_val = resFaktura.iznos_val;
+    dok.ddv_val = resFaktura.ddv_val;
+    dok.rabat_val = resFaktura.rabat_val;
+    dok.iznos_plakanje_val = resFaktura.iznos_plakanje_val;
+    dok.iznos_ddv_den = resFaktura.iznos_ddv_den;
+    dok.rabat_den = resFaktura.rabat_den;
+    dok.iznos_plakanje_den = resFaktura.iznos_plakanje_den;
+    dok.transport_den = resFaktura.transport_den;
+    dok.carina_den = resFaktura.carina_den;
+    dok.ddv_den = resFaktura.ddv_den;
+    dok.drugi_trosoci_den = resFaktura.drugi_trosoci_den;
+    dok.dok_status = resFaktura.dok_status;
+    dok.user_id = resFaktura.user_id;
+    dok.komentar = resFaktura.komentar;
+    dok.mag_id = resFaktura.mag_id;
+    dok.object_id = resFaktura.object_id;
+
+    hlp->UpdateDokumenti(dok);
+
+
+    pressEscape();
 }

@@ -98,10 +98,12 @@ QString FakturiLista::getSearchString()
 {
     return ui->lineEdit_7->text();
 }
+
 void FakturiLista::setSearchString(QString& searchText)
 {
     ui->lineEdit_7->setText(searchText);
 }
+
 void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
 {
     enableClose = false;
@@ -144,7 +146,7 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     bc->ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
-    currentData = b->getCurrentData(resFakturaTemp, vDok_Id);
+    currentData = b->getCurrentData(resFakturaTemp, m_row);
     bc->ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     enableClose = true;
