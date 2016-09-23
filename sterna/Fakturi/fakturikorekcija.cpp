@@ -14,6 +14,10 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
 
     str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    QString strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    ui->sifra_artikal->setStyleSheet(strDisabled);
+    ui->sifra_komintent->setStyleSheet(strDisabled);
+
     ui->artikal->installEventFilter(this);
     ui->cena_so_ddv->installEventFilter(this);
     ui->dateTimeDatum->installEventFilter(this);
@@ -217,8 +221,25 @@ void FakturiKorekcija::on_pushButton_3_clicked()
 
 void FakturiKorekcija::updateFont()
 {
-    ui->tableView->setFont(this->font());
-    repaint();
+    Singleton *s = Singleton::Instance();
+    QString str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    QString strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    ui->tableView->setStyleSheet(str_none);
+    ui->sifra_artikal->setStyleSheet(strDisabled);
+    ui->artikal->setStyleSheet(str_none);
+    ui->cena_so_ddv->setStyleSheet(str_none);
+    ui->dateTimeDatum->setStyleSheet(str_none);
+    ui->dateTimeValuta->setStyleSheet(str_none);
+    ui->kolicina->setStyleSheet(str_none);
+    ui->sifra_komintent->setStyleSheet(strDisabled);
+    ui->komintent->setStyleSheet(str_none);
+    ui->rabat->setStyleSheet(str_none);
+    ui->rok_za_plakanje_denovi->setStyleSheet(str_none);
+    ui->vk_ddv_iznos->setStyleSheet(str_none);
+    ui->vk_iznos_bez_ddv->setStyleSheet(str_none);
+    ui->vk_iznos_so_ddv->setStyleSheet(str_none);
+    ui->zaliha->setStyleSheet(str_none);
+
 }
 
 void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QString & value)
