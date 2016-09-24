@@ -24,7 +24,7 @@ public:
     int stat_finished;
     void insert(QList<dokumentDetailT>& itemDokList);
     void update(QList<dokumentDetailT>& itemDokList);
-
+    void delete_(QList<dokumentDetailT>& itemDokList);
 private:
     QNetworkAccessManager networkManager;
     QString urlhost;
@@ -33,11 +33,13 @@ signals:
     void finishedSearch();
     void finishedInsert();
     void finishedUpdate();
+    void finishedDelete();
 
 public slots:
     void onPostList(QNetworkReply *rep);
     void onPostInsert(QNetworkReply *rep);
     void onPostUpdate(QNetworkReply *rep);
+    void onPostDelete(QNetworkReply *rep);
 };
 
 #endif // QWORKERMAGACIN_H

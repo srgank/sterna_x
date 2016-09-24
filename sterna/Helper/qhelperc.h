@@ -25,12 +25,13 @@ public:
     void UpdateKomintent(komintentT &komItem);
 
     QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip );
-    void InsertDokumenti(dokumentT &Item);
+    QList<dokumentT> InsertDokumenti(dokumentT &Item);
     void UpdateDokumenti(dokumentT &Item);
 
     QList<dokumentDetailT> getallMagacin(QString& offset, QString& limit, QString &vDokID, QString &vDokTip );
     void InsertMagacin(QList<dokumentDetailT> &ItemList);
     void UpdateMagacin(QList<dokumentDetailT> &ItemList);
+    void DeleteMagacin(QList<dokumentDetailT> &ItemList);
 
 private:
 

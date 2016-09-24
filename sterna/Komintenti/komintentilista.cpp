@@ -16,7 +16,8 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     setLayout(ui->gridLayout);
 
     ui->tableView->setFont(this->font());
-
+    ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
     numOffset = 0;
     QString vOffset = QString::number(numOffset);

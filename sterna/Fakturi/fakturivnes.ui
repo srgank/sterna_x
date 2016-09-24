@@ -330,16 +330,16 @@ p, li { white-space: pre-wrap; }
   <tabstop>cena_so_ddv</tabstop>
   <tabstop>rabat</tabstop>
   <tabstop>rok_za_plakanje_denovi</tabstop>
-  <tabstop>zabeleska</tabstop>
-  <tabstop>tableView</tabstop>
-  <tabstop>vk_iznos_bez_ddv</tabstop>
-  <tabstop>vk_ddv_iznos</tabstop>
-  <tabstop>vk_iznos_so_ddv</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_6</tabstop>
   <tabstop>pushButtonA</tabstop>
   <tabstop>pushButton_4</tabstop>
   <tabstop>pushButton_5</tabstop>
+  <tabstop>zabeleska</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>vk_iznos_bez_ddv</tabstop>
+  <tabstop>vk_ddv_iznos</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
  </tabstops>
  <resources/>
  <connections/>

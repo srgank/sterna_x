@@ -8,7 +8,7 @@ Fakturi::Fakturi(BaseForm *parent) :
   ,m_FakturiVnes(0)
   ,m_FakturiKorekcija(0)
   ,searchIDList(0)
-  ,searchStrList("%")
+  ,searchStrList("")
   ,searchOffsetList(0)
 
 {

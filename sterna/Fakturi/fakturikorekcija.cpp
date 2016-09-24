@@ -17,7 +17,6 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     QString strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     ui->sifra_artikal->setStyleSheet(strDisabled);
     ui->sifra_komintent->setStyleSheet(strDisabled);
-
     ui->artikal->installEventFilter(this);
     ui->cena_so_ddv->installEventFilter(this);
     ui->dateTimeDatum->installEventFilter(this);
@@ -30,6 +29,12 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     ui->vk_iznos_bez_ddv->installEventFilter(this);
     ui->vk_iznos_so_ddv->installEventFilter(this);
     ui->zaliha->installEventFilter(this);
+    ui->pushButton_3->installEventFilter(this);
+    ui->pushButton_4->installEventFilter(this);
+    ui->pushButton_6->installEventFilter(this);
+    ui->pushButton_5->installEventFilter(this);
+    ui->pushButtonA->installEventFilter(this);
+
 
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
@@ -94,19 +99,15 @@ void FakturiKorekcija::setFocusKomintent(komintentT t)
     PressKeyTAB(this);
 }
 
+
 void FakturiKorekcija::pressReturn()
 {
-    if(ui->pushButton_3->hasFocus())
-    {
-        procAddItem();
-        showData();
-    }
     if(ui->pushButton_6->hasFocus())
     {
         procDeleteItem();
         showData();
     }
-    if(ui->tableView->hasFocus())
+    else if(ui->tableView->hasFocus())
     {
         if (!statusOpenEditor){
             OpenTablePersistentEditor(ui->tableView, m_index);
@@ -124,6 +125,13 @@ void FakturiKorekcija::pressReturn()
     {
         emit signalGetArtikal("", (QWidget*)this);
     }
+    else if(ui->pushButton_3->hasFocus())
+    {
+        procAddItem();
+        showData();
+        ui->artikal->setFocus();
+    }
+
     else
     {
         if (statusOpenEditor){
@@ -184,8 +192,10 @@ void FakturiKorekcija::initProc(faktura_trans m_data)
     ui->komintent->setText(resFaktura.komintent_naziv);
 
     resFakturaItems = m_data.data2;
+    resFakturaItems_oldData = m_data.data2;
     showData();
-    PressKeyTAB(this);
+    //PressKeyTAB(this);
+    ui->artikal->setFocus();
 }
 
 void FakturiKorekcija::procDeleteItem(){
@@ -197,9 +207,21 @@ void FakturiKorekcija::procDeleteItem(){
 void FakturiKorekcija::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
+    item.artikal_id = ui->sifra_artikal->text();
     item.artikal_naziv = ui->artikal->text();
+    item.komintent_id = ui->sifra_komintent->text();
+    item.dokument_id = resFaktura.dokument_id;
+    item.dokument_tip = resFaktura.dokument_tip;
+
     bd->AddItem(data, item);
     resFakturaItems = data;
+    ui->sifra_artikal->setText("");
+    ui->artikal->setText("");
+    ui->kolicina->setText("");
+    ui->cena_so_ddv->setText("");
+    ui->rabat->setText("");
+    ui->rok_za_plakanje_denovi->setText("");
+    ui->zaliha->setText("");
 }
 
 
@@ -297,7 +319,79 @@ void FakturiKorekcija::on_pushButton_4_clicked()
 
     hlp->UpdateDokumenti(dok);
 
+    QList<dokumentDetailT> dok_detail;
+    for (int i = 0; i < resFakturaItems_oldData.count(); i++){
+        fakturiDetailT dokDetail_old = resFakturaItems_oldData.at(i);
+        dokumentDetailT dokDetail;
 
+        dokDetail.tid = dokDetail_old.tid;
+        dokDetail.dokument_id = dokDetail_old.dokument_id;
+        dokDetail.dokument_tip = dokDetail_old.dokument_tip;
+        dokDetail.komintent_id = dokDetail_old.komintent_id;
+        dokDetail.artikal_id = dokDetail_old.artikal_id;
+        dokDetail.artikal_naziv = dokDetail_old.artikal_naziv;
+        dokDetail.tip_artikal = dokDetail_old.tip_artikal;
+        dokDetail.link_artikal = dokDetail_old.link_artikal;
+        dokDetail.edm = dokDetail_old.edm;
+        dokDetail.vlez_nab_cena_bez_ddv = dokDetail_old.vlez_nab_cena_bez_ddv;
+        dokDetail.vlez_nab_cena_so_ddv = dokDetail_old.vlez_nab_cena_so_ddv;
+        dokDetail.vlez_prenesen_ddv = dokDetail_old.vlez_prenesen_ddv;
+        dokDetail.vlez_prenesen_ddv_denari = dokDetail_old.vlez_prenesen_ddv_denari;
+        dokDetail.vlez_rabat = dokDetail_old.vlez_rabat;
+        dokDetail.vlez_nabaven_iznos_so_ddv = dokDetail_old.vlez_nabaven_iznos_so_ddv;
+        dokDetail.vlez_marza = dokDetail_old.vlez_marza;
+        dokDetail.vlez_marza_den = dokDetail_old.vlez_marza_den;
+        dokDetail.vlez_prod_cena_bez_ddv = dokDetail_old.vlez_prod_cena_bez_ddv;
+        dokDetail.vlez_presmetan_ddv = dokDetail_old.vlez_presmetan_ddv;
+        dokDetail.vlez_prod_cena_so_ddv = dokDetail_old.vlez_prod_cena_so_ddv;
+        dokDetail.vlez_prod_iznos_so_ddv = dokDetail_old.vlez_prod_iznos_so_ddv;
+        dokDetail.izl_cena_bez_ddv_calc = dokDetail_old.izl_cena_bez_ddv_calc;
+        dokDetail.izl_cena_so_ddv_calc = dokDetail_old.izl_cena_so_ddv_calc;
+        dokDetail.izl_cena_so_ddv_prod = dokDetail_old.izl_cena_so_ddv_prod;
+        dokDetail.izl_ddv_prod = dokDetail_old.izl_ddv_prod;
+        dokDetail.kol = dokDetail_old.kol;
+        dokDetail.mag_id = dokDetail_old.mag_id;
+        dokDetail.status  = dokDetail_old.status;
+        dok_detail.append(dokDetail);
+    }
+    hlp->DeleteMagacin(dok_detail);
+
+    QList<dokumentDetailT> dok_detail_new;
+    for (int i = 0; i < resFakturaItems.count(); i++){
+        fakturiDetailT dokDetail_new = resFakturaItems.at(i);
+        dokumentDetailT dokDetail;
+
+        dokDetail.tid = dokDetail_new.tid;
+        dokDetail.dokument_id = dokDetail_new.dokument_id;
+        dokDetail.dokument_tip = dokDetail_new.dokument_tip;
+        dokDetail.komintent_id = dokDetail_new.komintent_id;
+        dokDetail.artikal_id = dokDetail_new.artikal_id;
+        dokDetail.artikal_naziv = dokDetail_new.artikal_naziv;
+        dokDetail.tip_artikal = dokDetail_new.tip_artikal;
+        dokDetail.link_artikal = dokDetail_new.link_artikal;
+        dokDetail.edm = dokDetail_new.edm;
+        dokDetail.vlez_nab_cena_bez_ddv = dokDetail_new.vlez_nab_cena_bez_ddv;
+        dokDetail.vlez_nab_cena_so_ddv = dokDetail_new.vlez_nab_cena_so_ddv;
+        dokDetail.vlez_prenesen_ddv = dokDetail_new.vlez_prenesen_ddv;
+        dokDetail.vlez_prenesen_ddv_denari = dokDetail_new.vlez_prenesen_ddv_denari;
+        dokDetail.vlez_rabat = dokDetail_new.vlez_rabat;
+        dokDetail.vlez_nabaven_iznos_so_ddv = dokDetail_new.vlez_nabaven_iznos_so_ddv;
+        dokDetail.vlez_marza = dokDetail_new.vlez_marza;
+        dokDetail.vlez_marza_den = dokDetail_new.vlez_marza_den;
+        dokDetail.vlez_prod_cena_bez_ddv = dokDetail_new.vlez_prod_cena_bez_ddv;
+        dokDetail.vlez_presmetan_ddv = dokDetail_new.vlez_presmetan_ddv;
+        dokDetail.vlez_prod_cena_so_ddv = dokDetail_new.vlez_prod_cena_so_ddv;
+        dokDetail.vlez_prod_iznos_so_ddv = dokDetail_new.vlez_prod_iznos_so_ddv;
+        dokDetail.izl_cena_bez_ddv_calc = dokDetail_new.izl_cena_bez_ddv_calc;
+        dokDetail.izl_cena_so_ddv_calc = dokDetail_new.izl_cena_so_ddv_calc;
+        dokDetail.izl_cena_so_ddv_prod = dokDetail_new.izl_cena_so_ddv_prod;
+        dokDetail.izl_ddv_prod = dokDetail_new.izl_ddv_prod;
+        dokDetail.kol = dokDetail_new.kol;
+        dokDetail.mag_id = dokDetail_new.mag_id;
+        dokDetail.status  = dokDetail_new.status;
+        dok_detail_new.append(dokDetail);
+    }
+    hlp->InsertMagacin(dok_detail_new);
     pressEscape();
 }
 

@@ -16,6 +16,8 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
 
+    ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
 
     QString vOffset = QString::number(numOffset);

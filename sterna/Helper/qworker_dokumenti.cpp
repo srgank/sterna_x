@@ -59,8 +59,8 @@ void QWorkerDokumenti::onPostList(QNetworkReply *rep)
         const QJsonValue & value = jsonArray.at(a);
         QJsonObject obj = value.toObject();
         doc_temp.tid = obj["TID"].toString();
-        doc_temp.dokument_id = obj["DOCUMENT_ID"].toString();
-        doc_temp.dokument_tip = obj["DOCUMENT_TIP"].toString();
+        doc_temp.dokument_id = QString::number(obj["DOCUMENT_ID"].toInt());
+        doc_temp.dokument_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
         doc_temp.td = obj["TD"].toString();
         doc_temp.tds = obj["TDS"].toString();
         doc_temp.komintent_id = obj["KOMINTENT_ID"].toString();
@@ -111,8 +111,8 @@ void QWorkerDokumenti::insert(dokumentT &item )
     QJsonObject tt_json;
 
     tt_json["TID"] = item.tid;
-    tt_json["DOCUMENT_ID"] = item.dokument_id;
-    tt_json["DOCUMENT_TIP"] = item.dokument_tip;
+    tt_json["DOCUMENT_ID"] = item.dokument_id.toInt();
+    tt_json["DOCUMENT_TIP"] = item.dokument_tip.toInt();
     tt_json["TD"] = item.td;
     tt_json["TDS"] = item.tds;
     tt_json["KOMINTENT_ID"] = item.komintent_id;
@@ -155,6 +155,31 @@ void QWorkerDokumenti::insert(dokumentT &item )
 }
 void QWorkerDokumenti::onPostInsert(QNetworkReply *rep)
 {
+    disconnect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
+    QByteArray bts = rep->readAll();
+    QString str(bts);
+    bts.clear();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(str.toUtf8());
+    QJsonObject jsonObject = jsonResponse.object();
+    QJsonArray jsonArray = jsonObject["properties"].toArray();
+
+    for (int a = 0; a < jsonArray.count(); a++)
+    {
+        dokumentT doc_temp;
+        const QJsonValue & value = jsonArray.at(a);
+        QJsonObject obj = value.toObject();
+        doc_temp.tid = obj["TID"].toString();
+        doc_temp.dokument_id = QString::number(obj["DOCUMENT_ID"].toInt());
+        doc_temp.dokument_tip = QString::number(obj["DOCUMENT_TIP"].toInt());
+        if(doc_temp.tid == "end")
+        {
+            continue;
+        }
+        else
+        {
+            listRes << doc_temp;
+        }
+    }
     emit finishedInsert();
 }
 
@@ -169,8 +194,8 @@ void QWorkerDokumenti::update(dokumentT & item)
 
     QJsonObject tt_json;
     tt_json["TID"] = item.tid;
-    tt_json["DOCUMENT_ID"] = item.dokument_id;
-    tt_json["DOCUMENT_TIP"] = item.dokument_tip;
+    tt_json["DOCUMENT_ID"] = item.dokument_id.toInt();
+    tt_json["DOCUMENT_TIP"] = item.dokument_tip.toInt();
     tt_json["TD"] = item.td;
     tt_json["TDS"] = item.tds;
     tt_json["KOMINTENT_ID"] = item.komintent_id;

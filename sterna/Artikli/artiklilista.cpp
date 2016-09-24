@@ -14,7 +14,8 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
-
+    ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
     numOffset = 0;
     QString vOffset = QString::number(numOffset);

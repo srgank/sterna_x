@@ -40,6 +40,9 @@ private:
     QBTemplate<fakturiDetailT> *bd;
     fakturiT resFaktura;
     QList<fakturiDetailT> resFakturaItems;\
+    QList<fakturiDetailT> resFakturaItems_oldData;\
+
+
     QList<int> colDetailWidth;
     void procDeleteItem();
     void procAddItem();

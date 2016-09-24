@@ -3,9 +3,10 @@
 
 FakturiVnes::FakturiVnes(BaseForm *parent) :
     BaseForm(parent),
+    statusWait(false),
+    hlp(0),
+    statusOpenEditor(false),
     ui(new Ui::FakturiVnes)
-  ,hlp(0)
-
 {
     ui->setupUi(this);
     hlp = new QHelperC(this);
@@ -25,8 +26,11 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     ui->vk_iznos_bez_ddv->installEventFilter(this);
     ui->vk_iznos_so_ddv->installEventFilter(this);
     ui->zaliha->installEventFilter(this);
-
-
+    ui->pushButton_3->installEventFilter(this);
+    ui->pushButton_4->installEventFilter(this);
+    ui->pushButton_6->installEventFilter(this);
+    ui->pushButton_5->installEventFilter(this);
+    ui->pushButtonA->installEventFilter(this);
 
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
@@ -49,6 +53,12 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    comboboxD = new QCBItemDelegate(Q_NULLPTR);
+    connect(comboboxD, SIGNAL(updatePodatoci()), this , SLOT(updatePodatoci()));
+    lineeditD = new QLEItemDelegate(Q_NULLPTR);
+    connect(lineeditD, SIGNAL(updateCellLE(const QModelIndex &, QString &)), this , SLOT(updateStructCellLineEdit(const QModelIndex &, QString &)));
+
+
     PressKeyTAB(this);
 }
 
@@ -97,16 +107,21 @@ void FakturiVnes::setFocusKomintent(komintentT t)
 
 void FakturiVnes::pressReturn()
 {
-    if(ui->pushButton_3->hasFocus())
-    {
-        procAddItem();
-        showData();
-    }
     if(ui->pushButton_6->hasFocus())
     {
         procDeleteItem();
         showData();
     }
+    else if(ui->tableView->hasFocus())
+    {
+        if (!statusOpenEditor){
+            OpenTablePersistentEditor(ui->tableView, m_index);
+        }else{
+            CloseTablePersistentEditor(ui->tableView, m_index);
+        }
+        statusOpenEditor = !statusOpenEditor;
+    }
+
     else if(ui->komintent->hasFocus())
     {
         emit signalGetKomintent("", (QWidget*)this);
@@ -115,16 +130,78 @@ void FakturiVnes::pressReturn()
     {
         emit signalGetArtikal("", (QWidget*)this);
     }
-    else
+    else if(ui->pushButton_3->hasFocus())
     {
-        PressKeyTAB(this);
+        procAddItem();
+        showData();
+        ui->artikal->setFocus();
     }
 
+    else
+    {
+        if (statusOpenEditor){
+            CloseTablePersistentEditor(ui->tableView, m_index);
+            statusOpenEditor = !statusOpenEditor;
+
+        }else{
+            PressKeyTAB(this);
+        }
+    }
+}
+
+void FakturiVnes::OpenTablePersistentEditor(QTableView * table, QModelIndex &index)
+{
+    switch (index.column()){
+    case 0:  table->setItemDelegate(lineeditD);break;
+    case 1:  table->setItemDelegate(lineeditD);break;
+    case 2:  table->setItemDelegate(lineeditD);break;
+    case 3:  table->setItemDelegate(lineeditD);break;
+    case 4:  table->setItemDelegate(comboboxD);break;
+    case 5:  table->setItemDelegate(comboboxD);break;
+    case 6:  table->setItemDelegate(comboboxD);break;
+    case 7:  table->setItemDelegate(comboboxD);break;
+    case 8:  table->setItemDelegate(comboboxD);break;
+    case 9:  table->setItemDelegate(comboboxD);break;
+    }
+    table->openPersistentEditor(index);
+}
+
+void FakturiVnes::CloseTablePersistentEditor(QTableView * table, QModelIndex &index)
+{
+    table->closePersistentEditor(index);
 }
 
 void FakturiVnes::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
+    m_index = modelX;
     m_row = modelX.row();
+}
+
+void FakturiVnes::selectionChangedDetail(QModelIndex modelX,QModelIndex modelY)
+{
+    if (modelX != modelY){
+        CloseTablePersistentEditor(ui->tableView, m_index);
+    }
+    m_index = modelX;
+}
+
+void FakturiVnes::updateStructCellLineEdit(const QModelIndex & index, QString & value)
+{
+    switch (index.column()){
+    case 0: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+    case 1: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+    case 2: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+    case 3: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+    case 4: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+    case 5: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+
+    }
 }
 
 void FakturiVnes::initProc(faktura_trans m_data)
@@ -142,9 +219,19 @@ void FakturiVnes::procDeleteItem(){
 void FakturiVnes::procAddItem(){
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
+    item.artikal_id = ui->sifra_artikal->text();
     item.artikal_naziv = ui->artikal->text();
+    item.komintent_id = ui->sifra_komintent->text();
+
     bd->AddItem(data, item);
     resFakturaItems = data;
+    ui->sifra_artikal->setText("");
+    ui->artikal->setText("");
+    ui->kolicina->setText("");
+    ui->cena_so_ddv->setText("");
+    ui->rabat->setText("");
+    ui->rok_za_plakanje_denovi->setText("");
+    ui->zaliha->setText("");
 }
 
 
@@ -192,17 +279,25 @@ void FakturiVnes::on_pushButton_4_clicked()
     QString blankText = "";
     QString blankDdv = "18";
     dokumentT dok;
-    dok.komintent_naziv = "Test";
-    dok.dokument_id = "1";
+    dok.komintent_id = ui->sifra_komintent->text();
+    dok.komintent_naziv = ui->komintent->text();
     dok.dokument_tip = "20";
-    hlp->InsertDokumenti(dok);
 
+    QList<dokumentT> t = hlp->InsertDokumenti(dok);
     QList<dokumentDetailT> listDokDetail;
-    dokumentDetailT dokDetail;
-    dokDetail.dokument_id = "1";
-    dokDetail.dokument_tip = "20";
-    dokDetail.artikal_naziv = "TEST ART";
-    listDokDetail.append(dokDetail);
+
+    dokumentT item = t.at(0);
+
+    for (int i = 0; i < resFakturaItems.count(); i++){
+
+        dokumentDetailT dokDetail;
+        dokDetail.dokument_id = item.dokument_id;
+        dokDetail.dokument_tip = "20";
+
+        dokDetail.artikal_id = resFakturaItems.at(i).artikal_id;
+        dokDetail.artikal_naziv = resFakturaItems.at(i).artikal_naziv;
+        listDokDetail.append(dokDetail);
+    }
     hlp->InsertMagacin(listDokDetail);
     pressEscape();
 

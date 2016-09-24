@@ -76,13 +76,14 @@ QList<dokumentT> QHelperC::getallDokumenti(QString& offset, QString& limit, QStr
     pause.exec();
     return worker.listRes;
 }
-void QHelperC::InsertDokumenti(dokumentT &Item)
+QList<dokumentT> QHelperC::InsertDokumenti(dokumentT &Item)
 {
     QEventLoop pause;
     QWorkerDokumenti worker;
     connect(&worker, SIGNAL(finishedInsert()), &pause, SLOT(quit()));
     worker.insert(Item);
     pause.exec();
+    return worker.listRes;
 }
 
 void QHelperC::UpdateDokumenti(dokumentT &Item)
@@ -120,5 +121,14 @@ void QHelperC::UpdateMagacin(QList<dokumentDetailT> &ItemList)
     QWorkerMagacin worker;
     connect(&worker, SIGNAL(finishedUpdate()), &pause, SLOT(quit()));
     worker.update(ItemList);
+    pause.exec();
+}
+
+void QHelperC::DeleteMagacin(QList<dokumentDetailT> &ItemList)
+{
+    QEventLoop pause;
+    QWorkerMagacin worker;
+    connect(&worker, SIGNAL(finishedDelete()), &pause, SLOT(quit()));
+    worker.delete_(ItemList);
     pause.exec();
 }
