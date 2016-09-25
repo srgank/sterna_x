@@ -79,6 +79,8 @@ private slots:
     void procSectionResized(int a, int b, int c);
     void procSectionResizedDetail(int a, int b, int c);
     void on_lineEdit_textChanged(const QString &arg1);
+    void on_prebaruvanje_po_komintent_editingFinished();
+    void on_prebaruvanje_po_komintent_textChanged(const QString &arg1);
 };
 
 #endif // FakturiLISTA_H

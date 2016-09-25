@@ -96,6 +96,9 @@ void FakturiKorekcija::setFocusKomintent(komintentT t)
     ui->komintent->selectAll();
     ui->komintent->setText(t.naziv);
     ui->sifra_komintent->setText(t.sifra);
+    resFaktura.komintent_id = t.sifra;
+    resFaktura.komintent_naziv = t.naziv;
+
     PressKeyTAB(this);
 }
 
@@ -286,7 +289,7 @@ void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QStri
 void FakturiKorekcija::on_pushButton_4_clicked()
 {
     // update faktura
-    resFaktura.komintent_naziv = ui->komintent->text();
+    resFaktura.dokument_tip = "20";
 
     dokumentT dok;
     dok.tid = resFaktura.tid;
@@ -362,8 +365,8 @@ void FakturiKorekcija::on_pushButton_4_clicked()
         dokumentDetailT dokDetail;
 
         dokDetail.tid = dokDetail_new.tid;
-        dokDetail.dokument_id = dokDetail_new.dokument_id;
-        dokDetail.dokument_tip = dokDetail_new.dokument_tip;
+        dokDetail.dokument_id = resFaktura.dokument_id;
+        dokDetail.dokument_tip = resFaktura.dokument_tip;
         dokDetail.komintent_id = dokDetail_new.komintent_id;
         dokDetail.artikal_id = dokDetail_new.artikal_id;
         dokDetail.artikal_naziv = dokDetail_new.artikal_naziv;

@@ -109,18 +109,18 @@ void IspratniciLista::setSearchString(QString& searchText)
 void IspratniciLista::on_lineEdit_textChanged(const QString &arg1)
 {
     enableClose = false;
-    numOffset = 0;
-    QString vLimit = "500";
-    QString vOffset = QString::number(numOffset);
-    QString vDokID = arg1 + "%";
-    QString vDokTip = "40";
+//    numOffset = 0;
+//    QString vLimit = "500";
+//    QString vOffset = QString::number(numOffset);
+//    QString vDokID = arg1 + "%";
+//    QString vDokTip = "40";
 
-    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+//    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
 
-    QList<ispratnicaT> resFaktura;
-    b->ConvertDokument(res, resFaktura);
-    resFakturaTemp = resFaktura;
-    b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
+//    QList<ispratnicaT> resFaktura;
+//    b->ConvertDokument(res, resFaktura);
+//    resFakturaTemp = resFaktura;
+//    b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
     enableClose = true;
 }
 

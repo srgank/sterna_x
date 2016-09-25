@@ -67,14 +67,15 @@ void QHelperC::UpdateKomintent(komintentT &komItem)
 }
 
 //-----------------------------dokumenti-------------------------------------------------
-QList<dokumentT> QHelperC::getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip )
+QList<dokumentT> QHelperC::getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip, QString& vSearchBy, QString& vSearchName )
 {
     QEventLoop pause;
     QWorkerDokumenti worker;
     connect(&worker, SIGNAL(finishedSearch()), &pause, SLOT(quit()));
-    worker.getList(offset, limit, vDokID, vDokTip );
+    worker.getList(offset, limit, vDokID, vDokTip, vSearchBy, vSearchName );
     pause.exec();
     return worker.listRes;
+
 }
 QList<dokumentT> QHelperC::InsertDokumenti(dokumentT &Item)
 {

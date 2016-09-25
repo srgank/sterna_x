@@ -101,6 +101,8 @@ void FakturiVnes::setFocusKomintent(komintentT t)
     ui->komintent->selectAll();
     ui->komintent->setText(t.naziv);
     ui->sifra_komintent->setText(t.sifra);
+    resFaktura.komintent_id = t.sifra;
+    resFaktura.komintent_naziv = t.naziv;
     PressKeyTAB(this);
 }
 
@@ -275,30 +277,77 @@ void FakturiVnes::updateFont()
 
 void FakturiVnes::on_pushButton_4_clicked()
 {
+    resFaktura.dokument_tip = "20";
+
     // vnesi faktura
-    QString blankText = "";
-    QString blankDdv = "18";
     dokumentT dok;
-    dok.komintent_id = ui->sifra_komintent->text();
-    dok.komintent_naziv = ui->komintent->text();
-    dok.dokument_tip = "20";
+    dok.tid = resFaktura.tid;
+    dok.dokument_id = resFaktura.dokument_id;
+    dok.dokument_tip = resFaktura.dokument_tip;
+    dok.td = resFaktura.td;
+    dok.tds = resFaktura.tds;
+    dok.komintent_id = resFaktura.komintent_id;
+    dok.komintent_naziv = resFaktura.komintent_naziv;
+    dok.prevoznik_id = resFaktura.prevoznik_id;
+    dok.prevoznik_naziv = resFaktura.prevoznik_naziv;
+    dok.valuta = resFaktura.valuta;
+    dok.kurs = resFaktura.kurs;
+    dok.iznos_val = resFaktura.iznos_val;
+    dok.ddv_val = resFaktura.ddv_val;
+    dok.rabat_val = resFaktura.rabat_val;
+    dok.iznos_plakanje_val = resFaktura.iznos_plakanje_val;
+    dok.iznos_ddv_den = resFaktura.iznos_ddv_den;
+    dok.rabat_den = resFaktura.rabat_den;
+    dok.iznos_plakanje_den = resFaktura.iznos_plakanje_den;
+    dok.transport_den = resFaktura.transport_den;
+    dok.carina_den = resFaktura.carina_den;
+    dok.ddv_den = resFaktura.ddv_den;
+    dok.drugi_trosoci_den = resFaktura.drugi_trosoci_den;
+    dok.dok_status = resFaktura.dok_status;
+    dok.user_id = resFaktura.user_id;
+    dok.komentar = resFaktura.komentar;
+    dok.mag_id = resFaktura.mag_id;
+    dok.object_id = resFaktura.object_id;
 
     QList<dokumentT> t = hlp->InsertDokumenti(dok);
-    QList<dokumentDetailT> listDokDetail;
-
-    dokumentT item = t.at(0);
-
+    dokumentT temp_t = t.at(0);
+    QList<dokumentDetailT> dok_detail_new;
     for (int i = 0; i < resFakturaItems.count(); i++){
-
+        fakturiDetailT dokDetail_new = resFakturaItems.at(i);
         dokumentDetailT dokDetail;
-        dokDetail.dokument_id = item.dokument_id;
-        dokDetail.dokument_tip = "20";
 
-        dokDetail.artikal_id = resFakturaItems.at(i).artikal_id;
-        dokDetail.artikal_naziv = resFakturaItems.at(i).artikal_naziv;
-        listDokDetail.append(dokDetail);
+        dokDetail.tid = dokDetail_new.tid;
+        dokDetail.dokument_id = temp_t.dokument_id;
+        dokDetail.dokument_tip = temp_t.dokument_tip;
+        dokDetail.komintent_id = dokDetail_new.komintent_id;
+        dokDetail.artikal_id = dokDetail_new.artikal_id;
+        dokDetail.artikal_naziv = dokDetail_new.artikal_naziv;
+        dokDetail.tip_artikal = dokDetail_new.tip_artikal;
+        dokDetail.link_artikal = dokDetail_new.link_artikal;
+        dokDetail.edm = dokDetail_new.edm;
+        dokDetail.vlez_nab_cena_bez_ddv = dokDetail_new.vlez_nab_cena_bez_ddv;
+        dokDetail.vlez_nab_cena_so_ddv = dokDetail_new.vlez_nab_cena_so_ddv;
+        dokDetail.vlez_prenesen_ddv = dokDetail_new.vlez_prenesen_ddv;
+        dokDetail.vlez_prenesen_ddv_denari = dokDetail_new.vlez_prenesen_ddv_denari;
+        dokDetail.vlez_rabat = dokDetail_new.vlez_rabat;
+        dokDetail.vlez_nabaven_iznos_so_ddv = dokDetail_new.vlez_nabaven_iznos_so_ddv;
+        dokDetail.vlez_marza = dokDetail_new.vlez_marza;
+        dokDetail.vlez_marza_den = dokDetail_new.vlez_marza_den;
+        dokDetail.vlez_prod_cena_bez_ddv = dokDetail_new.vlez_prod_cena_bez_ddv;
+        dokDetail.vlez_presmetan_ddv = dokDetail_new.vlez_presmetan_ddv;
+        dokDetail.vlez_prod_cena_so_ddv = dokDetail_new.vlez_prod_cena_so_ddv;
+        dokDetail.vlez_prod_iznos_so_ddv = dokDetail_new.vlez_prod_iznos_so_ddv;
+        dokDetail.izl_cena_bez_ddv_calc = dokDetail_new.izl_cena_bez_ddv_calc;
+        dokDetail.izl_cena_so_ddv_calc = dokDetail_new.izl_cena_so_ddv_calc;
+        dokDetail.izl_cena_so_ddv_prod = dokDetail_new.izl_cena_so_ddv_prod;
+        dokDetail.izl_ddv_prod = dokDetail_new.izl_ddv_prod;
+        dokDetail.kol = dokDetail_new.kol;
+        dokDetail.mag_id = dokDetail_new.mag_id;
+        dokDetail.status  = dokDetail_new.status;
+        dok_detail_new.append(dokDetail);
     }
-    hlp->InsertMagacin(listDokDetail);
+    hlp->InsertMagacin(dok_detail_new);
+
     pressEscape();
 
 }

@@ -92,19 +92,19 @@ void ProFakturiLista::setSearchString(QString& searchText)
 
 void ProFakturiLista::on_lineEdit_textChanged(const QString &arg1)
 {
-    mio_.lock();
-    QString vLimit = "500";
-    QString vOffset = QString::number(numOffset);
-    QString vDokID = arg1 + "%";
-    QString vDokTip = "80";
+//    mio_.lock();
+//    QString vLimit = "500";
+//    QString vOffset = QString::number(numOffset);
+//    QString vDokID = arg1 + "%";
+//    QString vDokTip = "80";
 
-    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+//    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
 
-    QList<profakturiT> resFaktura;
-    b.ConvertDokument(res, resFaktura);
-    resFakturaTemp = resFaktura;
-    b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
-    mio_.unlock();
+//    QList<profakturiT> resFaktura;
+//    b.ConvertDokument(res, resFaktura);
+//    resFakturaTemp = resFaktura;
+//    b.ShowData(resFaktura, model, header, ui->tableView, colWidth);
+//    mio_.unlock();
 }
 
 

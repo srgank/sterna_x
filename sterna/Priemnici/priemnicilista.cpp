@@ -172,8 +172,8 @@ void PriemniciLista::on_lineEdit_textChanged(const QString &arg1)
     QString vDokID =  "%";
     QString vDokTip = "20";
 
-    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
-    b.ShowData(res, model, header, ui->tableView, colWidth);
+//    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+//    b.ShowData(res, model, header, ui->tableView, colWidth);
 
 }
 

@@ -122,8 +122,8 @@ void MainWindow::createDockWindows()
     s->Set_NarackaDetail_HeaderState(narackaDetail);
     s->Set_Smetka_HeaderState(smetka);
     s->Set_SmetkaDetail_HeaderState(smetkaDetail);
-//    s->Set_UrlHost("http://92.53.51.86:5002/");
-    s->Set_UrlHost("http://127.0.0.1:5002/");
+    s->Set_UrlHost("http://92.53.51.86:5002/");
+//    s->Set_UrlHost("http://127.0.0.1:5002/");
 }
 
 

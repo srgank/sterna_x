@@ -24,7 +24,7 @@ public:
     void InsertKomintent(komintentT &komItem);
     void UpdateKomintent(komintentT &komItem);
 
-    QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip );
+    QList<dokumentT> getallDokumenti(QString& offset, QString& limit, QString& vDokID, QString& vDokTip, QString& vSearchBy, QString& vSearchName );
     QList<dokumentT> InsertDokumenti(dokumentT &Item);
     void UpdateDokumenti(dokumentT &Item);
 

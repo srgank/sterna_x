@@ -19,7 +19,7 @@ class QWorkerDokumenti : public QWidget
     Q_OBJECT
 public:
     explicit QWorkerDokumenti(QWidget *parent = 0);
-    void getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy );
+    void getList( QString &vOffset, QString &vLimit,QString &vDokID, QString &vDokTip, QString &vSearchBy, QString &vSearchName );
     void insert(dokumentT & item);
     void update(dokumentT & item);
     QList<dokumentT> listRes;

@@ -92,14 +92,14 @@ SmetkiLista::~SmetkiLista()
 
 void SmetkiLista::on_lineEdit_textChanged(const QString &arg1)
 {
-    numOffset = 0;
-    QString vLimit = "500";
-    QString vOffset = QString::number(numOffset);
-    QString vDokID =  "%";
-    QString vDokTip = "80";
+//    numOffset = 0;
+//    QString vLimit = "500";
+//    QString vOffset = QString::number(numOffset);
+//    QString vDokID =  "%";
+//    QString vDokTip = "80";
 
-    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
-    b.ShowData(res, model, header, ui->tableView, colWidth);
+//    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+//    b.ShowData(res, model, header, ui->tableView, colWidth);
 
 }
 
