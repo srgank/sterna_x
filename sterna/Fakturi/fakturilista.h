@@ -67,8 +67,11 @@ private:
     QList<fakturiT> resFakturaTemp;
     fakturiT currentData;
     QList<fakturiDetailT> resFakturaDetailTemp;
-
+    QString str_yellow;
+    QString str_none;
     bool enableClose;
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressF2();
     void signalpressF3();

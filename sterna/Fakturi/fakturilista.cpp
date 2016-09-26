@@ -15,7 +15,7 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
-
+    BaseInstallEventFilter(ui->gridLayout);
     ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
     ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
@@ -171,9 +171,14 @@ faktura_trans FakturiLista::getFakturaData(){
 }
 void FakturiLista::updateFont()
 {
-    ui->tableView->setFont(this->font());
-    ui->tableView_2->setFont(this->font());
-    repaint();
+    Singleton *s = Singleton::Instance();
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    for(int idx = 0; idx < ui->gridLayout->count(); idx++)
+    {
+      QLayoutItem * const item = ui->gridLayout->itemAt(idx);
+      if(dynamic_cast<QWidgetItem *>(item))
+        item->widget()->setStyleSheet(str_font);
+    }
 }
 
 
@@ -185,4 +190,20 @@ void FakturiLista::on_prebaruvanje_po_komintent_editingFinished()
 void FakturiLista::on_prebaruvanje_po_komintent_textChanged(const QString &arg1)
 {
     on_lineEdit_textChanged(arg1);
+}
+
+bool FakturiLista::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
 }

@@ -12,25 +12,8 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
 
-    str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    ui->artikal->installEventFilter(this);
-    ui->cena_so_ddv->installEventFilter(this);
-    ui->dateTimeDatum->installEventFilter(this);
-    ui->dateTimeValuta->installEventFilter(this);
-    ui->kolicina->installEventFilter(this);
-    ui->komintent->installEventFilter(this);
-    ui->rabat->installEventFilter(this);
-    ui->rok_za_plakanje_denovi->installEventFilter(this);
-    ui->vk_ddv_iznos->installEventFilter(this);
-    ui->vk_iznos_bez_ddv->installEventFilter(this);
-    ui->vk_iznos_so_ddv->installEventFilter(this);
-    ui->zaliha->installEventFilter(this);
-    ui->pushButton_3->installEventFilter(this);
-    ui->pushButton_4->installEventFilter(this);
-    ui->pushButton_6->installEventFilter(this);
-    ui->pushButton_5->installEventFilter(this);
-    ui->pushButtonA->installEventFilter(this);
+    BaseInstallEventFilter(ui->gridLayout);
+
 
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
@@ -47,6 +30,7 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
+    b = new QBTemplate<fakturiT>();
     bd = new QBTemplate<fakturiDetailT>();
 
     ui->tableView->setModel(model);
@@ -66,7 +50,9 @@ FakturiVnes::~FakturiVnes()
 {
     delete hlp;
     delete ui;
+    delete b;
     delete bd;
+    b = 0;
     bd = 0;
 }
 void FakturiVnes::pressEscape()
@@ -260,107 +246,45 @@ void FakturiVnes::on_pushButton_3_clicked()
 void FakturiVnes::updateFont()
 {
     Singleton *s = Singleton::Instance();
-    QString str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    QString strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    ui->tableView->setStyleSheet(str_none);
-    ui->sifra_artikal->setStyleSheet(strDisabled);
-    ui->artikal->setStyleSheet(str_none);
-    ui->cena_so_ddv->setStyleSheet(str_none);
-    ui->dateTimeDatum->setStyleSheet(str_none);
-    ui->dateTimeValuta->setStyleSheet(str_none);
-    ui->kolicina->setStyleSheet(str_none);
-    ui->sifra_komintent->setStyleSheet(strDisabled);
-    ui->komintent->setStyleSheet(str_none);
-    ui->rabat->setStyleSheet(str_none);
-    ui->rok_za_plakanje_denovi->setStyleSheet(str_none);
-    ui->vk_ddv_iznos->setStyleSheet(str_none);
-    ui->vk_iznos_bez_ddv->setStyleSheet(str_none);
-    ui->vk_iznos_so_ddv->setStyleSheet(str_none);
-    ui->zaliha->setStyleSheet(str_none);
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    for(int idx = 0; idx < ui->gridLayout->count(); idx++)
+    {
+      QLayoutItem * const item = ui->gridLayout->itemAt(idx);
+      if(dynamic_cast<QWidgetItem *>(item))
+        item->widget()->setStyleSheet(str_font);
+    }
 }
 
 void FakturiVnes::on_pushButton_4_clicked()
 {
     resFaktura.dokument_tip = "20";
+    QList<dokumentT> dok;
+    QList<fakturiT> fakturiList;
+    fakturiList.append(resFaktura);
 
-    // vnesi faktura
-    dokumentT dok;
-    dok.tid = resFaktura.tid;
-    dok.dokument_id = resFaktura.dokument_id;
-    dok.dokument_tip = resFaktura.dokument_tip;
-    dok.td = resFaktura.td;
-    dok.tds = resFaktura.tds;
-    dok.komintent_id = resFaktura.komintent_id;
-    dok.komintent_naziv = resFaktura.komintent_naziv;
-    dok.prevoznik_id = resFaktura.prevoznik_id;
-    dok.prevoznik_naziv = resFaktura.prevoznik_naziv;
-    dok.valuta = resFaktura.valuta;
-    dok.kurs = resFaktura.kurs;
-    dok.iznos_val = resFaktura.iznos_val;
-    dok.ddv_val = resFaktura.ddv_val;
-    dok.rabat_val = resFaktura.rabat_val;
-    dok.iznos_plakanje_val = resFaktura.iznos_plakanje_val;
-    dok.iznos_ddv_den = resFaktura.iznos_ddv_den;
-    dok.rabat_den = resFaktura.rabat_den;
-    dok.iznos_plakanje_den = resFaktura.iznos_plakanje_den;
-    dok.transport_den = resFaktura.transport_den;
-    dok.carina_den = resFaktura.carina_den;
-    dok.ddv_den = resFaktura.ddv_den;
-    dok.drugi_trosoci_den = resFaktura.drugi_trosoci_den;
-    dok.dok_status = resFaktura.dok_status;
-    dok.user_id = resFaktura.user_id;
-    dok.komentar = resFaktura.komentar;
-    dok.mag_id = resFaktura.mag_id;
-    dok.object_id = resFaktura.object_id;
-
-    QList<dokumentT> t = hlp->InsertDokumenti(dok);
+    b->ConvertAnyToDokument(fakturiList, dok);
+    dokumentT itemDoc = dok.at(0);
+    QList<dokumentT> t = hlp->InsertDokumenti(itemDoc);
     dokumentT temp_t = t.at(0);
-    QList<dokumentDetailT> dok_detail_new;
-    for (int i = 0; i < resFakturaItems.count(); i++){
-        fakturiDetailT dokDetail_new = resFakturaItems.at(i);
-        dokumentDetailT dokDetail;
 
-        dokDetail.tid = dokDetail_new.tid;
-        dokDetail.dokument_id = temp_t.dokument_id;
-        dokDetail.dokument_tip = temp_t.dokument_tip;
-        dokDetail.komintent_id = dokDetail_new.komintent_id;
-        dokDetail.artikal_id = dokDetail_new.artikal_id;
-        dokDetail.artikal_naziv = dokDetail_new.artikal_naziv;
-        dokDetail.tip_artikal = dokDetail_new.tip_artikal;
-        dokDetail.link_artikal = dokDetail_new.link_artikal;
-        dokDetail.edm = dokDetail_new.edm;
-        dokDetail.vlez_nab_cena_bez_ddv = dokDetail_new.vlez_nab_cena_bez_ddv;
-        dokDetail.vlez_nab_cena_so_ddv = dokDetail_new.vlez_nab_cena_so_ddv;
-        dokDetail.vlez_prenesen_ddv = dokDetail_new.vlez_prenesen_ddv;
-        dokDetail.vlez_prenesen_ddv_denari = dokDetail_new.vlez_prenesen_ddv_denari;
-        dokDetail.vlez_rabat = dokDetail_new.vlez_rabat;
-        dokDetail.vlez_nabaven_iznos_so_ddv = dokDetail_new.vlez_nabaven_iznos_so_ddv;
-        dokDetail.vlez_marza = dokDetail_new.vlez_marza;
-        dokDetail.vlez_marza_den = dokDetail_new.vlez_marza_den;
-        dokDetail.vlez_prod_cena_bez_ddv = dokDetail_new.vlez_prod_cena_bez_ddv;
-        dokDetail.vlez_presmetan_ddv = dokDetail_new.vlez_presmetan_ddv;
-        dokDetail.vlez_prod_cena_so_ddv = dokDetail_new.vlez_prod_cena_so_ddv;
-        dokDetail.vlez_prod_iznos_so_ddv = dokDetail_new.vlez_prod_iznos_so_ddv;
-        dokDetail.izl_cena_bez_ddv_calc = dokDetail_new.izl_cena_bez_ddv_calc;
-        dokDetail.izl_cena_so_ddv_calc = dokDetail_new.izl_cena_so_ddv_calc;
-        dokDetail.izl_cena_so_ddv_prod = dokDetail_new.izl_cena_so_ddv_prod;
-        dokDetail.izl_ddv_prod = dokDetail_new.izl_ddv_prod;
-        dokDetail.kol = dokDetail_new.kol;
-        dokDetail.mag_id = dokDetail_new.mag_id;
-        dokDetail.status  = dokDetail_new.status;
-        dok_detail_new.append(dokDetail);
+    QList<dokumentDetailT> dok_detail_new;
+    bd->ConvertAnyToDokumentDetail(resFakturaItems, dok_detail_new);
+
+    for (int i = 0; i < dok_detail_new.count(); i++){
+        dok_detail_new[i].dokument_id = temp_t.dokument_id;
+        dok_detail_new[i].dokument_tip = temp_t.dokument_tip;
     }
     hlp->InsertMagacin(dok_detail_new);
-
     pressEscape();
-
 }
+
+
 bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
 {
     Singleton *s = Singleton::Instance();
     if (event->type() == QEvent::FocusIn)
     {
-        str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
         ((QWidget*)object)->setStyleSheet(str_yellow);
     }
     if (event->type() == QEvent::FocusOut)
@@ -368,6 +292,5 @@ bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
         str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
         ((QWidget*)object)->setStyleSheet(str_none);
     }
-
     return false;
 }

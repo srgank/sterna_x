@@ -114,4 +114,15 @@ void BaseForm::PressKeyTAB(QObject *receiver){
 
 void BaseForm::PressKeyReturn(QObject *receiver){
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);}
+    QCoreApplication::postEvent(this, event);
+}
+
+void BaseForm::BaseInstallEventFilter(QGridLayout *receiver){
+    for(int idx = 0; idx < receiver->count(); idx++)
+    {
+      QLayoutItem * const item = receiver->itemAt(idx);
+       if(dynamic_cast<QWidgetItem *>(item))
+        item->widget()->installEventFilter(this);
+    }
+}
+

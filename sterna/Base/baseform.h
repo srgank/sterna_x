@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <QLayoutItem>
+#include <QGridLayout>
 #include "xx.h"
 
 namespace Ui {
@@ -30,6 +32,7 @@ public:
     void setSourceWidget(QWidget *sourceWidget);
     void setCategoryWidget(QWidget * mWidget){m_Widget = mWidget;}
     QWidget *getCategoryWidget(){return m_Widget;}
+    void BaseInstallEventFilter(QGridLayout *receiver);
 private:
     Ui::BaseForm *ui;
     void keyPressEvent(QKeyEvent *event);
@@ -38,7 +41,6 @@ private:
     QWidget *m_Widget;
     int scale;
 protected:
-
     template <class T, class K>
     T* showMyWidget(T *a, K *b)
     {

@@ -37,6 +37,7 @@ private:
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
+    QBTemplate<fakturiT> *b;
     QBTemplate<fakturiDetailT> *bd;
     fakturiT resFaktura;
     QList<fakturiDetailT> resFakturaItems;\

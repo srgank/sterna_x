@@ -37,6 +37,7 @@ private:
     QHelperC *hlp;
     QString m_id_artikal;
     bool statusWait;
+    QBTemplate<fakturiT> *b;
     QBTemplate<fakturiDetailT> *bd;
     fakturiT resFaktura;
     QList<fakturiDetailT> resFakturaItems;\
@@ -54,6 +55,7 @@ private:
     QLEItemDelegate *lineeditD;
     QString str_yellow;
     QString str_none;
+    QString strDisabled;
     QModelIndex m_index;
     bool statusOpenEditor;
     void OpenTablePersistentEditor(QTableView * table, QModelIndex &index);
@@ -66,7 +68,6 @@ signals:
     void signalGetArtikal(QString, QWidget*);
     void signalGetKomintent(QString, QWidget*);
 private slots:
-    void on_pushButton_released();
     void selectionChanged(QModelIndex modelX,QModelIndex modelY);
     void selectionChangedDetail(QModelIndex modelX,QModelIndex modelY);
     void on_pushButton_6_clicked();
