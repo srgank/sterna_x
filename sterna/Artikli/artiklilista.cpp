@@ -18,10 +18,12 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
     ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
     numOffset = 0;
-    QString vOffset = QString::number(numOffset);
-    QString vLimit = "50";
-    QString vSName = "%";
-    QString vSearchBy = "artikal";
+//    QString vOffset = QString::number(numOffset);
+//    QString vLimit = "50";
+//    QString vSName = "%";
+//    QString vSearchBy = "artikal";
+
+    BaseInstallEventFilter(ui->gridLayout);
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
 
@@ -177,4 +179,20 @@ void ArtikliLista::updateFont()
 {
     ui->tableView->setFont(this->font());
     repaint();
+}
+
+bool ArtikliLista::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        QString str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
 }

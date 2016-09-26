@@ -27,10 +27,10 @@ private:
     Ui::ArtikliVnes *ui;
     QHelperC *hlp;
     void on_SifraArtikalEdit_EditingFinished();
-    bool eventFilter(QObject *sender, QEvent *event);
     QString str_yellow;
     QString str_none;
-
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressEscape();
 

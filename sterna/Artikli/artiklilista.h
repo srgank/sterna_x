@@ -59,6 +59,11 @@ private:
     int searchIDList;
     QBTemplate<artikalT> b;
     QList<artikalT> resArtikliTemp;
+
+    QString str_yellow;
+    QString str_none;
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressF2();
     void signalpressF3();

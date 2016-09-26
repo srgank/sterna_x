@@ -12,7 +12,7 @@ ArtikliKorekcija::ArtikliKorekcija(BaseForm *parent) :
     Singleton *s = Singleton::Instance();
     str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-
+    BaseInstallEventFilter(ui->gridLayout);
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
@@ -27,76 +27,6 @@ ArtikliKorekcija::ArtikliKorekcija(BaseForm *parent) :
     ui->kataloskiArtikalEdit->installEventFilter(this);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
-}
-
-
-bool ArtikliKorekcija::eventFilter(QObject *sender, QEvent *event)
-{
-
-    if(event->type()== QEvent::KeyPress)
-    {
-        QKeyEvent * keyEvent = (QKeyEvent*)(event);
-        if( keyEvent->key() == Qt::Key_Tab)
-        {
-            pressReturn();
-            return true;
-        }else
-        {
-             return false;
-        }
-    }
-
-    if (event->type() == QEvent::FocusIn)
-    {
-        if (sender == ui->sifraArtikalEdit)
-        {
-           ui->sifraArtikalEdit->setStyleSheet(str_yellow);
-        }
-        if (sender == ui->nazivArtikalEdit)
-        {
-            ui->nazivArtikalEdit->setStyleSheet(str_yellow);
-        }
-        if (sender == ui->edmArtikalEdit)
-        {
-            ui->edmArtikalEdit->setStyleSheet(str_yellow);
-        }
-        if (sender == ui->refArtikalEdit)
-        {
-            ui->refArtikalEdit->setStyleSheet(str_yellow);
-        }
-        if (sender == ui->kataloskiArtikalEdit)
-        {
-            ui->kataloskiArtikalEdit->setStyleSheet(str_yellow);
-        }
-    }
-
-    if (event->type() == QEvent::FocusOut)
-    {
-
-        if (sender == ui->sifraArtikalEdit)
-        {
-            ui->sifraArtikalEdit->setStyleSheet(str_none);
-        }
-        if (sender == ui->nazivArtikalEdit)
-        {
-            ui->nazivArtikalEdit->setStyleSheet(str_none);
-        }
-        if (sender == ui->edmArtikalEdit)
-        {
-            ui->edmArtikalEdit->setStyleSheet(str_none);
-        }
-        if (sender == ui->refArtikalEdit)
-        {
-            ui->refArtikalEdit->setStyleSheet(str_none);
-        }
-        if (sender == ui->kataloskiArtikalEdit)
-        {
-            ui->kataloskiArtikalEdit->setStyleSheet(str_none);
-        }
-    }
-
-return QWidget::eventFilter(sender,event);
-
 }
 
 ArtikliKorekcija::~ArtikliKorekcija()
@@ -192,4 +122,20 @@ void ArtikliKorekcija::on_SifraArtikalEdit_EditingFinished()
         QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
         QCoreApplication::postEvent(this, event);
     }
+}
+
+bool ArtikliKorekcija::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
 }

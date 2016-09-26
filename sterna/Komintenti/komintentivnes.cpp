@@ -14,80 +14,11 @@ KomintentiVnes::KomintentiVnes(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-
+    BaseInstallEventFilter(ui->gridLayout);
     hlp = new QHelperC(this);
 
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
-}
-
-bool KomintentiVnes::eventFilter(QObject *sender, QEvent *event)
-{
-
-    if(event->type()== QEvent::KeyPress)
-    {
-        QKeyEvent * keyEvent = (QKeyEvent*)(event);
-        if( keyEvent->key() == Qt::Key_Tab)
-        {
-            pressReturn();
-            return true;
-        }else
-        {
-             return false;
-        }
-    }
-
-    if (event->type() == QEvent::FocusIn)
-    {
-//        if (sender == ui->sifraArtikalEdit)
-//        {
-//           ui->sifraArtikalEdit->setStyleSheet(str_yellow);
-//        }
-//        if (sender == ui->nazivArtikalEdit)
-//        {
-//            ui->nazivArtikalEdit->setStyleSheet(str_yellow);
-//        }
-//        if (sender == ui->edmArtikalEdit)
-//        {
-//            ui->edmArtikalEdit->setStyleSheet(str_yellow);
-//        }
-//        if (sender == ui->refArtikalEdit)
-//        {
-//            ui->refArtikalEdit->setStyleSheet(str_yellow);
-//        }
-//        if (sender == ui->kataloskiArtikalEdit)
-//        {
-//            ui->kataloskiArtikalEdit->setStyleSheet(str_yellow);
-//        }
-    }
-
-    if (event->type() == QEvent::FocusOut)
-    {
-
-//        if (sender == ui->sifraArtikalEdit)
-//        {
-//            ui->sifraArtikalEdit->setStyleSheet(str_none);
-//        }
-//        if (sender == ui->nazivArtikalEdit)
-//        {
-//            ui->nazivArtikalEdit->setStyleSheet(str_none);
-//        }
-//        if (sender == ui->edmArtikalEdit)
-//        {
-//            ui->edmArtikalEdit->setStyleSheet(str_none);
-//        }
-//        if (sender == ui->refArtikalEdit)
-//        {
-//            ui->refArtikalEdit->setStyleSheet(str_none);
-//        }
-//        if (sender == ui->kataloskiArtikalEdit)
-//        {
-//            ui->kataloskiArtikalEdit->setStyleSheet(str_none);
-//        }
-    }
-
-return QWidget::eventFilter(sender,event);
-
 }
 
 
@@ -169,4 +100,19 @@ void KomintentiVnes::on_SifraKomintentEdit_EditingFinished()
         QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
         QCoreApplication::postEvent(this, event);
     }
+}
+bool KomintentiVnes::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
 }

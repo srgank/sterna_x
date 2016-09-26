@@ -25,7 +25,6 @@ public:
     void initProc(QString m_searchID);
 
 private:
-    bool eventFilter(QObject *sender, QEvent *event);
     void on_SifraArtikalEdit_EditingFinished();
     Ui::ArtikliKorekcija *ui;
     QHelperC *hlp;
@@ -35,7 +34,8 @@ private:
     QString str_none;
     artikalT art_temp;
     QString artikal_id;
-
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressEscape();
     void signalPrePressEscape();

@@ -52,6 +52,10 @@ private:
     QBTemplate<komintentT> b;
     QItemSelectionModel *sm;
     QList<komintentT> resKomintentTemp;
+    QString str_yellow;
+    QString str_none;
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressF2();
     void signalpressF3();

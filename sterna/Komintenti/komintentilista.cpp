@@ -26,7 +26,7 @@ KomintentiLista::KomintentiLista(BaseForm *parent) :
     QString vSearchBy = "naziv";
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, this);
-
+    BaseInstallEventFilter(ui->gridLayout);
     QStringList tempVals = s->Get_Kom_HeaderState();
     if (!tempVals.isEmpty()){
         for (int i = 0; i < tempVals.count(); i++)        {
@@ -215,4 +215,19 @@ void KomintentiLista::updateFont()
 {
     ui->tableView->setFont(this->font());
     repaint();
+}
+bool KomintentiLista::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
 }
