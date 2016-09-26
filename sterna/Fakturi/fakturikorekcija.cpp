@@ -98,7 +98,10 @@ void FakturiKorekcija::setFocusKomintent(komintentT t)
     ui->sifra_komintent->setText(t.sifra);
     resFaktura.komintent_id = t.sifra;
     resFaktura.komintent_naziv = t.naziv;
-
+    for (int i = 0; i < resFakturaItems.count(); i++){\
+        resFakturaItems[i].komintent_id = resFaktura.komintent_id;
+    }
+    showData();
     PressKeyTAB(this);
 }
 
