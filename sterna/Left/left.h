@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QTreeWidgetItem>
 #include <QMap>
+#include "Base/baseform.h"
+
 class QMyBaseWidget;
 
 

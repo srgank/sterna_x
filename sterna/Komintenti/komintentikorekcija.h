@@ -20,6 +20,7 @@ public:
     ~KomintentiKorekcija();
     virtual void pressEscape();
     virtual void updateFont();
+    virtual void Refresh();
     void initProc(QString m_searchID);
 
 private:

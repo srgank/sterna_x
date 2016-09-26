@@ -27,6 +27,7 @@ public:
 
     virtual void pressEscape();
     virtual void pressReturn();
+    virtual void Refresh();
 
     virtual void updateFont();
     void setTableColumnWidths(int ccolumn);

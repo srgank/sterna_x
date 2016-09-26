@@ -29,6 +29,7 @@ public:
 
     virtual void pressEscape();
     virtual void updateFont();
+    virtual void Refresh();
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);

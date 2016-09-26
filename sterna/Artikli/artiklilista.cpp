@@ -197,3 +197,8 @@ bool ArtikliLista::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
+
+void ArtikliLista::Refresh()
+{
+    updateFont();
+}

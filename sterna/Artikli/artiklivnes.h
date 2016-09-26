@@ -21,7 +21,7 @@ public:
     virtual void pressEnter();
     virtual void pressReturn();
     virtual void updateFont();
-
+    virtual void Refresh();
 
 private:
     Ui::ArtikliVnes *ui;

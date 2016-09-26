@@ -24,7 +24,6 @@ BaseForm::~BaseForm()
 }
 
 
-
 void BaseForm::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
@@ -36,7 +35,7 @@ void BaseForm::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Escape: pressEscape(); break;
     case Qt::Key_Return: pressReturn(); break;
     case Qt::Key_Enter: pressEnter(); break;
-
+    case Qt::Key_F12: Refresh(); break;
     default:
         QWidget::keyPressEvent(event);
     }
@@ -68,6 +67,11 @@ void BaseForm::pressReturn()
 }
 
 void BaseForm::updateFont()
+{
+
+}
+
+void BaseForm::Refresh()
 {
 
 }
@@ -109,6 +113,11 @@ void BaseForm::wheelEvent ( QWheelEvent * event )
 }
 void BaseForm::PressKeyTAB(QObject *receiver){
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
+    QCoreApplication::postEvent(receiver, event);
+}
+
+void BaseForm::PressKeyF12(QObject *receiver){
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_F12, Qt::NoModifier);
     QCoreApplication::postEvent(receiver, event);
 }
 

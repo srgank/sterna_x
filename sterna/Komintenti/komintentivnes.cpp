@@ -32,6 +32,11 @@ void KomintentiVnes::pressEscape()
     emit signalpressEscape();
 }
 
+void KomintentiVnes::Refresh()
+{
+    updateFont();
+}
+
 
 void KomintentiVnes::on_pushButton_clicked()
 {

@@ -65,9 +65,6 @@ void FakturiVnes::pressEscape()
 void FakturiVnes::on_pushButton_released()
 {
 
-
-
-
 }
 
 
@@ -288,4 +285,10 @@ bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
         ((QWidget*)object)->setStyleSheet(str_none);
     }
     return false;
+}
+
+
+void FakturiVnes::Refresh()
+{
+    updateFont();
 }

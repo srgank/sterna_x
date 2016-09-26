@@ -21,8 +21,10 @@ public:
     ~ArtikliKorekcija();
     virtual void pressEscape();
     virtual void updateFont();
-    void pressReturn();
-    void pressEnter();
+    virtual void pressReturn();
+    virtual void pressEnter();
+    virtual void Refresh();
+
     void initProc(QString m_searchID);
 
 private:

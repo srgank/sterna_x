@@ -202,5 +202,17 @@ void Komintenti::pressReturnResult(komintentT text)
     }
 }
 
+void Komintenti::Refresh()
+{
+    if (m_KomintentiLista){
+        PressKeyF12(m_KomintentiLista);
+    }else if(m_KomintentiVnes){
+        PressKeyF12(m_KomintentiVnes);
+    }else if(m_KomintentiKorekcija){
+        PressKeyF12(m_KomintentiKorekcija);
+    }else{
+    }
+}
+
 
 

@@ -197,3 +197,9 @@ bool FakturiLista::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
+
+
+void FakturiLista::Refresh()
+{
+    updateFont();
+}

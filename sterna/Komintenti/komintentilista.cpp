@@ -232,3 +232,7 @@ bool KomintentiLista::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
+void KomintentiLista::Refresh()
+{
+    updateFont();
+}

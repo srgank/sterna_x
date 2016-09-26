@@ -26,6 +26,7 @@ public:
     virtual void pressEscape();
     virtual void pressReturn();
     virtual void updateFont();
+    void Refresh();
     void initProc(faktura_trans m_data);
     void setFocusKomintent(komintentT t);
     void setFocusArtikal(artikalT t);

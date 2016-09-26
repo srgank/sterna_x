@@ -78,6 +78,8 @@ void Left::on_treeWidget_itemSelectionChanged()
         return;
     }
     (*i)->raise();
+    BaseForm b;
+    b.PressKeyF12(*i);
     emit updatePrinterStatus((*i));
 }
 

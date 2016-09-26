@@ -21,6 +21,8 @@ public:
     virtual void pressF3();
     virtual void pressF4();
     virtual void pressEscape();
+    virtual void Refresh();
+
     void closeAllForm();
 
 private:
@@ -35,7 +37,6 @@ private:
     int searchIDList;
     int searchOffsetList;
     faktura_trans m_data;
-
 
 private slots:
     void pressF2FromLista();

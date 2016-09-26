@@ -25,9 +25,10 @@ public:
     virtual void pressReturn();
     virtual void pressEnter();
     virtual void updateFont();
+    virtual void Refresh();
     void PressKeyTAB(QObject *receiver);
     void PressKeyReturn(QObject *receiver);
-
+    void PressKeyF12(QObject *receiver);
     QWidget* getSourceWidget();
     void setSourceWidget(QWidget *sourceWidget);
     void setCategoryWidget(QWidget * mWidget){m_Widget = mWidget;}
@@ -38,7 +39,6 @@ public:
 private:
     Ui::BaseForm *ui;
     void keyPressEvent(QKeyEvent *event);
-
     QWidget *m_sourceWidget;
     QWidget *m_Widget;
     int scale;

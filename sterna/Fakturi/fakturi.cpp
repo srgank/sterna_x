@@ -119,4 +119,14 @@ void Fakturi::procSentGetKomintent(QString text, QWidget* p)
 }
 
 
-
+void Fakturi::Refresh()
+{
+    if (m_FakturiLista){
+        PressKeyF12(m_FakturiLista);
+    }else if(m_FakturiVnes){
+        PressKeyF12(m_FakturiVnes);
+    }else if(m_FakturiKorekcija){
+        PressKeyF12(m_FakturiKorekcija);
+    }else{
+    }
+}

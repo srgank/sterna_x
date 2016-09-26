@@ -242,6 +242,7 @@ void MainWindow::updateNavigator(QWidget* a, QWidget* b)
     b->setFocus();
     on_actionClose_triggered();
     a->setFocus();
+    ((BaseForm*)a)->Refresh();
     m_left->updateSelection(a);
 }
 

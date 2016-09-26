@@ -290,3 +290,7 @@ bool FakturiKorekcija::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
+void FakturiKorekcija::Refresh()
+{
+    updateFont();
+}

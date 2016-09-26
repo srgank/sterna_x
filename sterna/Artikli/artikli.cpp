@@ -212,5 +212,16 @@ void Artikli::pressReturnResult(artikalT text)
 }
 
 
+void Artikli::Refresh()
+{
+    if (m_ArtikliLista){
+        PressKeyF12(m_ArtikliLista);
+    }else if(m_ArtikliVnes){
+        PressKeyF12(m_ArtikliVnes);
+    }else if(m_ArtikliKorekcija){
+        PressKeyF12(m_ArtikliKorekcija);
+    }else{
+    }
+}
 
 

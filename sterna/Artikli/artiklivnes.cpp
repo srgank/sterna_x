@@ -126,3 +126,7 @@ void ArtikliVnes::updateFont()
     QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     BaseUpdateFonts(ui->gridLayout, str_font);
 }
+void ArtikliVnes::Refresh()
+{
+    updateFont();
+}

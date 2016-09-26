@@ -28,6 +28,7 @@ public:
     virtual void pressF3();
     virtual void pressF4();
     virtual void pressEscape();
+    virtual void Refresh();
     void closeAllForm();
 
 private:
