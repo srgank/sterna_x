@@ -11,14 +11,7 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     ui->setupUi(this);
     hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
-
-
-    strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    ui->sifra_artikal->setStyleSheet(strDisabled);
-    ui->sifra_komintent->setStyleSheet(strDisabled);
     BaseInstallEventFilter(ui->gridLayout);
-
-
 
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
