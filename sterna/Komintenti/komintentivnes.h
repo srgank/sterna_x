@@ -20,6 +20,7 @@ public:
     virtual void pressEscape();
     virtual void pressEnter();
     virtual void pressReturn();
+    virtual void updateFont();
 
 private:
     Ui::KomintentiVnes *ui;

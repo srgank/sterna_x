@@ -20,6 +20,7 @@ public:
     explicit ArtikliKorekcija(BaseForm *parent = 0);
     ~ArtikliKorekcija();
     virtual void pressEscape();
+    virtual void updateFont();
     void pressReturn();
     void pressEnter();
     void initProc(QString m_searchID);

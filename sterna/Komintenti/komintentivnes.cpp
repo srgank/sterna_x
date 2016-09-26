@@ -116,3 +116,9 @@ bool KomintentiVnes::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
+void KomintentiVnes::updateFont()
+{
+    Singleton *s = Singleton::Instance();
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    BaseUpdateFonts(ui->gridLayout, str_font);
+}

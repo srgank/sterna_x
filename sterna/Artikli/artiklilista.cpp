@@ -177,8 +177,9 @@ void ArtikliLista::pressReturn()
 
 void ArtikliLista::updateFont()
 {
-    ui->tableView->setFont(this->font());
-    repaint();
+    Singleton *s = Singleton::Instance();
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    BaseUpdateFonts(ui->gridLayout, str_font);
 }
 
 bool ArtikliLista::eventFilter(QObject *object, QEvent *event)

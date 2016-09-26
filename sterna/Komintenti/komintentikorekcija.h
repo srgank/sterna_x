@@ -19,6 +19,7 @@ public:
     explicit KomintentiKorekcija(BaseForm *parent = 0);
     ~KomintentiKorekcija();
     virtual void pressEscape();
+    virtual void updateFont();
     void initProc(QString m_searchID);
 
 private:
