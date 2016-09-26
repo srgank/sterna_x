@@ -126,3 +126,13 @@ void BaseForm::BaseInstallEventFilter(QGridLayout *receiver){
     }
 }
 
+void BaseForm::BaseUpdateFonts(QGridLayout* receiver, QString& str_font){
+    for(int idx = 0; idx < receiver->count(); idx++)
+    {
+      QLayoutItem * const item = receiver->itemAt(idx);
+      if(dynamic_cast<QWidgetItem *>(item))
+        item->widget()->setStyleSheet(str_font);
+    }
+}
+
+

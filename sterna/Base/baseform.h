@@ -33,6 +33,8 @@ public:
     void setCategoryWidget(QWidget * mWidget){m_Widget = mWidget;}
     QWidget *getCategoryWidget(){return m_Widget;}
     void BaseInstallEventFilter(QGridLayout *receiver);
+    void BaseUpdateFonts(QGridLayout* receiver, QString& str_font);
+
 private:
     Ui::BaseForm *ui;
     void keyPressEvent(QKeyEvent *event);

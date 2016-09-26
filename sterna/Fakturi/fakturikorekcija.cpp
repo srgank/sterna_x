@@ -230,12 +230,7 @@ void FakturiKorekcija::updateFont()
 {
     Singleton *s = Singleton::Instance();
     QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    for(int idx = 0; idx < ui->gridLayout->count(); idx++)
-    {
-      QLayoutItem * const item = ui->gridLayout->itemAt(idx);
-      if(dynamic_cast<QWidgetItem *>(item))
-        item->widget()->setStyleSheet(str_font);
-    }
+    BaseUpdateFonts(ui->gridLayout, str_font);
 }
 
 void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QString & value)
@@ -264,7 +259,6 @@ void FakturiKorekcija::on_pushButton_4_clicked()
     QList<dokumentT> dok;
     QList<fakturiT> fakturiList;
     fakturiList.append(resFaktura);
-
 
     b->ConvertAnyToDokument(fakturiList, dok);
     dokumentT itemDoc = dok.at(0);

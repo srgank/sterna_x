@@ -15,15 +15,12 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
+
     BaseInstallEventFilter(ui->gridLayout);
+
     ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
     ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-
-    QString vOffset = QString::number(numOffset);
-    QString vLimit = "50";
-    QString vSName = "";
-    QString vSearchBy = "artikal";
 
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
@@ -31,11 +28,9 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
     QStringList tempVals = s->Get_Faktura_HeaderState();
-
     colWidth = s->loadWidthList(tempVals, COL);
 
     b = new QBTemplate<fakturiT>();
-
     bd = new QBTemplate<dokumentDetailT>();
     bc = new QBTemplate<fakturiDetailT>();
 
@@ -173,12 +168,7 @@ void FakturiLista::updateFont()
 {
     Singleton *s = Singleton::Instance();
     QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    for(int idx = 0; idx < ui->gridLayout->count(); idx++)
-    {
-      QLayoutItem * const item = ui->gridLayout->itemAt(idx);
-      if(dynamic_cast<QWidgetItem *>(item))
-        item->widget()->setStyleSheet(str_font);
-    }
+    BaseUpdateFonts(ui->gridLayout, str_font);
 }
 
 
