@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ,m_profakturaModul(0)
     ,m_povratnicaModul(0)
     ,m_narackaModul(0)
+    ,m_printModul(0)
 {
     ui->setupUi(this);
     m_artikliModul_description = trUtf8("Артикли");
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_profakturaModul_description = trUtf8("Про-Фактура");
     m_povratnicaModul_description = trUtf8("Повратница");
     m_narackaModul_description = trUtf8("Нарачка");
+    m_printModul_description = trUtf8("Print");
 
 
     dock = new QDockWidget(this);
@@ -248,6 +250,11 @@ void MainWindow::updateNavigator(QWidget* a, QWidget* b)
 
 void MainWindow::closeMyWidget()
 {
+    if (qobject_cast<FormPrint*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<FormPrint>((FormPrint*)qApp->focusWidget());
+        m_printModul = NULL;
+    }
     if (qobject_cast<Artikli*>(qApp->focusWidget()))
     {
         deleteMyWidget<Artikli>((Artikli*)qApp->focusWidget());
@@ -424,3 +431,18 @@ void MainWindow::on_actionNaracka_triggered()
     QString text = "";
     procCreateModulNaracka(text, NULL);
 }
+
+void MainWindow::on_actionPrint_Form_triggered()
+{
+    QString text = "";
+    procCreateModulPrint(text, NULL);
+}
+
+void MainWindow::procCreateModulPrint(QString, QWidget *p)
+{
+    m_printModul = showMyWidget<FormPrint, BaseForm, QWidget>(m_printModul, m_printModul_description, (BaseForm*)ui->centralWidget, p);
+    connect(m_printModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+
+}
+
+

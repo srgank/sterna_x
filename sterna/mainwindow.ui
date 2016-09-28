@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>868</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -36,6 +36,7 @@
     <addaction name="actionProFaktura"/>
     <addaction name="actionPovratnica"/>
     <addaction name="actionNaracka"/>
+    <addaction name="actionPrint_Form"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -69,6 +70,7 @@
    <addaction name="actionSmetka"/>
    <addaction name="actionProFaktura"/>
    <addaction name="actionFaktura"/>
+   <addaction name="actionPrint_Form"/>
   </widget>
   <action name="actionArtikal">
    <property name="text">
@@ -113,6 +115,11 @@
   <action name="actionNaracka">
    <property name="text">
     <string>Naracka</string>
+   </property>
+  </action>
+  <action name="actionPrint_Form">
+   <property name="text">
+    <string>Print Form</string>
    </property>
   </action>
  </widget>

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network printsupport webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -59,7 +59,9 @@ SOURCES += main.cpp\
     Helper/qworker_dokumenti.cpp \
     Helper/qworker_magacin.cpp \
     Delegate/qcbitemdelegate.cpp \
-    Delegate/qleitemdelegate.cpp
+    Delegate/qleitemdelegate.cpp \
+    Print/formprint.cpp \
+    Print/printerlista.cpp
 
 
 
@@ -111,7 +113,10 @@ HEADERS  += mainwindow.h \
     Struct/struct.h \
     qbtemplate.h \
     Delegate/qcbitemdelegate.h \
-    Delegate/qleitemdelegate.h
+    Delegate/qleitemdelegate.h \
+    Print/formprint.h \
+    Print/printerlista.h
+
 
 
 
@@ -153,7 +158,9 @@ FORMS    += mainwindow.ui \
     Naracki/naracki.ui \
     Naracki/narackikorekcija.ui \
     Naracki/narackilista.ui \
-    Naracki/narackivnes.ui
+    Naracki/narackivnes.ui \
+    Print/formprint.ui \
+    Print/printerlista.ui
 
 DISTFILES += \
     info.txt

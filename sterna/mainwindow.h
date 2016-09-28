@@ -11,6 +11,8 @@
 #include "ProFakturi/profakturi.h"
 #include "Povratnica/povratnica.h"
 #include "Naracki/naracki.h"
+#include "Print/formprint.h"
+
 
 #include "Left/left.h"
 
@@ -80,6 +82,8 @@ private slots:
 
     void on_actionNaracka_triggered();
 
+    void on_actionPrint_Form_triggered();
+
 private:
     Ui::MainWindow *ui;
     QDockWidget *dock;
@@ -132,6 +136,7 @@ private:
     ProFakturi *m_profakturaModul;
     Povratnici *m_povratnicaModul;
     Naracki *m_narackaModul;
+    FormPrint * m_printModul;
 
 
     QString m_artikliModul_description;
@@ -143,7 +148,7 @@ private:
     QString m_profakturaModul_description;
     QString m_povratnicaModul_description;
     QString m_narackaModul_description;
-
+    QString m_printModul_description;
 
     QStringList art;
     QStringList kom;
@@ -184,6 +189,7 @@ public slots:
     void procCreateModulProFaktura(QString, QWidget *p);
     void procCreateModulPovratnica(QString, QWidget *p);
     void procCreateModulNaracka(QString, QWidget *p);
+    void procCreateModulPrint(QString, QWidget *p);
 
 };
 
