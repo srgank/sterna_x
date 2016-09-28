@@ -5,6 +5,10 @@
 #include <QPrinter>
 #include "Print/printerlista.h"
 #include <QWebEngineView>
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
 
 
 
@@ -24,8 +28,15 @@ public:
 
 private:
     Ui::PrinterLista *ui;
+    QWebEngineView *webview;
+    QString readFile();
+
 signals:
     void signalpressEscape();
+private slots:
+    void showLoad(bool a);
+    void on_toolButton_clicked();
 };
 
 #endif // PRINTERLISTA_H
+

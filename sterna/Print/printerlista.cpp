@@ -3,10 +3,21 @@
 
 PrinterLista::PrinterLista(BaseForm *parent) :
     BaseForm(parent),
+    webview(0),
     ui(new Ui::PrinterLista)
 {
     ui->setupUi(this);
-    setWindowModality(Qt::WindowModal);
+
+    Singleton *s = Singleton::Instance();
+    QRect rMain = s->getMainRect();
+    ui->gridLayout->setGeometry(rMain);
+    setLayout(ui->gridLayout);
+    setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+
+
+    webview = new QWebEngineView(ui->widget);
+    ui->gridLayout->addWidget(webview);
+    connect(webview, SIGNAL(loadFinished(bool)), SLOT(showLoad(bool)));
     printPDF();
     PressKeyReturn(this);
 
@@ -21,17 +32,43 @@ void PrinterLista::printPDF()
 {
 
     QPrinter printer(QPrinter::HighResolution);
-
     // Create webview and load html source
-    QWebEngineView *webview = new QWebEngineView(0);
-    webview->resize(1024, 750);
-    QString htmlinput = "<P>TEEEEEEE 777777777777777777777777777 EEEEEEEEEEE</P>";
+    QString htmlinput = readFile();
+
     webview->setHtml(htmlinput);
+}
+
+
+// reading a text file
+
+QString PrinterLista::readFile()
+{
+    QString out;
+    string line;
+  ifstream myfile ("invoice.txt");
+  if (myfile.is_open())
+  {
+    while ( getline (myfile,line) )
+    {
+      out +=  QString::fromStdString(line);
+    }
+    myfile.close();
+  }
+  return out;
+}
+
+void PrinterLista::showLoad(bool a)
+{
+    webview->hide();
     webview->show();
-    webview->repaint();
 }
 
 void PrinterLista::pressEscape()
 {
     emit signalpressEscape();
+}
+
+void PrinterLista::on_toolButton_clicked()
+{
+    pressEscape();
 }
