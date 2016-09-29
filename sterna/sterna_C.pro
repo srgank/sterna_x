@@ -61,7 +61,8 @@ SOURCES += main.cpp\
     Delegate/qcbitemdelegate.cpp \
     Delegate/qleitemdelegate.cpp \
     Print/formprint.cpp \
-    Print/printerlista.cpp
+    Print/printerlista.cpp \
+    Template/qfakturatemplate.cpp
 
 
 
@@ -115,7 +116,8 @@ HEADERS  += mainwindow.h \
     Delegate/qcbitemdelegate.h \
     Delegate/qleitemdelegate.h \
     Print/formprint.h \
-    Print/printerlista.h
+    Print/printerlista.h \
+    Template/qfakturatemplate.h
 
 
 

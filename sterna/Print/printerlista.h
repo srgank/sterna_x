@@ -9,6 +9,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Template/qfakturatemplate.h"
+
+
 using namespace std;
 
 
@@ -33,7 +36,7 @@ private:
     QWebEnginePage *page;
     QString readFile();
     float faktor;
-
+    QFakturaTemplate ft;
 signals:
     void signalpressEscape();
 private slots:

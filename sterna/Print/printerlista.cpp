@@ -49,18 +49,7 @@ void PrinterLista::printPDF()
 
 QString PrinterLista::readFile()
 {
-    QString out;
-    string line;
-  ifstream myfile ("invoice.htm");
-  if (myfile.is_open())
-  {
-    while ( getline (myfile,line) )
-    {
-      out +=  QString::fromStdString(line);
-    }
-    myfile.close();
-  }
-  return out;
+    return ft.setFaktura();
 }
 
 void PrinterLista::showLoad(bool a)
@@ -82,7 +71,7 @@ void PrinterLista::on_toolButton_clicked()
 void PrinterLista::on_toolButton_2_clicked()
 {
     QString fileName = "l.pdf";
-    page->printToPdf(fileName);
+//    page->printToPdf(fileName);
     QProcess sh;
     sh.start("acroread", QStringList() << "/h /p" << "l.pdf" );
 
