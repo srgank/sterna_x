@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QPrinter>
 #include "Print/printerlista.h"
-#include <QWebEngineView>
+#include <QtWebEngineWidgets>
+#include <QTextEdit>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -29,14 +30,23 @@ public:
 private:
     Ui::PrinterLista *ui;
     QWebEngineView *webview;
+    QWebEnginePage *page;
     QString readFile();
+    float faktor;
 
 signals:
     void signalpressEscape();
 private slots:
     void showLoad(bool a);
     void on_toolButton_clicked();
+    void on_toolButton_2_clicked();
+    void on_toolButton_3_clicked();
+    void on_toolButton_4_clicked();
 };
 
 #endif // PRINTERLISTA_H
+
+
+
+
 
