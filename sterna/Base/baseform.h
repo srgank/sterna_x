@@ -35,6 +35,8 @@ public:
     QWidget *getCategoryWidget(){return m_Widget;}
     void BaseInstallEventFilter(QGridLayout *receiver);
     void BaseUpdateFonts(QGridLayout* receiver, QString& str_font);
+    void SetBaseText(QString& str_text);
+    QString& GetBaseText();
 
 private:
     Ui::BaseForm *ui;
@@ -42,6 +44,7 @@ private:
     QWidget *m_sourceWidget;
     QWidget *m_Widget;
     int scale;
+    QString m_text;
 protected:
     template <class T, class K>
     T* showMyWidget(T *a, K *b)

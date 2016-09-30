@@ -434,15 +434,18 @@ void MainWindow::on_actionNaracka_triggered()
 
 void MainWindow::on_actionPrint_Form_triggered()
 {
-    QString text = "";
+    QFakturaTemplate ft;
+    QString text = ft.setFaktura();
+//    QString text = "<P>TTTTTTTTTTTTTTT</P>";
+
     procCreateModulPrint(text, NULL);
 }
 
-void MainWindow::procCreateModulPrint(QString, QWidget *p)
+void MainWindow::procCreateModulPrint(QString text, QWidget *p)
 {
     m_printModul = showMyWidget<FormPrint, BaseForm, QWidget>(m_printModul, m_printModul_description, (BaseForm*)ui->centralWidget, p);
     connect(m_printModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
-
+    m_printModul->PrintDocument(text);
 }
 
 

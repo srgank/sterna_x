@@ -17,45 +17,41 @@ PrinterLista::PrinterLista(BaseForm *parent) :
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
 
-    page = new QWebEnginePage;
+    page = new QWebEnginePage();
     webview = new QWebEngineView(ui->widget);
     ui->gridLayout->addWidget(webview);
-    connect(page, SIGNAL(loadFinished(bool)), SLOT(showLoad(bool)));
-    printPDF();
-    PressKeyReturn(this);
-
+    connect(page, SIGNAL(loadFinished(bool)),this, SLOT(showLoad(bool)));
+    PrintDocumentText();
 }
 
 PrinterLista::~PrinterLista()
 {
     delete ui;
+
 }
 
 void PrinterLista::printPDF()
 {
-//    QPrinter printer(QPrinter::HighResolution);
-//    printer.setOutputFormat(QPrinter::PdfFormat);
-//    printer.setOutputFileName("outputt.pdf");
-    // Create webview and load html source
-
-    QString htmlinput = readFile();
-    page->setHtml(htmlinput);
-    page->setView(webview);
-    // *textEdit must remain valid until the lambda function is called.
 }
 
 
 // reading a text file
 
-QString PrinterLista::readFile()
+void PrinterLista::PrintDocumentText()
 {
-    return ft.setFaktura();
+    QString text = GetBaseText();
+
+    page->setHtml(text);
+    page->setView(webview);
 }
+
 
 void PrinterLista::showLoad(bool a)
 {
     webview->hide();
     webview->show();
+    disconnect(page, SIGNAL(loadFinished(bool)),this,  SLOT(showLoad(bool)));
+    emit finishedPrinting_();
 }
 
 void PrinterLista::pressEscape()
@@ -71,7 +67,7 @@ void PrinterLista::on_toolButton_clicked()
 void PrinterLista::on_toolButton_2_clicked()
 {
     QString fileName = "l.pdf";
-//    page->printToPdf(fileName);
+    page->printToPdf(fileName);
     QProcess sh;
     sh.start("acroread", QStringList() << "/h /p" << "l.pdf" );
 

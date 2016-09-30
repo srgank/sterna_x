@@ -145,3 +145,11 @@ void BaseForm::BaseUpdateFonts(QGridLayout* receiver, QString& str_font){
 }
 
 
+void BaseForm::SetBaseText( QString& str_text){
+    m_text = str_text;
+}
+
+QString& BaseForm::GetBaseText(){
+    return m_text;
+}
+

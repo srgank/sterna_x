@@ -12,6 +12,8 @@
 #include "Povratnica/povratnica.h"
 #include "Naracki/naracki.h"
 #include "Print/formprint.h"
+#include "Template/qfakturatemplate.h"
+
 
 
 #include "Left/left.h"

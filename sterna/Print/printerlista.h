@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Template/qfakturatemplate.h"
+
 
 
 using namespace std;
@@ -29,6 +29,7 @@ public:
     ~PrinterLista();
     void printPDF();
     virtual void pressEscape();
+    void PrintDocumentText();
 
 private:
     Ui::PrinterLista *ui;
@@ -36,9 +37,10 @@ private:
     QWebEnginePage *page;
     QString readFile();
     float faktor;
-    QFakturaTemplate ft;
+
 signals:
     void signalpressEscape();
+    void finishedPrinting_();
 private slots:
     void showLoad(bool a);
     void on_toolButton_clicked();
