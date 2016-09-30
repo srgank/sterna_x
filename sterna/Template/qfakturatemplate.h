@@ -15,6 +15,7 @@ public:
     QString setEndHtml();
 
     QString setFaktura();
+    QString setFaktura2();
 
 
 signals:

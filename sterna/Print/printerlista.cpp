@@ -40,8 +40,9 @@ void PrinterLista::printPDF()
 void PrinterLista::PrintDocumentText()
 {
     QString text = GetBaseText();
+    QUrl baseUrl = QUrl::fromLocalFile(QDir::current().absoluteFilePath("logo.png"));
 
-    page->setHtml(text);
+    page->setHtml(text, baseUrl);
     page->setView(webview);
 }
 
@@ -50,8 +51,13 @@ void PrinterLista::showLoad(bool a)
 {
     webview->hide();
     webview->show();
-    disconnect(page, SIGNAL(loadFinished(bool)),this,  SLOT(showLoad(bool)));
-    emit finishedPrinting_();
+    SavePdf();
+}
+
+void PrinterLista::SavePdf()
+{
+    QString fileName = "l.pdf";
+    page->printToPdf(fileName);
 }
 
 void PrinterLista::pressEscape()
@@ -66,11 +72,9 @@ void PrinterLista::on_toolButton_clicked()
 
 void PrinterLista::on_toolButton_2_clicked()
 {
-    QString fileName = "l.pdf";
-//    page->printToPdf(fileName);
     QProcess sh;
+    sh.waitForStarted(1000);
     sh.start("acroread", QStringList() << "/h /p" << "l.pdf" );
-
     sh.waitForFinished();
     sh.close();
 }

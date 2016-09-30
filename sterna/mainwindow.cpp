@@ -455,15 +455,19 @@ QString MainWindow::procGetPrintText()
         QString text = "<P>Artikli</P>";
         return text;
     }
-    if (qobject_cast<Komintenti*>(qApp->focusWidget()))
+    else if (qobject_cast<Komintenti*>(qApp->focusWidget()))
     {
         QString text = "<P>Komintenti</P>";
         return text;
     }
-    if (qobject_cast<Fakturi*>(qApp->focusWidget()))
+    else if (qobject_cast<Fakturi*>(qApp->focusWidget()))
     {
         QFakturaTemplate ft;
-        QString text = ft.setFaktura();
+        QString text = ft.setFaktura2();
+        return text;
+    }
+    else{
+        QString text = "";
         return text;
     }
 }

@@ -9,6 +9,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <QUrl>
+#include <QDir>
+
 
 
 
@@ -30,6 +33,8 @@ public:
     void printPDF();
     virtual void pressEscape();
     void PrintDocumentText();
+    void SavePdf();
+
 
 private:
     Ui::PrinterLista *ui;
