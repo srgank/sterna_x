@@ -140,7 +140,6 @@ private:
     Naracki *m_narackaModul;
     FormPrint * m_printModul;
 
-
     QString m_artikliModul_description;
     QString m_komintentiModul_description;
     QString m_priemnicaModul_description;
@@ -178,6 +177,8 @@ private:
 
     QStringList smetka;
     QStringList smetkaDetail;
+
+    QString procGetPrintText();
 
 
 public slots:

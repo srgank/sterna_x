@@ -351,11 +351,12 @@ void MainWindow::procCreateModulPriemnica(QString, QWidget *p)
 }
 void MainWindow::procCreateModulFaktura(QString, QWidget *p)
 {
+    ui->actionFaktura->setEnabled(false);
     m_fakturaModul = showMyWidget<Fakturi, BaseForm, QWidget>(m_fakturaModul, m_fakturaModul_description, (BaseForm*)ui->centralWidget, p);
     connect(m_fakturaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_fakturaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_fakturaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
-
+    ui->actionFaktura->setEnabled(true);
 }
 
 void MainWindow::procCreateModulIspratnica(QString, QWidget *p)
@@ -434,10 +435,7 @@ void MainWindow::on_actionNaracka_triggered()
 
 void MainWindow::on_actionPrint_Form_triggered()
 {
-    QFakturaTemplate ft;
-    QString text = ft.setFaktura();
-//    QString text = "<P>TTTTTTTTTTTTTTT</P>";
-
+    QString text = procGetPrintText();
     procCreateModulPrint(text, NULL);
 }
 
@@ -448,4 +446,25 @@ void MainWindow::procCreateModulPrint(QString text, QWidget *p)
     m_printModul->PrintDocument(text);
 }
 
+
+QString MainWindow::procGetPrintText()
+{
+    m_left->getSelection();
+    if (qobject_cast<Artikli*>(qApp->focusWidget()))
+    {
+        QString text = "<P>Artikli</P>";
+        return text;
+    }
+    if (qobject_cast<Komintenti*>(qApp->focusWidget()))
+    {
+        QString text = "<P>Komintenti</P>";
+        return text;
+    }
+    if (qobject_cast<Fakturi*>(qApp->focusWidget()))
+    {
+        QFakturaTemplate ft;
+        QString text = ft.setFaktura();
+        return text;
+    }
+}
 

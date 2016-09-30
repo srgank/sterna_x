@@ -67,7 +67,7 @@ void PrinterLista::on_toolButton_clicked()
 void PrinterLista::on_toolButton_2_clicked()
 {
     QString fileName = "l.pdf";
-    page->printToPdf(fileName);
+//    page->printToPdf(fileName);
     QProcess sh;
     sh.start("acroread", QStringList() << "/h /p" << "l.pdf" );
 
