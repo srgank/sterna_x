@@ -93,7 +93,7 @@ private:
     QRect rMain;
 
     template <class T, class P, class S>
-    T* showMyWidget(T *a, QString info, P *parent, S* source)
+    T* showMyWidget(T *a, QString info, P *parent, S* source, bool bleft)
     {
         if (a)
         {
@@ -101,14 +101,17 @@ private:
 //            a->refresh();
             a->raise();
             a->setSourceWidget(source);
-            m_left->updateSelection((QWidget*)a);
-            return a;
+            if (bleft){
+                m_left->updateSelection((QWidget*)a);
+            }return a;
         }
         a = new T(parent);
         connect(a, SIGNAL(signCloseMyWidget()), this, SLOT(closeMyWidget()));
 
         a->setGeometry(parent->rect());
-        m_left->addTreeWidgetItem(info, (P*)a);
+        if (bleft){
+            m_left->addTreeWidgetItem(info, (P*)a);
+        }
         a->setSourceWidget(source);
         a->setGeometry(rMain);
         a->showMaximized();
@@ -118,10 +121,12 @@ private:
     }
 
     template <class T>
-    void deleteMyWidget(T *a)
+    void deleteMyWidget(T *a, bool bleft)
     {
         disconnect(a, SIGNAL(signCloseMyWidget()), this, SLOT(closeMyWidget()));
-        m_left->deleteTreeWidgetItem((QWidget*)a);
+        if (bleft){
+            m_left->deleteTreeWidgetItem((QWidget*)a);
+        }
         if(a)
         {
             delete a;
