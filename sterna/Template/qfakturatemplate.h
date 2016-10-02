@@ -2,6 +2,8 @@
 #define QFAKTURATEMPLATE_H
 
 #include <QWidget>
+#include "Struct/struct.h"
+
 
 class QFakturaTemplate : public QWidget
 {
@@ -15,7 +17,7 @@ public:
     QString setEndHtml();
 
     QString setFaktura();
-    QString setFaktura2();
+    QString setFaktura2(faktura_trans& fakturaData);
 
 
 signals:

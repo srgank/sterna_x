@@ -22,6 +22,7 @@ public:
     virtual void pressF4();
     virtual void pressEscape();
     virtual void Refresh();
+    faktura_trans& getFaktTransData();
 
     void closeAllForm();
 

@@ -254,6 +254,7 @@ void MainWindow::closeMyWidget()
     {
         deleteMyWidget<FormPrint>((FormPrint*)qApp->focusWidget(), false);
         m_printModul = NULL;
+
     }
     if (qobject_cast<Artikli*>(qApp->focusWidget()))
     {
@@ -295,7 +296,6 @@ void MainWindow::closeMyWidget()
         deleteMyWidget<ProFakturi>((ProFakturi*)qApp->focusWidget(), true);
         m_povratnicaModul = NULL;
     }
-
 }
 //---------------------------------------------------------------------------------------------------
 
@@ -463,11 +463,15 @@ QString MainWindow::procGetPrintText()
     else if (qobject_cast<Fakturi*>(qApp->focusWidget()))
     {
         QFakturaTemplate ft;
-        QString text = ft.setFaktura2();
+        QString text = ft.setFaktura2(((Fakturi*)qApp->focusWidget())->getFaktTransData());
         return text;
     }
     else{
-        QString text = "";
+        QString text = "<p>Facebook: <a href=\"https://www.facebook.com/\">Facebook</a></p>"
+                       "<p>Yahoo: <a href=\"https://www.yahoo.com/\">Yahoo</a></p>"
+                       "<p>Google: <a href=\"https://www.google.com/\">Google</a></p>"
+                       "<p>Hotmail: <a href=\"https://www.hotmail.com/\">Hotmail</a></p>"
+                       "<p>GMail: <a href=\"https://www.gmail.com/\">GMail</a></p>";
         return text;
     }
 }

@@ -19,16 +19,23 @@ PrinterLista::PrinterLista(BaseForm *parent) :
 
     page = new QWebEnginePage();
     webview = new QWebEngineView(ui->widget);
+    webview->setFocusPolicy(Qt::StrongFocus );
+    webview->setFocus();
     ui->gridLayout->addWidget(webview);
     connect(page, SIGNAL(loadFinished(bool)),this, SLOT(showLoad(bool)));
+    connect(webview, SIGNAL(windowCloseRequested()), this,SLOT(CloseProc()));
     PrintDocumentText();
 }
 
 PrinterLista::~PrinterLista()
 {
     delete ui;
+    delete page;
+    delete webview;
 
 }
+
+
 
 void PrinterLista::printPDF()
 {
@@ -60,24 +67,25 @@ void PrinterLista::SavePdf()
     page->printToPdf(fileName);
 }
 
-void PrinterLista::pressEscape()
+void PrinterLista::pressReturn()
 {
     emit signalpressEscape();
 }
 
 void PrinterLista::on_toolButton_clicked()
 {
-    pressEscape();
+    pressReturn();
 }
 
 void PrinterLista::on_toolButton_2_clicked()
 {
     QProcess sh;
     sh.waitForStarted(1000);
-    sh.start("acroread", QStringList() << "/h /p" << "l.pdf" );
+    sh.start("acroread", QStringList() << "/n /s /o /h " << "l.pdf" );
     sh.waitForFinished();
     sh.close();
 }
+
 void PrinterLista::on_toolButton_3_clicked()
 {
     faktor *= 0.9;
@@ -88,4 +96,14 @@ void PrinterLista::on_toolButton_4_clicked()
 {
     faktor *= 1.1;
     page->setZoomFactor(faktor);
+}
+
+void PrinterLista::CloseProc()
+{
+
+}
+
+void PrinterLista::wheelEvent ( QWheelEvent * event )
+{
+
 }

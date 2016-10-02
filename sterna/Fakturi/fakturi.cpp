@@ -130,3 +130,11 @@ void Fakturi::Refresh()
     }else{
     }
 }
+
+faktura_trans& Fakturi::getFaktTransData(){
+    if (m_FakturiLista){
+        m_data = m_FakturiLista->getFakturaData();
+    }else{
+    }
+    return m_data;
+}

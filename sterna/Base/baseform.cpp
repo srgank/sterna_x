@@ -111,6 +111,7 @@ void BaseForm::wheelEvent ( QWheelEvent * event )
     setUpdatesEnabled(true);
     updateFont();
 }
+
 void BaseForm::PressKeyTAB(QObject *receiver){
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(receiver, event);

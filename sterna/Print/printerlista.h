@@ -31,7 +31,8 @@ public:
     explicit PrinterLista(BaseForm *parent = 0);
     ~PrinterLista();
     void printPDF();
-    virtual void pressEscape();
+    virtual void pressReturn();
+
     void PrintDocumentText();
     void SavePdf();
 
@@ -42,7 +43,7 @@ private:
     QWebEnginePage *page;
     QString readFile();
     float faktor;
-
+    void wheelEvent ( QWheelEvent * event );
 signals:
     void signalpressEscape();
     void finishedPrinting_();
@@ -52,6 +53,7 @@ private slots:
     void on_toolButton_2_clicked();
     void on_toolButton_3_clicked();
     void on_toolButton_4_clicked();
+    void CloseProc();
 };
 
 #endif // PRINTERLISTA_H
