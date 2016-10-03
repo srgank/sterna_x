@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network printsupport webenginewidgets
-
+QT       += core gui network printsupport webkitwidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = sterna_C

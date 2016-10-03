@@ -4,13 +4,16 @@
 #include <QWidget>
 #include <QPrinter>
 #include "Print/printerlista.h"
-#include <QtWebEngineWidgets>
+#include <QtWebKit>
+#include <QWebView>
+
 #include <QTextEdit>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <QUrl>
 #include <QDir>
+
 
 
 
@@ -39,8 +42,7 @@ public:
 
 private:
     Ui::PrinterLista *ui;
-    QWebEngineView *webview;
-    QWebEnginePage *page;
+    QWebView *webview;
     QString readFile();
     float faktor;
     void wheelEvent ( QWheelEvent * event );

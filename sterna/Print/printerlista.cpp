@@ -10,27 +10,22 @@ PrinterLista::PrinterLista(BaseForm *parent) :
     ui(new Ui::PrinterLista)
 {
     ui->setupUi(this);
-
     Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
+    webview = new QWebView(ui->widget);
+    webview->setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+    ui->gridLayout->addWidget(webview);
+
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
 
-    page = new QWebEnginePage();
-    webview = new QWebEngineView(ui->widget);
-    webview->setFocusPolicy(Qt::StrongFocus );
-    webview->setFocus();
-    ui->gridLayout->addWidget(webview);
-    connect(page, SIGNAL(loadFinished(bool)),this, SLOT(showLoad(bool)));
-    connect(webview, SIGNAL(windowCloseRequested()), this,SLOT(CloseProc()));
-    PrintDocumentText();
+    connect(webview, SIGNAL(loadFinished(bool)),this, SLOT(showLoad(bool)));
 }
 
 PrinterLista::~PrinterLista()
 {
     delete ui;
-    delete page;
     delete webview;
 
 }
@@ -49,8 +44,8 @@ void PrinterLista::PrintDocumentText()
     QString text = GetBaseText();
     QUrl baseUrl = QUrl::fromLocalFile(QDir::current().absoluteFilePath("logo.png"));
 
-    page->setHtml(text, baseUrl);
-    page->setView(webview);
+    webview->setHtml(text, baseUrl);
+//    page->setView(webview);
 }
 
 
@@ -58,13 +53,15 @@ void PrinterLista::showLoad(bool a)
 {
     webview->hide();
     webview->show();
-    SavePdf();
+
 }
 
 void PrinterLista::SavePdf()
 {
-    QString fileName = "l.pdf";
-    page->printToPdf(fileName);
+    QPrinter printer(QPrinter::HighResolution); //create your QPrinter (don't need to be high resolution, anyway)
+    printer.setPageSize(QPrinter::A4);
+    printer.setOrientation(QPrinter::Portrait);
+    webview->print(&printer);
 }
 
 void PrinterLista::pressReturn()
@@ -79,23 +76,24 @@ void PrinterLista::on_toolButton_clicked()
 
 void PrinterLista::on_toolButton_2_clicked()
 {
-    QProcess sh;
-    sh.waitForStarted(1000);
-    sh.start("acroread", QStringList() << "/n /s /o /h " << "l.pdf" );
-    sh.waitForFinished();
-    sh.close();
+//    QProcess sh;
+//    sh.waitForStarted(1000);
+//    sh.start("acroread", QStringList() << "/n /s /o /h " << "l.pdf" );
+//    sh.waitForFinished();
+//    sh.close();
+    SavePdf();
 }
 
 void PrinterLista::on_toolButton_3_clicked()
 {
     faktor *= 0.9;
-    page->setZoomFactor(faktor);
+    webview->setZoomFactor(faktor);
 }
 
 void PrinterLista::on_toolButton_4_clicked()
 {
     faktor *= 1.1;
-    page->setZoomFactor(faktor);
+    webview->setZoomFactor(faktor);
 }
 
 void PrinterLista::CloseProc()
