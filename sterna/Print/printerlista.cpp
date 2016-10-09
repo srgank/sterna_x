@@ -13,7 +13,7 @@ PrinterLista::PrinterLista(BaseForm *parent) :
     Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
     webview = new QWebView(ui->widget);
-    webview->setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+    webview->setFixedSize(QSize(rMain.width()-10, rMain.height()-80));
     ui->gridLayout->addWidget(webview);
 
     ui->gridLayout->setGeometry(rMain);
@@ -27,7 +27,6 @@ PrinterLista::~PrinterLista()
 {
     delete ui;
     delete webview;
-
 }
 
 

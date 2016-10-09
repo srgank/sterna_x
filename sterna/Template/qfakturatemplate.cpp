@@ -357,7 +357,7 @@ QString QFakturaTemplate::setFaktura2(faktura_trans& fakturaData)
            tempItem.replace("%Product_Description%","");
            tempItem.replace("%Cena%",fakturaData.data2[i].izl_cena_so_ddv_prod);
            tempItem.replace("%Kol%",fakturaData.data2[i].kol);
-           tempItem.replace("%Iznos%",fakturaData.data2[i].izl_cena_so_ddv_prod);
+           tempItem.replace("%Iznos%",fakturaData.data2[i].izl_prod_iznos_so_ddv);
 
 
            fakt += tempItem;

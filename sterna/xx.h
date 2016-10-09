@@ -6,6 +6,7 @@
 #include <QStringList>
 #include <QRect>
 #include <vector>
+#include <QLocale>
 
 
 class Singleton 
@@ -120,6 +121,10 @@ public:
         return tempVals;
     }
 
+    void ConvertStringToFloat(QString &inputValue, float &outputValue, bool *isOk){
+        QLocale loc;
+        outputValue = loc.toFloat(inputValue, isOk);
+    }
 
 protected: 
 	//Singleton();

@@ -24,12 +24,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -61,12 +61,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -98,12 +98,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -135,12 +135,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -172,12 +172,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -209,12 +209,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -246,12 +246,12 @@ public:
                 tempItem.tid = inputlist.at(i).tid;
                 tempItem.dokument_id = inputlist.at(i).dokument_id;
                 tempItem.dokument_tip = inputlist.at(i).dokument_tip;
-//                tempItem.td = inputlist.at(i).td;
-//                tempItem.tds = inputlist.at(i).tds;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
                 tempItem.komintent_id= inputlist.at(i).komintent_id;
                 tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
-//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
-//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
                 tempItem.valuta= inputlist.at(i).valuta;
 
                 tempItem.kurs= inputlist.at(i).kurs;
@@ -308,6 +308,7 @@ public:
                 tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
                 tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
                 tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+                tempItem.izl_prod_iznos_so_ddv = inputlist.at(i).izl_prod_iznos_so_ddv;
                 tempItem.kol = inputlist.at(i).kol;
                 tempItem.mag_id = inputlist.at(i).mag_id;
                 tempItem.status = inputlist.at(i).status;
@@ -617,44 +618,45 @@ public:
 
         for(int ii = 0; ii < tlist.count();ii++)
         {
-            QStringList itemRecord;
+//            QStringList itemRecord;
+            QList<showDataItem> itemRecord;
             T tempItem = ((QList<T>)tlist).at(ii);
             if (typeid(T) == typeid(artikalT)) {
                   GetArtikalData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(komintentT)) {
                   GetKomintentData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(dokumentT)) {
-                  GetDokumentData( itemRecord, tempItem);
+//                  GetDokumentData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(dokumentDetailT)) {
-                GetDokumentDetailData( itemRecord, tempItem);
+//                GetDokumentDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(fakturiT)) {
                 GetFakturaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(fakturiDetailT)) {
                 GetFakturaDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(profakturiT)) {
-                GetProFakturaData( itemRecord, tempItem);
+//                GetProFakturaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(profakturiDetailT)) {
-                GetProFakturaDetailData( itemRecord, tempItem);
+//                GetProFakturaDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(ispratnicaT)) {
-                GetIspratnicaData( itemRecord, tempItem);
+//                GetIspratnicaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(ispratnicaDetailT)) {
-                GetIspratnicaDetailData( itemRecord, tempItem);
+//                GetIspratnicaDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(priemnicaT)) {
-                GetPriemnicaData( itemRecord, tempItem);
+//                GetPriemnicaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(priemnicaDetailT)) {
-                GetPriemnicaDetailData( itemRecord, tempItem);
+//                GetPriemnicaDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(povratnicaT)) {
-                GetPovratnicaData( itemRecord, tempItem);
+//                GetPovratnicaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(povratnicaDetailT)) {
-                GetPovratnicaDetailData( itemRecord, tempItem);
+//                GetPovratnicaDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(nalogT)) {
-                GetNalogData( itemRecord, tempItem);
+//                GetNalogData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(nalogDetailT)) {
-                GetNalogDetailData( itemRecord, tempItem);
+//                GetNalogDetailData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(narackaT)) {
-                GetNarackaData( itemRecord, tempItem);
+//                GetNarackaData( itemRecord, tempItem);
             }else if (typeid(T) == typeid(narackaDetailT)) {
-                GetNarackaDetailData( itemRecord, tempItem);
+//                GetNarackaDetailData( itemRecord, tempItem);
             }
 
 
@@ -662,8 +664,15 @@ public:
 
             for (int i = 0; i < c; i++)
             {
-                QStandardItem *item = new QStandardItem(itemRecord.at(i));
-                item->setTextAlignment(Qt::AlignLeft);
+                QStandardItem *item = new QStandardItem(itemRecord.at(i).dataItem);
+                item->setTextAlignment(itemRecord.at(i).flag);
+                QBrush b;
+
+                if (itemRecord.at(i).isColor == 1){
+                    b.setColor(itemRecord.at(i).colorName);
+                    item->setForeground(b);
+                }
+
                 item->setEditable(false);
                 //ui->tableView->setRowHeight(row, 20);
                 table->setColumnWidth(i, colWidth.at(i));
@@ -691,17 +700,18 @@ public:
                     << QObject::trUtf8("Категорија");
     }
 
-    void GetArtikalData( QStringList& itemRecord, T &tItemT){
+    void GetArtikalData( QList<showDataItem>& itemRecord, T &tItemT){
         artikalT& tItem = (artikalT&)tItemT;
-        itemRecord << tItem.id
-                       << tItem.sifra
-                       << tItem.artikal
-                       << tItem.edm
-                       << tItem.ref
-                       << tItem.kataloski_broj
-                       << tItem.ddv
-                       << tItem.proizvoditel
-                       << tItem.kategorija;
+
+        itemRecord << showDataItem{tItem.id, Qt::AlignLeft}
+                       << showDataItem{tItem.sifra, Qt::AlignRight, true, Qt::blue}
+                       << showDataItem{tItem.artikal, Qt::AlignLeft}
+                       << showDataItem{tItem.edm, Qt::AlignLeft}
+                       << showDataItem{tItem.ref, Qt::AlignLeft}
+                       << showDataItem{tItem.kataloski_broj, Qt::AlignLeft}
+                       << showDataItem{tItem.ddv, Qt::AlignRight}
+                       << showDataItem{tItem.proizvoditel, Qt::AlignLeft}
+                       << showDataItem{tItem.kategorija, Qt::AlignLeft};
     }
 
     //------------- komintenti -------------------------------------------
@@ -726,23 +736,25 @@ public:
                        ;
     }
 
-    void GetKomintentData( QStringList& itemRecord, T &tItemT){
+    void GetKomintentData( QList<showDataItem>& itemRecord, T &tItemT){
         komintentT& tItem = (komintentT&)tItemT;
-        itemRecord << tItem.id
-                   << tItem.sifra
-                   << tItem.naziv
-                   << tItem.adresa
-                   << tItem.tel
-                   << tItem.mobil
-                   << tItem.zirosmetka
-                   << tItem.edb
-                   << tItem.deponent
-                   << tItem.sifra_dejnost
-                   << tItem.mb
-                   << tItem.zabeleska1
-                   << tItem.zabeleska2
-                   << tItem.rabat
-                   << tItem.grad;
+        itemRecord
+                   << showDataItem{tItem.id,Qt::AlignLeft}
+                   << showDataItem{tItem.sifra,Qt::AlignRight}
+                   << showDataItem{tItem.naziv,Qt::AlignLeft}
+                   << showDataItem{tItem.adresa,Qt::AlignLeft}
+                   << showDataItem{tItem.tel,Qt::AlignLeft}
+                   << showDataItem{tItem.mobil,Qt::AlignLeft}
+                   << showDataItem{tItem.zirosmetka,Qt::AlignLeft}
+                   << showDataItem{tItem.edb,Qt::AlignLeft}
+                   << showDataItem{tItem.deponent,Qt::AlignLeft}
+                   << showDataItem{tItem.sifra_dejnost,Qt::AlignLeft}
+                   << showDataItem{tItem.mb,Qt::AlignLeft}
+                   << showDataItem{tItem.zabeleska1,Qt::AlignLeft}
+                   << showDataItem{tItem.zabeleska2,Qt::AlignLeft}
+                   << showDataItem{tItem.rabat,Qt::AlignRight}
+                   << showDataItem{tItem.grad,Qt::AlignLeft}
+                   ;
     }
 
 //------------- dokumenti -------------------------------------------
@@ -906,46 +918,49 @@ public:
                    ;
     }
 
-    void GetFakturaData( QStringList& itemRecord, T &tItemT){
+    void GetFakturaData( QList<showDataItem>& itemRecord, T &tItemT){
         fakturiT& tItem = (fakturiT&)tItemT;
-        itemRecord << tItem.tid
-                << tItem.dokument_id
-                << tItem.dokument_tip
-//                << tItem.td
-//                << tItem.tds
-                << tItem.komintent_id
-                << tItem.komintent_naziv
-//                << tItem.prevoznik_id
-//                << tItem.prevoznik_naziv
-                << tItem.valuta
-                << tItem.kurs
-                << tItem.iznos_val
-                << tItem.ddv_val
-                << tItem.rabat_val
-                << tItem.iznos_plakanje_val
-                << tItem.iznos_ddv_den
-                << tItem.rabat_den
-                << tItem.iznos_plakanje_den
-                << tItem.transport_den
-                << tItem.carina_den
-                << tItem.ddv_den
-                << tItem.drugi_trosoci_den
-                << tItem.dok_status
-                << tItem.user_id
-                << tItem.komentar
-                << tItem.mag_id
-                << tItem.object_id;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft}
+                << showDataItem{tItem.dokument_id, Qt::AlignRight}
+                << showDataItem{tItem.dokument_tip, Qt::AlignRight}
+//                << showDataItem{tItem.td, Qt::AlignLeft}
+//                << showDataItem{tItem.tds, Qt::AlignLeft}
+                << showDataItem{tItem.komintent_id, Qt::AlignRight}
+                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft}
+//                << showDataItem{tItem.prevoznik_id, Qt::AlignLeft}
+//                << showDataItem{tItem.prevoznik_naziv, Qt::AlignLeft}
+                << showDataItem{tItem.valuta, Qt::AlignRight}
+                << showDataItem{tItem.kurs, Qt::AlignRight}
+                << showDataItem{tItem.iznos_val, Qt::AlignRight}
+                << showDataItem{tItem.ddv_val, Qt::AlignRight}
+                << showDataItem{tItem.rabat_val, Qt::AlignRight}
+                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight}
+                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight}
+                << showDataItem{tItem.rabat_den, Qt::AlignRight}
+                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight}
+                << showDataItem{tItem.transport_den, Qt::AlignRight}
+                << showDataItem{tItem.carina_den, Qt::AlignRight}
+                << showDataItem{tItem.ddv_den, Qt::AlignRight}
+                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight}
+                << showDataItem{tItem.dok_status, Qt::AlignLeft}
+                << showDataItem{tItem.user_id, Qt::AlignRight}
+                << showDataItem{tItem.komentar, Qt::AlignLeft}
+                << showDataItem{tItem.mag_id, Qt::AlignRight}
+                << showDataItem{tItem.object_id, Qt::AlignRight}
+                ;
     }
 
     void GetHeaderFakturaDetail( QStringList& headerNames){
-        headerNames << QObject::trUtf8("tid.")
-                    << QObject::trUtf8("dokument_id")
-                    << QObject::trUtf8("document_tip")
+        headerNames
+//                    << QObject::trUtf8("tid.")
+//                    << QObject::trUtf8("dokument_id")
+//                    << QObject::trUtf8("document_tip")
                     << QObject::trUtf8("Шифра Коминтент")
                     << QObject::trUtf8("Артикал Ид")
                     << QObject::trUtf8("Артикал Назив")
-                    << QObject::trUtf8("Тип Артикал")
-                    << QObject::trUtf8("Линк Артикал")
+//                    << QObject::trUtf8("Тип Артикал")
+//                    << QObject::trUtf8("Линк Артикал")
 //                    << QObject::trUtf8("t_edm")
 //                    << QObject::trUtf8("t_vlez_nab_cena_bez_ddv")
 //                    << QObject::trUtf8("t_vlez_nab_cena_so_ddv")
@@ -961,45 +976,48 @@ public:
 //                    << QObject::trUtf8("t_vlez_prod_iznos_so_ddv")
 //                    << QObject::trUtf8("t_izl_cena_bez_ddv_calc")
 //                    << QObject::trUtf8("t_izl_cena_so_ddv_calc")
-//                    << QObject::trUtf8("t_izl_cena_so_ddv_prod")
+                    << QObject::trUtf8("t_izl_cena_so_ddv_prod")
 //                    << QObject::trUtf8("t_izl_ddv_prod")
-//                    << QObject::trUtf8("t_kol")
+                    << QObject::trUtf8("t_kol")
+                    << QObject::trUtf8("izl_prod_iznos_so_ddv")
 //                    << QObject::trUtf8("t_mag_id")
 //                    << QObject::trUtf8("t_status")
                    ;
     }
 
-    void GetFakturaDetailData( QStringList& itemRecord, T &tItemT){
+    void GetFakturaDetailData( QList<showDataItem>& itemRecord, T &tItemT){
         fakturiDetailT& tItem = (fakturiDetailT&)tItemT;
-        itemRecord << tItem.tid
-                << tItem.dokument_id
-                << tItem.dokument_tip
-                << tItem.komintent_id
-                << tItem.artikal_id
-                << tItem.artikal_naziv
-                << tItem.tip_artikal
-                << tItem.link_artikal
-//                << tItem.edm
-//                << tItem.vlez_nab_cena_bez_ddv
-//                << tItem.vlez_nab_cena_so_ddv
-//                << tItem.vlez_prenesen_ddv
-//                << tItem.vlez_prenesen_ddv_denari
-//                << tItem.vlez_rabat
-//                << tItem.vlez_nabaven_iznos_so_ddv
-//                << tItem.vlez_marza
-//                << tItem.vlez_marza_den
-//                << tItem.vlez_prod_cena_bez_ddv
-//                << tItem.vlez_presmetan_ddv
-//                << tItem.vlez_prod_cena_so_ddv
-//                << tItem.vlez_prod_iznos_so_ddv
-//                << tItem.izl_cena_bez_ddv_calc
-//                << tItem.izl_cena_so_ddv_calc
-//                << tItem.izl_cena_so_ddv_prod
-//                << tItem.izl_ddv_prod
-//                << tItem.kol
-//                << tItem.mag_id
-//                << tItem.status
-                   ;
+        itemRecord
+//                << showDataItem{tItem.tid,Qt::AlignLeft}
+//                << showDataItem{tItem.dokument_id,Qt::AlignLeft}
+//                << showDataItem{tItem.dokument_tip,Qt::AlignLeft}
+                << showDataItem{tItem.komintent_id,Qt::AlignRight}
+                << showDataItem{tItem.artikal_id,Qt::AlignRight}
+                << showDataItem{tItem.artikal_naziv,Qt::AlignLeft}
+//                << showDataItem{tItem.tip_artikal,Qt::AlignLeft}
+//                << showDataItem{tItem.link_artikal,Qt::AlignLeft}
+//                << showDataItem{tItem.edm,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_nab_cena_bez_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_nab_cena_so_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_prenesen_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_prenesen_ddv_denari,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_rabat,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_nabaven_iznos_so_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_marza,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_marza_den,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_prod_cena_bez_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_presmetan_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_prod_cena_so_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.vlez_prod_iznos_so_ddv,Qt::AlignLeft}
+//                << showDataItem{tItem.izl_cena_bez_ddv_calc,Qt::AlignLeft}
+//                << showDataItem{tItem.izl_cena_so_ddv_calc,Qt::AlignLeft}
+                << showDataItem{tItem.izl_cena_so_ddv_prod,Qt::AlignRight}
+//                << showDataItem{tItem.izl_ddv_prod,Qt::AlignLeft}
+                << showDataItem{tItem.kol,Qt::AlignRight}
+                << showDataItem{tItem.izl_prod_iznos_so_ddv,Qt::AlignRight, true, Qt::blue}
+//                << showDataItem{tItem.mag_id,Qt::AlignLeft}
+//                << showDataItem{tItem.status,Qt::AlignLeft}
+                 ;
     }
 
     //------------- profakturi -------------------------------------------
@@ -2067,6 +2085,7 @@ public:
                tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
                tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
                tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+               tempItem.izl_prod_iznos_so_ddv = inputlist.at(i).izl_prod_iznos_so_ddv;
                tempItem.kol = inputlist.at(i).kol;
                tempItem.mag_id = inputlist.at(i).mag_id;
                tempItem.status = inputlist.at(i).status;

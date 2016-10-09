@@ -44,7 +44,7 @@ private:
     QList<fakturiDetailT> resFakturaItems;\
     QList<int> colDetailWidth;
     void procDeleteItem();
-    void procAddItem();
+    bool procAddItem();
     void showData();
     int m_row;
     QItemSelectionModel *sm;

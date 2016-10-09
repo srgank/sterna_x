@@ -106,9 +106,10 @@ void FakturiKorekcija::pressReturn()
     }
     else if(ui->pushButton_3->hasFocus())
     {
-        procAddItem();
+        if (procAddItem() == true){
         showData();
         ui->artikal->setFocus();
+        }
     }
 
     else
@@ -182,7 +183,8 @@ void FakturiKorekcija::procDeleteItem(){
     resFakturaItems = data;
 }
 
-void FakturiKorekcija::procAddItem(){
+bool FakturiKorekcija::procAddItem(){
+
     QList<fakturiDetailT> data = resFakturaItems;
     fakturiDetailT item;
     item.artikal_id = ui->sifra_artikal->text();
@@ -190,6 +192,36 @@ void FakturiKorekcija::procAddItem(){
     item.komintent_id = ui->sifra_komintent->text();
     item.dokument_id = resFaktura.dokument_id;
     item.dokument_tip = resFaktura.dokument_tip;
+    item.kol = ui->kolicina->text();
+    item.izl_cena_so_ddv_prod = ui->cena_so_ddv->text();
+
+    bool isOk;
+    float kolFloat = 0;
+    float izl_cena_so_ddv_prod_float = 0;
+    Singleton *s = Singleton::Instance();
+    s->ConvertStringToFloat(item.kol, kolFloat, &isOk);
+    if (!isOk){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("Nevalidna vrednost za kolicina");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        if(msgBox.exec() == QMessageBox::Ok){
+            ui->kolicina->setFocus();
+            return false;
+        }
+    }
+    s->ConvertStringToFloat(item.izl_cena_so_ddv_prod, izl_cena_so_ddv_prod_float, &isOk);
+    if (!isOk){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("Nevalidna vrednost za cena");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        if(msgBox.exec() == QMessageBox::Ok){
+            ui->cena_so_ddv->setFocus();
+            return false;
+        }
+    }
+    item.izl_prod_iznos_so_ddv = QString::number(izl_cena_so_ddv_prod_float * kolFloat, 'f', 2);
 
     bd->AddItem(data, item);
     resFakturaItems = data;
@@ -200,6 +232,7 @@ void FakturiKorekcija::procAddItem(){
     ui->rabat->setText("");
     ui->rok_za_plakanje_denovi->setText("");
     ui->zaliha->setText("");
+    return true;
 }
 
 
@@ -230,15 +263,15 @@ void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QStri
 {
     switch (index.column()){
     case 0: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+        model->item(index.row(), 0)->setText(value);break;
     case 1: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+        model->item(index.row(), 1)->setText(value);break;
     case 2: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+        model->item(index.row(), 2)->setText(value);break;
     case 3: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+        model->item(index.row(), 3)->setText(value);break;
     case 4: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+        model->item(index.row(), 4)->setText(value);break;
     case 5: resFakturaItems[index.row()].artikal_naziv = value;
         model->item(index.row(), 5)->setText(value);break;
 

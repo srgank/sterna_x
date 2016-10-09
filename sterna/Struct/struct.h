@@ -92,6 +92,7 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
@@ -155,6 +156,7 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
@@ -548,4 +550,10 @@ typedef struct {
     QList<ispratnicaDetailT> data2;
 } ispratnica_trans;
 
+typedef struct {
+    QString dataItem;
+    Qt::AlignmentFlag flag;
+    bool isColor;
+    Qt::GlobalColor colorName;
+} showDataItem;
 #endif // STRUCT_H

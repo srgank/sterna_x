@@ -84,6 +84,7 @@ void QWorkerMagacin::onPostList(QNetworkReply *rep)
         docdetail_temp.izl_cena_so_ddv_calc = obj["I_CENA_SO_DDV_KALK"].toString();
         docdetail_temp.izl_cena_so_ddv_prod = obj["I_CENA_SO_DDV_PROD"].toString();
         docdetail_temp.izl_ddv_prod = obj["I_DDV_PROD"].toString();
+        docdetail_temp.izl_prod_iznos_so_ddv = obj["I_PROD_IZNOS_SO_DDV"].toString();
         docdetail_temp.kol = obj["KOL"].toString();
         docdetail_temp.mag_id = obj["MAG_ID"].toString();
         docdetail_temp.status = obj["STATUS"].toString();
@@ -140,6 +141,7 @@ void QWorkerMagacin::insert(QList<dokumentDetailT>& itemDokList)
         tt_json["I_CENA_SO_DDV_KALK"]= itemDokList.at(i).izl_cena_so_ddv_calc;
         tt_json["I_CENA_SO_DDV_PROD"]= itemDokList.at(i).izl_cena_so_ddv_prod;
         tt_json["I_DDV_PROD"]= itemDokList.at(i).izl_ddv_prod;
+        tt_json["I_PROD_IZNOS_SO_DDV"]= itemDokList.at(i).izl_prod_iznos_so_ddv;
         tt_json["KOL"]= itemDokList.at(i).kol;
         tt_json["MAG_ID"]= itemDokList.at(i).mag_id;
         tt_json["STATUS"]= itemDokList.at(i).status;
@@ -207,6 +209,7 @@ void QWorkerMagacin::update(QList<dokumentDetailT>& itemDokList)
         tt_json["I_CENA_SO_DDV_KALK"]= itemDokList.at(i).izl_cena_so_ddv_calc;
         tt_json["I_CENA_SO_DDV_PROD"]= itemDokList.at(i).izl_cena_so_ddv_prod;
         tt_json["I_DDV_PROD"]= itemDokList.at(i).izl_ddv_prod;
+        tt_json["I_PROD_IZNOS_SO_DDV"]= itemDokList.at(i).izl_prod_iznos_so_ddv;
         tt_json["KOL"]= itemDokList.at(i).kol;
         tt_json["MAG_ID"]= itemDokList.at(i).mag_id;
         tt_json["STATUS"]= itemDokList.at(i).status;
@@ -273,6 +276,7 @@ void QWorkerMagacin::delete_(QList<dokumentDetailT>& itemDokList)
         tt_json["I_CENA_SO_DDV_KALK"]= itemDokList.at(i).izl_cena_so_ddv_calc;
         tt_json["I_CENA_SO_DDV_PROD"]= itemDokList.at(i).izl_cena_so_ddv_prod;
         tt_json["I_DDV_PROD"]= itemDokList.at(i).izl_ddv_prod;
+        tt_json["I_PROD_IZNOS_SO_DDV"]= itemDokList.at(i).izl_prod_iznos_so_ddv;
         tt_json["KOL"]= itemDokList.at(i).kol;
         tt_json["MAG_ID"]= itemDokList.at(i).mag_id;
         tt_json["STATUS"]= itemDokList.at(i).status;
