@@ -122,7 +122,7 @@ public:
     }
 
     void ConvertStringToFloat(QString &inputValue, float &outputValue, bool *isOk){
-        QLocale loc;
+        QLocale loc = QLocale::system();
         outputValue = loc.toFloat(inputValue, isOk);
     }
 

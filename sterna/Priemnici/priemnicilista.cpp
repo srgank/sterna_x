@@ -342,3 +342,4 @@ void PriemniciLista::procReturn(QString)
 }
 
 
+
