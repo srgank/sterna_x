@@ -20,6 +20,7 @@ KomintentiKorekcija::KomintentiKorekcija(BaseForm *parent) :
     connect(this, SIGNAL(finishKorekcija()),this, SLOT(procFinishKorekcija()));
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
+    updateFont();
 }
 
 

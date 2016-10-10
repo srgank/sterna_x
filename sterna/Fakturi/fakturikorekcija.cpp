@@ -37,6 +37,7 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
     connect(comboboxD, SIGNAL(updatePodatoci()), this , SLOT(updatePodatoci()));
     lineeditD = new QLEItemDelegate(Q_NULLPTR);
     connect(lineeditD, SIGNAL(updateCellLE(const QModelIndex &, QString &)), this , SLOT(updateStructCellLineEdit(const QModelIndex &, QString &)));
+    updateFont();
 }
 
 FakturiKorekcija::~FakturiKorekcija()

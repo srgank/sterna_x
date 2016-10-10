@@ -27,6 +27,7 @@ ArtikliKorekcija::ArtikliKorekcija(BaseForm *parent) :
     ui->kataloskiArtikalEdit->installEventFilter(this);
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
+    updateFont();
 }
 
 ArtikliKorekcija::~ArtikliKorekcija()

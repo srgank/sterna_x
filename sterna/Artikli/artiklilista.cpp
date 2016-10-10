@@ -37,6 +37,7 @@ ArtikliLista::ArtikliLista(BaseForm *parent) :
     sm =ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    updateFont();
 }
 
 

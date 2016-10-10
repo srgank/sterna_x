@@ -19,6 +19,7 @@ KomintentiVnes::KomintentiVnes(BaseForm *parent) :
 
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QCoreApplication::postEvent(this, event);
+    updateFont();
 }
 
 
