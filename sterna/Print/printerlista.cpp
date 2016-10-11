@@ -12,7 +12,7 @@ PrinterLista::PrinterLista(BaseForm *parent) :
     ui->setupUi(this);
     Singleton *s = Singleton::Instance();
     QRect rMain = s->getMainRect();
-    webview = new QWebView(ui->widget);
+    webview = new QWebEngineView(ui->widget);
     webview->setFixedSize(QSize(rMain.width()-10, rMain.height()-80));
     ui->gridLayout->addWidget(webview);
 
@@ -60,7 +60,7 @@ void PrinterLista::SavePdf()
     QPrinter printer(QPrinter::HighResolution); //create your QPrinter (don't need to be high resolution, anyway)
     printer.setPageSize(QPrinter::A4);
     printer.setOrientation(QPrinter::Portrait);
-    webview->print(&printer);
+//    webview->print(&printer);
 }
 
 void PrinterLista::pressReturn()
