@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     dock = new QDockWidget(this);
     m_left = new Left(dock);
     loadRecordsFromFile();
-
 }
 
 MainWindow::~MainWindow()
@@ -103,33 +102,50 @@ void MainWindow::createDockWindows()
     delete desk;
     int  mLeftW = m_left->width();
     rMain = QRect(0, 0, screenRect.width() - mLeftW, screenRect.height() - 100);
-    Singleton *s = Singleton::Instance();
-    s->setGlobalFontSize(10);
-    s->setMainRect(rMain);
-    s->Set_Art_HeaderState(art);
-    s->Set_Kom_HeaderState(kom);
-    s->Set_Priemnica_HeaderState(priemnica);
-    s->Set_PriemnicaDetail_HeaderState(priemnicaDetail);
-    s->Set_Ispratnica_HeaderState(ispratnica);
-    s->Set_IspratnicaDetail_HeaderState(ispratnicaDetail);
-    s->Set_Povratnica_HeaderState(povratnica);
-    s->Set_PovratnicaDetail_HeaderState(povratnicaDetail);
-    s->Set_Faktura_HeaderState(faktura);
-    s->Set_FakturaDetail_HeaderState(fakturaDetail);
-    s->Set_ProFaktura_HeaderState(profaktura);
-    s->Set_ProFakturaDetail_HeaderState(profakturaDetail);
-    s->Set_Nalog_HeaderState(nalog);
-    s->Set_NalogDetail_HeaderState(nalogDetail);
-    s->Set_Naracka_HeaderState(naracka);
-    s->Set_NarackaDetail_HeaderState(narackaDetail);
-    s->Set_Smetka_HeaderState(smetka);
-    s->Set_SmetkaDetail_HeaderState(smetkaDetail);
-//    s->Set_UrlHost("http://78.157.31.85:5002/");
-//    s->Set_UrlHost("http://127.0.0.1:5002/");
-    s->Set_UrlHost("http://92.53.51.86:5002/");
+    m_dialog = new Dialog;
+    if(m_dialog->exec() == QDialog::Accepted){
+
+        Singleton *s = Singleton::Instance();
+        s->setGlobalFontSize(10);
+        s->setMainRect(rMain);
+        s->Set_Art_HeaderState(art);
+        s->Set_Kom_HeaderState(kom);
+        s->Set_Priemnica_HeaderState(priemnica);
+        s->Set_PriemnicaDetail_HeaderState(priemnicaDetail);
+        s->Set_Ispratnica_HeaderState(ispratnica);
+        s->Set_IspratnicaDetail_HeaderState(ispratnicaDetail);
+        s->Set_Povratnica_HeaderState(povratnica);
+        s->Set_PovratnicaDetail_HeaderState(povratnicaDetail);
+        s->Set_Faktura_HeaderState(faktura);
+        s->Set_FakturaDetail_HeaderState(fakturaDetail);
+        s->Set_ProFaktura_HeaderState(profaktura);
+        s->Set_ProFakturaDetail_HeaderState(profakturaDetail);
+        s->Set_Nalog_HeaderState(nalog);
+        s->Set_NalogDetail_HeaderState(nalogDetail);
+        s->Set_Naracka_HeaderState(naracka);
+        s->Set_NarackaDetail_HeaderState(narackaDetail);
+        s->Set_Smetka_HeaderState(smetka);
+        s->Set_SmetkaDetail_HeaderState(smetkaDetail);
+//        s->Set_UrlHost("http://127.0.0.1:5002/");
+        s->Set_UrlHost("http://92.53.51.86:5002/");
 
 
-
+        QHelperC *hlp = new QHelperC(this);
+        QList<loginDataT> loginArray;
+        QString tempUser = m_dialog->getUserName();
+        QString tempPass = m_dialog->getPassword();
+        loginArray = hlp->getLoginData(tempUser, tempPass);
+        if (loginArray.count() == 0){
+            QTimer::singleShot(1, qApp, SLOT(quit()));
+            return;
+        }
+        loginDataT lData = loginArray.at(0);
+        s->setToken(lData.token);
+        setWindowTitle("SternaX - "+lData.company);
+    }else{
+        QTimer::singleShot(1, qApp, SLOT(quit()));
+        return;
+    }
 }
 
 
@@ -475,7 +491,38 @@ QString MainWindow::procGetPrintText()
                        "<p>Yahoo: <a href=\"https://www.yahoo.com/\">Yahoo</a></p>"
                        "<p>Google: <a href=\"https://www.google.com/\">Google</a></p>"
                        "<p>Hotmail: <a href=\"https://www.hotmail.com/\">Hotmail</a></p>"
-                       "<p>GMail: <a href=\"https://www.gmail.com/\">GMail</a></p>";
+                       "<p>GMail: <a href=\"https://www.gmail.com/\">GMail</a></p>"
+
+
+               "<html>"
+               "  <head>"
+               "    <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>"
+               "    <script type=\"text/javascript\">"
+               "      google.charts.load(\"current\", {packages:[\"corechart\"]});"
+               "      google.charts.setOnLoadCallback(drawChart);"
+               "      function drawChart() {"
+               "        var data = google.visualization.arrayToDataTable(["
+               "          ['Task', 'Hours per Day'],"
+               "          ['Work',     11],"
+               "          ['Eat',      2],"
+               "          ['Commute',  2],"
+               "          ['Watch TV', 2],"
+               "          ['Sleep',    7]"
+               "        ]);"
+               "        var options = {"
+               "          title: 'My Daily Activities',"
+               "          is3D: true,"
+               "        };"
+               "        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));"
+               "        chart.draw(data, options);"
+               "      }"
+               "    </script>"
+               "  </head>"
+               "  <body>"
+               "    <div id=\"piechart_3d\" style=\"width: 900px; height: 500px;\"></div>"
+               "  </body>"
+               "</html>";
+
         return text;
     }
 }

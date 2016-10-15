@@ -62,7 +62,9 @@ SOURCES += main.cpp\
     Delegate/qleitemdelegate.cpp \
     Print/formprint.cpp \
     Print/printerlista.cpp \
-    Template/qfakturatemplate.cpp
+    Template/qfakturatemplate.cpp \
+    dialog.cpp \
+    Helper/qworkerlogin.cpp
 
 
 
@@ -117,7 +119,9 @@ HEADERS  += mainwindow.h \
     Delegate/qleitemdelegate.h \
     Print/formprint.h \
     Print/printerlista.h \
-    Template/qfakturatemplate.h
+    Template/qfakturatemplate.h \
+    dialog.h \
+    Helper/qworkerlogin.h
 
 
 
@@ -162,7 +166,8 @@ FORMS    += mainwindow.ui \
     Naracki/narackilista.ui \
     Naracki/narackivnes.ui \
     Print/formprint.ui \
-    Print/printerlista.ui
+    Print/printerlista.ui \
+    dialog.ui
 
 DISTFILES += \
     info.txt

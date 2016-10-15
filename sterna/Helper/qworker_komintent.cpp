@@ -20,8 +20,9 @@ void QWorkerKomintent::getList( QString &vOffset, QString &vLimit,QString &vSear
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "get_komintent_list");
 
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -97,8 +98,9 @@ void QWorkerKomintent::insert(komintentT& komItem )
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "insert_komintent");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -142,8 +144,9 @@ void QWorkerKomintent::update(komintentT &komItem)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "update_komintent");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;

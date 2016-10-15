@@ -5,6 +5,7 @@
 #include "qworker_komintent.h"
 #include "qworker_dokumenti.h"
 #include "qworker_magacin.h"
+#include "qworkerlogin.h"
 
 #include <QEventLoop>
 
@@ -32,6 +33,8 @@ public:
     void InsertMagacin(QList<dokumentDetailT> &ItemList);
     void UpdateMagacin(QList<dokumentDetailT> &ItemList);
     void DeleteMagacin(QList<dokumentDetailT> &ItemList);
+
+    QList<loginDataT> getLoginData(QString& username, QString& password);
 
 private:
 

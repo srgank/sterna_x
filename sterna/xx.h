@@ -98,6 +98,10 @@ public:
     QStringList Get_SmetkaDetail_HeaderState(){return smetkaDetail__HeaderState;}
     void Set_SmetkaDetail_HeaderState(QStringList temp_SmetkaDetail_HeaderState){smetkaDetail__HeaderState = temp_SmetkaDetail_HeaderState;}
 
+    QString getToken(){return m_token;}
+    void setToken(QString token_str){m_token = token_str;}
+
+
     QList<int> loadWidthList(QStringList& list, int count){
         QList<int> temp_colDetailWidth;
         if (!list.isEmpty()){
@@ -166,5 +170,6 @@ private:
     QStringList smetkaDetail__HeaderState;
 
     QString urlhost;
+    QString m_token;
 };
 #endif // Singleton_H

@@ -13,7 +13,7 @@
 #include "Naracki/naracki.h"
 #include "Print/formprint.h"
 #include "Template/qfakturatemplate.h"
-
+#include "dialog.h"
 
 
 #include "Left/left.h"
@@ -144,6 +144,7 @@ private:
     Povratnici *m_povratnicaModul;
     Naracki *m_narackaModul;
     FormPrint * m_printModul;
+    Dialog *m_dialog;
 
     QString m_artikliModul_description;
     QString m_komintentiModul_description;

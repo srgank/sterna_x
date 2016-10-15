@@ -37,7 +37,7 @@ void PovratniciKorekcija::initProc(QString m_searchID)
     QString vOffset = "0";
     QString vSName = m_searchID;
     QString vSearchBy = "sifra";
-    hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
+    //hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
 }
 void PovratniciKorekcija::getResultEX(QStringList& tlist)
 {

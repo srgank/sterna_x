@@ -17,8 +17,9 @@ void QWorkerDokumenti::getList( QString &vOffset, QString &vLimit, QString &vDok
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "get_dokumenti_list");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -107,8 +108,9 @@ void QWorkerDokumenti::insert(dokumentT &item )
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "insert_dokumenti");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -191,8 +193,9 @@ void QWorkerDokumenti::update(dokumentT & item)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "update_dokumenti");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;

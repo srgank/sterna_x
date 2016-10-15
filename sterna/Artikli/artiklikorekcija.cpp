@@ -48,6 +48,7 @@ void ArtikliKorekcija::initProc(QString m_searchID)
     QString vOffset = "0";
     QString vSName = m_searchID;
     QString vSearchBy = "id";
+    QString vToken = "";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     artikalT itemRecord = res.at(0);
     artikal_id = m_searchID;
@@ -109,6 +110,7 @@ void ArtikliKorekcija::on_SifraArtikalEdit_EditingFinished()
     QString vOffset = QString::number(numOffset);
     QString vSName = ui->sifraArtikalEdit->text();
     QString vSearchBy = "sifra";
+    QString vToken = "";
     QList<artikalT> res = hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
     if (res.count() != 0) {
         QMessageBox *msgBox = new QMessageBox(this);

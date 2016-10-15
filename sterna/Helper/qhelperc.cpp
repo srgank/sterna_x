@@ -133,3 +133,15 @@ void QHelperC::DeleteMagacin(QList<dokumentDetailT> &ItemList)
     worker.delete_(ItemList);
     pause.exec();
 }
+
+//-------------------------------------------------------------------------------------
+
+QList<loginDataT> QHelperC::getLoginData(QString& username, QString& password)
+{
+    QEventLoop pause;
+    QWorkerLogin worker;
+    connect(&worker, SIGNAL(finishedSearch()), &pause, SLOT(quit()));
+    worker.getLoginData(username, password);
+    pause.exec();
+    return worker.listRes;
+}

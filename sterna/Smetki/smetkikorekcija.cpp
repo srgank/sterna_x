@@ -54,6 +54,7 @@ void SmetkiKorekcija::initProc(QString m_searchID)
     QString vOffset = "0";
     QString vSName = m_searchID;
     QString vSearchBy = "sifra";
+
     hlp->getallArtikli(vOffset, vLimit, vSName, vSearchBy);
 }
 void SmetkiKorekcija::getResultEX(QStringList& tlist)

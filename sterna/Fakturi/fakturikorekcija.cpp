@@ -42,6 +42,10 @@ FakturiKorekcija::FakturiKorekcija(BaseForm *parent) :
 
 FakturiKorekcija::~FakturiKorekcija()
 {
+    Singleton *s = Singleton::Instance();
+    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
+    s->Set_FakturaDetail_HeaderState(tempdetailVals);
+
     delete ui;
     delete hlp;
     delete b;

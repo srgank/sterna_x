@@ -18,8 +18,9 @@ void QWorkerMagacin::getList( QString &vOffset, QString &vLimit,QString &vDokID,
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "get_dokumenti_detail_list");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -107,8 +108,9 @@ void QWorkerMagacin::insert(QList<dokumentDetailT>& itemDokList)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "insert_dokumenti_detail");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json_all;
@@ -175,8 +177,9 @@ void QWorkerMagacin::update(QList<dokumentDetailT>& itemDokList)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "update_dokumenti_detail");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json_all;
@@ -242,8 +245,9 @@ void QWorkerMagacin::delete_(QList<dokumentDetailT>& itemDokList)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostDelete(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "delete_dokumenti_detail");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json_all;

@@ -14,13 +14,18 @@ QString QWorkerArtikli::base64_decode(QString string)
     return QByteArray::fromBase64(ba);
 }
 
-void QWorkerArtikli::getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy )
+void QWorkerArtikli::getList( QString &vOffset, QString &vLimit,QString &vSearchName, QString &vSearchBy)
 {
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostList(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "get_article_list");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
+
+
+
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -89,8 +94,9 @@ void QWorkerArtikli::insert(artikalT& itemArt)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostInsert(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "insert_article");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;
@@ -128,8 +134,9 @@ void QWorkerArtikli::update(artikalT& itemArt)
     connect(&networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(onPostUpdate(QNetworkReply*)));
     networkManager.clearAccessCache();
     QUrl serviceUrl = QUrl(urlhost + "update_article");
-    QByteArray HeaderVar = "X-Api-Key";
-    QByteArray HeaderValue = "aaa";
+    Singleton *s = Singleton::Instance();
+    QByteArray HeaderVar = "Authorization";
+    QByteArray HeaderValue = s->getToken().toUtf8();
     QByteArray postData;
 
     QJsonObject tt_json;

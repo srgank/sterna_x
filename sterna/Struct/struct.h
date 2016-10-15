@@ -556,4 +556,15 @@ typedef struct {
     bool isColor;
     Qt::GlobalColor colorName;
 } showDataItem;
+
+
+typedef struct {
+    QString token;
+    QString database_prefix;
+    QString valid_to;
+    QString company;
+} loginDataT;
+
+
+
 #endif // STRUCT_H

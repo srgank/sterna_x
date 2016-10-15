@@ -48,6 +48,10 @@ FakturiVnes::FakturiVnes(BaseForm *parent) :
 
 FakturiVnes::~FakturiVnes()
 {
+    Singleton *s = Singleton::Instance();
+    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
+    s->Set_FakturaDetail_HeaderState(tempdetailVals);
+
     delete hlp;
     delete ui;
     delete b;
