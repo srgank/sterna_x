@@ -555,6 +555,8 @@ typedef struct {
     Qt::AlignmentFlag flag;
     bool isColor;
     Qt::GlobalColor colorName;
+    bool showColumn;
+    QString headerColumnName;
 } showDataItem;
 
 
