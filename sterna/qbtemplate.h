@@ -706,32 +706,32 @@ public:
         fakturiT& tItem = (fakturiT&)tItemT;
         itemRecord
                 << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid") }
-                << showDataItem{tItem.dokument_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("dokument_id")}
-                << showDataItem{tItem.dokument_tip, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("document_tip")}
+                << showDataItem{tItem.dokument_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nИД")}
+                << showDataItem{tItem.dokument_tip, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nТип")}
 //                << showDataItem{tItem.td, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("td")}
 //                << showDataItem{tItem.tds, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("tds")}
-                << showDataItem{tItem.komintent_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("komintent_id")}
-                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("komintent_naziv")}
+                << showDataItem{tItem.komintent_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Коминтент\nИд")}
+                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Komintent\nНазив")}
 //                << showDataItem{tItem.prevoznik_id, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_id")}
 //                << showDataItem{tItem.prevoznik_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_naziv")}
-                << showDataItem{tItem.valuta, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("valuta")}
-                << showDataItem{tItem.kurs, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("kurs")}
-                << showDataItem{tItem.iznos_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_val")}
-                << showDataItem{tItem.ddv_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_val")}
-                << showDataItem{tItem.rabat_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_val")}
-                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_val")}
-                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_ddv_den")}
-                << showDataItem{tItem.rabat_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_den")}
-                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_den")}
-                << showDataItem{tItem.transport_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_transport_den")}
-                << showDataItem{tItem.carina_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_carina_den")}
-                << showDataItem{tItem.ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_den")}
-                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_drugi_trosoci_den")}
-                << showDataItem{tItem.dok_status, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_dok_status")}
-                << showDataItem{tItem.user_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_user_id")}
-                << showDataItem{tItem.komentar, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_komentar")}
-                << showDataItem{tItem.mag_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_mag_id")}
-                << showDataItem{tItem.object_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_object_id")}
+//                << showDataItem{tItem.valuta, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("valuta")}
+//                << showDataItem{tItem.kurs, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("kurs")}
+//                << showDataItem{tItem.iznos_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_val")}
+//                << showDataItem{tItem.ddv_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_val")}
+//                << showDataItem{tItem.rabat_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_val")}
+//                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_val")}
+//                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_ddv_den")}
+//                << showDataItem{tItem.rabat_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_den")}
+//                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_den")}
+//                << showDataItem{tItem.transport_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_transport_den")}
+//                << showDataItem{tItem.carina_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_carina_den")}
+//                << showDataItem{tItem.ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_den")}
+//                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_drugi_trosoci_den")}
+//                << showDataItem{tItem.dok_status, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_dok_status")}
+//                << showDataItem{tItem.user_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_user_id")}
+//                << showDataItem{tItem.komentar, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_komentar")}
+//                << showDataItem{tItem.mag_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_mag_id")}
+//                << showDataItem{tItem.object_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_object_id")}
                 ;
     }
 
@@ -1455,6 +1455,7 @@ public:
 
        }
     }
+
     void ConvertAnyToDokumentDetail(QList<T>& inputlist, QList<dokumentDetailT>& outputList){
        if (typeid(T) == typeid(fakturiDetailT)) {
 

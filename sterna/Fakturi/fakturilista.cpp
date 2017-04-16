@@ -173,11 +173,6 @@ void FakturiLista::updateFont()
 }
 
 
-void FakturiLista::on_prebaruvanje_po_komintent_editingFinished()
-{
-
-}
-
 void FakturiLista::on_prebaruvanje_po_komintent_textChanged(const QString &arg1)
 {
     on_lineEdit_textChanged(arg1);
