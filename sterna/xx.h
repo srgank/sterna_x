@@ -101,6 +101,12 @@ public:
     QString getToken(){return m_token;}
     void setToken(QString token_str){m_token = token_str;}
 
+    QStringList Get_Lager_HeaderState(){return lager_HeaderState;}
+    void Set_Lager_HeaderState(QStringList temp_lager_HeaderState){lager_HeaderState = temp_lager_HeaderState;}
+
+    QStringList Get_LagerDetail_HeaderState(){return lagerDetail__HeaderState;}
+    void Set_LagerDetail_HeaderState(QStringList temp_lagerDetail_HeaderState){lagerDetail__HeaderState = temp_lagerDetail_HeaderState;}
+
 
     QList<int> loadWidthList(QStringList& list, int count){
         QList<int> temp_colDetailWidth;
@@ -168,6 +174,9 @@ private:
 
     QStringList smetka_HeaderState;
     QStringList smetkaDetail__HeaderState;
+
+    QStringList lager_HeaderState;
+    QStringList lagerDetail__HeaderState;
 
     QString urlhost;
     QString m_token;

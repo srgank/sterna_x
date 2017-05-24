@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
-    <height>498</height>
+    <width>1152</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,21 +16,104 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>40</y>
-     <width>938</width>
-     <height>371</height>
+     <x>10</x>
+     <y>10</y>
+     <width>1061</width>
+     <height>611</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="3">
-     <widget class="QLabel" name="label_16">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Приемница - Листа &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Фактури - Листа&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="9">
+    <item row="0" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="2">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="3">
+     <spacer name="horizontalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="4">
+     <spacer name="horizontalSpacer_6">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="5">
+     <widget class="QRadioButton" name="radioButtonPecatiLista">
+      <property name="text">
+       <string>Печати листа на фактури</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Пребарување по коминтент</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <widget class="QLineEdit" name="prebaruvanje_po_komintent"/>
+    </item>
+    <item row="1" column="5">
+     <widget class="QRadioButton" name="radioButtonPecatiSelektirana">
+      <property name="text">
+       <string>Печати селектирана фактура</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="6">
      <widget class="QTableView" name="tableView">
       <property name="palette">
        <palette>
@@ -38,9 +121,9 @@
          <colorrole role="AlternateBase">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
+            <red>234</red>
+            <green>234</green>
+            <blue>234</blue>
            </color>
           </brush>
          </colorrole>
@@ -49,9 +132,9 @@
          <colorrole role="AlternateBase">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
+            <red>234</red>
+            <green>234</green>
+            <blue>234</blue>
            </color>
           </brush>
          </colorrole>
@@ -60,9 +143,9 @@
          <colorrole role="AlternateBase">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
+            <red>234</red>
+            <green>234</green>
+            <blue>234</blue>
            </color>
           </brush>
          </colorrole>
@@ -74,236 +157,166 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="label_11">
       <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string/>
+       <string>Вкупен Износ </string>
       </property>
      </widget>
     </item>
     <item row="4" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>Вкупен Износ </string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_13">
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>120</red>
+            <green>120</green>
+            <blue>120</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0" colspan="9">
+    <item row="7" column="0" colspan="6">
      <widget class="QTableView" name="tableView_2">
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="AlternateBase">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>215</red>
-            <green>215</green>
-            <blue>215</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
      </widget>
     </item>
-    <item row="7" column="0" colspan="2">
+    <item row="8" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Вк. Набавен без ДДВ</string>
+       <string>Вкупен Износ со ДДВ </string>
       </property>
      </widget>
     </item>
-    <item row="7" column="2">
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>Вк. влезен ДДВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="3">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>Вк. Набавен со ДДВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="4">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>Вк. маржа</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="6">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>Вк. продажен без ДДВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="7">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>Вк. пресметан ДДВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="8">
-     <widget class="QLabel" name="label_15">
-      <property name="text">
-       <string>Вк. продажен со ДДВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_4">
+    <item row="8" column="1">
+     <widget class="QLineEdit" name="vk_iznos_so_ddv">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="8" column="2">
-     <widget class="QLineEdit" name="lineEdit_5">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Платен Износ</string>
       </property>
      </widget>
     </item>
     <item row="8" column="3">
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="vk_platen_iznos">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
-     </widget>
-    </item>
-    <item row="8" column="4" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_7">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="6">
-     <widget class="QLineEdit" name="lineEdit_8">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="7">
-     <widget class="QLineEdit" name="lineEdit_9">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="8">
-     <widget class="QLineEdit" name="lineEdit_10">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Внеси нова</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>:/sterna/Resources/key_f2.png</normaloff>:/sterna/Resources/key_f2.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>16</width>
-        <height>16</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1" colspan="2">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>  Корегирај постоечка</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>:/sterna/Resources/key_f3.png</normaloff>:/sterna/Resources/key_f3.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>16</width>
-        <height>16</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="3" colspan="2">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Избришија ја постоечката</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="5" colspan="2">
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="enabled">
+      <property name="readOnly">
        <bool>true</bool>
       </property>
+     </widget>
+    </item>
+    <item row="8" column="4">
+     <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>Copy Table in Clipboard</string>
+       <string>Останато за плакање</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5">
+     <widget class="QLineEdit" name="ostanato_za_plakanje">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0" colspan="2">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Внеси нова фактура         </string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Brisi/sterna/Resources/key_f2.png</normaloff>../../../Brisi/sterna/Resources/key_f2.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2" colspan="3">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>Корегирај постоечка       </string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Brisi/sterna/Resources/key_f3.png</normaloff>../../../Brisi/sterna/Resources/key_f3.png</iconset>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>prebaruvanje_po_komintent</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>tableView_2</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
+  <tabstop>vk_platen_iznos</tabstop>
+  <tabstop>ostanato_za_plakanje</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>radioButtonPecatiLista</tabstop>
+  <tabstop>radioButtonPecatiSelektirana</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

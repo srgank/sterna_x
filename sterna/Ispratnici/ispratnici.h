@@ -21,6 +21,9 @@ public:
     virtual void pressF3();
     virtual void pressF4();
     virtual void pressEscape();
+    virtual void Refresh();
+    Ispratnici_trans& getFaktTransData();
+
     void closeAllForm();
 
 private:
@@ -34,9 +37,7 @@ private:
     QString searchStrList;
     int searchIDList;
     int searchOffsetList;
-    ispratnica_trans m_data;
-
-
+    Ispratnici_trans m_data;
 
 private slots:
     void pressF2FromLista();
@@ -52,7 +53,6 @@ signals:
     void signArtikal(QString, QWidget* );
     void signKomintent(QString, QWidget*);
     void eupdateNanigator(QWidget*, QWidget*);
-
 };
 
 #endif // Ispratnici_H

@@ -1,3 +1,5 @@
+// ssh root@162.243.83.65
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "xx.h"
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ,m_povratnicaModul(0)
     ,m_narackaModul(0)
     ,m_printModul(0)
+    ,m_lagerModul(0)
+    ,m_nalogModul(0)
 {
     ui->setupUi(this);
     m_artikliModul_description = trUtf8("Артикли");
@@ -28,7 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_povratnicaModul_description = trUtf8("Повратница");
     m_narackaModul_description = trUtf8("Нарачка");
     m_printModul_description = trUtf8("Print");
-
+    m_lager_description = trUtf8("Лагер");
+    m_nalog_description = trUtf8("Налог");
 
     dock = new QDockWidget(this);
     m_left = new Left(dock);
@@ -65,6 +70,9 @@ MainWindow::~MainWindow()
     QStringList smetka_HeaderState = s->Get_Smetka_HeaderState();
     QStringList smetkaDetail__HeaderState = s->Get_SmetkaDetail_HeaderState();
 
+    QStringList lager_HeaderState = s->Get_Lager_HeaderState();
+    QStringList lagerDetail__HeaderState = s->Get_LagerDetail_HeaderState();
+
     saveRecordsFromFile(
          art_HeaderState,
          kom_HeaderState,
@@ -83,7 +91,9 @@ MainWindow::~MainWindow()
          naracka_HeaderState,
          narackaDetail__HeaderState,
          smetka_HeaderState,
-         smetkaDetail__HeaderState
+         smetkaDetail__HeaderState,
+         lager_HeaderState,
+         lagerDetail__HeaderState
        );
     delete ui;
 }
@@ -127,7 +137,7 @@ void MainWindow::createDockWindows()
         s->Set_Smetka_HeaderState(smetka);
         s->Set_SmetkaDetail_HeaderState(smetkaDetail);
 //        s->Set_UrlHost("http://127.0.0.1:5002/");
-        s->Set_UrlHost("http://92.53.51.86:5002/");
+        s->Set_UrlHost("http://162.243.83.65:5002/");
 
 
         QHelperC *hlp = new QHelperC(this);
@@ -206,8 +216,12 @@ void MainWindow::saveRecordsFromFile(
     QStringList & narackaDetail__HeaderState,
 
     QStringList & smetka_HeaderState,
-    QStringList & smetkaDetail__HeaderState
-   )
+    QStringList & smetkaDetail__HeaderState,
+
+    QStringList & lager_HeaderState,
+    QStringList & lagerDetail__HeaderState
+
+    )
 {
     QString filename = "config.bin";
     QFile file( filename);
@@ -241,6 +255,9 @@ void MainWindow::saveRecordsFromFile(
 
     stream <<  smetka_HeaderState;
     stream <<  smetkaDetail__HeaderState;
+
+    stream <<  lager_HeaderState;
+    stream <<  lagerDetail__HeaderState;
 
     file.close();
 }
@@ -296,6 +313,11 @@ void MainWindow::closeMyWidget()
         deleteMyWidget<Fakturi>((Fakturi*)qApp->focusWidget(), true);
         m_fakturaModul = NULL;
     }
+    if (qobject_cast<Lager*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<Lager>((Lager*)qApp->focusWidget(), true);
+        m_lagerModul = NULL;
+    }
     if (qobject_cast<Ispratnici*>(qApp->focusWidget()))
     {
         deleteMyWidget<Ispratnici>((Ispratnici*)qApp->focusWidget(), true);
@@ -313,8 +335,13 @@ void MainWindow::closeMyWidget()
     }
     if (qobject_cast<Povratnici*>(qApp->focusWidget()))
     {
-        deleteMyWidget<ProFakturi>((ProFakturi*)qApp->focusWidget(), true);
+        deleteMyWidget<Povratnici>((Povratnici*)qApp->focusWidget(), true);
         m_povratnicaModul = NULL;
+    }
+    if (qobject_cast<Nalog*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<Nalog>((Nalog*)qApp->focusWidget(), true);
+        m_nalogModul = NULL;
     }
 }
 //---------------------------------------------------------------------------------------------------
@@ -349,6 +376,13 @@ void MainWindow::on_actionFaktura_triggered()
     procCreateModulFaktura(text, NULL);
 }
 
+void MainWindow::on_actionLagerLista_triggered()
+{
+    QString text = "";
+    procCreateModulLager(text, NULL);
+}
+
+
 //---------------------------------------------------------------------------------------------------
 
 void MainWindow::procCreateModulArtikal(QString, QWidget *p)
@@ -377,6 +411,17 @@ void MainWindow::procCreateModulFaktura(QString, QWidget *p)
     connect(m_fakturaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_fakturaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
     ui->actionFaktura->setEnabled(true);
+}
+
+
+void MainWindow::procCreateModulLager(QString, QWidget *p)
+{
+    ui->actionLagerLista->setEnabled(false);
+    m_lagerModul = showMyWidget<Lager, BaseForm, QWidget>(m_lagerModul, m_lager_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_lagerModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_lagerModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_lagerModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionLagerLista->setEnabled(true);
 }
 
 void MainWindow::procCreateModulIspratnica(QString, QWidget *p)
@@ -423,6 +468,17 @@ void MainWindow::procCreateModulNaracka(QString, QWidget *p)
     connect(m_narackaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
 }
 
+void MainWindow::procCreateModulNalog(QString, QWidget *p)
+{
+    ui->actionNalog->setEnabled(false);
+    m_nalogModul = showMyWidget<Nalog, BaseForm, QWidget>(m_nalogModul, m_nalog_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_nalogModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_nalogModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_nalogModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionNalog->setEnabled(true);
+}
+
+
 void MainWindow::on_actionIspretnicia_triggered()
 {
     QString text = "";
@@ -452,6 +508,13 @@ void MainWindow::on_actionNaracka_triggered()
     QString text = "";
     procCreateModulNaracka(text, NULL);
 }
+
+void MainWindow::on_actionNalog_triggered()
+{
+    QString text = "";
+    procCreateModulNalog(text, NULL);
+}
+
 
 void MainWindow::on_actionPrint_Form_triggered()
 {

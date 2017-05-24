@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
-    <height>498</height>
+    <width>1152</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>761</width>
-     <height>401</height>
+     <width>1061</width>
+     <height>611</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -29,8 +29,8 @@
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Испратници - Листа&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Фактури - Листа&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -87,9 +87,9 @@ p, li { white-space: pre-wrap; }
      </spacer>
     </item>
     <item row="0" column="5">
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="radioButtonPecatiLista">
       <property name="text">
-       <string>Печати листа на iспратници</string>
+       <string>Печати листа на фактури</string>
       </property>
      </widget>
     </item>
@@ -101,12 +101,12 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="1" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_7"/>
+     <widget class="QLineEdit" name="prebaruvanje_po_komintent"/>
     </item>
     <item row="1" column="5">
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="radioButtonPecatiSelektirana">
       <property name="text">
-       <string>Печати селектирана испратницa</string>
+       <string>Печати селектирана фактура</string>
       </property>
       <property name="checked">
        <bool>true</bool>
@@ -237,7 +237,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="vk_iznos_so_ddv">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -254,7 +254,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="3">
-     <widget class="QLineEdit" name="lineEdit_8">
+     <widget class="QLineEdit" name="vk_platen_iznos">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -271,7 +271,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="8" column="5">
-     <widget class="QLineEdit" name="lineEdit_9">
+     <widget class="QLineEdit" name="ostanato_za_plakanje">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -283,7 +283,7 @@ p, li { white-space: pre-wrap; }
     <item row="9" column="0" colspan="2">
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>Внеси нова испратница         </string>
+       <string>Внеси нова фактура         </string>
       </property>
       <property name="icon">
        <iconset>
@@ -305,6 +305,18 @@ p, li { white-space: pre-wrap; }
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>prebaruvanje_po_komintent</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>tableView_2</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
+  <tabstop>vk_platen_iznos</tabstop>
+  <tabstop>ostanato_za_plakanje</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>radioButtonPecatiLista</tabstop>
+  <tabstop>radioButtonPecatiSelektirana</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

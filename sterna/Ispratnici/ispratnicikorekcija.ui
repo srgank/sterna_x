@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>778</width>
-    <height>532</height>
+    <width>983</width>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,20 +18,60 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>731</width>
-     <height>491</height>
+     <width>941</width>
+     <height>611</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="faktura_id">
       <property name="enabled">
        <bool>false</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="artikal">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -56,22 +96,22 @@
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Испратница - Корекција&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Фактури - Корекција&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Испратница Ид.</string>
+       <string>Фактура Ид.</string>
       </property>
      </widget>
     </item>
     <item row="1" column="4">
      <widget class="QPushButton" name="pushButton_4">
       <property name="text">
-       <string> Корегирај Испратница</string>
+       <string> Корегирај Фактура</string>
       </property>
       <property name="icon">
        <iconset>
@@ -115,7 +155,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QLineEdit" name="lineEdit_7"/>
+     <widget class="QLineEdit" name="rabat"/>
     </item>
     <item row="9" column="4">
      <widget class="QPushButton" name="pushButton_6">
@@ -128,7 +168,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QTableView" name="tableView"/>
     </item>
     <item row="4" column="1">
-     <widget class="QDateTimeEdit" name="dateTimeEdit">
+     <widget class="QDateTimeEdit" name="dateTimeDatum">
       <property name="date">
        <date>
         <year>2000</year>
@@ -145,7 +185,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="10" column="1">
-     <widget class="QLineEdit" name="lineEdit_8"/>
+     <widget class="QLineEdit" name="rok_za_plakanje_denovi"/>
     </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_10">
@@ -157,12 +197,12 @@ p, li { white-space: pre-wrap; }
     <item row="10" column="4">
      <widget class="QPushButton" name="pushButtonA">
       <property name="text">
-       <string>Импорт</string>
+       <string>Импорт Испратници</string>
       </property>
      </widget>
     </item>
     <item row="3" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="komintent">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -175,7 +215,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="4" column="3">
-     <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+     <widget class="QDateTimeEdit" name="dateTimeValuta">
       <property name="date">
        <date>
         <year>2000</year>
@@ -213,16 +253,16 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="6" column="3">
-     <widget class="QLineEdit" name="lineEdit_6"/>
+     <widget class="QLineEdit" name="zaliha"/>
     </item>
     <item row="7" column="3" rowspan="4">
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="zabeleska"/>
     </item>
     <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="cena_so_ddv"/>
     </item>
     <item row="7" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="kolicina"/>
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="label_5">
@@ -248,7 +288,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_9">
+       <widget class="QLineEdit" name="vk_iznos_bez_ddv">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -262,7 +302,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="lineEdit_10">
+       <widget class="QLineEdit" name="vk_ddv_iznos">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -276,7 +316,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLineEdit" name="lineEdit_11">
+       <widget class="QLineEdit" name="vk_iznos_so_ddv">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -299,16 +339,99 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_12">
+     <widget class="QLineEdit" name="sifra_komintent">
       <property name="enabled">
        <bool>false</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_13">
+     <widget class="QLineEdit" name="sifra_artikal">
       <property name="enabled">
        <bool>false</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -316,28 +439,28 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_12</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>dateTimeEdit</tabstop>
-  <tabstop>dateTimeEdit_2</tabstop>
-  <tabstop>lineEdit_13</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>textEdit</tabstop>
-  <tabstop>tableView</tabstop>
-  <tabstop>lineEdit_9</tabstop>
-  <tabstop>lineEdit_10</tabstop>
-  <tabstop>lineEdit_11</tabstop>
+  <tabstop>faktura_id</tabstop>
+  <tabstop>sifra_komintent</tabstop>
+  <tabstop>komintent</tabstop>
+  <tabstop>dateTimeDatum</tabstop>
+  <tabstop>dateTimeValuta</tabstop>
+  <tabstop>sifra_artikal</tabstop>
+  <tabstop>artikal</tabstop>
+  <tabstop>zaliha</tabstop>
+  <tabstop>kolicina</tabstop>
+  <tabstop>cena_so_ddv</tabstop>
+  <tabstop>rabat</tabstop>
+  <tabstop>rok_za_plakanje_denovi</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_6</tabstop>
   <tabstop>pushButtonA</tabstop>
   <tabstop>pushButton_4</tabstop>
   <tabstop>pushButton_5</tabstop>
+  <tabstop>zabeleska</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>vk_iznos_bez_ddv</tabstop>
+  <tabstop>vk_ddv_iznos</tabstop>
+  <tabstop>vk_iznos_so_ddv</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -127,21 +127,21 @@ void Komintenti::pressReturnResult(komintentT text)
     {
         PriemniciKorekcija *dest = qobject_cast<PriemniciKorekcija*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<IspratniciVnes*>(sour))
     {
         IspratniciVnes *dest = qobject_cast<IspratniciVnes*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<IspratniciKorekcija*>(sour))
     {
         IspratniciKorekcija *dest = qobject_cast<IspratniciKorekcija*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<FakturiVnes*>(sour))
@@ -162,42 +162,42 @@ void Komintenti::pressReturnResult(komintentT text)
     {
         ProFakturiVnes *dest = qobject_cast<ProFakturiVnes*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<ProFakturiKorekcija*>(sour))
     {
         ProFakturiKorekcija *dest = qobject_cast<ProFakturiKorekcija*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<PovratniciVnes*>(sour))
     {
         PovratniciVnes *dest = qobject_cast<PovratniciVnes*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<PovratniciKorekcija*>(sour))
     {
         PovratniciKorekcija *dest = qobject_cast<PovratniciKorekcija*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<NarackiVnes*>(sour))
     {
         NarackiVnes *dest = qobject_cast<NarackiVnes*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
     if (qobject_cast<NarackiKorekcija*>(sour))
     {
         NarackiKorekcija *dest = qobject_cast<NarackiKorekcija*>(sour);
         emit eupdateNanigator(dest->getCategoryWidget(), this);
-        dest->setFocusKomintent(text.naziv);
+        dest->setFocusKomintent(text);
         dest->raise();
     }
 }

@@ -26,10 +26,6 @@ SOURCES += main.cpp\
     Komintenti/komintentikorekcija.cpp \
     Komintenti/komintentilista.cpp \
     Komintenti/komintentivnes.cpp \
-    Priemnici/priemnici.cpp \
-    Priemnici/priemnicikorekcija.cpp \
-    Priemnici/priemnicilista.cpp \
-    Priemnici/priemnicivnes.cpp \
     Fakturi/fakturi.cpp \
     Fakturi/fakturikorekcija.cpp \
     Fakturi/fakturilista.cpp \
@@ -42,14 +38,10 @@ SOURCES += main.cpp\
     Smetki/smetkikorekcija.cpp \
     Smetki/smetkilista.cpp \
     Smetki/smetkivnes.cpp \
-    ProFakturi/profakturi.cpp \
-    ProFakturi/profakturikorekcija.cpp \
-    ProFakturi/profakturilista.cpp \
-    ProFakturi/profakturivnes.cpp \
-    Povratnica/povratnica.cpp \
-    Povratnica/povratnicakorekcija.cpp \
-    Povratnica/povratnicalista.cpp \
-    Povratnica/povratnicavnes.cpp \
+    ProFakturi/ProFakturi.cpp \
+    ProFakturi/ProFakturikorekcija.cpp \
+    ProFakturi/ProFakturilista.cpp \
+    ProFakturi/ProFakturivnes.cpp \
     Naracki/naracki.cpp \
     Naracki/narackikorekcija.cpp \
     Naracki/narackilista.cpp \
@@ -64,7 +56,23 @@ SOURCES += main.cpp\
     Print/printerlista.cpp \
     Template/qfakturatemplate.cpp \
     dialog.cpp \
-    Helper/qworkerlogin.cpp
+    Helper/qworkerlogin.cpp \
+    LagerLista/lager.cpp \
+    LagerLista/lagerkorekcija.cpp \
+    LagerLista/lagerlista.cpp \
+    LagerLista/lagervnes.cpp \
+    Priemnici/priemnici.cpp \
+    Priemnici/priemnicikorekcija.cpp \
+    Priemnici/priemnicilista.cpp \
+    Priemnici/priemnicivnes.cpp \
+    Povratnica/povratnici.cpp \
+    Povratnica/povratnicikorekcija.cpp \
+    Povratnica/povratnicilista.cpp \
+    Povratnica/povratnicivnes.cpp \
+    Nalog/nalog.cpp \
+    Nalog/nalogkorekcija.cpp \
+    Nalog/naloglista.cpp \
+    Nalog/nalogvnes.cpp
 
 
 
@@ -81,10 +89,6 @@ HEADERS  += mainwindow.h \
     Komintenti/komintentikorekcija.h \
     Komintenti/komintentilista.h \
     Komintenti/komintentivnes.h \
-    Priemnici/priemnici.h \
-    Priemnici/priemnicikorekcija.h \
-    Priemnici/priemnicilista.h \
-    Priemnici/priemnicivnes.h \
     Fakturi/fakturi.h \
     Fakturi/fakturikorekcija.h \
     Fakturi/fakturilista.h \
@@ -97,14 +101,10 @@ HEADERS  += mainwindow.h \
     Smetki/smetkikorekcija.h \
     Smetki/smetkilista.h \
     Smetki/smetkivnes.h \
-    ProFakturi/profakturi.h \
-    ProFakturi/profakturikorekcija.h \
-    ProFakturi/profakturilista.h \
-    ProFakturi/profakturivnes.h \
-    Povratnica/povratnica.h \
-    Povratnica/povratnicakorekcija.h \
-    Povratnica/povratnicalista.h \
-    Povratnica/povratnicavnes.h \
+    ProFakturi/ProFakturi.h \
+    ProFakturi/ProFakturikorekcija.h \
+    ProFakturi/ProFakturilista.h \
+    ProFakturi/ProFakturivnes.h \
     Naracki/naracki.h \
     Naracki/narackikorekcija.h \
     Naracki/narackilista.h \
@@ -121,7 +121,24 @@ HEADERS  += mainwindow.h \
     Print/printerlista.h \
     Template/qfakturatemplate.h \
     dialog.h \
-    Helper/qworkerlogin.h
+    Helper/qworkerlogin.h \
+    LagerLista/lager.h \
+    LagerLista/lagerkorekcija.h \
+    LagerLista/lagerlista.h \
+    LagerLista/lagervnes.h \
+    Priemnici/priemnici.h \
+    Priemnici/priemnicikorekcija.h \
+    Priemnici/priemnicilista.h \
+    Priemnici/priemnicivnes.h \
+    Povratnica/povratnici.h \
+    Povratnica/povratnicikorekcija.h \
+    Povratnica/povratnicilista.h \
+    Povratnica/povratnicivnes.h \
+    Nalog/nalog.h \
+    Nalog/nalogkorekcija.h \
+    Nalog/naloglista.h \
+    Nalog/nalogvnes.h
+
 
 
 
@@ -137,10 +154,6 @@ FORMS    += mainwindow.ui \
     Komintenti/komintentikorekcija.ui \
     Komintenti/komintentilista.ui \
     Komintenti/komintentivnes.ui \
-    Priemnici/priemnici.ui \
-    Priemnici/priemnicikorekcija.ui \
-    Priemnici/priemnicilista.ui \
-    Priemnici/priemnicivnes.ui \
     Fakturi/fakturi.ui \
     Fakturi/fakturikorekcija.ui \
     Fakturi/fakturilista.ui \
@@ -153,21 +166,34 @@ FORMS    += mainwindow.ui \
     Smetki/smetkikorekcija.ui \
     Smetki/smetkilista.ui \
     Smetki/smetkivnes.ui \
-    ProFakturi/profakturi.ui \
-    ProFakturi/profakturikorekcija.ui \
-    ProFakturi/profakturilista.ui \
-    ProFakturi/profakturivnes.ui \
-    Povratnica/povratnica.ui \
-    Povratnica/povratnicakorekcija.ui \
-    Povratnica/povratnicalista.ui \
-    Povratnica/povratnicavnes.ui \
+    ProFakturi/ProFakturi.ui \
+    ProFakturi/ProFakturikorekcija.ui \
+    ProFakturi/ProFakturilista.ui \
+    ProFakturi/ProFakturivnes.ui \
     Naracki/naracki.ui \
     Naracki/narackikorekcija.ui \
     Naracki/narackilista.ui \
     Naracki/narackivnes.ui \
     Print/formprint.ui \
     Print/printerlista.ui \
-    dialog.ui
+    dialog.ui \
+    LagerLista/lager.ui \
+    LagerLista/lagerkorekcija.ui \
+    LagerLista/lagerlista.ui \
+    LagerLista/lagervnes.ui \
+    Priemnici/priemnici.ui \
+    Priemnici/priemnicikorekcija.ui \
+    Priemnici/priemnicilista.ui \
+    Priemnici/priemnicivnes.ui \
+    Povratnica/povratnici.ui \
+    Povratnica/povratnicikorekcija.ui \
+    Povratnica/povratnicilista.ui \
+    Povratnica/povratnicivnes.ui \
+    Nalog/nalog.ui \
+    Nalog/nalogkorekcija.ui \
+    Nalog/naloglista.ui \
+    Nalog/nalogvnes.ui
+
 
 DISTFILES += \
     info.txt

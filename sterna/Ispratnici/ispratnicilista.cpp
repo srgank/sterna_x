@@ -16,29 +16,25 @@ IspratniciLista::IspratniciLista(BaseForm *parent) :
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
 
-    setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
+    BaseInstallEventFilter(ui->gridLayout);
 
-    QString vOffset = QString::number(numOffset);
-    QString vLimit = "50";
-    QString vSName = "%";
-    QString vSearchBy = "artikal";
+    ui->tableView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    ui->tableView->setSelectionMode( QAbstractItemView::SingleSelection );
+    setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
 
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
     model_2 = new QStandardItemModel(0,0);
     header_2 = new QHeaderView(Qt::Horizontal, 0);
 
-    QStringList tempVals = s->Get_Ispratnica_HeaderState();
+    QStringList tempVals = s->Get_Faktura_HeaderState();
     colWidth = s->loadWidthList(tempVals, COL);
 
-
-    b = new QBTemplate<ispratnicaT>();
-
+    b = new QBTemplate<IspratniciT>();
     bd = new QBTemplate<dokumentDetailT>();
-    bc = new QBTemplate<ispratnicaDetailT>();
+    bc = new QBTemplate<IspratniciDetailT>();
 
-
-    QStringList tempValsDetail = s->Get_IspratnicaDetail_HeaderState();
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
     ui->tableView->setModel(model);
@@ -46,8 +42,8 @@ IspratniciLista::IspratniciLista(BaseForm *parent) :
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
+    updateFont();
 }
-
 IspratniciLista::~IspratniciLista()
 {
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
@@ -73,10 +69,10 @@ IspratniciLista::~IspratniciLista()
     bc = 0;
     delete bd;
     bd = 0;
-
 }
 void IspratniciLista::pressF2()
-{    if (enableClose){
+{
+    if (enableClose){
         emit signalpressF2();
     }
 }
@@ -92,57 +88,54 @@ void IspratniciLista::pressEscape()
         emit signalpressEscape();
     }
 }
-
 void IspratniciLista::seTableSelectedRow(int m_row)
 {
     ui->tableView->selectRow(m_row);
 }
 QString IspratniciLista::getSearchString()
 {
-    return ui->lineEdit_7->text();
+    return ui->prebaruvanje_po_komintent->text();
 }
+
 void IspratniciLista::setSearchString(QString& searchText)
 {
-    ui->lineEdit_7->setText(searchText);
+    ui->prebaruvanje_po_komintent->setText(searchText);
 }
 
 void IspratniciLista::on_lineEdit_textChanged(const QString &arg1)
 {
     enableClose = false;
-//    numOffset = 0;
-//    QString vLimit = "500";
-//    QString vOffset = QString::number(numOffset);
-//    QString vDokID = arg1 + "%";
-//    QString vDokTip = "40";
+    numOffset = 0;
+    QString vLimit = "500";
+    QString vOffset = QString::number(numOffset);
+    QString vSearchName = arg1 ;
+    QString vSearchBy = "artikal";
+    QString vDokTip = "20";
+    QString vDokID = "";
 
-//    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip );
+    QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip, vSearchBy, vSearchName );
 
-//    QList<ispratnicaT> resFaktura;
-//    b->ConvertDokument(res, resFaktura);
-//    resFakturaTemp = resFaktura;
-//    b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
+    QList<IspratniciT> resFaktura;
+    b->ConvertDokument(res, resFaktura);
+    resFakturaTemp = resFaktura;
+    b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
     enableClose = true;
 }
-
-
-
 void IspratniciLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
 }
-
 void IspratniciLista::procSectionResizedDetail(int a, int b, int c)
 {
     colDetailWidth[a] = c;
 }
-
-
 void IspratniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
     enableClose = false;
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     int i = modelX.row();
     m_row = modelX.row();
+
     QString vLimit = "10000";
     QString vOffset = QString::number(numOffset);
     QString vDok_Id =  model->item(i, 1)->text();
@@ -150,39 +143,79 @@ void IspratniciLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 
     QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
 
-    QList<ispratnicaDetailT> resFakturaDetail;
+    QList<IspratniciDetailT> resFakturaDetail;
     bc->ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
     currentData = b->getCurrentData(resFakturaTemp, m_row);
     bc->ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+
+
+
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
+
+    bc->ConvertDokumentDetail(res, resFakturaDetail);
+    resFakturaDetailTemp = resFakturaDetail;
+
+    QList<IspratniciDetailT> data = resFakturaDetail;
+    for (QList<IspratniciDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+        vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
+    }
+
+    bool isOk;
+    QString vk_iznos;
+    vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
+    ui->vk_iznos_so_ddv->setText(vk_iznos);
+    int stop = 0;
+
     enableClose = true;
 }
-
-
 void IspratniciLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
 {
     seTableSelected_Offset(searchOffsetList);
-    ui->lineEdit_7->setText(searchStrList);
+    ui->prebaruvanje_po_komintent->setText(searchStrList);
     on_lineEdit_textChanged(searchStrList);
     seTableSelectedRow(searchIDList);
     PressKeyTAB(this);
 }
-
-
-ispratnica_trans IspratniciLista::getFakturaData(){
-    ispratnica_trans temp;
+Ispratnici_trans IspratniciLista::getFakturaData(){
+    Ispratnici_trans temp;
     temp.data1 = currentData;
     temp.data2 = resFakturaDetailTemp;
     return temp;
 }
-
 void IspratniciLista::updateFont()
 {
-    ui->tableView->setFont(this->font());
-    ui->tableView_2->setFont(this->font());
-    repaint();
+    Singleton *s = Singleton::Instance();
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    BaseUpdateFonts(ui->gridLayout, str_font);
 }
 
 
+void IspratniciLista::on_prebaruvanje_po_komintent_textChanged(const QString &arg1)
+{
+    on_lineEdit_textChanged(arg1);
+}
+
+bool IspratniciLista::eventFilter(QObject *object, QEvent *event)
+{
+    Singleton *s = Singleton::Instance();
+    if (event->type() == QEvent::FocusIn)
+    {
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
+    }
+    if (event->type() == QEvent::FocusOut)
+    {
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
+    }
+    return false;
+}
+
+
+void IspratniciLista::Refresh()
+{
+    updateFont();
+}

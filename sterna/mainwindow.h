@@ -8,13 +8,14 @@
 #include "Fakturi/fakturi.h"
 #include "Ispratnici/ispratnici.h"
 #include "Smetki/smetki.h"
-#include "ProFakturi/profakturi.h"
-#include "Povratnica/povratnica.h"
+#include "ProFakturi/ProFakturi.h"
+#include "Povratnica/povratnici.h"
 #include "Naracki/naracki.h"
 #include "Print/formprint.h"
+#include "LagerLista/lager.h"
 #include "Template/qfakturatemplate.h"
 #include "dialog.h"
-
+#include "Nalog/nalog.h"
 
 #include "Left/left.h"
 
@@ -60,7 +61,10 @@ public:
             QStringList & narackaDetail__HeaderState,
 
             QStringList & smetka_HeaderState,
-            QStringList & smetkaDetail__HeaderState
+            QStringList & smetkaDetail__HeaderState,
+
+            QStringList & lager_HeaderState,
+            QStringList & lagerDetail__HeaderState
 
             );
 
@@ -73,6 +77,7 @@ private slots:
     void on_actionKomintent_triggered();
     void on_actionPriemnica_triggered();
     void on_actionFaktura_triggered();
+    void on_actionLagerLista_triggered();
 
     void on_actionIspretnicia_triggered();
 
@@ -83,6 +88,8 @@ private slots:
     void on_actionPovratnica_triggered();
 
     void on_actionNaracka_triggered();
+
+    void on_actionNalog_triggered();
 
     void on_actionPrint_Form_triggered();
 
@@ -145,6 +152,8 @@ private:
     Naracki *m_narackaModul;
     FormPrint * m_printModul;
     Dialog *m_dialog;
+    Lager *m_lagerModul;
+    Nalog *m_nalogModul;
 
     QString m_artikliModul_description;
     QString m_komintentiModul_description;
@@ -156,6 +165,8 @@ private:
     QString m_povratnicaModul_description;
     QString m_narackaModul_description;
     QString m_printModul_description;
+    QString m_lager_description;
+    QString m_nalog_description;
 
     QStringList art;
     QStringList kom;
@@ -184,6 +195,12 @@ private:
     QStringList smetka;
     QStringList smetkaDetail;
 
+    QStringList lagerList;
+    QStringList lagerDetailList;
+
+    QStringList nalogList;
+    QStringList nalogDetailList;
+
     QString procGetPrintText();
 
 
@@ -199,7 +216,8 @@ public slots:
     void procCreateModulPovratnica(QString, QWidget *p);
     void procCreateModulNaracka(QString, QWidget *p);
     void procCreateModulPrint(QString, QWidget *p);
-
+    void procCreateModulLager(QString, QWidget *p);
+    void procCreateModulNalog(QString, QWidget *p);
 };
 
 #endif // MAINWINDOW_H

@@ -135,6 +135,7 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     int i = modelX.row();
     m_row = modelX.row();
+
     QString vLimit = "10000";
     QString vOffset = QString::number(numOffset);
     QString vDok_Id =  model->item(i, 1)->text();
@@ -149,6 +150,25 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     currentData = b->getCurrentData(resFakturaTemp, m_row);
     bc->ShowData(resFakturaDetail, model_2, header_2, ui->tableView_2, colDetailWidth);
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+
+
+
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
+
+    bc->ConvertDokumentDetail(res, resFakturaDetail);
+    resFakturaDetailTemp = resFakturaDetail;
+
+    QList<fakturiDetailT> data = resFakturaDetail;
+    for (QList<fakturiDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+        vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
+    }
+
+    bool isOk;
+    QString vk_iznos;
+    vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
+    ui->vk_iznos_so_ddv->setText(vk_iznos);
+    int stop = 0;
+
     enableClose = true;
 }
 void FakturiLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)

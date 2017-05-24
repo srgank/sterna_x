@@ -21,6 +21,9 @@ public:
     virtual void pressF3();
     virtual void pressF4();
     virtual void pressEscape();
+    virtual void Refresh();
+    Smetki_trans& getFaktTransData();
+
     void closeAllForm();
 
 private:
@@ -31,8 +34,10 @@ private:
     QString m_SearchString;
     int m_SelectedID;
     QString m_strID;
-
-
+    QString searchStrList;
+    int searchIDList;
+    int searchOffsetList;
+    Smetki_trans m_data;
 
 private slots:
     void pressF2FromLista();
@@ -41,13 +46,13 @@ private slots:
     void pressEscapeFromVnes();
     void pressEscapeFromKorekcija();
     void procSentGetArtikal(QString text, QWidget* p);
+    void procSentGetKomintent(QString text, QWidget* p);
 
 signals:
     void signCloseMyWidget();
     void signArtikal(QString, QWidget* );
     void signKomintent(QString, QWidget*);
     void eupdateNanigator(QWidget*, QWidget*);
-
 };
 
 #endif // Smetki_H

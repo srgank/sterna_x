@@ -191,7 +191,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  profakturiT ;
+}  ProFakturiT ;
 
 typedef struct {
     QString tid;
@@ -219,10 +219,11 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  profakturiDetailT ;
+}  ProFakturiDetailT ;
 
 typedef struct {
     QString tid;
@@ -253,7 +254,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  priemnicaT ;
+}  PriemniciT ;
 
 typedef struct {
     QString tid;
@@ -281,10 +282,11 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  priemnicaDetailT ;
+}  PriemniciDetailT ;
 
 typedef struct {
     QString tid;
@@ -315,7 +317,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  ispratnicaT ;
+}  IspratniciT ;
 
 typedef struct {
     QString tid;
@@ -343,10 +345,11 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  ispratnicaDetailT ;
+}  IspratniciDetailT ;
 
 typedef struct {
     QString tid;
@@ -377,7 +380,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  povratnicaT ;
+} PovratniciT ;
 
 typedef struct {
     QString tid;
@@ -405,10 +408,137 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  povratnicaDetailT ;
+}  PovratniciDetailT ;
+
+typedef struct {
+    QString tid;
+    QString dokument_id;
+    QString dokument_tip;
+    QString td;
+    QString tds;
+    QString komintent_id;
+    QString komintent_naziv;
+    QString prevoznik_id;
+    QString prevoznik_naziv;
+    QString valuta;
+
+    QString kurs;
+    QString iznos_val;
+    QString ddv_val;
+    QString rabat_val;
+    QString iznos_plakanje_val;
+    QString iznos_ddv_den;
+    QString rabat_den;
+    QString iznos_plakanje_den;
+    QString transport_den;
+    QString carina_den;
+    QString ddv_den;
+    QString drugi_trosoci_den;
+    QString dok_status;
+    QString user_id;
+    QString komentar;
+    QString mag_id;
+    QString object_id;
+}  NarackiT ;
+
+typedef struct {
+    QString tid;
+    QString dokument_id;
+    QString dokument_tip;
+    QString komintent_id;
+    QString artikal_id;
+    QString artikal_naziv;
+    QString tip_artikal;
+    QString link_artikal;
+    QString edm;
+    QString vlez_nab_cena_bez_ddv;
+    QString vlez_nab_cena_so_ddv;
+    QString vlez_prenesen_ddv;
+    QString vlez_prenesen_ddv_denari;
+    QString vlez_rabat;
+    QString vlez_nabaven_iznos_so_ddv;
+    QString vlez_marza;
+    QString vlez_marza_den;
+    QString vlez_prod_cena_bez_ddv;
+    QString vlez_presmetan_ddv;
+    QString vlez_prod_cena_so_ddv;
+    QString vlez_prod_iznos_so_ddv;
+    QString izl_cena_bez_ddv_calc;
+    QString izl_cena_so_ddv_calc;
+    QString izl_cena_so_ddv_prod;
+    QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
+    QString kol;
+    QString mag_id;
+    QString status;
+}  NarackiDetailT ;
+
+typedef struct {
+    QString tid;
+    QString dokument_id;
+    QString dokument_tip;
+    QString td;
+    QString tds;
+    QString komintent_id;
+    QString komintent_naziv;
+    QString prevoznik_id;
+    QString prevoznik_naziv;
+    QString valuta;
+
+    QString kurs;
+    QString iznos_val;
+    QString ddv_val;
+    QString rabat_val;
+    QString iznos_plakanje_val;
+    QString iznos_ddv_den;
+    QString rabat_den;
+    QString iznos_plakanje_den;
+    QString transport_den;
+    QString carina_den;
+    QString ddv_den;
+    QString drugi_trosoci_den;
+    QString dok_status;
+    QString user_id;
+    QString komentar;
+    QString mag_id;
+    QString object_id;
+}  NalogT ;
+
+typedef struct {
+    QString tid;
+    QString dokument_id;
+    QString dokument_tip;
+    QString komintent_id;
+    QString artikal_id;
+    QString artikal_naziv;
+    QString tip_artikal;
+    QString link_artikal;
+    QString edm;
+    QString vlez_nab_cena_bez_ddv;
+    QString vlez_nab_cena_so_ddv;
+    QString vlez_prenesen_ddv;
+    QString vlez_prenesen_ddv_denari;
+    QString vlez_rabat;
+    QString vlez_nabaven_iznos_so_ddv;
+    QString vlez_marza;
+    QString vlez_marza_den;
+    QString vlez_prod_cena_bez_ddv;
+    QString vlez_presmetan_ddv;
+    QString vlez_prod_cena_so_ddv;
+    QString vlez_prod_iznos_so_ddv;
+    QString izl_cena_bez_ddv_calc;
+    QString izl_cena_so_ddv_calc;
+    QString izl_cena_so_ddv_prod;
+    QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
+    QString kol;
+    QString mag_id;
+    QString status;
+}  NalogDetailT ;
 
 
 typedef struct {
@@ -440,7 +570,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  nalogT ;
+}  LagerT ;
 
 typedef struct {
     QString tid;
@@ -468,10 +598,11 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  nalogDetailT ;
+}  LagerDetailT ;
 
 typedef struct {
     QString tid;
@@ -502,7 +633,7 @@ typedef struct {
     QString komentar;
     QString mag_id;
     QString object_id;
-}  narackaT ;
+}  SmetkiT ;
 
 typedef struct {
     QString tid;
@@ -530,10 +661,13 @@ typedef struct {
     QString izl_cena_so_ddv_calc;
     QString izl_cena_so_ddv_prod;
     QString izl_ddv_prod;
+    QString izl_prod_iznos_so_ddv;
     QString kol;
     QString mag_id;
     QString status;
-}  narackaDetailT ;
+}  SmetkiDetailT ;
+
+
 
 typedef struct {
     fakturiT data1;
@@ -541,14 +675,49 @@ typedef struct {
 } faktura_trans;
 
 typedef struct {
-    profakturiT data1;
-    QList<profakturiDetailT> data2;
-} profaktura_trans;
+    LagerT data1;
+    QList<LagerDetailT> data2;
+} Lager_trans;
+
 
 typedef struct {
-    ispratnicaT data1;
-    QList<ispratnicaDetailT> data2;
-} ispratnica_trans;
+    ProFakturiT data1;
+    QList<ProFakturiDetailT> data2;
+} ProFaktura_trans;
+
+typedef struct {
+    IspratniciT data1;
+    QList<IspratniciDetailT> data2;
+} Ispratnici_trans;
+
+typedef struct {
+    PriemniciT data1;
+    QList<PriemniciDetailT> data2;
+} Priemnici_trans;
+
+
+typedef struct {
+    SmetkiT data1;
+    QList<SmetkiDetailT> data2;
+} Smetki_trans;
+
+typedef struct {
+    PovratniciT data1;
+    QList<PovratniciDetailT> data2;
+} Povratnici_trans;
+
+typedef struct {
+    NarackiT data1;
+    QList<NarackiDetailT> data2;
+} Naracki_trans;
+
+typedef struct {
+    NalogT data1;
+    QList<NalogDetailT> data2;
+} Nalog_trans;
+
+
+
 
 typedef struct {
     QString dataItem;

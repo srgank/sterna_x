@@ -4,9 +4,12 @@
 Priemnici::Priemnici(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::Priemnici)
-    ,m_PriemniciLista(0)
-    ,m_PriemniciVnes(0)
-    ,m_PriemniciKorekcija(0)
+  ,m_PriemniciLista(0)
+  ,m_PriemniciVnes(0)
+  ,m_PriemniciKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,11 @@ void Priemnici::pressF2()
     if (!m_PriemniciLista) {
         return;
     }
+    searchIDList = m_PriemniciLista->geTableSelectedRow();
+    searchStrList = m_PriemniciLista->getSearchString();
+    searchOffsetList = m_PriemniciLista->geTableSelected_Offset();
+
+
     disconnect(m_PriemniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_PriemniciLista = deleteMyWidget<PriemniciLista>(m_PriemniciLista);
     m_PriemniciVnes = showMyWidget<PriemniciVnes, Priemnici>(m_PriemniciVnes, this);
@@ -37,10 +45,13 @@ void Priemnici::pressF2()
 void Priemnici::pressF3()
 {
     if (m_PriemniciLista){
-        m_strID = m_PriemniciLista->getSelectedID();
+        m_data = m_PriemniciLista->getFakturaData();
     }else{
         return;
     }
+    searchIDList = m_PriemniciLista->geTableSelectedRow();
+    searchStrList = m_PriemniciLista->getSearchString();
+    searchOffsetList = m_PriemniciLista->geTableSelected_Offset();
     disconnect(m_PriemniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_PriemniciLista = deleteMyWidget<PriemniciLista>(m_PriemniciLista);
     m_PriemniciKorekcija = showMyWidget<PriemniciKorekcija, Priemnici>(m_PriemniciKorekcija, this);
@@ -48,9 +59,7 @@ void Priemnici::pressF3()
     connect(m_PriemniciKorekcija,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromKorekcija()));
     connect(m_PriemniciKorekcija,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
     connect(m_PriemniciKorekcija,SIGNAL(signalGetKomintent(QString, QWidget*)),this,SLOT(procSentGetKomintent(QString, QWidget*)));
-
-
-    m_PriemniciKorekcija->initProc(m_strID);
+    m_PriemniciKorekcija->initProc(m_data);
 }
 
 void Priemnici::pressF4()
@@ -58,11 +67,17 @@ void Priemnici::pressF4()
     m_PriemniciLista = showMyWidget<PriemniciLista, Priemnici>(m_PriemniciLista, this);
     m_PriemniciLista->setCategoryWidget(this);
     connect(m_PriemniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
-    connect(m_PriemniciLista,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
-    connect(m_PriemniciLista,SIGNAL(signalGetKomintent()),this,SLOT(procSentGetKomintent()));
-    connect(m_PriemniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_PriemniciLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_PriemniciLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
+    m_PriemniciLista->initProc(searchIDList, searchStrList, searchOffsetList);
+}
+
+void Priemnici::pressEscape()
+{
+
+}
+void Priemnici::closeAllForm()
+{
 }
 
 void Priemnici::pressF2FromLista()
@@ -72,13 +87,6 @@ void Priemnici::pressF2FromLista()
 void Priemnici::pressF3FromLista()
 {
     pressF3();
-}
-void Priemnici::pressEscape()
-{
-
-}
-void Priemnici::closeAllForm()
-{
 }
 
 void Priemnici::pressEscapeFromLista()
@@ -100,13 +108,6 @@ void Priemnici::pressEscapeFromKorekcija()
     pressF4();
 }
 
-void Priemnici::procReturn(QString)
-{
-    int stop;
-}
-
-
-
 void Priemnici::procSentGetArtikal(QString text, QWidget* p)
 {
     emit signArtikal(text, p);
@@ -117,3 +118,23 @@ void Priemnici::procSentGetKomintent(QString text, QWidget* p)
     emit signKomintent(text, p);
 }
 
+
+void Priemnici::Refresh()
+{
+    if (m_PriemniciLista){
+        PressKeyF12(m_PriemniciLista);
+    }else if(m_PriemniciVnes){
+        PressKeyF12(m_PriemniciVnes);
+    }else if(m_PriemniciKorekcija){
+        PressKeyF12(m_PriemniciKorekcija);
+    }else{
+    }
+}
+
+Priemnici_trans& Priemnici::getFaktTransData(){
+    if (m_PriemniciLista){
+        m_data = m_PriemniciLista->getFakturaData();
+    }else{
+    }
+    return m_data;
+}

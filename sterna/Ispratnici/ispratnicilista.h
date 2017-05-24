@@ -29,7 +29,7 @@ public:
 
     virtual void pressEscape();
     virtual void updateFont();
-
+    virtual void Refresh();
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);
@@ -37,12 +37,11 @@ public:
     QString getSearchString();
     void setSearchString(QString& searchText);
 
-    ispratnica_trans getFakturaData();
+    Ispratnici_trans getFakturaData();
 
     int geTableSelected_Offset(){return numOffset;}
     void seTableSelected_Offset(int t_numOffset){numOffset = t_numOffset;}
     void initProc(int searchIDList, QString& searchStrList, int searchOffsetList);
-
 
 private:
     Ui::IspratniciLista *ui;
@@ -60,17 +59,20 @@ private:
     QList<int> colWidth;
     QList<int> colDetailWidth;
 
-    QBTemplate<ispratnicaT> *b;
+    QBTemplate<IspratniciT> *b;
     QBTemplate<dokumentDetailT> *bd;
-    QBTemplate<ispratnicaDetailT> *bc;
+    QBTemplate<IspratniciDetailT> *bc;
 
     QItemSelectionModel *sm;
 
-    QList<ispratnicaT> resFakturaTemp;
-    ispratnicaT currentData;
-    QList<ispratnicaDetailT> resFakturaDetailTemp;
-
+    QList<IspratniciT> resFakturaTemp;
+    IspratniciT currentData;
+    QList<IspratniciDetailT> resFakturaDetailTemp;
+    QString str_yellow;
+    QString str_none;
     bool enableClose;
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressF2();
     void signalpressF3();
@@ -81,6 +83,7 @@ private slots:
     void procSectionResized(int a, int b, int c);
     void procSectionResizedDetail(int a, int b, int c);
     void on_lineEdit_textChanged(const QString &arg1);
+    void on_prebaruvanje_po_komintent_textChanged(const QString &arg1);
 };
 
 #endif // IspratniciLISTA_H

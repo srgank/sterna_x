@@ -21,6 +21,9 @@ public:
     virtual void pressF3();
     virtual void pressF4();
     virtual void pressEscape();
+    virtual void Refresh();
+    Naracki_trans& getFaktTransData();
+
     void closeAllForm();
 
 private:
@@ -31,8 +34,10 @@ private:
     QString m_SearchString;
     int m_SelectedID;
     QString m_strID;
-
-
+    QString searchStrList;
+    int searchIDList;
+    int searchOffsetList;
+    Naracki_trans m_data;
 
 private slots:
     void pressF2FromLista();

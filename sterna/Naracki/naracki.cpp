@@ -4,9 +4,12 @@
 Naracki::Naracki(BaseForm *parent) :
     BaseForm(parent),
     ui(new Ui::Naracki)
-    ,m_NarackiLista(0)
-    ,m_NarackiVnes(0)
-    ,m_NarackiKorekcija(0)
+  ,m_NarackiLista(0)
+  ,m_NarackiVnes(0)
+  ,m_NarackiKorekcija(0)
+  ,searchIDList(0)
+  ,searchStrList("")
+  ,searchOffsetList(0)
 
 {
     ui->setupUi(this);
@@ -25,6 +28,11 @@ void Naracki::pressF2()
     if (!m_NarackiLista) {
         return;
     }
+    searchIDList = m_NarackiLista->geTableSelectedRow();
+    searchStrList = m_NarackiLista->getSearchString();
+    searchOffsetList = m_NarackiLista->geTableSelected_Offset();
+
+
     disconnect(m_NarackiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_NarackiLista = deleteMyWidget<NarackiLista>(m_NarackiLista);
     m_NarackiVnes = showMyWidget<NarackiVnes, Naracki>(m_NarackiVnes, this);
@@ -37,10 +45,13 @@ void Naracki::pressF2()
 void Naracki::pressF3()
 {
     if (m_NarackiLista){
-        m_strID = m_NarackiLista->getSelectedID();
+        m_data = m_NarackiLista->getFakturaData();
     }else{
         return;
     }
+    searchIDList = m_NarackiLista->geTableSelectedRow();
+    searchStrList = m_NarackiLista->getSearchString();
+    searchOffsetList = m_NarackiLista->geTableSelected_Offset();
     disconnect(m_NarackiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_NarackiLista = deleteMyWidget<NarackiLista>(m_NarackiLista);
     m_NarackiKorekcija = showMyWidget<NarackiKorekcija, Naracki>(m_NarackiKorekcija, this);
@@ -48,7 +59,7 @@ void Naracki::pressF3()
     connect(m_NarackiKorekcija,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromKorekcija()));
     connect(m_NarackiKorekcija,SIGNAL(signalGetArtikal(QString, QWidget*)),this,SLOT(procSentGetArtikal(QString, QWidget*)));
     connect(m_NarackiKorekcija,SIGNAL(signalGetKomintent(QString, QWidget*)),this,SLOT(procSentGetKomintent(QString, QWidget*)));
-    m_NarackiKorekcija->initProc(m_strID);
+    m_NarackiKorekcija->initProc(m_data);
 }
 
 void Naracki::pressF4()
@@ -58,6 +69,7 @@ void Naracki::pressF4()
     connect(m_NarackiLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     connect(m_NarackiLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_NarackiLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
+    m_NarackiLista->initProc(searchIDList, searchStrList, searchOffsetList);
 }
 
 void Naracki::pressEscape()
@@ -107,4 +119,22 @@ void Naracki::procSentGetKomintent(QString text, QWidget* p)
 }
 
 
+void Naracki::Refresh()
+{
+    if (m_NarackiLista){
+        PressKeyF12(m_NarackiLista);
+    }else if(m_NarackiVnes){
+        PressKeyF12(m_NarackiVnes);
+    }else if(m_NarackiKorekcija){
+        PressKeyF12(m_NarackiKorekcija);
+    }else{
+    }
+}
 
+Naracki_trans& Naracki::getFaktTransData(){
+    if (m_NarackiLista){
+        m_data = m_NarackiLista->getFakturaData();
+    }else{
+    }
+    return m_data;
+}

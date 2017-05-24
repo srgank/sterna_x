@@ -8,7 +8,7 @@ Ispratnici::Ispratnici(BaseForm *parent) :
   ,m_IspratniciVnes(0)
   ,m_IspratniciKorekcija(0)
   ,searchIDList(0)
-  ,searchStrList("%")
+  ,searchStrList("")
   ,searchOffsetList(0)
 
 {
@@ -31,6 +31,7 @@ void Ispratnici::pressF2()
     searchIDList = m_IspratniciLista->geTableSelectedRow();
     searchStrList = m_IspratniciLista->getSearchString();
     searchOffsetList = m_IspratniciLista->geTableSelected_Offset();
+
 
     disconnect(m_IspratniciLista,SIGNAL(signalpressEscape()),this,SLOT(pressEscapeFromLista()));
     m_IspratniciLista = deleteMyWidget<IspratniciLista>(m_IspratniciLista);
@@ -69,7 +70,6 @@ void Ispratnici::pressF4()
     connect(m_IspratniciLista,SIGNAL(signalpressF2()),this,SLOT(pressF2FromLista()));
     connect(m_IspratniciLista,SIGNAL(signalpressF3()),this,SLOT(pressF3FromLista()));
     m_IspratniciLista->initProc(searchIDList, searchStrList, searchOffsetList);
-
 }
 
 void Ispratnici::pressEscape()
@@ -119,3 +119,22 @@ void Ispratnici::procSentGetKomintent(QString text, QWidget* p)
 }
 
 
+void Ispratnici::Refresh()
+{
+    if (m_IspratniciLista){
+        PressKeyF12(m_IspratniciLista);
+    }else if(m_IspratniciVnes){
+        PressKeyF12(m_IspratniciVnes);
+    }else if(m_IspratniciKorekcija){
+        PressKeyF12(m_IspratniciKorekcija);
+    }else{
+    }
+}
+
+Ispratnici_trans& Ispratnici::getFaktTransData(){
+    if (m_IspratniciLista){
+        m_data = m_IspratniciLista->getFakturaData();
+    }else{
+    }
+    return m_data;
+}

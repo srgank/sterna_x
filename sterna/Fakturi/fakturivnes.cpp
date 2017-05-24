@@ -263,8 +263,18 @@ bool FakturiVnes::procAddItem(){
 
 
 void FakturiVnes::showData(){
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
     QList<fakturiDetailT> data = resFakturaItems;
     bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
+    data = resFakturaItems;
+    for (QList<fakturiDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+        vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
+    }
+    bool isOk;
+    QString vk_iznos;
+    vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
+    ui->vk_iznos_so_ddv->setText(vk_iznos);
+    int stop = 0;
 }
 
 void FakturiVnes::on_pushButton_6_clicked()
@@ -294,6 +304,7 @@ void FakturiVnes::on_pushButton_4_clicked()
 
     b->ConvertAnyToDokument(fakturiList, dok);
     dokumentT itemDoc = dok.at(0);
+    itemDoc.iznos_plakanje_den = ui->vk_iznos_so_ddv->text();
     QList<dokumentT> t = hlp->InsertDokumenti(itemDoc);
     dokumentT temp_t = t.at(0);
 

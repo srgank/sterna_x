@@ -3,430 +3,341 @@
 
 PriemniciVnes::PriemniciVnes(BaseForm *parent) :
     BaseForm(parent),
+    statusWait(false),
+    hlp(0),
+    statusOpenEditor(false),
     ui(new Ui::PriemniciVnes)
 {
     ui->setupUi(this);
-    ui->comboBox_2->installEventFilter(this);
+    hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
-    str_yellow = "background-color: yellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
 
-    ui->dateTimeEdit->installEventFilter(this);
-    ui->dateTimeEdit_2->installEventFilter(this);
-    ui->dateTimeEdit_3->installEventFilter(this);
-    ui->dateTimeEdit_4->installEventFilter(this);
-
-    ui->lineEdit->installEventFilter(this);
-    ui->lineEdit_2->installEventFilter(this);
-    ui->lineEdit_3->installEventFilter(this);
-    ui->lineEdit_4->installEventFilter(this);
-    ui->lineEdit_5->installEventFilter(this);
-    ui->lineEdit_6->installEventFilter(this);
-    ui->lineEdit_7->installEventFilter(this);
-    ui->lineEdit_8->installEventFilter(this);
-    ui->lineEdit_9->installEventFilter(this);
-    ui->lineEdit_10->installEventFilter(this);
-    ui->lineEdit_11->installEventFilter(this);
-    ui->lineEdit_12->installEventFilter(this);
-    ui->lineEdit_13->installEventFilter(this);
-    ui->lineEdit_14->installEventFilter(this);
-    ui->lineEdit_15->installEventFilter(this);
-    ui->lineEdit_16->installEventFilter(this);
-    ui->lineEdit_17->installEventFilter(this);
-    ui->lineEdit_18->installEventFilter(this);
-    ui->lineEdit_19->installEventFilter(this);
-    ui->lineEdit_20->installEventFilter(this);
-    ui->lineEdit_21->installEventFilter(this);
-    ui->lineEdit_22->installEventFilter(this);
-    ui->lineEdit_23->installEventFilter(this);
-    ui->lineEdit_24->installEventFilter(this);
-    ui->lineEdit_25->installEventFilter(this);
-    ui->lineEdit_26->installEventFilter(this);
-    ui->lineEdit_27->installEventFilter(this);
+    BaseInstallEventFilter(ui->gridLayout);
 
 
-    ui->pushButton_3->installEventFilter(this);
-    ui->pushButton_4->installEventFilter(this);
-    ui->pushButton_5->installEventFilter(this);
-    ui->pushButton_6->installEventFilter(this);
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-    pressEnter();
+
+    strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    ui->sifra_artikal->setStyleSheet(strDisabled);
+    ui->sifra_komintent->setStyleSheet(strDisabled);
+
+    model = new QStandardItemModel(0,0);
+    header = new QHeaderView(Qt::Horizontal, 0);
+
+    QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
+    colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
+
+    b = new QBTemplate<PriemniciT>();
+    bd = new QBTemplate<PriemniciDetailT>();
+
+    ui->tableView->setModel(model);
+    connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
+    sm =ui->tableView->selectionModel();
+    connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    comboboxD = new QCBItemDelegate(Q_NULLPTR);
+    connect(comboboxD, SIGNAL(updatePodatoci()), this , SLOT(updatePodatoci()));
+    lineeditD = new QLEItemDelegate(Q_NULLPTR);
+    connect(lineeditD, SIGNAL(updateCellLE(const QModelIndex &, QString &)), this , SLOT(updateStructCellLineEdit(const QModelIndex &, QString &)));
+    updateFont();
+
+    PressKeyTAB(this);
 }
 
 PriemniciVnes::~PriemniciVnes()
 {
-    if (ui){
-        delete ui;
-    }
+    Singleton *s = Singleton::Instance();
+    QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
+    s->Set_FakturaDetail_HeaderState(tempdetailVals);
 
+    delete hlp;
+    delete ui;
+    delete b;
+    delete bd;
+    b = 0;
+    bd = 0;
 }
 void PriemniciVnes::pressEscape()
 {
     emit signalpressEscape();
 }
 
-void PriemniciVnes::pressEnter()
+
+
+void PriemniciVnes::on_pushButton_released()
 {
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+
 }
-void PriemniciVnes::pressReturn()
-{
-    if(ui->pushButton_4->hasFocus())
-    {
-        //on_pushButton_released();
-    }
-    else if(ui->lineEdit->hasFocus())
-    {
-        emit signalGetKomintent("", (QWidget*)this);
-    }
-    else if(ui->lineEdit_2->hasFocus())
-    {
-        emit signalGetArtikal("", (QWidget*)this);
-    }
-    else
-    {
-        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-        QCoreApplication::postEvent(this, event);
-    }
-}
+
+
 
 void PriemniciVnes::setFocusArtikal(artikalT t)
 {
-    ui->lineEdit_2->setFocus();
-    ui->lineEdit_2->selectAll();
-    ui->lineEdit_2->setText(t.artikal);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    ui->artikal->setFocus();
+    ui->artikal->selectAll();
+    ui->artikal->setText(t.artikal);
+    ui->sifra_artikal->setText(t.sifra);
+    PressKeyTAB(this);
 }
 
 void PriemniciVnes::setFocusKomintent(komintentT t)
 {
-    ui->lineEdit->setFocus();
-    ui->lineEdit->selectAll();
-    ui->lineEdit->setText(t.naziv);
-    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    QCoreApplication::postEvent(this, event);
+    ui->komintent->setFocus();
+    ui->komintent->selectAll();
+    ui->komintent->setText(t.naziv);
+    ui->sifra_komintent->setText(t.sifra);
+    resFaktura.komintent_id = t.sifra;
+    resFaktura.komintent_naziv = t.naziv;
+    for (int i = 0; i < resFakturaItems.count(); i++){\
+        resFakturaItems[i].komintent_id = resFaktura.komintent_id;
+    }
+    showData();
+    PressKeyTAB(this);
+}
+
+
+void PriemniciVnes::pressReturn()
+{
+    if(ui->pushButton_6->hasFocus())
+    {
+        procDeleteItem();
+        showData();
+    }
+    else if(ui->tableView->hasFocus())
+    {
+        if (!statusOpenEditor){
+            OpenTablePersistentEditor(ui->tableView, m_index);
+        }else{
+            CloseTablePersistentEditor(ui->tableView, m_index);
+        }
+        statusOpenEditor = !statusOpenEditor;
+    }
+
+    else if(ui->komintent->hasFocus())
+    {
+        emit signalGetKomintent("", (QWidget*)this);
+    }
+    else if(ui->artikal->hasFocus())
+    {
+        emit signalGetArtikal("", (QWidget*)this);
+    }
+    else if(ui->pushButton_3->hasFocus())
+    {
+        if (procAddItem() == true){
+        showData();
+        ui->artikal->setFocus();
+        }
+    }
+
+    else
+    {
+        if (statusOpenEditor){
+            CloseTablePersistentEditor(ui->tableView, m_index);
+            statusOpenEditor = !statusOpenEditor;
+
+        }else{
+            PressKeyTAB(this);
+        }
+    }
+}
+
+void PriemniciVnes::OpenTablePersistentEditor(QTableView * table, QModelIndex &index)
+{
+    switch (index.column()){
+    case 0:  table->setItemDelegate(lineeditD);break;
+    case 1:  table->setItemDelegate(lineeditD);break;
+    case 2:  table->setItemDelegate(lineeditD);break;
+    case 3:  table->setItemDelegate(lineeditD);break;
+    case 4:  table->setItemDelegate(comboboxD);break;
+    case 5:  table->setItemDelegate(comboboxD);break;
+    case 6:  table->setItemDelegate(comboboxD);break;
+    case 7:  table->setItemDelegate(comboboxD);break;
+    case 8:  table->setItemDelegate(comboboxD);break;
+    case 9:  table->setItemDelegate(comboboxD);break;
+    }
+    table->openPersistentEditor(index);
+}
+
+void PriemniciVnes::CloseTablePersistentEditor(QTableView * table, QModelIndex &index)
+{
+    table->closePersistentEditor(index);
+}
+
+void PriemniciVnes::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+{
+    m_index = modelX;
+    m_row = modelX.row();
+}
+
+void PriemniciVnes::selectionChangedDetail(QModelIndex modelX,QModelIndex modelY)
+{
+    if (modelX != modelY){
+        CloseTablePersistentEditor(ui->tableView, m_index);
+    }
+    m_index = modelX;
+}
+
+void PriemniciVnes::updateStructCellLineEdit(const QModelIndex & index, QString & value)
+{
+    switch (index.column()){
+    case 0: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 0)->setText(value);break;
+    case 1: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 1)->setText(value);break;
+    case 2: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 2)->setText(value);break;
+    case 3: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 3)->setText(value);break;
+    case 4: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 4)->setText(value);break;
+    case 5: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
+
+    }
+}
+
+void PriemniciVnes::initProc(Priemnici_trans m_data)
+{
+    resFakturaItems = m_data.data2;
+    showData();
+}
+
+void PriemniciVnes::procDeleteItem(){
+    QList<PriemniciDetailT> data = resFakturaItems;
+    bd->RemoveItem(data, m_row);
+    resFakturaItems = data;
+}
+
+bool PriemniciVnes::procAddItem(){
+    QList<PriemniciDetailT> data = resFakturaItems;
+    PriemniciDetailT item;
+    item.artikal_id = ui->sifra_artikal->text();
+    item.artikal_naziv = ui->artikal->text();
+    item.komintent_id = ui->sifra_komintent->text();
+    item.kol = ui->kolicina->text();
+    item.izl_cena_so_ddv_prod = ui->cena_so_ddv->text();
+
+    bool isOk;
+    float kolFloat = 0;
+    float izl_cena_so_ddv_prod_float = 0;
+    Singleton *s = Singleton::Instance();
+    s->ConvertStringToFloat(item.kol, kolFloat, &isOk);
+    if (!isOk){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("Nevalidna vrednost za kolicina");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        if(msgBox.exec() == QMessageBox::Ok){
+            ui->kolicina->setFocus();
+            return false;
+        }
+    }
+    s->ConvertStringToFloat(item.izl_cena_so_ddv_prod, izl_cena_so_ddv_prod_float, &isOk);
+    if (!isOk){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText("Nevalidna vrednost za cena");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        if(msgBox.exec() == QMessageBox::Ok){
+            ui->cena_so_ddv->setFocus();
+            return false;
+        }
+    }
+
+    item.izl_prod_iznos_so_ddv = QString::number(izl_cena_so_ddv_prod_float * kolFloat, 'f', 2);
+
+
+    bd->AddItem(data, item);
+    resFakturaItems = data;
+    ui->sifra_artikal->setText("");
+    ui->artikal->setText("");
+    ui->kolicina->setText("");
+    ui->cena_so_ddv->setText("");
+    ui->rabat->setText("");
+    ui->rok_za_plakanje_denovi->setText("");
+    ui->zaliha->setText("");
+    return true;
+}
+
+
+void PriemniciVnes::showData(){
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
+    QList<PriemniciDetailT> data = resFakturaItems;
+    bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
+    data = resFakturaItems;
+    for (QList<PriemniciDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+        vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
+    }
+    bool isOk;
+    QString vk_iznos;
+    vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
+    ui->vk_iznos_so_ddv->setText(vk_iznos);
+    int stop = 0;
+}
+
+void PriemniciVnes::on_pushButton_6_clicked()
+{
+    PressKeyReturn(this);
+}
+
+
+void PriemniciVnes::on_pushButton_3_clicked()
+{
+    PressKeyReturn(this);
+}
+
+void PriemniciVnes::updateFont()
+{
+    Singleton *s = Singleton::Instance();
+    QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+    BaseUpdateFonts(ui->gridLayout, str_font);
+}
+
+void PriemniciVnes::on_pushButton_4_clicked()
+{
+    resFaktura.dokument_tip = "20";
+    QList<dokumentT> dok;
+    QList<PriemniciT> PriemniciList;
+    PriemniciList.append(resFaktura);
+
+    b->ConvertAnyToDokument(PriemniciList, dok);
+    dokumentT itemDoc = dok.at(0);
+    itemDoc.iznos_plakanje_den = ui->vk_iznos_so_ddv->text();
+    QList<dokumentT> t = hlp->InsertDokumenti(itemDoc);
+    dokumentT temp_t = t.at(0);
+
+    QList<dokumentDetailT> dok_detail_new;
+    bd->ConvertAnyToDokumentDetail(resFakturaItems, dok_detail_new);
+
+    for (int i = 0; i < dok_detail_new.count(); i++){
+        dok_detail_new[i].dokument_id = temp_t.dokument_id;
+        dok_detail_new[i].dokument_tip = temp_t.dokument_tip;
+    }
+    hlp->InsertMagacin(dok_detail_new);
+    pressEscape();
 }
 
 
 bool PriemniciVnes::eventFilter(QObject *object, QEvent *event)
 {
+    Singleton *s = Singleton::Instance();
     if (event->type() == QEvent::FocusIn)
     {
-        if (object == ui->comboBox_2)
-        {
-            ui->comboBox_2->setStyleSheet(str_yellow);
-        }
-        if (object == ui->dateTimeEdit)
-        {
-            ui->dateTimeEdit->setStyleSheet(str_yellow);
-        }
-        if (object == ui->dateTimeEdit_2)
-        {
-            ui->dateTimeEdit_2->setStyleSheet(str_yellow);
-        }
-        if (object == ui->dateTimeEdit_3)
-        {
-            ui->dateTimeEdit_3->setStyleSheet(str_yellow);
-        }
-        if (object == ui->dateTimeEdit_4)
-        {
-            ui->dateTimeEdit_4->setStyleSheet(str_yellow);
-        }
-
-
-
-        if (object == ui->lineEdit)
-        {
-            ui->lineEdit->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_2)
-        {
-            ui->lineEdit_2->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_3)
-        {
-            ui->lineEdit_3->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_4)
-        {
-            ui->lineEdit_4->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_5)
-        {
-            ui->lineEdit_5->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_6)
-        {
-            ui->lineEdit_6->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_7)
-        {
-            ui->lineEdit_7->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_8)
-        {
-            ui->lineEdit_8->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_9)
-        {
-            ui->lineEdit_9->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_10)
-        {
-            ui->lineEdit_10->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_11)
-        {
-            ui->lineEdit_11->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_12)
-        {
-            ui->lineEdit_12->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_13)
-        {
-            ui->lineEdit_13->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_14)
-        {
-            ui->lineEdit_14->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_15)
-        {
-            ui->lineEdit_15->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_16)
-        {
-            ui->lineEdit_16->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_17)
-        {
-            ui->lineEdit_17->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_18)
-        {
-            ui->lineEdit_18->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_19)
-        {
-            ui->lineEdit_19->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_20)
-        {
-            ui->lineEdit_20->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_21)
-        {
-            ui->lineEdit_21->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_22)
-        {
-            ui->lineEdit_22->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_23)
-        {
-            ui->lineEdit_23->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_24)
-        {
-            ui->lineEdit_24->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_25)
-        {
-            ui->lineEdit_25->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_26)
-        {
-            ui->lineEdit_26->setStyleSheet(str_yellow);
-        }
-        if (object == ui->lineEdit_27)
-        {
-            ui->lineEdit_27->setStyleSheet(str_yellow);
-        }
-        if (object == ui->pushButton_3)
-        {
-            ui->pushButton_3->setStyleSheet(str_yellow);
-        }
-        if (object == ui->pushButton_4)
-        {
-            ui->pushButton_4->setStyleSheet(str_yellow);
-        }
-        if (object == ui->pushButton_5)
-        {
-            ui->pushButton_5->setStyleSheet(str_yellow);
-        }
-        if (object == ui->pushButton_6)
-        {
-            ui->pushButton_6->setStyleSheet(str_yellow);
-        }
-        if (object == ui->textEdit)
-        {
-            ui->textEdit->setStyleSheet(str_yellow);
-        }
-
+        str_yellow = "background-color: lightyellow; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_yellow);
     }
     if (event->type() == QEvent::FocusOut)
     {
-        if (object == ui->comboBox_2)
-        {
-            ui->comboBox_2->setStyleSheet(str_none);
-        }
-        if (object == ui->dateTimeEdit)
-        {
-            ui->dateTimeEdit->setStyleSheet(str_none);
-        }
-        if (object == ui->dateTimeEdit_2)
-        {
-            ui->dateTimeEdit_2->setStyleSheet(str_none);
-        }
-        if (object == ui->dateTimeEdit_3)
-        {
-            ui->dateTimeEdit_3->setStyleSheet(str_none);
-        }
-        if (object == ui->dateTimeEdit_4)
-        {
-            ui->dateTimeEdit_4->setStyleSheet(str_none);
-        }
-
-
-
-        if (object == ui->lineEdit)
-        {
-            ui->lineEdit->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_2)
-        {
-            ui->lineEdit_2->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_3)
-        {
-            ui->lineEdit_3->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_4)
-        {
-            ui->lineEdit_4->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_5)
-        {
-            ui->lineEdit_5->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_6)
-        {
-            ui->lineEdit_6->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_7)
-        {
-            ui->lineEdit_7->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_8)
-        {
-            ui->lineEdit_8->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_9)
-        {
-            ui->lineEdit_9->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_10)
-        {
-            ui->lineEdit_10->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_11)
-        {
-            ui->lineEdit_11->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_12)
-        {
-            ui->lineEdit_12->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_13)
-        {
-            ui->lineEdit_13->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_14)
-        {
-            ui->lineEdit_14->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_15)
-        {
-            ui->lineEdit_15->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_16)
-        {
-            ui->lineEdit_16->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_17)
-        {
-            ui->lineEdit_17->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_18)
-        {
-            ui->lineEdit_18->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_19)
-        {
-            ui->lineEdit_19->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_20)
-        {
-            ui->lineEdit_20->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_21)
-        {
-            ui->lineEdit_21->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_22)
-        {
-            ui->lineEdit_22->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_23)
-        {
-            ui->lineEdit_23->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_24)
-        {
-            ui->lineEdit_24->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_25)
-        {
-            ui->lineEdit_25->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_26)
-        {
-            ui->lineEdit_26->setStyleSheet(str_none);
-        }
-        if (object == ui->lineEdit_27)
-        {
-            ui->lineEdit_27->setStyleSheet(str_none);
-        }
-        if (object == ui->pushButton_3)
-        {
-            ui->pushButton_3->setStyleSheet(str_none);
-        }
-        if (object == ui->pushButton_4)
-        {
-            ui->pushButton_4->setStyleSheet(str_none);
-        }
-        if (object == ui->pushButton_5)
-        {
-            ui->pushButton_5->setStyleSheet(str_none);
-        }
-        if (object == ui->pushButton_6)
-        {
-            ui->pushButton_6->setStyleSheet(str_none);
-        }
-        if (object == ui->textEdit)
-        {
-            ui->textEdit->setStyleSheet(str_none);
-        }
-
+        str_none = "background-color: none; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
+        ((QWidget*)object)->setStyleSheet(str_none);
     }
-
     return false;
 }
 
 
+void PriemniciVnes::Refresh()
+{
+    updateFont();
+}

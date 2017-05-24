@@ -244,6 +244,17 @@ bool FakturiKorekcija::procAddItem(){
 void FakturiKorekcija::showData(){
     QList<fakturiDetailT> data = resFakturaItems;
     bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
+    data = resFakturaItems;
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
+    for (QList<fakturiDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+        vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
+    }
+    bool isOk;
+    QString vk_iznos;
+    vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
+    ui->vk_iznos_so_ddv->setText(vk_iznos);
+    int stop = 0;
+
 }
 
 void FakturiKorekcija::on_pushButton_6_clicked()
@@ -293,6 +304,7 @@ void FakturiKorekcija::on_pushButton_4_clicked()
 
     b->ConvertAnyToDokument(fakturiList, dok);
     dokumentT itemDoc = dok.at(0);
+    itemDoc.iznos_plakanje_den = ui->vk_iznos_so_ddv->text();
     hlp->UpdateDokumenti(itemDoc);
 
     QList<dokumentDetailT> dok_detail_old;

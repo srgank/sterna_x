@@ -5,9 +5,13 @@
 #include <QStandardItemModel>
 #include <QHeaderView>
 #include "Helper/qhelperc.h"
-#include "xx.h"
 
-#define COL 9
+
+#include "xx.h"
+#include "qbtemplate.h"
+
+#define COL 27
+#define COL_DETAIL 28
 
 namespace Ui {
 class NarackiLista;
@@ -24,41 +28,62 @@ public:
     virtual void pressF3();
 
     virtual void pressEscape();
-
-    void setTableColumnWidths(int ccolumn);
-    void getTableColumnWidths(int ccolumn);
+    virtual void updateFont();
+    virtual void Refresh();
     QString getSelectedID(){return m_selectedID;}
     int geTableSelectedRow(){return m_row;}
     void seTableSelectedRow(int m_row);
+
     QString getSearchString();
     void setSearchString(QString& searchText);
+
+    Naracki_trans getFakturaData();
+
+    int geTableSelected_Offset(){return numOffset;}
+    void seTableSelected_Offset(int t_numOffset){numOffset = t_numOffset;}
+    void initProc(int searchIDList, QString& searchStrList, int searchOffsetList);
 
 private:
     Ui::NarackiLista *ui;
     QStandardItemModel *model;
     QHeaderView *header;
+    QStandardItemModel *model_2;
+    QHeaderView *header_2;
+
     QHelperC *hlp;
+
     int numOffset;
-    int colWidth[9];
     QString m_selectedID;
     int m_row;
 
+    QList<int> colWidth;
+    QList<int> colDetailWidth;
+
+    QBTemplate<NarackiT> *b;
+    QBTemplate<dokumentDetailT> *bd;
+    QBTemplate<NarackiDetailT> *bc;
+
+    QItemSelectionModel *sm;
+
+    QList<NarackiT> resFakturaTemp;
+    NarackiT currentData;
+    QList<NarackiDetailT> resFakturaDetailTemp;
+    QString str_yellow;
+    QString str_none;
+    bool enableClose;
+protected:
+    bool eventFilter(QObject *object, QEvent *event);
 signals:
     void signalpressF2();
     void signalpressF3();
     void signalpressEscape();
 
 private slots:
-    void getResultEX(QStringList&);
-    void on_pushButton_5_clicked();
-    void on_pushButton_6_clicked();
-    void on_LE_prebaraj_textChanged(const QString &arg1);
     void selectionChanged(QModelIndex,QModelIndex);
-
     void procSectionResized(int a, int b, int c);
-
-    void on_pb_vnesi_nov_clicked();
-    void on_pb_koregiraj_postoecki_clicked();
+    void procSectionResizedDetail(int a, int b, int c);
+    void on_lineEdit_textChanged(const QString &arg1);
+    void on_prebaruvanje_po_komintent_textChanged(const QString &arg1);
 };
 
 #endif // NarackiLISTA_H
