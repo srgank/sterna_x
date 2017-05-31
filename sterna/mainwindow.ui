@@ -67,7 +67,10 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionIspretnicia"/>
+   <addaction name="actionIntIspratnici"/>
+   <addaction name="actionIntPriemnici"/>
    <addaction name="actionSmetka"/>
+   <addaction name="actionAnalitikaKomintenti"/>
    <addaction name="actionLagerLista"/>
    <addaction name="actionNalog"/>
    <addaction name="actionProFaktura"/>
@@ -132,6 +135,21 @@
   <action name="actionNalog">
    <property name="text">
     <string>Nalog</string>
+   </property>
+  </action>
+  <action name="actionIntIspratnici">
+   <property name="text">
+    <string>IntIspratnici</string>
+   </property>
+  </action>
+  <action name="actionIntPriemnici">
+   <property name="text">
+    <string>IntPriemnici</string>
+   </property>
+  </action>
+  <action name="actionAnalitikaKomintenti">
+   <property name="text">
+    <string>AnalitikaKomintenti</string>
    </property>
   </action>
  </widget>

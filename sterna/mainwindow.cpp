@@ -20,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ,m_printModul(0)
     ,m_lagerModul(0)
     ,m_nalogModul(0)
+    ,m_intispratniciModul(0)
+    ,m_intpriemniciModul(0)
+    ,m_analitikakomintentiModul(0)
+
 {
     ui->setupUi(this);
     m_artikliModul_description = trUtf8("Артикли");
@@ -73,6 +77,16 @@ MainWindow::~MainWindow()
     QStringList lager_HeaderState = s->Get_Lager_HeaderState();
     QStringList lagerDetail__HeaderState = s->Get_LagerDetail_HeaderState();
 
+    QStringList intispratnica_HeaderState = s->Get_IntIspratnica_HeaderState();
+    QStringList intispratnicaDetail__HeaderState = s->Get_IntIspratnicaDetail_HeaderState();
+
+    QStringList intpriemnica_HeaderState = s->Get_IntPriemnica_HeaderState();
+    QStringList intpriemnicaDetail__HeaderState = s->Get_IntPriemnicaDetail_HeaderState();
+
+    QStringList analitika_komintenti_HeaderState = s->Get_AnalitikaKomintenti_HeaderState();
+    QStringList analitika_komintentiDetail__HeaderState = s->Get_AnalitikaKomintentiDetail_HeaderState();
+
+
     saveRecordsFromFile(
          art_HeaderState,
          kom_HeaderState,
@@ -93,7 +107,13 @@ MainWindow::~MainWindow()
          smetka_HeaderState,
          smetkaDetail__HeaderState,
          lager_HeaderState,
-         lagerDetail__HeaderState
+         lagerDetail__HeaderState,
+         intispratnica_HeaderState,
+         intispratnicaDetail__HeaderState,
+         intpriemnica_HeaderState,
+         intpriemnicaDetail__HeaderState,
+         analitika_komintenti_HeaderState,
+         analitika_komintentiDetail__HeaderState
        );
     delete ui;
 }
@@ -219,7 +239,16 @@ void MainWindow::saveRecordsFromFile(
     QStringList & smetkaDetail__HeaderState,
 
     QStringList & lager_HeaderState,
-    QStringList & lagerDetail__HeaderState
+    QStringList & lagerDetail__HeaderState,
+
+    QStringList & intispratnica_HeaderState,
+    QStringList & intispratnicaDetail__HeaderState,
+
+    QStringList & intpriemnica_HeaderState,
+    QStringList & intpriemnicaDetail__HeaderState,
+
+    QStringList & analitika_priemnici_HeaderState,
+    QStringList & analitika_priemniciDetail__HeaderState
 
     )
 {
@@ -258,6 +287,12 @@ void MainWindow::saveRecordsFromFile(
 
     stream <<  lager_HeaderState;
     stream <<  lagerDetail__HeaderState;
+
+    stream <<  intispratnica_HeaderState;
+    stream <<  intispratnicaDetail__HeaderState;
+
+    stream <<  intpriemnica_HeaderState;
+    stream <<  intpriemnicaDetail__HeaderState;
 
     file.close();
 }
@@ -298,6 +333,13 @@ void MainWindow::closeMyWidget()
         deleteMyWidget<Artikli>((Artikli*)qApp->focusWidget(),true);
         m_artikliModul = NULL;
     }
+
+    if (qobject_cast<AnalitikaKomintenti*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<AnalitikaKomintenti>((AnalitikaKomintenti*)qApp->focusWidget(),true);
+        m_analitikakomintentiModul = NULL;
+    }
+
     if (qobject_cast<Komintenti*>(qApp->focusWidget()))
     {
         deleteMyWidget<Komintenti>((Komintenti*)qApp->focusWidget(), true);
@@ -308,6 +350,19 @@ void MainWindow::closeMyWidget()
         deleteMyWidget<Priemnici>((Priemnici*)qApp->focusWidget(), true);
         m_priemnicaModul = NULL;
     }
+
+    if (qobject_cast<IntPriemnici*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<IntPriemnici>((IntPriemnici*)qApp->focusWidget(), true);
+        m_intpriemniciModul = NULL;
+    }
+
+    if (qobject_cast<IntIspratnici*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<IntIspratnici>((IntIspratnici*)qApp->focusWidget(), true);
+        m_intispratniciModul = NULL;
+    }
+
     if (qobject_cast<Fakturi*>(qApp->focusWidget()))
     {
         deleteMyWidget<Fakturi>((Fakturi*)qApp->focusWidget(), true);
@@ -398,10 +453,12 @@ void MainWindow::procCreateModulKomintent(QString, QWidget *p)
 }
 void MainWindow::procCreateModulPriemnica(QString, QWidget *p)
 {
+    ui->actionPriemnica->setEnabled(false);
     m_priemnicaModul = showMyWidget<Priemnici, BaseForm, QWidget>(m_priemnicaModul, m_priemnicaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_priemnicaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_priemnicaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_priemnicaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionPriemnica->setEnabled(true);
 }
 void MainWindow::procCreateModulFaktura(QString, QWidget *p)
 {
@@ -411,6 +468,37 @@ void MainWindow::procCreateModulFaktura(QString, QWidget *p)
     connect(m_fakturaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_fakturaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
     ui->actionFaktura->setEnabled(true);
+}
+
+
+void MainWindow::procCreateModulIntIspratnici(QString, QWidget *p)
+{
+    ui->actionIntIspratnici->setEnabled(false);
+    m_intispratniciModul = showMyWidget<IntIspratnici, BaseForm, QWidget>(m_intispratniciModul, m_intispratnici_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_intispratniciModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_intispratniciModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_intispratniciModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionIntIspratnici->setEnabled(true);
+}
+
+void MainWindow::procCreateModulIntPriemnici(QString, QWidget *p)
+{
+    ui->actionIntPriemnici->setEnabled(false);
+    m_intpriemniciModul = showMyWidget<IntPriemnici, BaseForm, QWidget>(m_intpriemniciModul, m_intpriemnici_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_intpriemniciModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_intpriemniciModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_intpriemniciModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionIntPriemnici->setEnabled(true);
+}
+
+void MainWindow::procCreateModulAnalitikaKomintenti(QString, QWidget *p)
+{
+    ui->actionAnalitikaKomintenti->setEnabled(false);
+    m_analitikakomintentiModul = showMyWidget<AnalitikaKomintenti, BaseForm, QWidget>(m_analitikakomintentiModul, m_analitikakomintenti_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_analitikakomintentiModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_analitikakomintentiModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_analitikakomintentiModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionAnalitikaKomintenti->setEnabled(true);
 }
 
 
@@ -426,46 +514,55 @@ void MainWindow::procCreateModulLager(QString, QWidget *p)
 
 void MainWindow::procCreateModulIspratnica(QString, QWidget *p)
 {
+    ui->actionIspretnicia->setEnabled(false);
     m_ispratnicaModul = showMyWidget<Ispratnici, BaseForm, QWidget>(m_ispratnicaModul, m_ispratnicaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_ispratnicaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_ispratnicaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_ispratnicaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionIspretnicia->setEnabled(true);
 }
+
 
 void MainWindow::procCreateModulSmetka(QString, QWidget *p)
 {
+    ui->actionSmetka->setEnabled(false);
     m_smetkaModul = showMyWidget<Smetki, BaseForm, QWidget>(m_smetkaModul, m_smetkaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_smetkaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_smetkaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_smetkaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionSmetka->setEnabled(true);
 }
 
 
 void MainWindow::procCreateModulProFaktura(QString, QWidget *p)
 {
+    ui->actionProFaktura->setEnabled(false);
     m_profakturaModul = showMyWidget<ProFakturi, BaseForm, QWidget>(m_profakturaModul, m_profakturaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_profakturaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_profakturaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_profakturaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
-
+    ui->actionProFaktura->setEnabled(true);
 }
 
 void MainWindow::procCreateModulPovratnica(QString, QWidget *p)
 {
+    ui->actionPovratnica->setEnabled(false);
     m_povratnicaModul = showMyWidget<Povratnici, BaseForm, QWidget>(m_povratnicaModul, m_povratnicaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_povratnicaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_povratnicaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_povratnicaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
-
+    ui->actionPovratnica->setEnabled(true);
 }
 
 
 void MainWindow::procCreateModulNaracka(QString, QWidget *p)
 {
+    ui->actionNaracka->setEnabled(false);
     m_narackaModul = showMyWidget<Naracki, BaseForm, QWidget>(m_narackaModul, m_narackaModul_description, (BaseForm*)ui->centralWidget, p, true);
     connect(m_narackaModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
     connect(m_narackaModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
     connect(m_narackaModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionNaracka->setEnabled(true);
 }
 
 void MainWindow::procCreateModulNalog(QString, QWidget *p)
@@ -521,6 +618,25 @@ void MainWindow::on_actionPrint_Form_triggered()
     QString text = procGetPrintText();
     procCreateModulPrint(text, NULL);
 }
+
+void MainWindow::on_actionIntPriemnici_triggered()
+{
+    QString text = "";
+    procCreateModulIntPriemnici(text, NULL);
+}
+
+void MainWindow::on_actionIntIspratnici_triggered()
+{
+    QString text = "";
+    procCreateModulIntIspratnici(text, NULL);
+}
+
+void MainWindow::on_actionAnalitikaKomintenti_triggered()
+{
+    QString text = "";
+    procCreateModulAnalitikaKomintenti(text, NULL);
+}
+
 
 void MainWindow::procCreateModulPrint(QString text, QWidget *p)
 {
@@ -589,4 +705,6 @@ QString MainWindow::procGetPrintText()
         return text;
     }
 }
+
+
 

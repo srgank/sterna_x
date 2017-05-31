@@ -16,6 +16,9 @@
 #include "Template/qfakturatemplate.h"
 #include "dialog.h"
 #include "Nalog/nalog.h"
+#include "InternaIspratnica/int_ispratnica.h"
+#include "InternaPriemnica/int_priemnica.h"
+#include "AnalitikaKomintenti/analitikakomintenti.h"
 
 #include "Left/left.h"
 
@@ -64,8 +67,16 @@ public:
             QStringList & smetkaDetail__HeaderState,
 
             QStringList & lager_HeaderState,
-            QStringList & lagerDetail__HeaderState
+            QStringList & lagerDetail__HeaderState,
 
+            QStringList & intispratnica_HeaderState,
+            QStringList & intispratnicaDetail__HeaderState,
+
+            QStringList & intpriemnica_HeaderState,
+            QStringList & intpriemnicaDetail__HeaderState,
+
+            QStringList & analitika_komintenti_HeaderState,
+            QStringList & analitika_komintentiDetail__HeaderState
             );
 
 
@@ -92,6 +103,11 @@ private slots:
     void on_actionNalog_triggered();
 
     void on_actionPrint_Form_triggered();
+
+    void on_actionIntPriemnici_triggered();
+    void on_actionIntIspratnici_triggered();
+
+    void on_actionAnalitikaKomintenti_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -154,6 +170,10 @@ private:
     Dialog *m_dialog;
     Lager *m_lagerModul;
     Nalog *m_nalogModul;
+    IntIspratnici *m_intispratniciModul;
+    IntPriemnici *m_intpriemniciModul;
+    AnalitikaKomintenti *m_analitikakomintentiModul;
+
 
     QString m_artikliModul_description;
     QString m_komintentiModul_description;
@@ -167,6 +187,9 @@ private:
     QString m_printModul_description;
     QString m_lager_description;
     QString m_nalog_description;
+    QString m_intispratnici_description;
+    QString m_intpriemnici_description;
+    QString m_analitikakomintenti_description;
 
     QStringList art;
     QStringList kom;
@@ -201,6 +224,15 @@ private:
     QStringList nalogList;
     QStringList nalogDetailList;
 
+    QStringList intispratniciList;
+    QStringList intispratniciDetailList;
+
+    QStringList intpriemniciList;
+    QStringList intpriemniciDetailList;
+
+    QStringList analitikapriemniciList;
+    QStringList analitikapriemniciDetailList;
+
     QString procGetPrintText();
 
 
@@ -218,6 +250,9 @@ public slots:
     void procCreateModulPrint(QString, QWidget *p);
     void procCreateModulLager(QString, QWidget *p);
     void procCreateModulNalog(QString, QWidget *p);
+    void procCreateModulIntIspratnici(QString, QWidget *p);
+    void procCreateModulIntPriemnici(QString, QWidget *p);
+    void procCreateModulAnalitikaKomintenti(QString, QWidget *p);
 };
 
 #endif // MAINWINDOW_H

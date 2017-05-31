@@ -90,6 +90,114 @@ public:
                 outputList << (const T&) tempItem;
             }
 
+        } else if (typeid(T) == typeid(IntIspratniciT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                IntIspratniciT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
+                tempItem.komintent_id= inputlist.at(i).komintent_id;
+                tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.valuta= inputlist.at(i).valuta;
+
+                tempItem.kurs= inputlist.at(i).kurs;
+                tempItem.iznos_val= inputlist.at(i).iznos_val;
+                tempItem.ddv_val= inputlist.at(i).ddv_val;
+                tempItem.rabat_val= inputlist.at(i).rabat_val;
+                tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+                tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+                tempItem.rabat_den= inputlist.at(i).rabat_den;
+                tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+                tempItem.transport_den= inputlist.at(i).transport_den;
+
+                tempItem.carina_den= inputlist.at(i).carina_den;
+                tempItem.ddv_den= inputlist.at(i).ddv_den;
+                tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+                tempItem.dok_status= inputlist.at(i).dok_status;
+                tempItem.user_id= inputlist.at(i).user_id;
+                tempItem.komentar= inputlist.at(i).komentar;
+                tempItem.mag_id= inputlist.at(i).mag_id;
+                tempItem.object_id= inputlist.at(i).object_id;
+                outputList << (const T&) tempItem;
+            }
+
+        } else if (typeid(T) == typeid(IntPriemniciT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                IntPriemniciT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
+                tempItem.komintent_id= inputlist.at(i).komintent_id;
+                tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.valuta= inputlist.at(i).valuta;
+
+                tempItem.kurs= inputlist.at(i).kurs;
+                tempItem.iznos_val= inputlist.at(i).iznos_val;
+                tempItem.ddv_val= inputlist.at(i).ddv_val;
+                tempItem.rabat_val= inputlist.at(i).rabat_val;
+                tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+                tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+                tempItem.rabat_den= inputlist.at(i).rabat_den;
+                tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+                tempItem.transport_den= inputlist.at(i).transport_den;
+
+                tempItem.carina_den= inputlist.at(i).carina_den;
+                tempItem.ddv_den= inputlist.at(i).ddv_den;
+                tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+                tempItem.dok_status= inputlist.at(i).dok_status;
+                tempItem.user_id= inputlist.at(i).user_id;
+                tempItem.komentar= inputlist.at(i).komentar;
+                tempItem.mag_id= inputlist.at(i).mag_id;
+                tempItem.object_id= inputlist.at(i).object_id;
+                outputList << (const T&) tempItem;
+            }
+
+        }else if (typeid(T) == typeid(AnalitikaKomintentiT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                AnalitikaKomintentiT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.td = inputlist.at(i).td;
+                tempItem.tds = inputlist.at(i).tds;
+                tempItem.komintent_id= inputlist.at(i).komintent_id;
+                tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+                tempItem.valuta= inputlist.at(i).valuta;
+
+                tempItem.kurs= inputlist.at(i).kurs;
+                tempItem.iznos_val= inputlist.at(i).iznos_val;
+                tempItem.ddv_val= inputlist.at(i).ddv_val;
+                tempItem.rabat_val= inputlist.at(i).rabat_val;
+                tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+                tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+                tempItem.rabat_den= inputlist.at(i).rabat_den;
+                tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+                tempItem.transport_den= inputlist.at(i).transport_den;
+
+                tempItem.carina_den= inputlist.at(i).carina_den;
+                tempItem.ddv_den= inputlist.at(i).ddv_den;
+                tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+                tempItem.dok_status= inputlist.at(i).dok_status;
+                tempItem.user_id= inputlist.at(i).user_id;
+                tempItem.komentar= inputlist.at(i).komentar;
+                tempItem.mag_id= inputlist.at(i).mag_id;
+                tempItem.object_id= inputlist.at(i).object_id;
+                outputList << (const T&) tempItem;
+            }
+
         }else if (typeid(T) == typeid(SmetkiT)) {
 
             for (int i = 0; i < inputlist.count(); i++){
@@ -423,6 +531,114 @@ public:
 
             }
 
+        }else if (typeid(T) == typeid(IntIspratniciDetailT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                IntIspratniciDetailT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.komintent_id = inputlist.at(i).komintent_id;
+                tempItem.artikal_id = inputlist.at(i).artikal_id;
+                tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+                tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+                tempItem.link_artikal = inputlist.at(i).link_artikal;
+                tempItem.edm = inputlist.at(i).edm;
+                tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+                tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+                tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+                tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+                tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+                tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+                tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+                tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+                tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+                tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+                tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+                tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+                tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+                tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+                tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+                tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+                tempItem.kol = inputlist.at(i).kol;
+                tempItem.mag_id = inputlist.at(i).mag_id;
+                tempItem.status = inputlist.at(i).status;
+                outputList << (const T&) tempItem;
+
+            }
+
+        }else if (typeid(T) == typeid(IntPriemniciDetailT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                IntPriemniciDetailT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.komintent_id = inputlist.at(i).komintent_id;
+                tempItem.artikal_id = inputlist.at(i).artikal_id;
+                tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+                tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+                tempItem.link_artikal = inputlist.at(i).link_artikal;
+                tempItem.edm = inputlist.at(i).edm;
+                tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+                tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+                tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+                tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+                tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+                tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+                tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+                tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+                tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+                tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+                tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+                tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+                tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+                tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+                tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+                tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+                tempItem.kol = inputlist.at(i).kol;
+                tempItem.mag_id = inputlist.at(i).mag_id;
+                tempItem.status = inputlist.at(i).status;
+                outputList << (const T&) tempItem;
+
+            }
+
+        }else if (typeid(T) == typeid(AnalitikaKomintentiDetailT)) {
+
+            for (int i = 0; i < inputlist.count(); i++){
+                AnalitikaKomintentiDetailT tempItem;
+                tempItem.tid = inputlist.at(i).tid;
+                tempItem.dokument_id = inputlist.at(i).dokument_id;
+                tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+                tempItem.komintent_id = inputlist.at(i).komintent_id;
+                tempItem.artikal_id = inputlist.at(i).artikal_id;
+                tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+                tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+                tempItem.link_artikal = inputlist.at(i).link_artikal;
+                tempItem.edm = inputlist.at(i).edm;
+                tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+                tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+                tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+                tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+                tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+                tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+                tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+                tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+                tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+                tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+                tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+                tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+                tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+                tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+                tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+                tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+                tempItem.kol = inputlist.at(i).kol;
+                tempItem.mag_id = inputlist.at(i).mag_id;
+                tempItem.status = inputlist.at(i).status;
+                outputList << (const T&) tempItem;
+
+            }
+
         }else if (typeid(T) == typeid(SmetkiDetailT)) {
 
             for (int i = 0; i < inputlist.count(); i++){
@@ -714,6 +930,20 @@ public:
              GetFakturaData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(fakturiDetailT)) {
              GetFakturaDetailData( itemRecord, tempItem);
+         }else if (typeid(T) == typeid(IntIspratniciT)) {
+             GetIntIspratniciData( itemRecord, tempItem);
+         }else if (typeid(T) == typeid(IntIspratniciDetailT)) {
+             GetIntIspratniciDetailData( itemRecord, tempItem);
+
+         }else if (typeid(T) == typeid(AnalitikaKomintentiT)) {
+             GetAnalitikaKomintentiData( itemRecord, tempItem);
+         }else if (typeid(T) == typeid(AnalitikaKomintentiDetailT)) {
+             GetAnalitikaKomintentiDetailData( itemRecord, tempItem);
+
+         }else if (typeid(T) == typeid(IntPriemniciT)) {
+             GetIntPriemniciData( itemRecord, tempItem);
+         }else if (typeid(T) == typeid(IntPriemniciDetailT)) {
+             GetIntPriemniciDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(SmetkiT)) {
              GetSmetkiData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(SmetkiDetailT)) {
@@ -723,29 +953,29 @@ public:
          }else if (typeid(T) == typeid(LagerDetailT)) {
              GetLagerDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(ProFakturiT)) {
-                GetProFakturaData( itemRecord, tempItem);
+             GetProFakturaData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(ProFakturiDetailT)) {
-                GetProFakturaDetailData( itemRecord, tempItem);
+             GetProFakturaDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(IspratniciT)) {
-                GetIspratnicaData( itemRecord, tempItem);
+             GetIspratnicaData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(IspratniciDetailT)) {
-                GetIspratnicaDetailData( itemRecord, tempItem);
+             GetIspratnicaDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(PriemniciT)) {
-                GetPriemniciData( itemRecord, tempItem);
+             GetPriemniciData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(PriemniciDetailT)) {
-                GetPriemniciDetailData( itemRecord, tempItem);
+             GetPriemniciDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(PovratniciT)) {
-                GetPovratnicaData( itemRecord, tempItem);
+             GetPovratnicaData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(PovratniciDetailT)) {
-                GetPovratnicaDetailData( itemRecord, tempItem);
+             GetPovratnicaDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(NalogT)) {
-                GetNalogData( itemRecord, tempItem);
+             GetNalogData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(NalogDetailT)) {
-                GetNalogDetailData( itemRecord, tempItem);
+             GetNalogDetailData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(NarackiT)) {
-                GetNarackaData( itemRecord, tempItem);
+             GetNarackaData( itemRecord, tempItem);
          }else if (typeid(T) == typeid(NarackiDetailT)) {
-                GetNarackaDetailData( itemRecord, tempItem);
+             GetNarackaDetailData( itemRecord, tempItem);
          }
          return itemRecord;
      }
@@ -921,6 +1151,155 @@ public:
 //                << showDataItem{tItem.status,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("status")}
                  ;
     }
+
+
+    //------------- interni ispratnici -------------------------------------------
+
+    void GetIntIspratniciData( QList<showDataItem>& itemRecord, T &tItemT){
+        IntIspratniciT& tItem = (IntIspratniciT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid") }
+                << showDataItem{tItem.dokument_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nИД")}
+                << showDataItem{tItem.dokument_tip, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nТип")}
+//                << showDataItem{tItem.td, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("td")}
+//                << showDataItem{tItem.tds, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("tds")}
+                << showDataItem{tItem.komintent_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Коминтент\nИд")}
+                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Komintent\nНазив")}
+//                << showDataItem{tItem.prevoznik_id, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_id")}
+//                << showDataItem{tItem.prevoznik_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_naziv")}
+//                << showDataItem{tItem.valuta, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("valuta")}
+//                << showDataItem{tItem.kurs, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("kurs")}
+//                << showDataItem{tItem.iznos_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_val")}
+//                << showDataItem{tItem.ddv_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_val")}
+//                << showDataItem{tItem.rabat_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_val")}
+//                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_val")}
+//                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_ddv_den")}
+//                << showDataItem{tItem.rabat_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_den")}
+                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Вк. Износ \nво денари")}
+//                << showDataItem{tItem.transport_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_transport_den")}
+//                << showDataItem{tItem.carina_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_carina_den")}
+//                << showDataItem{tItem.ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_den")}
+//                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_drugi_trosoci_den")}
+//                << showDataItem{tItem.dok_status, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_dok_status")}
+//                << showDataItem{tItem.user_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_user_id")}
+//                << showDataItem{tItem.komentar, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_komentar")}
+//                << showDataItem{tItem.mag_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_mag_id")}
+//                << showDataItem{tItem.object_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_object_id")}
+                ;
+    }
+
+    void GetIntIspratniciDetailData( QList<showDataItem>& itemRecord, T &tItemT){
+        IntIspratniciDetailT& tItem = (IntIspratniciDetailT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid")}
+//                << showDataItem{tItem.dokument_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("dokument_id")}
+//                << showDataItem{tItem.dokument_tip,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("document_tip")}
+                << showDataItem{tItem.komintent_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Шифра\nКоминтент")}
+                << showDataItem{tItem.artikal_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Артикал\nИд")}
+                << showDataItem{tItem.artikal_naziv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Артикал\nНазив")}
+//                << showDataItem{tItem.tip_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Тип Артикал")}
+//                << showDataItem{tItem.link_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Линк Артикал")}
+//                << showDataItem{tItem.edm,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_edm")}
+//                << showDataItem{tItem.vlez_nab_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_nab_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv_denari,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv_denari")}
+//                << showDataItem{tItem.vlez_rabat,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_rabat")}
+//                << showDataItem{tItem.vlez_nabaven_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_nabaven_iznos_so_ddv")}
+//                << showDataItem{tItem.vlez_marza,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza")}
+//                << showDataItem{tItem.vlez_marza_den,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza_den")}
+//                << showDataItem{tItem.vlez_prod_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_presmetan_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_presmetan_ddv")}
+//                << showDataItem{tItem.vlez_prod_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prod_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_iznos_so_ddv")}
+//                << showDataItem{tItem.izl_cena_bez_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_bez_ddv_calc")}
+//                << showDataItem{tItem.izl_cena_so_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_so_ddv_calc")}
+                << showDataItem{tItem.izl_cena_so_ddv_prod,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Прод. Цена\nсо ДДВ")}
+//                << showDataItem{tItem.izl_ddv_prod,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_ddv_prod")}
+                << showDataItem{tItem.kol,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Кол.")}
+                << showDataItem{tItem.izl_prod_iznos_so_ddv,Qt::AlignRight, true, Qt::blue, true, QObject::trUtf8("Износ\nсо ДДВ")}
+//                << showDataItem{tItem.mag_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("mag_id")}
+//                << showDataItem{tItem.status,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("status")}
+                 ;
+    }
+
+
+    //------------- interni priemnici -------------------------------------------
+
+    void GetIntPriemniciData( QList<showDataItem>& itemRecord, T &tItemT){
+        IntPriemniciT& tItem = (IntPriemniciT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid") }
+                << showDataItem{tItem.dokument_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nИД")}
+                << showDataItem{tItem.dokument_tip, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nТип")}
+//                << showDataItem{tItem.td, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("td")}
+//                << showDataItem{tItem.tds, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("tds")}
+                << showDataItem{tItem.komintent_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Коминтент\nИд")}
+                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Komintent\nНазив")}
+//                << showDataItem{tItem.prevoznik_id, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_id")}
+//                << showDataItem{tItem.prevoznik_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_naziv")}
+//                << showDataItem{tItem.valuta, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("valuta")}
+//                << showDataItem{tItem.kurs, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("kurs")}
+//                << showDataItem{tItem.iznos_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_val")}
+//                << showDataItem{tItem.ddv_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_val")}
+//                << showDataItem{tItem.rabat_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_val")}
+//                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_val")}
+//                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_ddv_den")}
+//                << showDataItem{tItem.rabat_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_den")}
+                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Вк. Износ \nво денари")}
+//                << showDataItem{tItem.transport_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_transport_den")}
+//                << showDataItem{tItem.carina_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_carina_den")}
+//                << showDataItem{tItem.ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_den")}
+//                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_drugi_trosoci_den")}
+//                << showDataItem{tItem.dok_status, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_dok_status")}
+//                << showDataItem{tItem.user_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_user_id")}
+//                << showDataItem{tItem.komentar, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_komentar")}
+//                << showDataItem{tItem.mag_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_mag_id")}
+//                << showDataItem{tItem.object_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_object_id")}
+                ;
+    }
+
+    void GetIntPriemniciDetailData( QList<showDataItem>& itemRecord, T &tItemT){
+        IntPriemniciDetailT& tItem = (IntPriemniciDetailT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid")}
+//                << showDataItem{tItem.dokument_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("dokument_id")}
+//                << showDataItem{tItem.dokument_tip,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("document_tip")}
+                << showDataItem{tItem.komintent_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Шифра\nКоминтент")}
+                << showDataItem{tItem.artikal_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Артикал\nИд")}
+                << showDataItem{tItem.artikal_naziv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Артикал\nНазив")}
+//                << showDataItem{tItem.tip_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Тип Артикал")}
+//                << showDataItem{tItem.link_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Линк Артикал")}
+//                << showDataItem{tItem.edm,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_edm")}
+//                << showDataItem{tItem.vlez_nab_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_nab_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv_denari,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv_denari")}
+//                << showDataItem{tItem.vlez_rabat,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_rabat")}
+//                << showDataItem{tItem.vlez_nabaven_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_nabaven_iznos_so_ddv")}
+//                << showDataItem{tItem.vlez_marza,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza")}
+//                << showDataItem{tItem.vlez_marza_den,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza_den")}
+//                << showDataItem{tItem.vlez_prod_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_presmetan_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_presmetan_ddv")}
+//                << showDataItem{tItem.vlez_prod_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prod_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_iznos_so_ddv")}
+//                << showDataItem{tItem.izl_cena_bez_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_bez_ddv_calc")}
+//                << showDataItem{tItem.izl_cena_so_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_so_ddv_calc")}
+                << showDataItem{tItem.izl_cena_so_ddv_prod,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Прод. Цена\nсо ДДВ")}
+//                << showDataItem{tItem.izl_ddv_prod,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_ddv_prod")}
+                << showDataItem{tItem.kol,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Кол.")}
+                << showDataItem{tItem.izl_prod_iznos_so_ddv,Qt::AlignRight, true, Qt::blue, true, QObject::trUtf8("Износ\nсо ДДВ")}
+//                << showDataItem{tItem.mag_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("mag_id")}
+//                << showDataItem{tItem.status,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("status")}
+                 ;
+    }
+
+
+
+
+
+
+
 
 
     //------------- smetki -------------------------------------------
@@ -1487,6 +1866,77 @@ public:
                  ;
     }
 
+
+    //------------- analitika komintenti -------------------------------------------
+
+    void GetAnalitikaKomintentiData( QList<showDataItem>& itemRecord, T &tItemT){
+        AnalitikaKomintentiT& tItem = (AnalitikaKomintentiT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid") }
+                << showDataItem{tItem.dokument_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nИД")}
+                << showDataItem{tItem.dokument_tip, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Документ\nТип")}
+//                << showDataItem{tItem.td, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("td")}
+//                << showDataItem{tItem.tds, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("tds")}
+                << showDataItem{tItem.komintent_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Коминтент\nИд")}
+                << showDataItem{tItem.komintent_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Komintent\nНазив")}
+//                << showDataItem{tItem.prevoznik_id, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_id")}
+//                << showDataItem{tItem.prevoznik_naziv, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("prevoznik_naziv")}
+//                << showDataItem{tItem.valuta, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("valuta")}
+//                << showDataItem{tItem.kurs, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("kurs")}
+//                << showDataItem{tItem.iznos_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_val")}
+//                << showDataItem{tItem.ddv_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_val")}
+//                << showDataItem{tItem.rabat_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_val")}
+//                << showDataItem{tItem.iznos_plakanje_val, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_plakanje_val")}
+//                << showDataItem{tItem.iznos_ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_iznos_ddv_den")}
+//                << showDataItem{tItem.rabat_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_rabat_den")}
+                << showDataItem{tItem.iznos_plakanje_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Вк. Износ \nво денари")}
+//                << showDataItem{tItem.transport_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_transport_den")}
+//                << showDataItem{tItem.carina_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_carina_den")}
+//                << showDataItem{tItem.ddv_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_ddv_den")}
+//                << showDataItem{tItem.drugi_trosoci_den, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_drugi_trosoci_den")}
+//                << showDataItem{tItem.dok_status, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_dok_status")}
+//                << showDataItem{tItem.user_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_user_id")}
+//                << showDataItem{tItem.komentar, Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_komentar")}
+//                << showDataItem{tItem.mag_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_mag_id")}
+//                << showDataItem{tItem.object_id, Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("t_object_id")}
+                ;
+    }
+
+    void GetAnalitikaKomintentiDetailData( QList<showDataItem>& itemRecord, T &tItemT){
+        AnalitikaKomintentiDetailT& tItem = (AnalitikaKomintentiDetailT&)tItemT;
+        itemRecord
+                << showDataItem{tItem.tid,Qt::AlignLeft, false, Qt::color0, false, QObject::trUtf8("tid")}
+//                << showDataItem{tItem.dokument_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("dokument_id")}
+//                << showDataItem{tItem.dokument_tip,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("document_tip")}
+                << showDataItem{tItem.komintent_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Шифра\nКоминтент")}
+                << showDataItem{tItem.artikal_id,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Артикал\nИд")}
+                << showDataItem{tItem.artikal_naziv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Артикал\nНазив")}
+//                << showDataItem{tItem.tip_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Тип Артикал")}
+//                << showDataItem{tItem.link_artikal,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("Линк Артикал")}
+//                << showDataItem{tItem.edm,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_edm")}
+//                << showDataItem{tItem.vlez_nab_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_nab_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_nab_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv")}
+//                << showDataItem{tItem.vlez_prenesen_ddv_denari,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prenesen_ddv_denari")}
+//                << showDataItem{tItem.vlez_rabat,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_rabat")}
+//                << showDataItem{tItem.vlez_nabaven_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_nabaven_iznos_so_ddv")}
+//                << showDataItem{tItem.vlez_marza,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza")}
+//                << showDataItem{tItem.vlez_marza_den,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("t_vlez_marza_den")}
+//                << showDataItem{tItem.vlez_prod_cena_bez_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_bez_ddv")}
+//                << showDataItem{tItem.vlez_presmetan_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_presmetan_ddv")}
+//                << showDataItem{tItem.vlez_prod_cena_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_cena_so_ddv")}
+//                << showDataItem{tItem.vlez_prod_iznos_so_ddv,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("vlez_prod_iznos_so_ddv")}
+//                << showDataItem{tItem.izl_cena_bez_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_bez_ddv_calc")}
+//                << showDataItem{tItem.izl_cena_so_ddv_calc,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_cena_so_ddv_calc")}
+                << showDataItem{tItem.izl_cena_so_ddv_prod,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Прод. Цена\nсо ДДВ")}
+//                << showDataItem{tItem.izl_ddv_prod,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("izl_ddv_prod")}
+                << showDataItem{tItem.kol,Qt::AlignRight, false, Qt::color0, true, QObject::trUtf8("Кол.")}
+                << showDataItem{tItem.izl_prod_iznos_so_ddv,Qt::AlignRight, true, Qt::blue, true, QObject::trUtf8("Износ\nсо ДДВ")}
+//                << showDataItem{tItem.mag_id,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("mag_id")}
+//                << showDataItem{tItem.status,Qt::AlignLeft, false, Qt::color0, true, QObject::trUtf8("status")}
+                 ;
+    }
+
     //------------- func -------------------------------------------
 
     void ConvertAnyToDokument(QList<T>& inputlist, QList<dokumentT>& outputList){
@@ -1638,6 +2088,117 @@ public:
                outputList <<  tempItem;
            }
 
+       } else if (typeid(T) == typeid(IntIspratniciT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+//                tempItem.td = inputlist.at(i).td;
+//                tempItem.tds = inputlist.at(i).tds;
+               tempItem.komintent_id= inputlist.at(i).komintent_id;
+               tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+               tempItem.valuta= inputlist.at(i).valuta;
+
+               tempItem.kurs= inputlist.at(i).kurs;
+               tempItem.iznos_val= inputlist.at(i).iznos_val;
+               tempItem.ddv_val= inputlist.at(i).ddv_val;
+               tempItem.rabat_val= inputlist.at(i).rabat_val;
+               tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+               tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+               tempItem.rabat_den= inputlist.at(i).rabat_den;
+               tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+               tempItem.transport_den= inputlist.at(i).transport_den;
+
+               tempItem.carina_den= inputlist.at(i).carina_den;
+               tempItem.ddv_den= inputlist.at(i).ddv_den;
+               tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+               tempItem.dok_status= inputlist.at(i).dok_status;
+               tempItem.user_id= inputlist.at(i).user_id;
+               tempItem.komentar= inputlist.at(i).komentar;
+               tempItem.mag_id= inputlist.at(i).mag_id;
+               tempItem.object_id= inputlist.at(i).object_id;
+
+               outputList <<  tempItem;
+           }
+
+       } else if (typeid(T) == typeid(IntPriemniciT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+//                tempItem.td = inputlist.at(i).td;
+//                tempItem.tds = inputlist.at(i).tds;
+               tempItem.komintent_id= inputlist.at(i).komintent_id;
+               tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+               tempItem.valuta= inputlist.at(i).valuta;
+
+               tempItem.kurs= inputlist.at(i).kurs;
+               tempItem.iznos_val= inputlist.at(i).iznos_val;
+               tempItem.ddv_val= inputlist.at(i).ddv_val;
+               tempItem.rabat_val= inputlist.at(i).rabat_val;
+               tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+               tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+               tempItem.rabat_den= inputlist.at(i).rabat_den;
+               tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+               tempItem.transport_den= inputlist.at(i).transport_den;
+
+               tempItem.carina_den= inputlist.at(i).carina_den;
+               tempItem.ddv_den= inputlist.at(i).ddv_den;
+               tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+               tempItem.dok_status= inputlist.at(i).dok_status;
+               tempItem.user_id= inputlist.at(i).user_id;
+               tempItem.komentar= inputlist.at(i).komentar;
+               tempItem.mag_id= inputlist.at(i).mag_id;
+               tempItem.object_id= inputlist.at(i).object_id;
+
+               outputList <<  tempItem;
+           }
+
+       } else if (typeid(T) == typeid(AnalitikaKomintentiT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+//                tempItem.td = inputlist.at(i).td;
+//                tempItem.tds = inputlist.at(i).tds;
+               tempItem.komintent_id= inputlist.at(i).komintent_id;
+               tempItem.komintent_naziv= inputlist.at(i).komintent_naziv;
+//                tempItem.prevoznik_id= inputlist.at(i).prevoznik_id;
+//                tempItem.prevoznik_naziv= inputlist.at(i).prevoznik_naziv;
+               tempItem.valuta= inputlist.at(i).valuta;
+
+               tempItem.kurs= inputlist.at(i).kurs;
+               tempItem.iznos_val= inputlist.at(i).iznos_val;
+               tempItem.ddv_val= inputlist.at(i).ddv_val;
+               tempItem.rabat_val= inputlist.at(i).rabat_val;
+               tempItem.iznos_plakanje_val= inputlist.at(i).iznos_plakanje_val;
+               tempItem.iznos_ddv_den= inputlist.at(i).iznos_ddv_den;
+               tempItem.rabat_den= inputlist.at(i).rabat_den;
+               tempItem.iznos_plakanje_den= inputlist.at(i).iznos_plakanje_den;
+               tempItem.transport_den= inputlist.at(i).transport_den;
+
+               tempItem.carina_den= inputlist.at(i).carina_den;
+               tempItem.ddv_den= inputlist.at(i).ddv_den;
+               tempItem.drugi_trosoci_den= inputlist.at(i).drugi_trosoci_den;
+               tempItem.dok_status= inputlist.at(i).dok_status;
+               tempItem.user_id= inputlist.at(i).user_id;
+               tempItem.komentar= inputlist.at(i).komentar;
+               tempItem.mag_id= inputlist.at(i).mag_id;
+               tempItem.object_id= inputlist.at(i).object_id;
+
+               outputList <<  tempItem;
+           }
+
        } else if (typeid(T) == typeid(PriemniciT)) {
 
            for (int i = 0; i < inputlist.count(); i++){
@@ -1749,7 +2310,7 @@ public:
                outputList << tempItem;
            }
 
-       }else if (typeid(T) == typeid(NarackiT)) {
+       } else if (typeid(T) == typeid(NarackiT)) {
 
            for (int i = 0; i < inputlist.count(); i++){
                dokumentT tempItem;
@@ -1933,7 +2494,112 @@ public:
                outputList <<  tempItem;
            }
 
-       } else if (typeid(T) == typeid(PriemniciDetailT)) {
+       } else if (typeid(T) == typeid(IntIspratniciDetailT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentDetailT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+               tempItem.komintent_id = inputlist.at(i).komintent_id;
+               tempItem.artikal_id = inputlist.at(i).artikal_id;
+               tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+               tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+               tempItem.link_artikal = inputlist.at(i).link_artikal;
+               tempItem.edm = inputlist.at(i).edm;
+               tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+               tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+               tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+               tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+               tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+               tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+               tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+               tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+               tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+               tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+               tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+               tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+               tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+               tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+               tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+               tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+               tempItem.kol = inputlist.at(i).kol;
+               tempItem.mag_id = inputlist.at(i).mag_id;
+               tempItem.status = inputlist.at(i).status;
+               outputList <<  tempItem;
+           }
+
+       } else if (typeid(T) == typeid(IntPriemniciDetailT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentDetailT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+               tempItem.komintent_id = inputlist.at(i).komintent_id;
+               tempItem.artikal_id = inputlist.at(i).artikal_id;
+               tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+               tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+               tempItem.link_artikal = inputlist.at(i).link_artikal;
+               tempItem.edm = inputlist.at(i).edm;
+               tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+               tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+               tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+               tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+               tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+               tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+               tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+               tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+               tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+               tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+               tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+               tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+               tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+               tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+               tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+               tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+               tempItem.kol = inputlist.at(i).kol;
+               tempItem.mag_id = inputlist.at(i).mag_id;
+               tempItem.status = inputlist.at(i).status;
+               outputList <<  tempItem;
+           }
+
+       } else if (typeid(T) == typeid(AnalitikaKomintentiDetailT)) {
+
+           for (int i = 0; i < inputlist.count(); i++){
+               dokumentDetailT tempItem;
+               tempItem.tid = inputlist.at(i).tid;
+               tempItem.dokument_id = inputlist.at(i).dokument_id;
+               tempItem.dokument_tip = inputlist.at(i).dokument_tip;
+               tempItem.komintent_id = inputlist.at(i).komintent_id;
+               tempItem.artikal_id = inputlist.at(i).artikal_id;
+               tempItem.artikal_naziv = inputlist.at(i).artikal_naziv;
+               tempItem.tip_artikal = inputlist.at(i).tip_artikal;
+               tempItem.link_artikal = inputlist.at(i).link_artikal;
+               tempItem.edm = inputlist.at(i).edm;
+               tempItem.vlez_nab_cena_bez_ddv = inputlist.at(i).vlez_nab_cena_bez_ddv;
+               tempItem.vlez_nab_cena_so_ddv = inputlist.at(i).vlez_nab_cena_so_ddv;
+               tempItem.vlez_prenesen_ddv = inputlist.at(i).vlez_prenesen_ddv;
+               tempItem.vlez_prenesen_ddv_denari = inputlist.at(i).vlez_prenesen_ddv_denari;
+               tempItem.vlez_rabat = inputlist.at(i).vlez_rabat;
+               tempItem.vlez_nabaven_iznos_so_ddv = inputlist.at(i).vlez_nabaven_iznos_so_ddv;
+               tempItem.vlez_marza = inputlist.at(i).vlez_marza;
+               tempItem.vlez_marza_den = inputlist.at(i).vlez_marza_den;
+               tempItem.vlez_prod_cena_bez_ddv = inputlist.at(i).vlez_prod_cena_bez_ddv;
+               tempItem.vlez_presmetan_ddv = inputlist.at(i).vlez_presmetan_ddv;
+               tempItem.vlez_prod_cena_so_ddv = inputlist.at(i).vlez_prod_cena_so_ddv;
+               tempItem.vlez_prod_iznos_so_ddv = inputlist.at(i).vlez_prod_iznos_so_ddv;
+               tempItem.izl_cena_bez_ddv_calc = inputlist.at(i).izl_cena_bez_ddv_calc;
+               tempItem.izl_cena_so_ddv_calc = inputlist.at(i).izl_cena_so_ddv_calc;
+               tempItem.izl_cena_so_ddv_prod = inputlist.at(i).izl_cena_so_ddv_prod;
+               tempItem.izl_ddv_prod = inputlist.at(i).izl_ddv_prod;
+               tempItem.kol = inputlist.at(i).kol;
+               tempItem.mag_id = inputlist.at(i).mag_id;
+               tempItem.status = inputlist.at(i).status;
+               outputList <<  tempItem;
+           }
+
+       }else if (typeid(T) == typeid(PriemniciDetailT)) {
 
            for (int i = 0; i < inputlist.count(); i++){
                dokumentDetailT tempItem;

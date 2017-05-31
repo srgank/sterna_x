@@ -72,7 +72,19 @@ SOURCES += main.cpp\
     Nalog/nalog.cpp \
     Nalog/nalogkorekcija.cpp \
     Nalog/naloglista.cpp \
-    Nalog/nalogvnes.cpp
+    Nalog/nalogvnes.cpp \
+    InternaIspratnica/int_ispratnica.cpp \
+    InternaIspratnica/int_ispratnicakorekcija.cpp \
+    InternaIspratnica/int_ispratnicalista.cpp \
+    InternaIspratnica/int_ispratnicavnes.cpp \
+    InternaPriemnica/int_priemnica.cpp \
+    InternaPriemnica/int_priemnicakorekcija.cpp \
+    InternaPriemnica/int_priemnicalista.cpp \
+    InternaPriemnica/int_priemnicavnes.cpp \
+    AnalitikaKomintenti/analitikakomintenti.cpp \
+    AnalitikaKomintenti/analitikakomintentikorekcija.cpp \
+    AnalitikaKomintenti/analitikakomintentilista.cpp \
+    AnalitikaKomintenti/analitikakomintentivnes.cpp
 
 
 
@@ -137,7 +149,19 @@ HEADERS  += mainwindow.h \
     Nalog/nalog.h \
     Nalog/nalogkorekcija.h \
     Nalog/naloglista.h \
-    Nalog/nalogvnes.h
+    Nalog/nalogvnes.h \
+    InternaIspratnica/int_ispratnica.h \
+    InternaIspratnica/int_ispratnicakorekcija.h \
+    InternaIspratnica/int_ispratnicalista.h \
+    InternaIspratnica/int_ispratnicavnes.h \
+    InternaPriemnica/int_priemnica.h \
+    InternaPriemnica/int_priemnicakorekcija.h \
+    InternaPriemnica/int_priemnicalista.h \
+    InternaPriemnica/int_priemnicavnes.h \
+    AnalitikaKomintenti/analitikakomintenti.h \
+    AnalitikaKomintenti/analitikakomintentikorekcija.h \
+    AnalitikaKomintenti/analitikakomintentilista.h \
+    AnalitikaKomintenti/analitikakomintentivnes.h
 
 
 
@@ -192,7 +216,19 @@ FORMS    += mainwindow.ui \
     Nalog/nalog.ui \
     Nalog/nalogkorekcija.ui \
     Nalog/naloglista.ui \
-    Nalog/nalogvnes.ui
+    Nalog/nalogvnes.ui \
+    InternaIspratnica/int_ispratnica.ui \
+    InternaIspratnica/int_ispratnicakorekcija.ui \
+    InternaIspratnica/int_ispratnicalista.ui \
+    InternaIspratnica/int_ispratnicavnes.ui \
+    InternaPriemnica/int_priemnica.ui \
+    InternaPriemnica/int_priemnicakorekcija.ui \
+    InternaPriemnica/int_priemnicalista.ui \
+    InternaPriemnica/int_priemnicavnes.ui \
+    AnalitikaKomintenti/analitikakomintenti.ui \
+    AnalitikaKomintenti/analitikakomintentikorekcija.ui \
+    AnalitikaKomintenti/analitikakomintentilista.ui \
+    AnalitikaKomintenti/analitikakomintentivnes.ui
 
 
 DISTFILES += \

@@ -108,6 +108,25 @@ public:
     void Set_LagerDetail_HeaderState(QStringList temp_lagerDetail_HeaderState){lagerDetail__HeaderState = temp_lagerDetail_HeaderState;}
 
 
+    QStringList Get_IntIspratnica_HeaderState(){return intispratnica_HeaderState;}
+    void Set_IntIspratnica_HeaderState(QStringList temp_intispratnica_HeaderState){lager_HeaderState = temp_intispratnica_HeaderState;}
+
+    QStringList Get_IntIspratnicaDetail_HeaderState(){return intispratnicaDetail__HeaderState;}
+    void Set_IntIspratnicaDetail_HeaderState(QStringList temp_intispratnicaDetail_HeaderState){intispratnicaDetail__HeaderState = temp_intispratnicaDetail_HeaderState;}
+
+    QStringList Get_IntPriemnica_HeaderState(){return intpriemnica_HeaderState;}
+    void Set_IntPriemnica_HeaderState(QStringList temp_intpriemnica_HeaderState){lager_HeaderState = temp_intpriemnica_HeaderState;}
+
+    QStringList Get_IntPriemnicaDetail_HeaderState(){return intpriemnicaDetail__HeaderState;}
+    void Set_IntPriemnicaDetail_HeaderState(QStringList temp_intpriemnicaDetail_HeaderState){intpriemnicaDetail__HeaderState = temp_intpriemnicaDetail_HeaderState;}
+
+    QStringList Get_AnalitikaKomintenti_HeaderState(){return analitikakomintenti_HeaderState;}
+    void Set_AnalitikaKomintenti_HeaderState(QStringList temp_analitikakomintenti_HeaderState){lager_HeaderState = temp_analitikakomintenti_HeaderState;}
+
+    QStringList Get_AnalitikaKomintentiDetail_HeaderState(){return analitikakomintentiDetail__HeaderState;}
+    void Set_AnalitikaKomintentiDetail_HeaderState(QStringList temp_analitikakomintentiDetail_HeaderState){analitikakomintentiDetail__HeaderState = temp_analitikakomintentiDetail_HeaderState;}
+
+
     QList<int> loadWidthList(QStringList& list, int count){
         QList<int> temp_colDetailWidth;
         if (!list.isEmpty()){
@@ -177,6 +196,15 @@ private:
 
     QStringList lager_HeaderState;
     QStringList lagerDetail__HeaderState;
+
+    QStringList intispratnica_HeaderState;
+    QStringList intispratnicaDetail__HeaderState;
+
+    QStringList intpriemnica_HeaderState;
+    QStringList intpriemnicaDetail__HeaderState;
+
+    QStringList analitikakomintenti_HeaderState;
+    QStringList analitikakomintentiDetail__HeaderState;
 
     QString urlhost;
     QString m_token;
