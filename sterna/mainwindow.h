@@ -19,6 +19,8 @@
 #include "InternaIspratnica/int_ispratnica.h"
 #include "InternaPriemnica/int_priemnica.h"
 #include "AnalitikaKomintenti/analitikakomintenti.h"
+#include "AnalitikaArtikli/analitikaartikli.h"
+
 
 #include "Left/left.h"
 
@@ -76,7 +78,10 @@ public:
             QStringList & intpriemnicaDetail__HeaderState,
 
             QStringList & analitika_komintenti_HeaderState,
-            QStringList & analitika_komintentiDetail__HeaderState
+            QStringList & analitika_komintentiDetail__HeaderState,
+
+            QStringList & analitika_artikli_HeaderState,
+            QStringList & analitika_artikliDetail__HeaderState
             );
 
 
@@ -108,6 +113,8 @@ private slots:
     void on_actionIntIspratnici_triggered();
 
     void on_actionAnalitikaKomintenti_triggered();
+
+    void on_actionAnalitikaArtikli_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -173,7 +180,7 @@ private:
     IntIspratnici *m_intispratniciModul;
     IntPriemnici *m_intpriemniciModul;
     AnalitikaKomintenti *m_analitikakomintentiModul;
-
+    AnalitikaArtikli *m_analitikaartikliModul;
 
     QString m_artikliModul_description;
     QString m_komintentiModul_description;
@@ -190,7 +197,7 @@ private:
     QString m_intispratnici_description;
     QString m_intpriemnici_description;
     QString m_analitikakomintenti_description;
-
+    QString m_analitikaartikli_description;
     QStringList art;
     QStringList kom;
 
@@ -233,6 +240,9 @@ private:
     QStringList analitikapriemniciList;
     QStringList analitikapriemniciDetailList;
 
+    QStringList analitikaartikliList;
+    QStringList analitikaartikliDetailList;
+
     QString procGetPrintText();
 
 
@@ -253,6 +263,7 @@ public slots:
     void procCreateModulIntIspratnici(QString, QWidget *p);
     void procCreateModulIntPriemnici(QString, QWidget *p);
     void procCreateModulAnalitikaKomintenti(QString, QWidget *p);
+    void procCreateModulAnalitikaArtikli(QString, QWidget *p);
 };
 
 #endif // MAINWINDOW_H

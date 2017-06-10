@@ -297,7 +297,7 @@ void FakturiKorekcija::updateStructCellLineEdit(const QModelIndex & index, QStri
 void FakturiKorekcija::on_pushButton_4_clicked()
 {
     // update faktura
-    resFaktura.dokument_tip = "20";
+    resFaktura.dokument_tip = "60";
     QList<dokumentT> dok;
     QList<fakturiT> fakturiList;
     fakturiList.append(resFaktura);

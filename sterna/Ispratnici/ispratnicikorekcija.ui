@@ -23,6 +23,56 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="sifra_artikal">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="faktura_id">
       <property name="enabled">
@@ -96,33 +146,15 @@
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Фактури - Корекција&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600; color:#0000ff;&quot;&gt;Испратници - Корекција&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Фактура Ид.</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="text">
-       <string> Корегирај Фактура</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../../../Brisi/sterna/Resources/key_f9.png</normaloff>../../../Brisi/sterna/Resources/key_f9.png</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Коминтент</string>
+       <string>Ид.</string>
       </property>
      </widget>
     </item>
@@ -147,6 +179,24 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="text">
+       <string> Корегирај</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Brisi/sterna/Resources/key_f9.png</normaloff>../../../Brisi/sterna/Resources/key_f9.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Коминтент</string>
+      </property>
+     </widget>
+    </item>
     <item row="9" column="0">
      <widget class="QLabel" name="label_9">
       <property name="text">
@@ -164,8 +214,8 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="11" column="0" colspan="5">
-     <widget class="QTableView" name="tableView"/>
+    <item row="10" column="1">
+     <widget class="QLineEdit" name="rok_za_plakanje_denovi"/>
     </item>
     <item row="4" column="1">
      <widget class="QDateTimeEdit" name="dateTimeDatum">
@@ -184,8 +234,18 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
-     <widget class="QLineEdit" name="rok_za_plakanje_denovi"/>
+    <item row="3" column="1" colspan="3">
+     <widget class="QLineEdit" name="komintent">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Притисни ЕНТЕР за да те однесе во листата&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_10">
@@ -198,19 +258,6 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="pushButtonA">
       <property name="text">
        <string>Импорт Испратници</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1" colspan="3">
-     <widget class="QLineEdit" name="komintent">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Притисни ЕНТЕР за да те однесе во листата&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="readOnly">
-       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -238,6 +285,9 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
+    <item row="6" column="3">
+     <widget class="QLineEdit" name="zaliha"/>
+    </item>
     <item row="7" column="2">
      <widget class="QLabel" name="label_11">
       <property name="text">
@@ -245,18 +295,15 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
+    <item row="7" column="3" rowspan="4">
+     <widget class="QTextEdit" name="zabeleska"/>
+    </item>
     <item row="6" column="2">
      <widget class="QLabel" name="label_8">
       <property name="text">
        <string>Залиха</string>
       </property>
      </widget>
-    </item>
-    <item row="6" column="3">
-     <widget class="QLineEdit" name="zaliha"/>
-    </item>
-    <item row="7" column="3" rowspan="4">
-     <widget class="QTextEdit" name="zabeleska"/>
     </item>
     <item row="8" column="1">
      <widget class="QLineEdit" name="cena_so_ddv"/>
@@ -324,20 +371,6 @@ p, li { white-space: pre-wrap; }
       </item>
      </layout>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_16">
-      <property name="text">
-       <string>Шифра на коминтент</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_17">
-      <property name="text">
-       <string>Шифра на артикал</string>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="1">
      <widget class="QLineEdit" name="sifra_komintent">
       <property name="enabled">
@@ -385,55 +418,22 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="sifra_artikal">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>255</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>Шифра на коминтент</string>
       </property>
      </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>Шифра на артикал</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0" colspan="5">
+     <widget class="QTableView" name="tableView"/>
     </item>
    </layout>
   </widget>

@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ,m_intispratniciModul(0)
     ,m_intpriemniciModul(0)
     ,m_analitikakomintentiModul(0)
-
+    ,m_analitikaartikliModul(0)
 {
     ui->setupUi(this);
     m_artikliModul_description = trUtf8("Артикли");
@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_printModul_description = trUtf8("Print");
     m_lager_description = trUtf8("Лагер");
     m_nalog_description = trUtf8("Налог");
-
+    m_analitikaartikli_description = trUtf8("Аналитика \Артикли");
     dock = new QDockWidget(this);
     m_left = new Left(dock);
     loadRecordsFromFile();
@@ -86,34 +86,39 @@ MainWindow::~MainWindow()
     QStringList analitika_komintenti_HeaderState = s->Get_AnalitikaKomintenti_HeaderState();
     QStringList analitika_komintentiDetail__HeaderState = s->Get_AnalitikaKomintentiDetail_HeaderState();
 
+    QStringList analitika_artikli_HeaderState = s->Get_AnalitikaArtikli_HeaderState();
+    QStringList analitika_artikliDetail__HeaderState = s->Get_AnalitikaArtikliDetail_HeaderState();
+
 
     saveRecordsFromFile(
-         art_HeaderState,
-         kom_HeaderState,
-         priemnica_HeaderState,
-         priemnicaDetail__HeaderState,
-         ispratnica_HeaderState,
-         ispratnicaDetail__HeaderState,
-         povratnica_HeaderState,
-         povratnicaDetail__HeaderState,
-         faktura_HeaderState,
-         fakturaDetail__HeaderState,
-         profaktura_HeaderState,
-         profakturaDetail__HeaderState,
-         nalog_HeaderState,
-         nalogDetail__HeaderState,
-         naracka_HeaderState,
-         narackaDetail__HeaderState,
-         smetka_HeaderState,
-         smetkaDetail__HeaderState,
-         lager_HeaderState,
-         lagerDetail__HeaderState,
-         intispratnica_HeaderState,
-         intispratnicaDetail__HeaderState,
-         intpriemnica_HeaderState,
-         intpriemnicaDetail__HeaderState,
-         analitika_komintenti_HeaderState,
-         analitika_komintentiDetail__HeaderState
+        art_HeaderState,
+        kom_HeaderState,
+        priemnica_HeaderState,
+        priemnicaDetail__HeaderState,
+        ispratnica_HeaderState,
+        ispratnicaDetail__HeaderState,
+        povratnica_HeaderState,
+        povratnicaDetail__HeaderState,
+        faktura_HeaderState,
+        fakturaDetail__HeaderState,
+        profaktura_HeaderState,
+        profakturaDetail__HeaderState,
+        nalog_HeaderState,
+        nalogDetail__HeaderState,
+        naracka_HeaderState,
+        narackaDetail__HeaderState,
+        smetka_HeaderState,
+        smetkaDetail__HeaderState,
+        lager_HeaderState,
+        lagerDetail__HeaderState,
+        intispratnica_HeaderState,
+        intispratnicaDetail__HeaderState,
+        intpriemnica_HeaderState,
+        intpriemnicaDetail__HeaderState,
+        analitika_komintenti_HeaderState,
+        analitika_komintentiDetail__HeaderState,
+        analitika_komintenti_HeaderState,
+        analitika_komintentiDetail__HeaderState
        );
     delete ui;
 }
@@ -247,8 +252,11 @@ void MainWindow::saveRecordsFromFile(
     QStringList & intpriemnica_HeaderState,
     QStringList & intpriemnicaDetail__HeaderState,
 
-    QStringList & analitika_priemnici_HeaderState,
-    QStringList & analitika_priemniciDetail__HeaderState
+    QStringList & analitika_komintenti_HeaderState,
+    QStringList & analitika_komintentiDetail__HeaderState ,
+
+    QStringList & analitika_artikli_HeaderState,
+    QStringList & analitika_artikliDetail__HeaderState
 
     )
 {
@@ -339,6 +347,13 @@ void MainWindow::closeMyWidget()
         deleteMyWidget<AnalitikaKomintenti>((AnalitikaKomintenti*)qApp->focusWidget(),true);
         m_analitikakomintentiModul = NULL;
     }
+
+    if (qobject_cast<AnalitikaArtikli*>(qApp->focusWidget()))
+    {
+        deleteMyWidget<AnalitikaArtikli>((AnalitikaArtikli*)qApp->focusWidget(),true);
+        m_analitikaartikliModul = NULL;
+    }
+
 
     if (qobject_cast<Komintenti*>(qApp->focusWidget()))
     {
@@ -501,6 +516,15 @@ void MainWindow::procCreateModulAnalitikaKomintenti(QString, QWidget *p)
     ui->actionAnalitikaKomintenti->setEnabled(true);
 }
 
+void MainWindow::procCreateModulAnalitikaArtikli(QString, QWidget *p)
+{
+    ui->actionAnalitikaArtikli->setEnabled(false);
+    m_analitikaartikliModul = showMyWidget<AnalitikaArtikli, BaseForm, QWidget>(m_analitikaartikliModul, m_analitikaartikli_description, (BaseForm*)ui->centralWidget, p, true);
+    connect(m_analitikaartikliModul, SIGNAL(signArtikal(QString, QWidget*)), this, SLOT(procCreateModulArtikal(QString, QWidget*)));
+    connect(m_analitikaartikliModul, SIGNAL(signKomintent(QString, QWidget*)), this, SLOT(procCreateModulKomintent(QString, QWidget*)));
+    connect(m_analitikaartikliModul, SIGNAL(eupdateNanigator(QWidget*, QWidget*)), this, SLOT(updateNavigator(QWidget*, QWidget*)));
+    ui->actionAnalitikaArtikli->setEnabled(true);
+}
 
 void MainWindow::procCreateModulLager(QString, QWidget *p)
 {
@@ -637,6 +661,11 @@ void MainWindow::on_actionAnalitikaKomintenti_triggered()
     procCreateModulAnalitikaKomintenti(text, NULL);
 }
 
+void MainWindow::on_actionAnalitikaArtikli_triggered()
+{
+    QString text = "";
+    procCreateModulAnalitikaArtikli(text, NULL);
+}
 
 void MainWindow::procCreateModulPrint(QString text, QWidget *p)
 {
@@ -705,6 +734,7 @@ QString MainWindow::procGetPrintText()
         return text;
     }
 }
+
 
 
 

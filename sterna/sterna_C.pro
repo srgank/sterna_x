@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network printsupport webenginewidgets
+QT       += core gui network printsupport webenginewidgets webengine
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 
@@ -84,7 +84,11 @@ SOURCES += main.cpp\
     AnalitikaKomintenti/analitikakomintenti.cpp \
     AnalitikaKomintenti/analitikakomintentikorekcija.cpp \
     AnalitikaKomintenti/analitikakomintentilista.cpp \
-    AnalitikaKomintenti/analitikakomintentivnes.cpp
+    AnalitikaKomintenti/analitikakomintentivnes.cpp \
+    AnalitikaArtikli/analitikaartikli.cpp \
+    AnalitikaArtikli/analitikaartiklikorekcija.cpp \
+    AnalitikaArtikli/analitikaartiklilista.cpp \
+    AnalitikaArtikli/analitikaartiklivnes.cpp
 
 
 
@@ -161,7 +165,11 @@ HEADERS  += mainwindow.h \
     AnalitikaKomintenti/analitikakomintenti.h \
     AnalitikaKomintenti/analitikakomintentikorekcija.h \
     AnalitikaKomintenti/analitikakomintentilista.h \
-    AnalitikaKomintenti/analitikakomintentivnes.h
+    AnalitikaKomintenti/analitikakomintentivnes.h \
+    AnalitikaArtikli/analitikaartikli.h \
+    AnalitikaArtikli/analitikaartiklikorekcija.h \
+    AnalitikaArtikli/analitikaartiklilista.h \
+    AnalitikaArtikli/analitikaartiklivnes.h
 
 
 
@@ -228,7 +236,11 @@ FORMS    += mainwindow.ui \
     AnalitikaKomintenti/analitikakomintenti.ui \
     AnalitikaKomintenti/analitikakomintentikorekcija.ui \
     AnalitikaKomintenti/analitikakomintentilista.ui \
-    AnalitikaKomintenti/analitikakomintentivnes.ui
+    AnalitikaKomintenti/analitikakomintentivnes.ui \
+    AnalitikaArtikli/analitikaartikli.ui \
+    AnalitikaArtikli/analitikaartiklikorekcija.ui \
+    AnalitikaArtikli/analitikaartiklilista.ui \
+    AnalitikaArtikli/analitikaartiklivnes.ui
 
 
 DISTFILES += \

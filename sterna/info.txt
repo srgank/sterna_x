@@ -211,3 +211,52 @@ CREATE TABLE `vraboteni` (
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Modul               -       Kod
+Fakturi                     60
+Interna Ispratnica
+Interna Priemnica
+Ispratnica                  62
+Priemnica                   20
+Povratnica                  30
+Nalog
+Naracka
+Profaktura
+Smetka fiskalna
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

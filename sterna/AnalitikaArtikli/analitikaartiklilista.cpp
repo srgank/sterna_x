@@ -1,11 +1,11 @@
-#include "fakturilista.h"
-#include "ui_fakturilista.h"
+#include "analitikaartiklilista.h"
+#include "ui_analitikaartiklilista.h"
 
 
 
-FakturiLista::FakturiLista(BaseForm *parent) :
+AnalitikaArtikliLista::AnalitikaArtikliLista(BaseForm *parent) :
     BaseForm(parent),
-    ui(new Ui::FakturiLista)
+    ui(new Ui::AnalitikaArtikliLista)
   , enableClose(true)
 {
     ui->setupUi(this);
@@ -30,9 +30,9 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     QStringList tempVals = s->Get_Faktura_HeaderState();
     colWidth = s->loadWidthList(tempVals, COL);
 
-    b = new QBTemplate<fakturiT>();
+    b = new QBTemplate<AnalitikaArtikliT>();
     bd = new QBTemplate<dokumentDetailT>();
-    bc = new QBTemplate<fakturiDetailT>();
+    bc = new QBTemplate<AnalitikaArtikliDetailT>();
 
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
@@ -44,7 +44,7 @@ FakturiLista::FakturiLista(BaseForm *parent) :
     connect(header_2, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResizedDetail(int, int, int)));
     updateFont();
 }
-FakturiLista::~FakturiLista()
+AnalitikaArtikliLista::~AnalitikaArtikliLista()
 {
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
     disconnect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
@@ -70,39 +70,39 @@ FakturiLista::~FakturiLista()
     delete bd;
     bd = 0;
 }
-void FakturiLista::pressF2()
+void AnalitikaArtikliLista::pressF2()
 {
     if (enableClose){
         emit signalpressF2();
     }
 }
-void FakturiLista::pressF3()
+void AnalitikaArtikliLista::pressF3()
 {
     if (enableClose){
         emit signalpressF3();
     }
 }
-void FakturiLista::pressEscape()
+void AnalitikaArtikliLista::pressEscape()
 {
     if (enableClose){
         emit signalpressEscape();
     }
 }
-void FakturiLista::seTableSelectedRow(int m_row)
+void AnalitikaArtikliLista::seTableSelectedRow(int m_row)
 {
     ui->tableView->selectRow(m_row);
 }
-QString FakturiLista::getSearchString()
+QString AnalitikaArtikliLista::getSearchString()
 {
     return ui->prebaruvanje_po_komintent->text();
 }
 
-void FakturiLista::setSearchString(QString& searchText)
+void AnalitikaArtikliLista::setSearchString(QString& searchText)
 {
     ui->prebaruvanje_po_komintent->setText(searchText);
 }
 
-void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
+void AnalitikaArtikliLista::on_lineEdit_textChanged(const QString &arg1)
 {
     enableClose = false;
     numOffset = 0;
@@ -110,26 +110,26 @@ void FakturiLista::on_lineEdit_textChanged(const QString &arg1)
     QString vOffset = QString::number(numOffset);
     QString vSearchName = arg1 ;
     QString vSearchBy = "artikal";
-    QString vDokTip = "60";
+    QString vDokTip = "20";
     QString vDokID = "";
 
     QList<dokumentT> res = hlp->getallDokumenti(vOffset, vLimit,  vDokID,  vDokTip, vSearchBy, vSearchName );
 
-    QList<fakturiT> resFaktura;
+    QList<AnalitikaArtikliT> resFaktura;
     b->ConvertDokument(res, resFaktura);
     resFakturaTemp = resFaktura;
     b->ShowData(resFaktura, model, header, ui->tableView, colWidth);
     enableClose = true;
 }
-void FakturiLista::procSectionResized(int a, int b, int c)
+void AnalitikaArtikliLista::procSectionResized(int a, int b, int c)
 {
     colWidth[a] = c;
 }
-void FakturiLista::procSectionResizedDetail(int a, int b, int c)
+void AnalitikaArtikliLista::procSectionResizedDetail(int a, int b, int c)
 {
     colDetailWidth[a] = c;
 }
-void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+void AnalitikaArtikliLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
     enableClose = false;
     disconnect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
@@ -143,7 +143,7 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 
     QList<dokumentDetailT> res = hlp->getallMagacin(vOffset, vLimit, vDok_Id, vDok_Tip);
 
-    QList<fakturiDetailT> resFakturaDetail;
+    QList<AnalitikaArtikliDetailT> resFakturaDetail;
     bc->ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
@@ -158,8 +158,8 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
     bc->ConvertDokumentDetail(res, resFakturaDetail);
     resFakturaDetailTemp = resFakturaDetail;
 
-    QList<fakturiDetailT> data = resFakturaDetail;
-    for (QList<fakturiDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+    QList<AnalitikaArtikliDetailT> data = resFakturaDetail;
+    for (QList<AnalitikaArtikliDetailT>::iterator i = data.begin(); i!= data.end(); i++){
         vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
     }
 
@@ -171,7 +171,7 @@ void FakturiLista::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 
     enableClose = true;
 }
-void FakturiLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
+void AnalitikaArtikliLista::initProc(int searchIDList, QString& searchStrList, int searchOffsetList)
 {
     seTableSelected_Offset(searchOffsetList);
     ui->prebaruvanje_po_komintent->setText(searchStrList);
@@ -179,13 +179,13 @@ void FakturiLista::initProc(int searchIDList, QString& searchStrList, int search
     seTableSelectedRow(searchIDList);
     PressKeyTAB(this);
 }
-faktura_trans FakturiLista::getFakturaData(){
-    faktura_trans temp;
+AnalitikaArtikli_trans AnalitikaArtikliLista::getFakturaData(){
+    AnalitikaArtikli_trans temp;
     temp.data1 = currentData;
     temp.data2 = resFakturaDetailTemp;
     return temp;
 }
-void FakturiLista::updateFont()
+void AnalitikaArtikliLista::updateFont()
 {
     Singleton *s = Singleton::Instance();
     QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
@@ -193,12 +193,12 @@ void FakturiLista::updateFont()
 }
 
 
-void FakturiLista::on_prebaruvanje_po_komintent_textChanged(const QString &arg1)
+void AnalitikaArtikliLista::on_prebaruvanje_po_komintent_textChanged(const QString &arg1)
 {
     on_lineEdit_textChanged(arg1);
 }
 
-bool FakturiLista::eventFilter(QObject *object, QEvent *event)
+bool AnalitikaArtikliLista::eventFilter(QObject *object, QEvent *event)
 {
     Singleton *s = Singleton::Instance();
     if (event->type() == QEvent::FocusIn)
@@ -215,7 +215,7 @@ bool FakturiLista::eventFilter(QObject *object, QEvent *event)
 }
 
 
-void FakturiLista::Refresh()
+void AnalitikaArtikliLista::Refresh()
 {
     updateFont();
 }

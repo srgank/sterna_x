@@ -70,6 +70,7 @@
    <addaction name="actionIntIspratnici"/>
    <addaction name="actionIntPriemnici"/>
    <addaction name="actionSmetka"/>
+   <addaction name="actionAnalitikaArtikli"/>
    <addaction name="actionAnalitikaKomintenti"/>
    <addaction name="actionLagerLista"/>
    <addaction name="actionNalog"/>
@@ -150,6 +151,11 @@
   <action name="actionAnalitikaKomintenti">
    <property name="text">
     <string>AnalitikaKomintenti</string>
+   </property>
+  </action>
+  <action name="actionAnalitikaArtikli">
+   <property name="text">
+    <string>AnalitikaArtikli</string>
    </property>
   </action>
  </widget>

@@ -1,79 +1,65 @@
-#include "fakturivnes.h"
-#include "ui_fakturivnes.h"
+#include "analitikaartiklikorekcija.h"
+#include "ui_analitikaartiklikorekcija.h"
 
-FakturiVnes::FakturiVnes(BaseForm *parent) :
+AnalitikaArtikliKorekcija::AnalitikaArtikliKorekcija(BaseForm *parent) :
     BaseForm(parent),
     statusWait(false),
     hlp(0),
     statusOpenEditor(false),
-    ui(new Ui::FakturiVnes)
+    ui(new Ui::AnalitikaArtikliKorekcija)
 {
     ui->setupUi(this);
     hlp = new QHelperC(this);
     Singleton *s = Singleton::Instance();
-
     BaseInstallEventFilter(ui->gridLayout);
-
 
     QRect rMain = s->getMainRect();
     ui->gridLayout->setGeometry(rMain);
     setLayout(ui->gridLayout);
     setFixedSize(QSize(rMain.width()-10, rMain.height()-40));
-
-    strDisabled = "color: blue; font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
-    ui->sifra_artikal->setStyleSheet(strDisabled);
-    ui->sifra_komintent->setStyleSheet(strDisabled);
-
     model = new QStandardItemModel(0,0);
     header = new QHeaderView(Qt::Horizontal, 0);
 
     QStringList tempValsDetail = s->Get_FakturaDetail_HeaderState();
     colDetailWidth = s->loadWidthList(tempValsDetail, COL_DETAIL);
 
-    b = new QBTemplate<fakturiT>();
-    bd = new QBTemplate<fakturiDetailT>();
+
+    b = new QBTemplate<AnalitikaArtikliT>();
+    bd = new QBTemplate<AnalitikaArtikliDetailT>();
 
     ui->tableView->setModel(model);
     connect(header, SIGNAL(sectionResized(int, int, int)), this, SLOT(procSectionResized(int, int, int)));
-    sm =ui->tableView->selectionModel();
+    sm = ui->tableView->selectionModel();
+    smDetail = ui->tableView->selectionModel();
     connect(sm, SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChanged(QModelIndex,QModelIndex)));
+    connect(smDetail, SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(selectionChangedDetail(QModelIndex,QModelIndex)));
     comboboxD = new QCBItemDelegate(Q_NULLPTR);
     connect(comboboxD, SIGNAL(updatePodatoci()), this , SLOT(updatePodatoci()));
     lineeditD = new QLEItemDelegate(Q_NULLPTR);
     connect(lineeditD, SIGNAL(updateCellLE(const QModelIndex &, QString &)), this , SLOT(updateStructCellLineEdit(const QModelIndex &, QString &)));
     updateFont();
-
-    PressKeyTAB(this);
 }
 
-FakturiVnes::~FakturiVnes()
+AnalitikaArtikliKorekcija::~AnalitikaArtikliKorekcija()
 {
     Singleton *s = Singleton::Instance();
     QStringList tempdetailVals = s->saveWidthList(colDetailWidth);
     s->Set_FakturaDetail_HeaderState(tempdetailVals);
 
-    delete hlp;
     delete ui;
+    delete hlp;
     delete b;
     delete bd;
+    delete comboboxD;
     b = 0;
     bd = 0;
 }
-void FakturiVnes::pressEscape()
+void AnalitikaArtikliKorekcija::pressEscape()
 {
     emit signalpressEscape();
 }
 
-
-
-void FakturiVnes::on_pushButton_released()
-{
-
-}
-
-
-
-void FakturiVnes::setFocusArtikal(artikalT t)
+void AnalitikaArtikliKorekcija::setFocusArtikal(artikalT t)
 {
     ui->artikal->setFocus();
     ui->artikal->selectAll();
@@ -82,7 +68,7 @@ void FakturiVnes::setFocusArtikal(artikalT t)
     PressKeyTAB(this);
 }
 
-void FakturiVnes::setFocusKomintent(komintentT t)
+void AnalitikaArtikliKorekcija::setFocusKomintent(komintentT t)
 {
     ui->komintent->setFocus();
     ui->komintent->selectAll();
@@ -98,7 +84,7 @@ void FakturiVnes::setFocusKomintent(komintentT t)
 }
 
 
-void FakturiVnes::pressReturn()
+void AnalitikaArtikliKorekcija::pressReturn()
 {
     if(ui->pushButton_6->hasFocus())
     {
@@ -143,7 +129,8 @@ void FakturiVnes::pressReturn()
     }
 }
 
-void FakturiVnes::OpenTablePersistentEditor(QTableView * table, QModelIndex &index)
+
+void AnalitikaArtikliKorekcija::OpenTablePersistentEditor(QTableView * table, QModelIndex &index)
 {
     switch (index.column()){
     case 0:  table->setItemDelegate(lineeditD);break;
@@ -160,18 +147,21 @@ void FakturiVnes::OpenTablePersistentEditor(QTableView * table, QModelIndex &ind
     table->openPersistentEditor(index);
 }
 
-void FakturiVnes::CloseTablePersistentEditor(QTableView * table, QModelIndex &index)
+void AnalitikaArtikliKorekcija::CloseTablePersistentEditor(QTableView * table, QModelIndex &index)
 {
     table->closePersistentEditor(index);
 }
 
-void FakturiVnes::selectionChanged(QModelIndex modelX,QModelIndex modelY)
+
+void AnalitikaArtikliKorekcija::selectionChanged(QModelIndex modelX,QModelIndex modelY)
 {
     m_index = modelX;
     m_row = modelX.row();
 }
 
-void FakturiVnes::selectionChangedDetail(QModelIndex modelX,QModelIndex modelY)
+
+
+void AnalitikaArtikliKorekcija::selectionChangedDetail(QModelIndex modelX,QModelIndex modelY)
 {
     if (modelX != modelY){
         CloseTablePersistentEditor(ui->tableView, m_index);
@@ -179,43 +169,34 @@ void FakturiVnes::selectionChangedDetail(QModelIndex modelX,QModelIndex modelY)
     m_index = modelX;
 }
 
-void FakturiVnes::updateStructCellLineEdit(const QModelIndex & index, QString & value)
+void AnalitikaArtikliKorekcija::initProc(AnalitikaArtikli_trans m_data)
 {
-    switch (index.column()){
-    case 0: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 0)->setText(value);break;
-    case 1: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 1)->setText(value);break;
-    case 2: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 2)->setText(value);break;
-    case 3: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 3)->setText(value);break;
-    case 4: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 4)->setText(value);break;
-    case 5: resFakturaItems[index.row()].artikal_naziv = value;
-        model->item(index.row(), 5)->setText(value);break;
+    resFaktura = m_data.data1;
+    ui->faktura_id->setText(resFaktura.dokument_id);
+    ui->sifra_komintent->setText(resFaktura.komintent_id);
+    ui->komintent->setText(resFaktura.komintent_naziv);
 
-    }
-}
-
-void FakturiVnes::initProc(faktura_trans m_data)
-{
     resFakturaItems = m_data.data2;
+    resFakturaItems_oldData = m_data.data2;
     showData();
+    ui->artikal->setFocus();
 }
 
-void FakturiVnes::procDeleteItem(){
-    QList<fakturiDetailT> data = resFakturaItems;
+void AnalitikaArtikliKorekcija::procDeleteItem(){
+    QList<AnalitikaArtikliDetailT> data = resFakturaItems;
     bd->RemoveItem(data, m_row);
     resFakturaItems = data;
 }
 
-bool FakturiVnes::procAddItem(){
-    QList<fakturiDetailT> data = resFakturaItems;
-    fakturiDetailT item;
+bool AnalitikaArtikliKorekcija::procAddItem(){
+
+    QList<AnalitikaArtikliDetailT> data = resFakturaItems;
+    AnalitikaArtikliDetailT item;
     item.artikal_id = ui->sifra_artikal->text();
     item.artikal_naziv = ui->artikal->text();
     item.komintent_id = ui->sifra_komintent->text();
+    item.dokument_id = resFaktura.dokument_id;
+    item.dokument_tip = resFaktura.dokument_tip;
     item.kol = ui->kolicina->text();
     item.izl_cena_so_ddv_prod = ui->cena_so_ddv->text();
 
@@ -245,9 +226,7 @@ bool FakturiVnes::procAddItem(){
             return false;
         }
     }
-
     item.izl_prod_iznos_so_ddv = QString::number(izl_cena_so_ddv_prod_float * kolFloat, 'f', 2);
-
 
     bd->AddItem(data, item);
     resFakturaItems = data;
@@ -262,12 +241,12 @@ bool FakturiVnes::procAddItem(){
 }
 
 
-void FakturiVnes::showData(){
-    float vkupna_izl_prod_iznos_so_ddv = 0.f;
-    QList<fakturiDetailT> data = resFakturaItems;
+void AnalitikaArtikliKorekcija::showData(){
+    QList<AnalitikaArtikliDetailT> data = resFakturaItems;
     bd->ShowData(data, model, header, ui->tableView, colDetailWidth);
     data = resFakturaItems;
-    for (QList<fakturiDetailT>::iterator i = data.begin(); i!= data.end(); i++){
+    float vkupna_izl_prod_iznos_so_ddv = 0.f;
+    for (QList<AnalitikaArtikliDetailT>::iterator i = data.begin(); i!= data.end(); i++){
         vkupna_izl_prod_iznos_so_ddv += i->izl_prod_iznos_so_ddv.toFloat();
     }
     bool isOk;
@@ -275,52 +254,71 @@ void FakturiVnes::showData(){
     vk_iznos = QString::number(vkupna_izl_prod_iznos_so_ddv, 'f', 2 );
     ui->vk_iznos_so_ddv->setText(vk_iznos);
     int stop = 0;
+
 }
 
-void FakturiVnes::on_pushButton_6_clicked()
+void AnalitikaArtikliKorekcija::on_pushButton_6_clicked()
 {
     PressKeyReturn(this);
 }
 
 
-void FakturiVnes::on_pushButton_3_clicked()
+void AnalitikaArtikliKorekcija::on_pushButton_3_clicked()
 {
     PressKeyReturn(this);
 }
 
-void FakturiVnes::updateFont()
+void AnalitikaArtikliKorekcija::updateFont()
 {
     Singleton *s = Singleton::Instance();
     QString str_font = "font-size: "+QString::number(s->getGlobalFontSize())+"pt;";
     BaseUpdateFonts(ui->gridLayout, str_font);
 }
 
-void FakturiVnes::on_pushButton_4_clicked()
+void AnalitikaArtikliKorekcija::updateStructCellLineEdit(const QModelIndex & index, QString & value)
 {
-    resFaktura.dokument_tip = "60";
-    QList<dokumentT> dok;
-    QList<fakturiT> fakturiList;
-    fakturiList.append(resFaktura);
+    switch (index.column()){
+    case 0: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 0)->setText(value);break;
+    case 1: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 1)->setText(value);break;
+    case 2: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 2)->setText(value);break;
+    case 3: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 3)->setText(value);break;
+    case 4: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 4)->setText(value);break;
+    case 5: resFakturaItems[index.row()].artikal_naziv = value;
+        model->item(index.row(), 5)->setText(value);break;
 
-    b->ConvertAnyToDokument(fakturiList, dok);
+    }
+}
+
+void AnalitikaArtikliKorekcija::on_pushButton_4_clicked()
+{
+    // update faktura
+    resFaktura.dokument_tip = "20";
+    QList<dokumentT> dok;
+    QList<AnalitikaArtikliT> AnalitikaArtikliList;
+    AnalitikaArtikliList.append(resFaktura);
+
+    b->ConvertAnyToDokument(AnalitikaArtikliList, dok);
     dokumentT itemDoc = dok.at(0);
     itemDoc.iznos_plakanje_den = ui->vk_iznos_so_ddv->text();
-    QList<dokumentT> t = hlp->InsertDokumenti(itemDoc);
-    dokumentT temp_t = t.at(0);
+    hlp->UpdateDokumenti(itemDoc);
+
+    QList<dokumentDetailT> dok_detail_old;
+    bd->ConvertAnyToDokumentDetail(resFakturaItems_oldData, dok_detail_old);
+    hlp->DeleteMagacin(dok_detail_old);
 
     QList<dokumentDetailT> dok_detail_new;
     bd->ConvertAnyToDokumentDetail(resFakturaItems, dok_detail_new);
-
-    for (int i = 0; i < dok_detail_new.count(); i++){
-        dok_detail_new[i].dokument_id = temp_t.dokument_id;
-        dok_detail_new[i].dokument_tip = temp_t.dokument_tip;
-    }
     hlp->InsertMagacin(dok_detail_new);
     pressEscape();
 }
 
 
-bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
+bool AnalitikaArtikliKorekcija::eventFilter(QObject *object, QEvent *event)
 {
     Singleton *s = Singleton::Instance();
     if (event->type() == QEvent::FocusIn)
@@ -335,9 +333,7 @@ bool FakturiVnes::eventFilter(QObject *object, QEvent *event)
     }
     return false;
 }
-
-
-void FakturiVnes::Refresh()
+void AnalitikaArtikliKorekcija::Refresh()
 {
     updateFont();
 }

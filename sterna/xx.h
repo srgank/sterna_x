@@ -126,6 +126,13 @@ public:
     QStringList Get_AnalitikaKomintentiDetail_HeaderState(){return analitikakomintentiDetail__HeaderState;}
     void Set_AnalitikaKomintentiDetail_HeaderState(QStringList temp_analitikakomintentiDetail_HeaderState){analitikakomintentiDetail__HeaderState = temp_analitikakomintentiDetail_HeaderState;}
 
+    QStringList Get_AnalitikaArtikli_HeaderState(){return analitikaartikli_HeaderState;}
+    void Set_AnalitikaArtikli_HeaderState(QStringList temp_analitikaartikli_HeaderState){lager_HeaderState = temp_analitikaartikli_HeaderState;}
+
+    QStringList Get_AnalitikaArtikliDetail_HeaderState(){return analitikaartikliDetail__HeaderState;}
+    void Set_AnalitikaArtikliDetail_HeaderState(QStringList temp_analitikaartikliDetail_HeaderState){analitikaartikliDetail__HeaderState = temp_analitikaartikliDetail_HeaderState;}
+
+
 
     QList<int> loadWidthList(QStringList& list, int count){
         QList<int> temp_colDetailWidth;
@@ -205,6 +212,9 @@ private:
 
     QStringList analitikakomintenti_HeaderState;
     QStringList analitikakomintentiDetail__HeaderState;
+
+    QStringList analitikaartikli_HeaderState;
+    QStringList analitikaartikliDetail__HeaderState;
 
     QString urlhost;
     QString m_token;
